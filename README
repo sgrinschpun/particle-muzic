@@ -1,0 +1,38 @@
+### Particle
+
+Example:
+
+pi = ParticleDT('pi+')
+
+pi.name
+pi.id
+pi.pdgid
+pi.mass
+pi.charge
+pi.lifetime
+pi.type
+pi.composition
+pi.decay_channels
+
+pi.decay
+pi.timetodecay
+
+pi.getChannelNames()
+pi.getDecayTreeAll()
+pi.getDecayTreeRandom()
+
+
+
+#### Physics Libraries used
+- PYPDT
+  Install with '''pip install pypdt'''
+  Source files: https://bitbucket.org/andybuckley/pypdt/
+- ParticleDataTool
+  Cloned from: https://github.com/afedynitch/ParticleDataTool
+  (added the __init__.py)
+
+#### Related Libraries (not used)
+- pypdg: https://github.com/scphall/pypdg
+
+#### dependencies
+- Numpy, pypdt

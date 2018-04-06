@@ -1,0 +1,33 @@
+- correct github repo
+
+- one particle class
+- explore pypdt pid methods
+- unique id for the particle (attrbute) + number of particles (global/static attribute)
+
+- attributes
+  - name (input, according to ParticleDataTool names)
+  - pdgid (tandard PDG ids, from ParticleDataTool)
+  - uniqueid (successive integer)
+
+  - mass (from pypdt)
+  - charge (from pypdt)
+  - lifetime (from pypdt)
+  - ctau  ---NO
+  - width ---NO
+
+  - decay_channels (BR + particles, from ParticleDataTool)
+
+  - particle family (lepton, meson, baryon, boson, quark)
+  - fundamental
+  - composition
+  - antiparticle
+  - spin
+  - Parity
+  - Isospin
+  - J
+  - strangeness
+  - Charm
+  - bottomness
+  - latex
+
+  - methods
