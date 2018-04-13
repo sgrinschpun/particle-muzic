@@ -14,14 +14,15 @@ class IncomingMessage():
             value = json.dumps(serialized_string)
         except:
             raise DeserializationException()
+        _incoming_message = IncomingMessage()
         try:
-            _incoming_message = IncomingMessage()
             _incoming_message._command_id = value["COMMAND_ID"]
             _incoming_message._command_name = value["COMMAND_NAME"]
             _incoming_message._module_path = value["MODULE_PATH"]
             _incoming_message._params = deepcopy(value["PARAMS"])
         except:
             raise DeserializationException()
+        return _incoming_message
 
     def __init__(self):
         self._command_id = 0
@@ -55,6 +56,7 @@ class OutcomingMessage:
         return self._commandid
 
     def serialize(self):
+        pass
 
 class MuzikServer(protocol.Protocol):
 
@@ -64,6 +66,7 @@ class MuzikServer(protocol.Protocol):
         except Exception, ex:
             pass
         else:
+            self._
             print value
             self._return_message(value)
 
