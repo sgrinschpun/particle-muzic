@@ -1,0 +1,12 @@
+baseURL = "http://phenomena.ifae.es"
+languageCode = "en-us"
+title = "Phenomena"
+
+#Syntax Highlighting
+PygmentsCodeFences = true
+PygmentsStyle = "colorful"
+PygmentsCodefencesGuessSyntax = true
+#https://help.farbox.com/pygments.html
+
+
+#Menus
