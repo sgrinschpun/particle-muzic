@@ -1,0 +1,8 @@
+<div class="jumbotron">
+  {{ with .Get "h1"}}<h1 class="display-4 text-center">{{ . }}{{ end }} {{ with .Get "subtitle"}}<span class="lead text-muted ">  {{.}}</span>{{ end }}</h1>
+  {{ with .Get "lead" }}<p class="lead text-center">{{.}}</p>{{ end }}
+<br>
+  <p class="lead text-center">
+    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+  </p>
+</div>

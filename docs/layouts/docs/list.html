@@ -1,5 +1,23 @@
 {{ define "title"}}{{ .Params.title }} | {{ .Site.Title}} {{end}}
 
 {{ define "content"}}
-  {{ .Content }}
+<br>
+<div class="container">
+  <h2 class="text-center">{{ .Params.title }}</h2>
+  <br>
+  {{$list := .Data.Pages}}
+  <div class="row">
+    {{ range $list }}
+    <div class="col-sm-4">
+      <div class="card border-secondary mb-3">
+        <div class="card-header">{{ .Title }}</div>
+        <div class="card-body">
+          <h4 class="card-title">{{ .Title }}</h4>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</div>
 {{ end }}
