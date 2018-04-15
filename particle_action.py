@@ -21,7 +21,7 @@ class ParticleDecayTimer:
         t.start()
 
     def _particleDecay(self):
-        new_particles = self._particle.decay()
+        new_particles = self._particle.decay
         self._decayCallback(self._particle, new_particles)
 
     def getParticle(self):
@@ -61,14 +61,14 @@ class ParticleAccumulatorNode(ParticleActionNode):
     # Here Particles are accumulated and waiting to decay
     def addParticle(self, particle):
         assert issubclass(type(particle), Particle)
-        print "Accumulating particle: {0}".format(particle.getName())
+        print "Accumulating particle: {0}".format(particle.name)
         self._particles_available.append(ParticleDecayTimer(particle, self._decayedParticle))
 
     def removeParticle(self, particle):
         assert issubclass(type(particle), Particle)
         rm_particles_timer = [particle_timer for particle_timer in self._particles_available if particle_timer.getParticle() == particle]
         for rm_particle_timer in rm_particles_timer:
-            print "removing: ", rm_particle_timer.getParticle().getName()
+            print "removing: ", rm_particle_timer.getParticle().name
             self._particles_available.remove(rm_particle_timer)
         print "Values inside: ", len(self._particles_available)
 
@@ -82,10 +82,10 @@ class ParticleAccumulatorNode(ParticleActionNode):
     def _decayedParticle(self, particle, new_particles):
         self._transform_lock.acquire()
         try:
-            print "particle: {0}".format(particle.getName()),
+            print "particle: {0}".format(particle.name),
             print "Will transform in: ",
             for new_particle in new_particles:
-                print "{0} ".format(new_particle.getName()),
+                print "{0} ".format(new_particle.name),
             print ""
             self._node.getNextNode(self).transformParticle(particle, new_particles)
         finally:
@@ -107,7 +107,7 @@ class ParticleEntryNode(ParticleActionNode):
 
     def addParticle(self, particle):
         assert issubclass(type(particle), Particle)
-        print "Entrying particle: {0}".format(particle.getName())
+        print "Entrying particle: {0}".format(particle.name)
         self._node.getNextNode(self).addParticle(particle)
 
     def removeParticle(self, particle):
