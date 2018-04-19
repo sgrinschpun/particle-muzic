@@ -1,7 +1,9 @@
-import socket, OSC, re, time, threading, math
+import socket, sys, OSC, re, time, threading, math
+sys.path.insert(0, '../')
+from phenomena import Phenomena
 
-receive_address = '172.16.4.21', 7000 #Mac Adress, Outgoing Port  IFAE
-send_address = '172.16.4.31', 9000 #iPhone Adress, Incoming Port  IFAE
+receive_address = '192.168.1.71', 7000 #'172.16.4.21', 7000 #Mac Adress, Outgoing Port  IFAE
+send_address = '192.168.1.144', 9000 # '172.16.4.31', 9000 #iPhone Adress, Incoming Port  IFAE
 
 class PiException(Exception):
 	def __init__(self, value):
@@ -22,7 +24,17 @@ def handler(addr, tags, data, client_address):
     print "typetags %s" % tags
     print "data %s" % data
 
-s.addMsgHandler("/1/", handler)
+phenomena = Phenomena()
+def sendParticle(addr, tags, data, client_address):
+	action = {'1':'add','0':'delete'}
+	if data == [1.0]:
+		print "%s particle : %s" % (action[addr.split('/')[-2]], addr.split('/')[-1])
+		phenomena.addParticle(addr.split('/')[-1])
+
+s.addMsgHandler("/1/e-/", sendParticle)
+s.addMsgHandler("/1/mu-/", sendParticle)
+s.addMsgHandler("/1/pi-/", sendParticle)
+s.addMsgHandler("/1/H0/", sendParticle)
 
 # just checking which handlers we have added
 print "Registered Callback-functions are :"
@@ -31,7 +43,7 @@ for addr in s.getOSCAddressSpace():
 
 # Start OSCServer
 print "\nStarting OSCServer. Use ctrl-C to quit."
-st = threading.Thread( target = s.serve_forever )
+st = threading.Thread( target = s.serve_forever() )
 st.start()
 
 # Loop while threads are running.
