@@ -10,3 +10,28 @@ PygmentsCodefencesGuessSyntax = true
 
 
 #Menus
+[menu]
+
+  [[menu.main]]
+    identifier = "home"
+    name = "home"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    identifier = "projects"
+    name = "projects"
+    url = "/projects/"
+    weight = 2
+
+  [[menu.main]]
+    identifier = "docs"
+    name = "docs"
+    url = "/docs/"
+    weight = 3
+
+  [[menu.main]]
+    identifier = "about"
+    name = "about"
+    url = "/about/"
+    weight = 4
