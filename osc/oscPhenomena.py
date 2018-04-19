@@ -22,10 +22,7 @@ def handler(addr, tags, data, client_address):
     print "typetags %s" % tags
     print "data %s" % data
 
-s.addMsgHandler("/1/push1", handler)
-s.addMsgHandler("/1/push2", handler)
-s.addMsgHandler("/1/push3", handler)
-s.addMsgHandler("/1/push4", handler)
+s.addMsgHandler("/1/", handler)
 
 # just checking which handlers we have added
 print "Registered Callback-functions are :"
