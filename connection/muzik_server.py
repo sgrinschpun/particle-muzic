@@ -28,24 +28,16 @@ class IncomingMessage():
         self._command_id = 0
         self._command_name = ""
         self._module_path=""
-        self._module_remain = ""
         self._params = {}
 
     def getCommandID(self):
         return self._commandid
 
     def getModulePath(self):
-        pass
-
-    def getNextModule(self):
-        """
-        This method
-        :return: string next module value
-        """
-        pass
+        return self._module_path
 
     def getParams(self):
-        pass
+        return self._params
 
 class OutcomingMessage:
 
@@ -66,7 +58,6 @@ class MuzikServer(protocol.Protocol):
         except Exception, ex:
             pass
         else:
-            self._
             print value
             self._return_message(value)
 
