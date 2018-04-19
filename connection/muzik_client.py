@@ -1,13 +1,14 @@
 from twisted.internet.protocol import Protocol, ClientFactory
-import json
-
+from muzik_message import IncomingMessage
 
 class Echo(Protocol):
     def dataReceived(self, data):
         print "data: ",data
 
     def connectionMade(self):
-        self.transport.write(json.dumps("Hello, world!"))
+        incoming_message = IncomingMessage.fromData(command_id=1, command_name="test", module_path="x.y.z", params = [1,2])
+        send_message = incoming_message.serialize()
+        self.transport.write(send_message)
 
 class EchoClientFactory(ClientFactory):
     def startedConnecting(self, connector):

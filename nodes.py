@@ -1,5 +1,5 @@
-
 import abc
+
 
 _savenodes = None
 
@@ -12,13 +12,29 @@ class Node(object):
     __metaclass__ = abc.ABCMeta
 
     @abc.abstractmethod
+    def findModule(self, module_path):
+        pass
+
+    @abc.abstractmethod
+    def getIdentifier(self):
+        pass
+
+class ExecutableNode(Node):
+    __metaclass__ = abc.ABCMeta
+    @abc.abstractmethod
+    def execute(self, incoming_message):
+        pass
+
+class ConfigurableNode(ExecutableNode):
+    __metaclass__ = abc.ABCMeta
+
+    @abc.abstractmethod
     def setNextNode(self, n_node):
         pass
 
     @abc.abstractmethod
     def setPastNode(self, p_node):
         pass
-
 
 class ListSaveNodes:
 
@@ -40,7 +56,7 @@ class ListSaveNodes:
     def getPastNode(self, actual_node):
         index = self._nodes.index(actual_node)
         past_index = index - 1
-        if past_index <=0: return self._nodes[-1]
+        if past_index <= 0: return self._nodes[-1]
         return self._nodes[past_index]
 
     def setNextNode(self, actual_node, add_node):

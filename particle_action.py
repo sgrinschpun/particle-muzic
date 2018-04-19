@@ -10,7 +10,7 @@ import abc
 from threading import Timer, Lock
 
 from particle import Particle, ParticleDT
-from nodes import get_save_node, Node
+from nodes import get_save_node, ConfigurableNode
 
 
 class ParticleDecayTimer:
@@ -31,10 +31,6 @@ class ParticleAction(object):
     __metaclass__ = abc.ABCMeta
 
     @abc.abstractmethod
-    def getIdentifier(self):
-        pass
-
-    @abc.abstractmethod
     def addParticle(self, particle):
         pass
 
@@ -46,12 +42,22 @@ class ParticleAction(object):
     def transformParticle(self, particle, new_particles):
         pass
 
-class ParticleActionNode(ParticleAction, Node):
-    pass
+class ParticleActionNodeEnd(ParticleAction, ConfigurableNode):
+
+    def findModule(self, module_path):
+        if (module_path == self.getIdentifier()):
+            return self
+        raise Exception("Module Not found!")
+
+class ParticleActionNodeChain(ParticleAction, ConfigurableNode):
+
+    def findModule(self, module_path):
+        if(module_path == self.getIdentifier()): return self
+        else: self._node.findModule(module_path)
 
 # Fixed Particles Nodes
 
-class ParticleAccumulatorNode(ParticleActionNode):
+class ParticleAccumulatorNode(ParticleActionNodeChain):
 
     def __init__(self):
         self._node = get_save_node()
@@ -91,8 +97,16 @@ class ParticleAccumulatorNode(ParticleActionNode):
         finally:
             self._transform_lock.release()
 
+    def findModule(self, module_path):
+        if (module_path == self._identifier):
+            return self
+        else:
+            next_module_path = module_path.split(' ', 1)
+            if (len(next_module_path) == 1): raise Exception("Module Not found!")
+            self._root_node.findModule(next_module_path[1])
+
     def getIdentifier(self):
-        return "ParticleAccumulatorNode"
+        return "accumulator"
 
     def setNextNode(self, n_node):
         self._node.setNextNode(n_node)
@@ -100,7 +114,10 @@ class ParticleAccumulatorNode(ParticleActionNode):
     def setPastNode(self, p_node):
         self._node.setPastNode(p_node)
 
-class ParticleEntryNode(ParticleActionNode):
+    def execute(self, incoming_message):
+        pass
+
+class ParticleEntryNode(ParticleActionNodeEnd):
 
     def __init__(self):
         self._node = get_save_node()
@@ -119,13 +136,16 @@ class ParticleEntryNode(ParticleActionNode):
         self._node.getNextNode(self).transformParticle(particle, new_particles)
 
     def getIdentifier(self):
-        return "ParticleEntryNode"
+        return "entry"
 
     def setNextNode(self, n_node):
         self._node.setNextNode(self, n_node)
 
     def setPastNode(self, p_node):
         self._node.setPastNode(self, p_node)
+
+    def execute(self, incoming_message):
+        pass
 
 if __name__ == '__main__':
     a = ParticleAccumulatorNode()

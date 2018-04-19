@@ -1,70 +1,27 @@
 import json
 from twisted.internet import reactor, protocol
-from copy import deepcopy
-from node_controller import NodeController
-from muzik_exception import DeserializationException, MessageFormatError
+
+from connection.muzik_message import IncomingMessage, OutcomingMessage
 
 PORT = 16180
-
-class IncomingMessage():
-
-    @staticmethod
-    def deserialize(serialized_string):
-        try:
-            value = json.dumps(serialized_string)
-        except:
-            raise DeserializationException()
-        _incoming_message = IncomingMessage()
-        try:
-            _incoming_message._command_id = value["COMMAND_ID"]
-            _incoming_message._command_name = value["COMMAND_NAME"]
-            _incoming_message._module_path = value["MODULE_PATH"]
-            _incoming_message._params = deepcopy(value["PARAMS"])
-        except:
-            raise DeserializationException()
-        return _incoming_message
-
-    def __init__(self):
-        self._command_id = 0
-        self._command_name = ""
-        self._module_path=""
-        self._params = {}
-
-    def getCommandID(self):
-        return self._commandid
-
-    def getModulePath(self):
-        return self._module_path
-
-    def getParams(self):
-        return self._params
-
-class OutcomingMessage:
-
-    def __init__(self):
-        pass
-
-    def getCommandID(self):
-        return self._commandid
-
-    def serialize(self):
-        pass
 
 class MuzikServer(protocol.Protocol):
 
     def dataReceived(self, data):
         try:
-            value = json.dumps(data)
+            new_message = IncomingMessage.deserialize(data)
         except Exception, ex:
-            pass
+            print ex.message
+            out_message = OutcomingMessage.errorSerializeMessage(ex.message)
+            self._return_message(out_message)
         else:
-            print value
-            self._return_message(value)
+            a = new_message.params
+            b = a[0] + a[1]
+            out_message = OutcomingMessage.okMessage(new_message, b)
+            self._return_message(out_message)
 
-    def _return_message(self, message):
-        print message
-        value = json.loads(message)
-        send_value = value.encode("ascii")
+    def _return_message(self, outcoming_message):
+        send_value = outcoming_message.serialize()
         self.transport.write(send_value)
 
 class MyServerFactory(protocol.Factory):
@@ -90,6 +47,9 @@ MESSAGE:
 RETURN:
 {
 "TYPE": OK//FAILED
+"COMMAND_NAME": CMD_NAME,
+"COMMAND_ID": ID,
+"MODULE_PATH": "x.y.z",
 "RETURN": message
 }
 
