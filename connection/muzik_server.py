@@ -1,7 +1,7 @@
 import json
 from twisted.internet import reactor, protocol
 
-from connection.muzik_message import IncomingMessage, OutcomingMessage
+from muzik_message import IncomingMessage, OutcomingMessage
 
 PORT = 16180
 
@@ -11,13 +11,12 @@ class MuzikServer(protocol.Protocol):
         try:
             new_message = IncomingMessage.deserialize(data)
         except Exception, ex:
-            print ex.message
+            print "Exception!", ex.message
             out_message = OutcomingMessage.errorSerializeMessage(ex.message)
             self._return_message(out_message)
         else:
-            a = new_message.params
-            b = a[0] + a[1]
-            out_message = OutcomingMessage.okMessage(new_message, b)
+            print "Received Command: ", new_message.command_name
+            out_message = OutcomingMessage.okMessage(new_message, new_message.params)
             self._return_message(out_message)
 
     def _return_message(self, outcoming_message):

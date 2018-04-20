@@ -6,9 +6,9 @@ class IncomingMessage:
 
     @staticmethod
     def deserialize(serialized_string):
+        value = {}
         try:
             value = json.loads(serialized_string)
-            print value, type(value)
         except Exception, ex:
             raise DeserializationException(ex.message)
         _incoming_message = IncomingMessage()
@@ -60,9 +60,31 @@ class IncomingMessage:
         ret_dict["PARAMS"] = deepcopy(self._params)
         return json.dumps(ret_dict).encode("ascii")
 
+    def __str__(self):
+        return "Incoming message: id {0} Name: {1} Module Path: {2} ".format(self._command_id,
+                                                                             self._command_name,
+                                                                             self._module_path)
+
 class OutcomingMessage:
     ERROR = 0
     OK = 1
+
+    @staticmethod
+    def deserialize(serialized_string):
+        value = {}
+        try:
+            value = json.loads(serialized_string)
+        except Exception, ex:
+            raise DeserializationException(ex.message)
+        try:
+            return OutcomingMessage(value["COMMAND_ID"],
+                                    value["COMMAND_NAME"],
+                                    value["MODULE_PATH"],
+                                    value["RETURN"],
+                                    value["TYPE"])
+
+        except Exception, ex:
+            raise DeserializationException(ex.message)
 
     @staticmethod
     def errorMessage(incoming_message, message):
@@ -84,18 +106,44 @@ class OutcomingMessage:
                                 ret,
                                 OutcomingMessage.OK)
 
-    def __init__(self, commandid, command_name, module_path, return_info, type):
-        self._commandid = commandid
+    def __init__(self, command_id, command_name, module_path, return_info, type):
+        self._command_id = command_id
         self._module_path = module_path
         self._command_name = command_name
         self._return = return_info
         self._type = type
 
+    @property
+    def command_id(self):
+        return self._command_id
+
+    @property
+    def command_name(self):
+        return self._command_name
+
+    @property
+    def module_path(self):
+        return self._module_path
+
+    @property
+    def return_info(self):
+        return self._return
+
+    @property
+    def type(self):
+        return self._type
+
     def serialize(self):
         ret_dict = {}
-        ret_dict["COMMAND_ID"] = self._commandid
+        ret_dict["COMMAND_ID"] = self._command_id
         ret_dict["COMMAND_NAME"] = self._command_name
         ret_dict["MODULE_PATH"] = self._module_path
         ret_dict["RETURN"] = self._return
         ret_dict["TYPE"] = self._type
         return json.dumps(ret_dict).encode("ascii")
+
+    def __str__(self):
+        return "Outcoming message: type: {0} id {1} Name: {2} Module Path: {3} ".format(self._type,
+                                                                                        self._command_id,
+                                                                                        self._command_name,
+                                                                                        self._module_path)

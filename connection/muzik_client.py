@@ -1,29 +1,63 @@
 from twisted.internet.protocol import Protocol, ClientFactory
-from muzik_message import IncomingMessage
+from twisted.internet import reactor
+from Queue import Queue
+from threading import Thread
+from muzik_message import IncomingMessage, OutcomingMessage
 
-class Echo(Protocol):
-    def dataReceived(self, data):
-        print "data: ",data
+
+class SendMessageProtocol(Protocol):
+
+    def __init__(self, message_queue):
+        self._message_queue = message_queue
+
+    def dataReceived(self, received_data):
+        self._message_queue.put(received_data)
 
     def connectionMade(self):
-        incoming_message = IncomingMessage.fromData(command_id=1, command_name="test", module_path="x.y.z", params = [1,2])
-        send_message = incoming_message.serialize()
-        self.transport.write(send_message)
+        self._message_queue.put(True)
 
-class EchoClientFactory(ClientFactory):
+    def sendMessage(self, _message):
+        self.transport.write(_message)
+
+class ClientFactory(ClientFactory):
+
+    def __init__(self, message_queue):
+        self._protocol = SendMessageProtocol(message_queue)
+
     def startedConnecting(self, connector):
-        print 'Started to connect.'
+        pass
 
     def buildProtocol(self, addr):
-        print "Protocol!"
-        return Echo()
+        return self._protocol
+
+    def getProtocol(self):
+        return self._protocol
 
     def clientConnectionLost(self, connector, reason):
-        print 'Lost connection.  Reason:', reason
+        pass
+        #print 'Lost connection.  Reason:', reason
 
     def clientConnectionFailed(self, connector, reason):
-        print 'Connection failed. Reason:', reason
+        pass
+        #print 'Connection failed. Reason:', reason
 
-from twisted.internet import reactor
-reactor.connectTCP("localhost", 16180, EchoClientFactory())
-reactor.run()
+
+class MessageSender:
+
+    def __init__(self):
+        self._return_message_queue = Queue()
+        self._factory = ClientFactory(self._return_message_queue)
+        self._connector = reactor.connectTCP("localhost", 16180, self._factory)
+        self._thread_connector = Thread(target=reactor.run, args=(False,))
+        self._thread_connector.start()
+        self._return_message_queue.get()
+
+    def sendMessage(self, message):
+        protocol = self._factory.getProtocol()
+        protocol.sendMessage(message)
+        return self._return_message_queue.get()
+
+    def disconnect(self):
+        self._connector.disconnect()
+        reactor.stop()
+        self._thread_connector.join()

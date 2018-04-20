@@ -17,7 +17,7 @@ class Phenomena:
         message = IncomingMessage.fromData(command_id=Phenomena.getCommandId(), command_name="ADD", module_path="node", params={'particlename': particle})
         received_message = self._sendMessage(message)
         outcoming_message = OutcomingMessage.deserialize(received_message)
-        print outcoming_message
+        #print outcoming_message
 
     def _sendMessage(self, message):
         return self._message_sender.sendMessage(message.serialize())
@@ -27,11 +27,10 @@ class Phenomena:
 
 
 if __name__ == '__main__':
+    import time
     phenomena = Phenomena()
-    phenomena.addParticle("pi+")
-    phenomena.addParticle("pi+")
-    phenomena.addParticle("pi+")
-    phenomena.addParticle("pi+")
-    phenomena.addParticle("pi+")
-    phenomena.addParticle("pi+")
+    begin_time = time.time()
+    for i in range(100000):
+        phenomena.addParticle("pi+")
+    print "Total time: {0}".format(time.time() - begin_time)
     phenomena.endConnection()
