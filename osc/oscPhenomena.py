@@ -2,8 +2,18 @@ import socket, sys, OSC, re, time, threading, math
 sys.path.insert(0, '../')
 from phenomena import Phenomena
 
-receive_address = '192.168.1.71', 7000 #'172.16.4.21', 7000 #Mac Adress, Outgoing Port  IFAE
-send_address = '192.168.1.144', 9000 # '172.16.4.31', 9000 #iPhone Adress, Incoming Port  IFAE
+
+receive_address = {
+    'ifae_imac': ('172.16.4.21', 7000), #Mac Adress, Outgoing Port  IFAE
+    'ifae_macbook': ('172.16.4.24', 7000),
+    'home_macbook':('192.168.1.71', 7000)
+}
+
+send_address = {
+    'phone_ifae': ('172.16.4.31', 9000), #iPhone Adress, Incoming Port  IFAE
+    'phone_home': ('192.168.1.144', 9000)
+}
+
 
 class PiException(Exception):
 	def __init__(self, value):
@@ -11,8 +21,7 @@ class PiException(Exception):
 	def __str__(self):
 		return repr(self.value)
 
-
-s = OSC.OSCServer(receive_address)
+s = OSC.OSCServer(receive_address['ifae_macbook'])
 
 s.addDefaultHandlers()
 
@@ -24,12 +33,12 @@ def handler(addr, tags, data, client_address):
     print "typetags %s" % tags
     print "data %s" % data
 
-phenomena = Phenomena()
+#phenomena = Phenomena()
 def sendParticle(addr, tags, data, client_address):
 	action = {'1':'add','0':'delete'}
 	if data == [1.0]:
 		print "%s particle : %s" % (action[addr.split('/')[-2]], addr.split('/')[-1])
-		phenomena.addParticle(addr.split('/')[-1])
+		#phenomena.addParticle(addr.split('/')[-1])
 
 s.addMsgHandler("/1/e-/", sendParticle)
 s.addMsgHandler("/1/mu-/", sendParticle)
