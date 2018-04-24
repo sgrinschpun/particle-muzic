@@ -1,6 +1,6 @@
 import socket, sys, OSC, re, time, threading, math
 sys.path.insert(0, '../')
-from phenomena import Phenomena
+from phenomena_client import Phenomena
 
 receive_address = '192.168.1.71', 7000 #'172.16.4.21', 7000 #Mac Adress, Outgoing Port  IFAE
 send_address = '192.168.1.144', 9000 # '172.16.4.31', 9000 #iPhone Adress, Incoming Port  IFAE
