@@ -1,6 +1,6 @@
 import socket, sys, OSC, re, time, threading, math
-sys.path.insert(0, '../')
-from phenomena_client import Phenomena
+sys.path.insert(0, '../../')
+from phenomena.phenomena_client import Phenomena
 
 
 receive_address = {
@@ -21,7 +21,7 @@ class PiException(Exception):
 	def __str__(self):
 		return repr(self.value)
 
-s = OSC.OSCServer(receive_address['ifae_macbook'])
+s = OSC.OSCServer(receive_address['home_macbook'])
 
 s.addDefaultHandlers()
 
@@ -33,12 +33,12 @@ def handler(addr, tags, data, client_address):
     print "typetags %s" % tags
     print "data %s" % data
 
-#phenomena = Phenomena()
+
 def sendParticle(addr, tags, data, client_address):
 	action = {'1':'add','0':'delete'}
 	if data == [1.0]:
 		print "%s particle : %s" % (action[addr.split('/')[-2]], addr.split('/')[-1])
-		#phenomena.addParticle(addr.split('/')[-1])
+		phenomena.addParticle(addr.split('/')[-1])
 
 s.addMsgHandler("/1/e-/", sendParticle)
 s.addMsgHandler("/1/mu-/", sendParticle)
@@ -49,6 +49,8 @@ s.addMsgHandler("/1/H0/", sendParticle)
 print "Registered Callback-functions are :"
 for addr in s.getOSCAddressSpace():
 	print addr
+
+phenomena = Phenomena()
 
 # Start OSCServer
 print "\nStarting OSCServer. Use ctrl-C to quit."
