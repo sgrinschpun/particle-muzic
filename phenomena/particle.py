@@ -9,6 +9,7 @@ import math
 import json
 import textwrap
 from operator import itemgetter
+import time, threading
 
 import numpy as np
 
@@ -30,10 +31,12 @@ def str_hook(obj):    # this is to convert unicodes to strings in json load. cop
     return {k.encode('utf-8') if isinstance(k,unicode) else k :
             v.encode('utf-8') if isinstance(v, unicode) else v
             for k,v in obj}
-path = 'particle_extra_info/part_extra_info.json'
+path = '../particle_extra_info/part_extra_info.json'
 dirname = os.path.dirname(__file__)
 filename = os.path.join(dirname, path)
 particle_extra_info = json.load(open(filename), object_pairs_hook=str_hook)
+
+
 
 class Particle(object):
     __metaclass__ = abc.ABCMeta
@@ -75,6 +78,7 @@ class ParticleDT(Particle):
         self._set_type() # Particle Type (quark, lepton, bosoon, meson, baryon) taken from json
         self._set_composition() # Particle quark compsition in format [[q1,q2],[q3,q4],...] taken from json. Check unicode vs string
 
+        self._set_lifetime_ren() #Renormalization of the lifetime
         self._set_decay() # Particle decay channel chosen
         self._set_time_to_decay() # Particle time lived before decay, renormalized
 
@@ -149,6 +153,13 @@ class ParticleDT(Particle):
         self._lifetime= tbl[self._pdgid].lifetime
 
     @property
+    def lifetime_ren(self):
+        return self._lifetime_ren
+
+    def _set_lifetime_ren(self):
+        self._lifetime_ren= ParticleDT.renormalize_time(ParticleDT.magnitude(self._lifetime))
+
+    @property
     def decay_channels(self):
         return self._decay_channels
 
@@ -183,7 +194,8 @@ class ParticleDT(Particle):
                 choice = self._weighted_choice(self._build_weights()[0],self._build_weights()[1])
                 channels = self._decay_channels[choice][1]
                 for part in channels:
-                    list_decay.append(ParticleDT(ParticleDT.apdgid(part).name))
+                    #list_decay.append(ParticleDT(ParticleDT.apdgid(part).name))  this actually creates objects
+                    list_decay.append(ParticleDT.apdgid(part).name)  # this just shows particles names
             finally:
                 self._decay = list_decay
         else:
@@ -195,7 +207,7 @@ class ParticleDT(Particle):
 
     def _set_time_to_decay(self): #this is just a proof of concept. need to be improved
         if self._lifetime != None :
-            self._timetodecay = ParticleDT.renormalize_time(ParticleDT.magnitude(self._next_decay()))
+            self._timetodecay = self._next_decay()
         else:
             self._timetodecay = 'stable'  # mixing strings with floats ???
 
@@ -217,9 +229,21 @@ class ParticleDT(Particle):
                 return elmt
             x -= weights[i]
 
-    def _next_decay(self):   #this is picosecons, needs to be normalized
+    #Calculates next decay according to renormalized lifetime
+    def _next_decay(self):
         if self._lifetime != None:
-            return random.expovariate(1/self._lifetime)
+            return random.expovariate(1/self._lifetime_ren)
+
+    #Callback  the timer trigger
+    def decay_callback(self):
+        print 'Decays to: %s in %s' % (self.decay, self.time_to_decay)
+
+    #Timer trigger method
+    def start(self):
+        if self.time_to_decay != 'stable':
+            threading.Timer( self.time_to_decay, self.decay_callback).start()
+        else:
+            pass
 
     def get_channel_names(self):
         dc_names = []
