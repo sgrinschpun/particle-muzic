@@ -2,7 +2,7 @@
 
 {{ define "content"}}
   <div class="container">
-    <h2>{{ .Params.title }} </h2>
+    <h3 class="text-center">{{ .Params.title }}: <small class="text-muted">{{ .Params.subtitle }}</small></h3>
     {{ .Content }}
   </div>
 {{ end }}

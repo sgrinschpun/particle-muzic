@@ -4,12 +4,8 @@ description = ""
 date = "2018-04-13"
 +++
 
-hola
+#### Developed by:
 
-```python
-import abc
-from threading import Timer, Lock
-
-from particle import Particle, ParticleDT
-from nodes import get_save_node, Node
-```
+- Cristóbal Pío (@Keijuro)
+- Oscar Martínez (@Nasker)
+- Sebastián Grinschpun (@IFAE)
