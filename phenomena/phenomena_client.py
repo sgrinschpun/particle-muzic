@@ -1,3 +1,5 @@
+import sys
+sys.path.insert(0, '../')
 from phenomena.connection.muzik_client import MessageSender
 from phenomena.connection.muzik_message import IncomingMessage, OutcomingMessage
 
@@ -26,6 +28,6 @@ if __name__ == '__main__':
     import time
     phenomena = Phenomena()
     begin_time = time.time()
-    for i in range(100000):
+    for i in range(1000):
         phenomena.addParticle("pi+")
     print "Total time: {0}".format(time.time() - begin_time)

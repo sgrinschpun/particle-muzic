@@ -1,7 +1,7 @@
 import socket
 import sys
 import threading
-
+sys.path.insert(0, '../../')
 from phenomena.utils.log import get_logger
 from phenomena.connection.commons import PORT, PetitionHandler
 

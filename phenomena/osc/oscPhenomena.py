@@ -21,7 +21,7 @@ class PiException(Exception):
 	def __str__(self):
 		return repr(self.value)
 
-s = OSC.OSCServer(receive_address['home_macbook'])
+s = OSC.OSCServer(receive_address['ifae_macbook'])
 
 s.addDefaultHandlers()
 
