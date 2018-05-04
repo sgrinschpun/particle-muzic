@@ -1,7 +1,6 @@
 import socket
 import sys
 import threading
-
 from phenomena.utils.log import get_logger
 from phenomena.connection.commons import PORT, PetitionHandler
 
