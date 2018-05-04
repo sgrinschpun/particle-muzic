@@ -1,5 +1,5 @@
-from phenomena.connection.muzik_client import MessageSender
-from phenomena.connection.muzik_message import IncomingMessage, OutcomingMessage
+from phenomena.connection.phenomena_client import MessageSender
+from phenomena.connection.phenomena_message import IncomingMessage, OutcomingMessage
 
 HOST = '127.0.0.1'
 

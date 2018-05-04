@@ -1,4 +1,4 @@
-from phenomena.connection.muzik_message import IncomingMessage, OutcomingMessage
+from phenomena.connection.phenomena_message import IncomingMessage, OutcomingMessage
 from phenomena.utils.log import get_logger
 
 PORT = 16180
