@@ -1,6 +1,6 @@
 import json
 from copy import deepcopy
-from phenomena.connection.muzik_exception import DeserializationException
+from phenomena.connection.phenomena_exception import DeserializationException
 
 class IncomingMessage:
 
