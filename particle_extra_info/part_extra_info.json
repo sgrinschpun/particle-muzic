@@ -32,7 +32,10 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'ubar']"
+            [
+                "d", 
+                "ubar"
+            ]
         ], 
         "family": "pi", 
         "interactions": [
@@ -57,7 +60,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['ubar', 'd']"
+            [
+                "ubar", 
+                "d"
+            ]
         ], 
         "family": "rho", 
         "interactions": [], 
@@ -75,7 +81,10 @@
         "Strangeness": "1", 
         "antiparticle": "100323", 
         "composition": [
-            "['s', 'ubar']"
+            [
+                "s", 
+                "ubar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -132,7 +141,10 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'ubar']"
+            [
+                "d", 
+                "ubar"
+            ]
         ], 
         "family": "pi", 
         "interactions": [
@@ -157,7 +169,10 @@
         "Strangeness": "1", 
         "antiparticle": "10321", 
         "composition": [
-            "['s', 'ubar']"
+            [
+                "s", 
+                "ubar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -182,7 +197,10 @@
         "Strangeness": "1", 
         "antiparticle": "10323", 
         "composition": [
-            "['s', 'ubar']"
+            [
+                "s", 
+                "ubar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -207,7 +225,10 @@
         "Strangeness": "1", 
         "antiparticle": "10325", 
         "composition": [
-            "['s', 'ubar']"
+            [
+                "s", 
+                "ubar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -232,7 +253,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['dbar', 'sbar', 'sbar']"
+            [
+                "dbar", 
+                "sbar", 
+                "sbar"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -250,7 +275,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['cbar', 'd']"
+            [
+                "cbar", 
+                "d"
+            ]
         ], 
         "family": "D", 
         "interactions": [
@@ -275,7 +303,11 @@
         "Strangeness": "", 
         "antiparticle": "104122", 
         "composition": [
-            "['ubar', 'dbar', 'cbar']"
+            [
+                "ubar", 
+                "dbar", 
+                "cbar"
+            ]
         ], 
         "family": "Lambda", 
         "interactions": [], 
@@ -293,7 +325,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['cbar', 's']"
+            [
+                "cbar", 
+                "s"
+            ]
         ], 
         "family": "D", 
         "interactions": [
@@ -318,7 +353,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['ubar', 'sbar', 'cbar']"
+            [
+                "ubar", 
+                "sbar", 
+                "cbar"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -336,7 +375,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['ubar', 'sbar', 'cbar']"
+            [
+                "ubar", 
+                "sbar", 
+                "cbar"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -354,7 +397,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['cbar', 's']"
+            [
+                "cbar", 
+                "s"
+            ]
         ], 
         "family": "D", 
         "interactions": [
@@ -422,7 +468,11 @@
         "Strangeness": "", 
         "antiparticle": "12212", 
         "composition": [
-            "['ubar', 'ubar', 'dbar']"
+            [
+                "ubar", 
+                "ubar", 
+                "dbar"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -440,7 +490,11 @@
         "Strangeness": "", 
         "antiparticle": "12216", 
         "composition": [
-            "['ubar', 'ubar', 'dbar']"
+            [
+                "ubar", 
+                "ubar", 
+                "dbar"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -458,7 +512,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['ubar', 'ubar', 'ubar']"
+            [
+                "ubar", 
+                "ubar", 
+                "ubar"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -476,7 +534,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['ubar', 'ubar', 'ubar']"
+            [
+                "ubar", 
+                "ubar", 
+                "ubar"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -516,7 +578,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['dbar', 'sbar', 'sbar']"
+            [
+                "dbar", 
+                "sbar", 
+                "sbar"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -555,7 +621,11 @@
         "Strangeness": "", 
         "antiparticle": "14122", 
         "composition": [
-            "['ubar', 'dbar', 'cbar']"
+            [
+                "ubar", 
+                "dbar", 
+                "cbar"
+            ]
         ], 
         "family": "Lambda", 
         "interactions": [], 
@@ -655,7 +725,10 @@
         "Strangeness": "1", 
         "antiparticle": "20323", 
         "composition": [
-            "['s', 'ubar']"
+            [
+                "s", 
+                "ubar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -680,7 +753,10 @@
         "Strangeness": "1", 
         "antiparticle": "20325", 
         "composition": [
-            "['s', 'ubar']"
+            [
+                "s", 
+                "ubar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -705,7 +781,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['dbar', 'sbar', 'sbar']"
+            [
+                "dbar", 
+                "sbar", 
+                "sbar"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -723,7 +803,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['dbar', 'sbar', 'sbar']"
+            [
+                "dbar", 
+                "sbar", 
+                "sbar"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -741,7 +825,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['sbar', 'sbar', 'sbar']"
+            [
+                "sbar", 
+                "sbar", 
+                "sbar"
+            ]
         ], 
         "family": "Omega", 
         "interactions": [], 
@@ -759,7 +847,11 @@
         "Strangeness": "", 
         "antiparticle": "204126", 
         "composition": [
-            "['ubar', 'dbar', 'cbar']"
+            [
+                "ubar", 
+                "dbar", 
+                "cbar"
+            ]
         ], 
         "family": "Lambda", 
         "interactions": [], 
@@ -777,7 +869,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['cbar', 's']"
+            [
+                "cbar", 
+                "s"
+            ]
         ], 
         "family": "D", 
         "interactions": [
@@ -802,7 +897,10 @@
         "Strangeness": "0", 
         "antiparticle": "211", 
         "composition": [
-            "['d', 'ubar']"
+            [
+                "d", 
+                "ubar"
+            ]
         ], 
         "family": "pi", 
         "interactions": [
@@ -827,7 +925,11 @@
         "Strangeness": "", 
         "antiparticle": "2124", 
         "composition": [
-            "['ubar', 'ubar', 'dbar']"
+            [
+                "ubar", 
+                "ubar", 
+                "dbar"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -845,7 +947,11 @@
         "Strangeness": "", 
         "antiparticle": "2128", 
         "composition": [
-            "['ubar', 'ubar', 'dbar']"
+            [
+                "ubar", 
+                "ubar", 
+                "dbar"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -863,7 +969,10 @@
         "Strangeness": "0", 
         "antiparticle": "213", 
         "composition": [
-            "['ubar', 'd']"
+            [
+                "ubar", 
+                "d"
+            ]
         ], 
         "family": "rho", 
         "interactions": [], 
@@ -897,7 +1006,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['ubar', 'd']"
+            [
+                "ubar", 
+                "d"
+            ]
         ], 
         "family": "rho", 
         "interactions": [], 
@@ -931,7 +1043,11 @@
         "Strangeness": "0", 
         "antiparticle": "2212", 
         "composition": [
-            "['u', 'u', 'd']"
+            [
+                "u", 
+                "u", 
+                "d"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -949,7 +1065,11 @@
         "Strangeness": "", 
         "antiparticle": "22124", 
         "composition": [
-            "['ubar', 'ubar', 'dbar']"
+            [
+                "ubar", 
+                "ubar", 
+                "dbar"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -967,7 +1087,11 @@
         "Strangeness": "", 
         "antiparticle": "2216", 
         "composition": [
-            "['ubar', 'ubar', 'dbar']"
+            [
+                "ubar", 
+                "ubar", 
+                "dbar"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -985,7 +1109,11 @@
         "Strangeness": "", 
         "antiparticle": "22212", 
         "composition": [
-            "['ubar', 'ubar', 'dbar']"
+            [
+                "ubar", 
+                "ubar", 
+                "dbar"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -1003,7 +1131,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['ubar', 'ubar', 'ubar']"
+            [
+                "ubar", 
+                "ubar", 
+                "ubar"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -1021,7 +1153,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['ubar', 'ubar', 'ubar']"
+            [
+                "ubar", 
+                "ubar", 
+                "ubar"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -1039,7 +1175,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['ubar', 'ubar', 'ubar']"
+            [
+                "ubar", 
+                "ubar", 
+                "ubar"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -1057,7 +1197,11 @@
         "Strangeness": "0", 
         "antiparticle": "2224", 
         "composition": [
-            "['ubar', 'ubar', 'ubar']"
+            [
+                "ubar", 
+                "ubar", 
+                "ubar"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -1075,7 +1219,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['ubar', 'ubar', 'ubar']"
+            [
+                "ubar", 
+                "ubar", 
+                "ubar"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -1093,7 +1241,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['ubar', 'ubar', 'ubar']"
+            [
+                "ubar", 
+                "ubar", 
+                "ubar"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -1154,7 +1306,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['ubar', 'd']"
+            [
+                "ubar", 
+                "d"
+            ]
         ], 
         "family": "rho", 
         "interactions": [], 
@@ -1172,7 +1327,10 @@
         "Strangeness": "1", 
         "antiparticle": "30323", 
         "composition": [
-            "['s', 'ubar']"
+            [
+                "s", 
+                "ubar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -1197,7 +1355,10 @@
         "Strangeness": "1", 
         "antiparticle": "321", 
         "composition": [
-            "['s', 'ubar']"
+            [
+                "s", 
+                "ubar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -1222,7 +1383,11 @@
         "Strangeness": "", 
         "antiparticle": "32124", 
         "composition": [
-            "['ubar', 'ubar', 'dbar']"
+            [
+                "ubar", 
+                "ubar", 
+                "dbar"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -1240,7 +1405,11 @@
         "Strangeness": "", 
         "antiparticle": "32212", 
         "composition": [
-            "['ubar', 'ubar', 'dbar']"
+            [
+                "ubar", 
+                "ubar", 
+                "dbar"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -1258,7 +1427,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['ubar', 'ubar', 'ubar']"
+            [
+                "ubar", 
+                "ubar", 
+                "ubar"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -1276,7 +1449,10 @@
         "Strangeness": "1", 
         "antiparticle": "323", 
         "composition": [
-            "['s', 'ubar']"
+            [
+                "s", 
+                "ubar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -1301,7 +1477,10 @@
         "Strangeness": "1", 
         "antiparticle": "325", 
         "composition": [
-            "['s', 'ubar']"
+            [
+                "s", 
+                "ubar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -1326,7 +1505,10 @@
         "Strangeness": "1", 
         "antiparticle": "327", 
         "composition": [
-            "['s', 'ubar']"
+            [
+                "s", 
+                "ubar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -1351,7 +1533,10 @@
         "Strangeness": "1", 
         "antiparticle": "329", 
         "composition": [
-            "['s', 'ubar']"
+            [
+                "s", 
+                "ubar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -1376,7 +1561,11 @@
         "Strangeness": "", 
         "antiparticle": "3312", 
         "composition": [
-            "['dbar', 'sbar', 'sbar']"
+            [
+                "dbar", 
+                "sbar", 
+                "sbar"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -1394,7 +1583,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['dbar', 'sbar', 'sbar']"
+            [
+                "dbar", 
+                "sbar", 
+                "sbar"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -1412,7 +1605,11 @@
         "Strangeness": "", 
         "antiparticle": "3334", 
         "composition": [
-            "['sbar', 'sbar', 'sbar']"
+            [
+                "sbar", 
+                "sbar", 
+                "sbar"
+            ]
         ], 
         "family": "Omega", 
         "interactions": [], 
@@ -1453,7 +1650,10 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['cbar', 'd']"
+            [
+                "cbar", 
+                "d"
+            ]
         ], 
         "family": "D", 
         "interactions": [
@@ -1478,7 +1678,11 @@
         "Strangeness": "", 
         "antiparticle": "4122", 
         "composition": [
-            "['ubar', 'dbar', 'cbar']"
+            [
+                "ubar", 
+                "dbar", 
+                "cbar"
+            ]
         ], 
         "family": "Lambda", 
         "interactions": [], 
@@ -1496,7 +1700,10 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['cbar', 'd']"
+            [
+                "cbar", 
+                "d"
+            ]
         ], 
         "family": "D", 
         "interactions": [
@@ -1521,7 +1728,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['cbar', 'd']"
+            [
+                "cbar", 
+                "d"
+            ]
         ], 
         "family": "D", 
         "interactions": [
@@ -1546,7 +1756,11 @@
         "Strangeness": "0", 
         "antiparticle": "4212", 
         "composition": [
-            "['ubar', 'dbar', 'cbar']"
+            [
+                "ubar", 
+                "dbar", 
+                "cbar"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -1564,7 +1778,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['ubar', 'dbar', 'cbar']"
+            [
+                "ubar", 
+                "dbar", 
+                "cbar"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -1582,7 +1800,11 @@
         "Strangeness": "", 
         "antiparticle": "42212", 
         "composition": [
-            "['ubar', 'ubar', 'dbar']"
+            [
+                "ubar", 
+                "ubar", 
+                "dbar"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -1600,7 +1822,11 @@
         "Strangeness": "0", 
         "antiparticle": "4222", 
         "composition": [
-            "['ubar', 'ubar', 'cbar']"
+            [
+                "ubar", 
+                "ubar", 
+                "cbar"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -1618,7 +1844,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['ubar', 'ubar', 'cbar']"
+            [
+                "ubar", 
+                "ubar", 
+                "cbar"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -1636,7 +1866,11 @@
         "Strangeness": "", 
         "antiparticle": "4232", 
         "composition": [
-            "['ubar', 'sbar', 'cbar']"
+            [
+                "ubar", 
+                "sbar", 
+                "cbar"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -1654,7 +1888,10 @@
         "Strangeness": "1", 
         "antiparticle": "", 
         "composition": [
-            "['cbar', 's']"
+            [
+                "cbar", 
+                "s"
+            ]
         ], 
         "family": "D", 
         "interactions": [
@@ -1679,7 +1916,11 @@
         "Strangeness": "", 
         "antiparticle": "4322", 
         "composition": [
-            "['ubar', 'sbar', 'cbar']"
+            [
+                "ubar", 
+                "sbar", 
+                "cbar"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -1697,7 +1938,11 @@
         "Strangeness": "", 
         "antiparticle": "4324", 
         "composition": [
-            "['ubar', 'sbar', 'cbar']"
+            [
+                "ubar", 
+                "sbar", 
+                "cbar"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -1715,7 +1960,10 @@
         "Strangeness": "1", 
         "antiparticle": "", 
         "composition": [
-            "['cbar', 's']"
+            [
+                "cbar", 
+                "s"
+            ]
         ], 
         "family": "D", 
         "interactions": [
@@ -1740,7 +1988,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['cbar', 's']"
+            [
+                "cbar", 
+                "s"
+            ]
         ], 
         "family": "D", 
         "interactions": [
@@ -1788,7 +2039,11 @@
         "Strangeness": "", 
         "antiparticle": "5132", 
         "composition": [
-            "['dbar', 'sbar', 'bbar']"
+            [
+                "dbar", 
+                "sbar", 
+                "bbar"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -1806,7 +2061,10 @@
         "Strangeness": "0", 
         "antiparticle": "521", 
         "composition": [
-            "['ubar', 'b']"
+            [
+                "ubar", 
+                "b"
+            ]
         ], 
         "family": "B", 
         "interactions": [], 
@@ -1824,7 +2082,10 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['ubar', 'b']"
+            [
+                "ubar", 
+                "b"
+            ]
         ], 
         "family": "B", 
         "interactions": [], 
@@ -1842,7 +2103,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['ubar', 'b']"
+            [
+                "ubar", 
+                "b"
+            ]
         ], 
         "family": "B", 
         "interactions": [], 
@@ -1860,7 +2124,11 @@
         "Strangeness": "", 
         "antiparticle": "5332", 
         "composition": [
-            "['sbar', 'sbar', 'bbar']"
+            [
+                "sbar", 
+                "sbar", 
+                "bbar"
+            ]
         ], 
         "family": "Omega", 
         "interactions": [], 
@@ -1878,7 +2146,10 @@
         "Strangeness": "0", 
         "antiparticle": "541", 
         "composition": [
-            "['cbar', 'b']"
+            [
+                "cbar", 
+                "b"
+            ]
         ], 
         "family": "B", 
         "interactions": [], 
@@ -1935,7 +2206,10 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'ubar']"
+            [
+                "d", 
+                "ubar"
+            ]
         ], 
         "family": "pi", 
         "interactions": [
@@ -1960,7 +2234,10 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'ubar']"
+            [
+                "d", 
+                "ubar"
+            ]
         ], 
         "family": "pi", 
         "interactions": [
@@ -1985,7 +2262,10 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'ubar']"
+            [
+                "d", 
+                "ubar"
+            ]
         ], 
         "family": "pi", 
         "interactions": [
@@ -2033,8 +2313,14 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'ubar']", 
-            "['d', 'dbar']"
+            [
+                "u", 
+                "ubar"
+            ], 
+            [
+                "d", 
+                "dbar"
+            ]
         ], 
         "family": "pi", 
         "interactions": [
@@ -2059,8 +2345,14 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'ubar']", 
-            "['d', 'dbar']"
+            [
+                "u", 
+                "ubar"
+            ], 
+            [
+                "d", 
+                "dbar"
+            ]
         ], 
         "family": "rho", 
         "interactions": [], 
@@ -2078,7 +2370,10 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'dbar']"
+            [
+                "u", 
+                "dbar"
+            ]
         ], 
         "family": "pi", 
         "interactions": [
@@ -2103,7 +2398,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'dbar']"
+            [
+                "u", 
+                "dbar"
+            ]
         ], 
         "family": "rho", 
         "interactions": [], 
@@ -2121,9 +2419,18 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'ubar']", 
-            "['d', 'dbar']", 
-            "['s', 'sbar']"
+            [
+                "u", 
+                "ubar"
+            ], 
+            [
+                "d", 
+                "dbar"
+            ], 
+            [
+                "s", 
+                "sbar"
+            ]
         ], 
         "family": "eta", 
         "interactions": [], 
@@ -2141,8 +2448,14 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'ubar']", 
-            "['d', 'dbar']"
+            [
+                "u", 
+                "ubar"
+            ], 
+            [
+                "d", 
+                "dbar"
+            ]
         ], 
         "family": "omega", 
         "interactions": [], 
@@ -2160,7 +2473,10 @@
         "Strangeness": "1", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'sbar']"
+            [
+                "d", 
+                "sbar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -2185,7 +2501,10 @@
         "Strangeness": "1", 
         "antiparticle": "-100323", 
         "composition": [
-            "['u', 'sbar']"
+            [
+                "u", 
+                "sbar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -2210,9 +2529,18 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'ubar']", 
-            "['d', 'dbar']", 
-            "['s', 'sbar']"
+            [
+                "u", 
+                "ubar"
+            ], 
+            [
+                "d", 
+                "dbar"
+            ], 
+            [
+                "s", 
+                "sbar"
+            ]
         ], 
         "family": "eta", 
         "interactions": [], 
@@ -2230,7 +2558,10 @@
         "Strangeness": "0", 
         "antiparticle": "100333", 
         "composition": [
-            "['s', 'sbar']"
+            [
+                "s", 
+                "sbar"
+            ]
         ], 
         "family": "phi", 
         "interactions": [
@@ -2253,7 +2584,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['c', 'cbar']"
+            [
+                "c", 
+                "cbar"
+            ]
         ], 
         "family": "eta", 
         "interactions": [], 
@@ -2303,7 +2637,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['b', 'bbar']"
+            [
+                "b", 
+                "bbar"
+            ]
         ], 
         "family": "Upsilon", 
         "interactions": [], 
@@ -2369,8 +2706,14 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'ubar']", 
-            "['d', 'dbar']"
+            [
+                "u", 
+                "ubar"
+            ], 
+            [
+                "d", 
+                "dbar"
+            ]
         ], 
         "family": "pi", 
         "interactions": [
@@ -2427,7 +2770,10 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'dbar']"
+            [
+                "u", 
+                "dbar"
+            ]
         ], 
         "family": "pi", 
         "interactions": [
@@ -2484,9 +2830,18 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'ubar']", 
-            "['d', 'dbar']", 
-            "['s', 'sbar']"
+            [
+                "u", 
+                "ubar"
+            ], 
+            [
+                "d", 
+                "dbar"
+            ], 
+            [
+                "s", 
+                "sbar"
+            ]
         ], 
         "family": "eta", 
         "interactions": [], 
@@ -2504,7 +2859,10 @@
         "Strangeness": "1", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'sbar']"
+            [
+                "d", 
+                "sbar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -2529,7 +2887,10 @@
         "Strangeness": "1", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'sbar']"
+            [
+                "d", 
+                "sbar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -2554,7 +2915,10 @@
         "Strangeness": "1", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'sbar']"
+            [
+                "d", 
+                "sbar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -2579,7 +2943,10 @@
         "Strangeness": "1", 
         "antiparticle": "-10321", 
         "composition": [
-            "['u', 'sbar']"
+            [
+                "u", 
+                "sbar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -2604,7 +2971,10 @@
         "Strangeness": "1", 
         "antiparticle": "-10323", 
         "composition": [
-            "['u', 'sbar']"
+            [
+                "u", 
+                "sbar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -2629,7 +2999,10 @@
         "Strangeness": "1", 
         "antiparticle": "-10325", 
         "composition": [
-            "['u', 'sbar']"
+            [
+                "u", 
+                "sbar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -2670,7 +3043,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['d', 's', 's']"
+            [
+                "d", 
+                "s", 
+                "s"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -2688,7 +3065,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 's', 's']"
+            [
+                "u", 
+                "s", 
+                "s"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -2706,7 +3087,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['c', 'dbar']"
+            [
+                "c", 
+                "dbar"
+            ]
         ], 
         "family": "D", 
         "interactions": [
@@ -2731,7 +3115,11 @@
         "Strangeness": "0", 
         "antiparticle": "-104122", 
         "composition": [
-            "['u', 'd', 'c']"
+            [
+                "u", 
+                "d", 
+                "c"
+            ]
         ], 
         "family": "Lambda", 
         "interactions": [], 
@@ -2749,7 +3137,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['c', 'ubar']"
+            [
+                "c", 
+                "ubar"
+            ]
         ], 
         "family": "D", 
         "interactions": [
@@ -2774,7 +3165,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['c', 'ubar']"
+            [
+                "c", 
+                "ubar"
+            ]
         ], 
         "family": "D", 
         "interactions": [
@@ -2799,7 +3193,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['c', 'sbar']"
+            [
+                "c", 
+                "sbar"
+            ]
         ], 
         "family": "D", 
         "interactions": [
@@ -2824,7 +3221,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['d', 's', 'c']"
+            [
+                "d", 
+                "s", 
+                "c"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -2842,7 +3243,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['d', 's', 'c']"
+            [
+                "d", 
+                "s", 
+                "c"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -2860,7 +3265,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 's', 'c']"
+            [
+                "u", 
+                "s", 
+                "c"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -2878,7 +3287,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 's', 'c']"
+            [
+                "u", 
+                "s", 
+                "c"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -2896,7 +3309,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['c', 'sbar']"
+            [
+                "c", 
+                "sbar"
+            ]
         ], 
         "family": "D", 
         "interactions": [
@@ -3023,8 +3439,14 @@
         "Strangeness": "0", 
         "antiparticle": "111", 
         "composition": [
-            "['u', 'ubar']", 
-            "['d', 'dbar']"
+            [
+                "u", 
+                "ubar"
+            ], 
+            [
+                "d", 
+                "dbar"
+            ]
         ], 
         "family": "pi", 
         "interactions": [
@@ -3049,7 +3471,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'd', 'd']"
+            [
+                "d", 
+                "d", 
+                "d"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -3067,7 +3493,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'd', 'd']"
+            [
+                "d", 
+                "d", 
+                "d"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -3085,7 +3515,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'd', 'd']"
+            [
+                "d", 
+                "d", 
+                "d"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -3103,7 +3537,11 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'd', 'd']"
+            [
+                "d", 
+                "d", 
+                "d"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -3121,7 +3559,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'd', 'd']"
+            [
+                "d", 
+                "d", 
+                "d"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -3139,7 +3581,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'd', 'd']"
+            [
+                "d", 
+                "d", 
+                "d"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -3157,7 +3603,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 'd']"
+            [
+                "u", 
+                "d", 
+                "d"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -3175,8 +3625,14 @@
         "Strangeness": "0", 
         "antiparticle": "113", 
         "composition": [
-            "['u', 'ubar']", 
-            "['d', 'dbar']"
+            [
+                "u", 
+                "ubar"
+            ], 
+            [
+                "d", 
+                "dbar"
+            ]
         ], 
         "family": "rho", 
         "interactions": [], 
@@ -3210,8 +3666,14 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'ubar']", 
-            "['d', 'dbar']"
+            [
+                "u", 
+                "ubar"
+            ], 
+            [
+                "d", 
+                "dbar"
+            ]
         ], 
         "family": "rho", 
         "interactions": [], 
@@ -3282,7 +3744,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 'd']"
+            [
+                "u", 
+                "d", 
+                "d"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -3300,7 +3766,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 'd']"
+            [
+                "u", 
+                "d", 
+                "d"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -3318,7 +3788,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 'd']"
+            [
+                "u", 
+                "d", 
+                "d"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -3336,7 +3810,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 'd']"
+            [
+                "u", 
+                "d", 
+                "d"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -3354,7 +3832,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 'd']"
+            [
+                "u", 
+                "u", 
+                "d"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -3372,7 +3854,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 'd']"
+            [
+                "u", 
+                "d", 
+                "d"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -3390,7 +3876,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 'd']"
+            [
+                "u", 
+                "d", 
+                "d"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -3408,7 +3898,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 'd']"
+            [
+                "u", 
+                "d", 
+                "d"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -3426,7 +3920,11 @@
         "Strangeness": "", 
         "antiparticle": "-12212", 
         "composition": [
-            "['u', 'u', 'd']"
+            [
+                "u", 
+                "u", 
+                "d"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -3444,7 +3942,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 'd']"
+            [
+                "u", 
+                "u", 
+                "d"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -3462,7 +3964,11 @@
         "Strangeness": "", 
         "antiparticle": "-12216", 
         "composition": [
-            "['u', 'u', 'd']"
+            [
+                "u", 
+                "u", 
+                "d"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -3480,7 +3986,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 'u']"
+            [
+                "u", 
+                "u", 
+                "u"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -3498,7 +4008,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 'u']"
+            [
+                "u", 
+                "u", 
+                "u"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -3538,8 +4052,14 @@
         "Strangeness": "", 
         "antiparticle": "130", 
         "composition": [
-            "['d', 'sbar']", 
-            "['dbar', 's']"
+            [
+                "d", 
+                "sbar"
+            ], 
+            [
+                "dbar", 
+                "s"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -3564,7 +4084,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'd', 's']"
+            [
+                "d", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -3582,7 +4106,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'd', 's']"
+            [
+                "d", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -3600,7 +4128,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 's']"
+            [
+                "u", 
+                "u", 
+                "s"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -3618,7 +4150,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 's']"
+            [
+                "u", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Lambda", 
         "interactions": [], 
@@ -3636,7 +4172,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 's']"
+            [
+                "u", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Lambda", 
         "interactions": [], 
@@ -3654,7 +4194,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 's']"
+            [
+                "u", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Lambda", 
         "interactions": [], 
@@ -3672,7 +4216,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 's']"
+            [
+                "u", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -3690,7 +4238,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 's']"
+            [
+                "u", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -3708,7 +4260,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'd', 's']"
+            [
+                "d", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -3726,7 +4282,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 's']"
+            [
+                "u", 
+                "u", 
+                "s"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -3744,7 +4304,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 's']"
+            [
+                "u", 
+                "u", 
+                "s"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -3762,7 +4326,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 's']"
+            [
+                "u", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -3780,7 +4348,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['d', 's', 's']"
+            [
+                "d", 
+                "s", 
+                "s"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -3798,7 +4370,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 's', 's']"
+            [
+                "u", 
+                "s", 
+                "s"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -3837,7 +4413,11 @@
         "Strangeness": "0", 
         "antiparticle": "-14122", 
         "composition": [
-            "['u', 'd', 'c']"
+            [
+                "u", 
+                "d", 
+                "c"
+            ]
         ], 
         "family": "Lambda", 
         "interactions": [], 
@@ -3921,7 +4501,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['b', 'bbar']"
+            [
+                "b", 
+                "bbar"
+            ]
         ], 
         "family": "Upsilon", 
         "interactions": [], 
@@ -3987,7 +4570,10 @@
         "Strangeness": "1", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'sbar']"
+            [
+                "d", 
+                "sbar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -4012,7 +4598,10 @@
         "Strangeness": "1", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'sbar']"
+            [
+                "d", 
+                "sbar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -4037,7 +4626,10 @@
         "Strangeness": "1", 
         "antiparticle": "-20323", 
         "composition": [
-            "['u', 'sbar']"
+            [
+                "u", 
+                "sbar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -4062,7 +4654,10 @@
         "Strangeness": "1", 
         "antiparticle": "-20325", 
         "composition": [
-            "['u', 'sbar']"
+            [
+                "u", 
+                "sbar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -4087,7 +4682,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['d', 's', 's']"
+            [
+                "d", 
+                "s", 
+                "s"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -4105,7 +4704,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['d', 's', 's']"
+            [
+                "d", 
+                "s", 
+                "s"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -4123,7 +4726,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 's', 's']"
+            [
+                "u", 
+                "s", 
+                "s"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -4141,7 +4748,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 's', 's']"
+            [
+                "u", 
+                "s", 
+                "s"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -4175,7 +4786,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['s', 's', 's']"
+            [
+                "s", 
+                "s", 
+                "s"
+            ]
         ], 
         "family": "Omega", 
         "interactions": [], 
@@ -4193,7 +4808,11 @@
         "Strangeness": "0", 
         "antiparticle": "-204126", 
         "composition": [
-            "['u', 'd', 'c']"
+            [
+                "u", 
+                "d", 
+                "c"
+            ]
         ], 
         "family": "Lambda", 
         "interactions": [], 
@@ -4211,7 +4830,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['c', 'sbar']"
+            [
+                "c", 
+                "sbar"
+            ]
         ], 
         "family": "D", 
         "interactions": [
@@ -4288,7 +4910,10 @@
         "Strangeness": "0", 
         "antiparticle": "-211", 
         "composition": [
-            "['u', 'dbar']"
+            [
+                "u", 
+                "dbar"
+            ]
         ], 
         "family": "pi", 
         "interactions": [
@@ -4313,7 +4938,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'd', 'd']"
+            [
+                "d", 
+                "d", 
+                "d"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -4331,7 +4960,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'd', 'd']"
+            [
+                "d", 
+                "d", 
+                "d"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -4349,7 +4982,11 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 'd']"
+            [
+                "u", 
+                "d", 
+                "d"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -4367,7 +5004,11 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 'd']"
+            [
+                "u", 
+                "d", 
+                "d"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -4385,7 +5026,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 'd']"
+            [
+                "u", 
+                "d", 
+                "d"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -4403,7 +5048,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 'd']"
+            [
+                "u", 
+                "d", 
+                "d"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -4421,7 +5070,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 'd']"
+            [
+                "u", 
+                "d", 
+                "d"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -4439,7 +5092,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 'd']"
+            [
+                "u", 
+                "d", 
+                "d"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -4457,7 +5114,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 'd']"
+            [
+                "u", 
+                "u", 
+                "d"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -4475,7 +5136,11 @@
         "Strangeness": "", 
         "antiparticle": "-2124", 
         "composition": [
-            "['u', 'u', 'd']"
+            [
+                "u", 
+                "u", 
+                "d"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -4493,7 +5158,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 'd']"
+            [
+                "u", 
+                "u", 
+                "d"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -4511,7 +5180,11 @@
         "Strangeness": "", 
         "antiparticle": "-2128", 
         "composition": [
-            "['u', 'u', 'd']"
+            [
+                "u", 
+                "u", 
+                "d"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -4529,7 +5202,10 @@
         "Strangeness": "0", 
         "antiparticle": "-213", 
         "composition": [
-            "['u', 'dbar']"
+            [
+                "u", 
+                "dbar"
+            ]
         ], 
         "family": "rho", 
         "interactions": [], 
@@ -4563,7 +5239,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'dbar']"
+            [
+                "u", 
+                "dbar"
+            ]
         ], 
         "family": "rho", 
         "interactions": [], 
@@ -4619,9 +5298,18 @@
         "Strangeness": "0", 
         "antiparticle": "221", 
         "composition": [
-            "['u', 'ubar']", 
-            "['d', 'dbar']", 
-            "['s', 'sbar']"
+            [
+                "u", 
+                "ubar"
+            ], 
+            [
+                "d", 
+                "dbar"
+            ], 
+            [
+                "s", 
+                "sbar"
+            ]
         ], 
         "family": "eta", 
         "interactions": [], 
@@ -4639,7 +5327,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 'd']"
+            [
+                "u", 
+                "d", 
+                "d"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -4657,7 +5349,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 'd']"
+            [
+                "u", 
+                "d", 
+                "d"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -4675,7 +5371,11 @@
         "Strangeness": "", 
         "antiparticle": "-2212", 
         "composition": [
-            "['ubar', 'ubar', 'dbar']"
+            [
+                "ubar", 
+                "ubar", 
+                "dbar"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -4693,7 +5393,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 'd']"
+            [
+                "u", 
+                "u", 
+                "d"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -4711,7 +5415,11 @@
         "Strangeness": "", 
         "antiparticle": "-22124", 
         "composition": [
-            "['u', 'u', 'd']"
+            [
+                "u", 
+                "u", 
+                "d"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -4729,7 +5437,11 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 'd']"
+            [
+                "u", 
+                "u", 
+                "d"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -4747,7 +5459,11 @@
         "Strangeness": "", 
         "antiparticle": "-2216", 
         "composition": [
-            "['u', 'u', 'd']"
+            [
+                "u", 
+                "u", 
+                "d"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -4765,7 +5481,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 'd']"
+            [
+                "u", 
+                "u", 
+                "d"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -4783,7 +5503,11 @@
         "Strangeness": "", 
         "antiparticle": "-22212", 
         "composition": [
-            "['u', 'u', 'd']"
+            [
+                "u", 
+                "u", 
+                "d"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -4801,7 +5525,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 'd']"
+            [
+                "u", 
+                "u", 
+                "d"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -4819,7 +5547,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 'u']"
+            [
+                "u", 
+                "u", 
+                "u"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -4837,7 +5569,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 'u']"
+            [
+                "u", 
+                "u", 
+                "u"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -4855,7 +5591,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 'u']"
+            [
+                "u", 
+                "u", 
+                "u"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -4873,7 +5613,11 @@
         "Strangeness": "0", 
         "antiparticle": "-2224", 
         "composition": [
-            "['u', 'u', 'u']"
+            [
+                "u", 
+                "u", 
+                "u"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -4891,7 +5635,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 'u']"
+            [
+                "u", 
+                "u", 
+                "u"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -4909,7 +5657,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 'u']"
+            [
+                "u", 
+                "u", 
+                "u"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -4927,8 +5679,14 @@
         "Strangeness": "0", 
         "antiparticle": "223", 
         "composition": [
-            "['u', 'ubar']", 
-            "['d', 'dbar']"
+            [
+                "u", 
+                "ubar"
+            ], 
+            [
+                "d", 
+                "dbar"
+            ]
         ], 
         "family": "omega", 
         "interactions": [], 
@@ -4962,8 +5720,14 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'ubar']", 
-            "['d', 'dbar']"
+            [
+                "u", 
+                "ubar"
+            ], 
+            [
+                "d", 
+                "dbar"
+            ]
         ], 
         "family": "omega", 
         "interactions": [], 
@@ -5017,7 +5781,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'd', 's']"
+            [
+                "d", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -5035,7 +5803,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 's']"
+            [
+                "u", 
+                "u", 
+                "s"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -5053,7 +5825,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 's']"
+            [
+                "u", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Lambda", 
         "interactions": [], 
@@ -5071,7 +5847,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 's']"
+            [
+                "u", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Lambda", 
         "interactions": [], 
@@ -5089,7 +5869,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 's']"
+            [
+                "u", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Lambda", 
         "interactions": [], 
@@ -5107,7 +5891,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'd', 's']"
+            [
+                "d", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -5125,7 +5913,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'd', 's']"
+            [
+                "d", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -5143,7 +5935,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 's']"
+            [
+                "u", 
+                "u", 
+                "s"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -5161,7 +5957,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 's']"
+            [
+                "u", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -5238,7 +6038,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['b', 'bbar']"
+            [
+                "b", 
+                "bbar"
+            ]
         ], 
         "family": "Upsilon", 
         "interactions": [], 
@@ -5256,8 +6059,14 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'ubar']", 
-            "['d', 'dbar']"
+            [
+                "u", 
+                "ubar"
+            ], 
+            [
+                "d", 
+                "dbar"
+            ]
         ], 
         "family": "rho", 
         "interactions": [], 
@@ -5275,7 +6084,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'dbar']"
+            [
+                "u", 
+                "dbar"
+            ]
         ], 
         "family": "rho", 
         "interactions": [], 
@@ -5293,8 +6105,14 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'ubar']", 
-            "['d', 'dbar']"
+            [
+                "u", 
+                "ubar"
+            ], 
+            [
+                "d", 
+                "dbar"
+            ]
         ], 
         "family": "omega", 
         "interactions": [], 
@@ -5312,7 +6130,10 @@
         "Strangeness": "1", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'sbar']"
+            [
+                "d", 
+                "sbar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -5337,7 +6158,10 @@
         "Strangeness": "1", 
         "antiparticle": "-30323", 
         "composition": [
-            "['u', 'sbar']"
+            [
+                "u", 
+                "sbar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -5378,7 +6202,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['b', 'bbar']"
+            [
+                "b", 
+                "bbar"
+            ]
         ], 
         "family": "Upsilon", 
         "interactions": [], 
@@ -5396,8 +6223,14 @@
         "Strangeness": "", 
         "antiparticle": "310", 
         "composition": [
-            "['d', 'sbar']", 
-            "['dbar', 's']"
+            [
+                "d", 
+                "sbar"
+            ], 
+            [
+                "dbar", 
+                "s"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -5422,7 +6255,10 @@
         "Strangeness": "1", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'sbar']"
+            [
+                "d", 
+                "sbar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -5447,7 +6283,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'd', 'd']"
+            [
+                "d", 
+                "d", 
+                "d"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -5465,7 +6305,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'd', 's']"
+            [
+                "d", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -5483,7 +6327,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'd', 's']"
+            [
+                "d", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -5501,7 +6349,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 's']"
+            [
+                "u", 
+                "u", 
+                "s"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -5519,7 +6371,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 's']"
+            [
+                "u", 
+                "u", 
+                "s"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -5537,7 +6393,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 'd']"
+            [
+                "u", 
+                "d", 
+                "d"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -5555,7 +6415,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 's']"
+            [
+                "u", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Lambda", 
         "interactions": [], 
@@ -5573,7 +6437,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 's']"
+            [
+                "u", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Lambda", 
         "interactions": [], 
@@ -5591,7 +6459,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 's']"
+            [
+                "u", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Lambda", 
         "interactions": [], 
@@ -5609,7 +6481,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 's']"
+            [
+                "u", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Lambda", 
         "interactions": [], 
@@ -5627,7 +6503,10 @@
         "Strangeness": "1", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'sbar']"
+            [
+                "d", 
+                "sbar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -5652,7 +6531,10 @@
         "Strangeness": "1", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'sbar']"
+            [
+                "d", 
+                "sbar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -5677,7 +6559,10 @@
         "Strangeness": "1", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'sbar']"
+            [
+                "d", 
+                "sbar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -5702,7 +6587,10 @@
         "Strangeness": "1", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'sbar']"
+            [
+                "d", 
+                "sbar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -5727,7 +6615,10 @@
         "Strangeness": "1", 
         "antiparticle": "-321", 
         "composition": [
-            "['u', 'sbar']"
+            [
+                "u", 
+                "sbar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -5752,7 +6643,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 'd']"
+            [
+                "u", 
+                "d", 
+                "d"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -5770,7 +6665,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 'd']"
+            [
+                "u", 
+                "d", 
+                "d"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -5788,7 +6687,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 's']"
+            [
+                "u", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -5806,7 +6709,11 @@
         "Strangeness": "", 
         "antiparticle": "-32124", 
         "composition": [
-            "['u', 'u', 'd']"
+            [
+                "u", 
+                "u", 
+                "d"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -5824,7 +6731,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 's']"
+            [
+                "u", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -5842,7 +6753,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'd', 's']"
+            [
+                "d", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -5860,7 +6775,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 's']"
+            [
+                "u", 
+                "u", 
+                "s"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -5878,7 +6797,11 @@
         "Strangeness": "", 
         "antiparticle": "-32212", 
         "composition": [
-            "['u', 'u', 'd']"
+            [
+                "u", 
+                "u", 
+                "d"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -5896,7 +6819,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 'd']"
+            [
+                "u", 
+                "u", 
+                "d"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -5914,7 +6841,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 's']"
+            [
+                "u", 
+                "u", 
+                "s"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -5932,7 +6863,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 'u']"
+            [
+                "u", 
+                "u", 
+                "u"
+            ]
         ], 
         "family": "Delta", 
         "interactions": [], 
@@ -5950,7 +6885,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 's']"
+            [
+                "u", 
+                "u", 
+                "s"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -5968,7 +6907,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 's']"
+            [
+                "u", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -5986,7 +6929,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'd', 's']"
+            [
+                "d", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -6004,7 +6951,10 @@
         "Strangeness": "1", 
         "antiparticle": "-323", 
         "composition": [
-            "['u', 'sbar']"
+            [
+                "u", 
+                "sbar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -6029,7 +6979,10 @@
         "Strangeness": "1", 
         "antiparticle": "-325", 
         "composition": [
-            "['u', 'sbar']"
+            [
+                "u", 
+                "sbar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -6054,7 +7007,10 @@
         "Strangeness": "1", 
         "antiparticle": "-327", 
         "composition": [
-            "['u', 'sbar']"
+            [
+                "u", 
+                "sbar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -6079,7 +7035,10 @@
         "Strangeness": "1", 
         "antiparticle": "-329", 
         "composition": [
-            "['u', 'sbar']"
+            [
+                "u", 
+                "sbar"
+            ]
         ], 
         "family": "K", 
         "interactions": [
@@ -6104,9 +7063,18 @@
         "Strangeness": "0", 
         "antiparticle": "331", 
         "composition": [
-            "['u', 'ubar']", 
-            "['d', 'dbar']", 
-            "['s', 'sbar']"
+            [
+                "u", 
+                "ubar"
+            ], 
+            [
+                "d", 
+                "dbar"
+            ], 
+            [
+                "s", 
+                "sbar"
+            ]
         ], 
         "family": "eta", 
         "interactions": [], 
@@ -6124,7 +7092,11 @@
         "Strangeness": "\u22122", 
         "antiparticle": "-3312", 
         "composition": [
-            "['d', 's', 's']"
+            [
+                "d", 
+                "s", 
+                "s"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -6142,7 +7114,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 's']"
+            [
+                "u", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Lambda", 
         "interactions": [], 
@@ -6160,7 +7136,11 @@
         "Strangeness": "\u22122", 
         "antiparticle": "", 
         "composition": [
-            "['d', 's', 's']"
+            [
+                "d", 
+                "s", 
+                "s"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -6178,7 +7158,11 @@
         "Strangeness": "\u22122", 
         "antiparticle": "", 
         "composition": [
-            "['u', 's', 's']"
+            [
+                "u", 
+                "s", 
+                "s"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -6196,7 +7180,11 @@
         "Strangeness": "\u22122", 
         "antiparticle": "", 
         "composition": [
-            "['u', 's', 's']"
+            [
+                "u", 
+                "s", 
+                "s"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -6214,7 +7202,10 @@
         "Strangeness": "0", 
         "antiparticle": "333", 
         "composition": [
-            "['s', 'sbar']"
+            [
+                "s", 
+                "sbar"
+            ]
         ], 
         "family": "phi", 
         "interactions": [
@@ -6237,7 +7228,11 @@
         "Strangeness": "\u22123", 
         "antiparticle": "-3334", 
         "composition": [
-            "['s', 's', 's']"
+            [
+                "s", 
+                "s", 
+                "s"
+            ]
         ], 
         "family": "Omega", 
         "interactions": [], 
@@ -6271,7 +7266,10 @@
         "Strangeness": "0", 
         "antiparticle": "337", 
         "composition": [
-            "['s', 'sbar']"
+            [
+                "s", 
+                "sbar"
+            ]
         ], 
         "family": "phi", 
         "interactions": [
@@ -6317,7 +7315,10 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['c', 'dbar']"
+            [
+                "c", 
+                "dbar"
+            ]
         ], 
         "family": "D", 
         "interactions": [
@@ -6342,7 +7343,11 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'd', 'c']"
+            [
+                "d", 
+                "d", 
+                "c"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -6360,7 +7365,11 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'd', 'c']"
+            [
+                "d", 
+                "d", 
+                "c"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -6378,7 +7387,11 @@
         "Strangeness": "0", 
         "antiparticle": "-4122", 
         "composition": [
-            "['u', 'd', 'c']"
+            [
+                "u", 
+                "d", 
+                "c"
+            ]
         ], 
         "family": "Lambda", 
         "interactions": [], 
@@ -6396,7 +7409,10 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['c', 'dbar']"
+            [
+                "c", 
+                "dbar"
+            ]
         ], 
         "family": "D", 
         "interactions": [
@@ -6421,7 +7437,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['d', 's', 'c']"
+            [
+                "d", 
+                "s", 
+                "c"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -6439,7 +7459,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['c', 'dbar']"
+            [
+                "c", 
+                "dbar"
+            ]
         ], 
         "family": "D", 
         "interactions": [
@@ -6464,7 +7487,10 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['c', 'ubar']"
+            [
+                "c", 
+                "ubar"
+            ]
         ], 
         "family": "D", 
         "interactions": [
@@ -6489,7 +7515,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 'd']"
+            [
+                "u", 
+                "d", 
+                "d"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -6507,7 +7537,11 @@
         "Strangeness": "0", 
         "antiparticle": "-4212", 
         "composition": [
-            "['u', 'd', 'c']"
+            [
+                "u", 
+                "d", 
+                "c"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -6525,7 +7559,11 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 'c']"
+            [
+                "u", 
+                "d", 
+                "c"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -6543,7 +7581,11 @@
         "Strangeness": "", 
         "antiparticle": "-42212", 
         "composition": [
-            "['u', 'u', 'd']"
+            [
+                "u", 
+                "u", 
+                "d"
+            ]
         ], 
         "family": "N", 
         "interactions": [], 
@@ -6561,7 +7603,11 @@
         "Strangeness": "0", 
         "antiparticle": "-4222", 
         "composition": [
-            "['u', 'u', 'c']"
+            [
+                "u", 
+                "u", 
+                "c"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -6579,7 +7625,11 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 'c']"
+            [
+                "u", 
+                "u", 
+                "c"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -6597,7 +7647,10 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['c', 'ubar']"
+            [
+                "c", 
+                "ubar"
+            ]
         ], 
         "family": "D", 
         "interactions": [
@@ -6622,7 +7675,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "-4232", 
         "composition": [
-            "['u', 's', 'c']"
+            [
+                "u", 
+                "s", 
+                "c"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -6640,7 +7697,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['c', 'ubar']"
+            [
+                "c", 
+                "ubar"
+            ]
         ], 
         "family": "D", 
         "interactions": [
@@ -6665,7 +7725,10 @@
         "Strangeness": "1", 
         "antiparticle": "", 
         "composition": [
-            "['c', 'sbar']"
+            [
+                "c", 
+                "sbar"
+            ]
         ], 
         "family": "D", 
         "interactions": [
@@ -6690,7 +7753,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['d', 's', 'c']"
+            [
+                "d", 
+                "s", 
+                "c"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -6708,7 +7775,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 's']"
+            [
+                "u", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Lambda", 
         "interactions": [], 
@@ -6726,7 +7797,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['d', 's', 'c']"
+            [
+                "d", 
+                "s", 
+                "c"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -6744,7 +7819,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "-4322", 
         "composition": [
-            "['u', 's', 'c']"
+            [
+                "u", 
+                "s", 
+                "c"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -6762,7 +7841,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "-4324", 
         "composition": [
-            "['u', 's', 'c']"
+            [
+                "u", 
+                "s", 
+                "c"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -6780,7 +7863,10 @@
         "Strangeness": "1", 
         "antiparticle": "", 
         "composition": [
-            "['c', 'sbar']"
+            [
+                "c", 
+                "sbar"
+            ]
         ], 
         "family": "D", 
         "interactions": [
@@ -6805,7 +7891,11 @@
         "Strangeness": "\u22122", 
         "antiparticle": "", 
         "composition": [
-            "['s', 's', 'c']"
+            [
+                "s", 
+                "s", 
+                "c"
+            ]
         ], 
         "family": "Omega", 
         "interactions": [], 
@@ -6823,7 +7913,11 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['s', 's', 'c']"
+            [
+                "s", 
+                "s", 
+                "c"
+            ]
         ], 
         "family": "Omega", 
         "interactions": [], 
@@ -6841,7 +7935,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['c', 'sbar']"
+            [
+                "c", 
+                "sbar"
+            ]
         ], 
         "family": "D", 
         "interactions": [
@@ -6866,7 +7963,10 @@
         "Strangeness": "0", 
         "antiparticle": "441", 
         "composition": [
-            "['c', 'cbar']"
+            [
+                "c", 
+                "cbar"
+            ]
         ], 
         "family": "eta", 
         "interactions": [], 
@@ -6884,7 +7984,10 @@
         "Strangeness": "0", 
         "antiparticle": "443", 
         "composition": [
-            "['c', 'cbar']"
+            [
+                "c", 
+                "cbar"
+            ]
         ], 
         "family": "J/psi", 
         "interactions": [
@@ -6948,7 +8051,10 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'bbar']"
+            [
+                "d", 
+                "bbar"
+            ]
         ], 
         "family": "B", 
         "interactions": [], 
@@ -6966,7 +8072,11 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'd', 'b']"
+            [
+                "d", 
+                "d", 
+                "b"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -6984,7 +8094,11 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'd', 'b']"
+            [
+                "d", 
+                "d", 
+                "b"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -7002,7 +8116,11 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 'b']"
+            [
+                "u", 
+                "d", 
+                "b"
+            ]
         ], 
         "family": "Lambda", 
         "interactions": [], 
@@ -7020,7 +8138,10 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'bbar']"
+            [
+                "d", 
+                "bbar"
+            ]
         ], 
         "family": "B", 
         "interactions": [], 
@@ -7038,7 +8159,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "-5132", 
         "composition": [
-            "['d', 's', 'b']"
+            [
+                "d", 
+                "s", 
+                "b"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -7056,7 +8181,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['d', 'bbar']"
+            [
+                "d", 
+                "bbar"
+            ]
         ], 
         "family": "B", 
         "interactions": [], 
@@ -7074,7 +8202,10 @@
         "Strangeness": "0", 
         "antiparticle": "-521", 
         "composition": [
-            "['u', 'bbar']"
+            [
+                "u", 
+                "bbar"
+            ]
         ], 
         "family": "B", 
         "interactions": [], 
@@ -7092,7 +8223,11 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 'b']"
+            [
+                "u", 
+                "u", 
+                "b"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -7110,7 +8245,11 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'u', 'b']"
+            [
+                "u", 
+                "u", 
+                "b"
+            ]
         ], 
         "family": "Sigma", 
         "interactions": [], 
@@ -7128,7 +8267,10 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'bbar']"
+            [
+                "u", 
+                "bbar"
+            ]
         ], 
         "family": "B", 
         "interactions": [], 
@@ -7146,7 +8288,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 's', 'b']"
+            [
+                "u", 
+                "s", 
+                "b"
+            ]
         ], 
         "family": "Xi", 
         "interactions": [], 
@@ -7164,7 +8310,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'bbar']"
+            [
+                "u", 
+                "bbar"
+            ]
         ], 
         "family": "B", 
         "interactions": [], 
@@ -7182,7 +8331,10 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['s', 'bbar']"
+            [
+                "s", 
+                "bbar"
+            ]
         ], 
         "family": "B", 
         "interactions": [], 
@@ -7200,7 +8352,11 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'd', 's']"
+            [
+                "u", 
+                "d", 
+                "s"
+            ]
         ], 
         "family": "Lambda", 
         "interactions": [], 
@@ -7218,7 +8374,10 @@
         "Strangeness": "\u22121", 
         "antiparticle": "", 
         "composition": [
-            "['s', 'bbar']"
+            [
+                "s", 
+                "bbar"
+            ]
         ], 
         "family": "B", 
         "interactions": [], 
@@ -7236,7 +8395,11 @@
         "Strangeness": "\u22122", 
         "antiparticle": "-5332", 
         "composition": [
-            "['s', 's', 'b']"
+            [
+                "s", 
+                "s", 
+                "b"
+            ]
         ], 
         "family": "Omega", 
         "interactions": [], 
@@ -7254,7 +8417,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['s', 'bbar']"
+            [
+                "s", 
+                "bbar"
+            ]
         ], 
         "family": "B", 
         "interactions": [], 
@@ -7272,7 +8438,10 @@
         "Strangeness": "0", 
         "antiparticle": "-541", 
         "composition": [
-            "['c', 'bbar']"
+            [
+                "c", 
+                "bbar"
+            ]
         ], 
         "family": "B", 
         "interactions": [], 
@@ -7290,7 +8459,10 @@
         "Strangeness": "0", 
         "antiparticle": "553", 
         "composition": [
-            "['b', 'bbar']"
+            [
+                "b", 
+                "bbar"
+            ]
         ], 
         "family": "Upsilon", 
         "interactions": [], 
@@ -7363,8 +8535,14 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'ubar']", 
-            "['d', 'dbar']"
+            [
+                "u", 
+                "ubar"
+            ], 
+            [
+                "d", 
+                "dbar"
+            ]
         ], 
         "family": "pi", 
         "interactions": [
@@ -7405,7 +8583,10 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'dbar']"
+            [
+                "u", 
+                "dbar"
+            ]
         ], 
         "family": "pi", 
         "interactions": [
@@ -7462,7 +8643,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['b', 'bbar']"
+            [
+                "b", 
+                "bbar"
+            ]
         ], 
         "family": "Upsilon", 
         "interactions": [], 
@@ -7480,8 +8664,14 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'ubar']", 
-            "['d', 'dbar']"
+            [
+                "u", 
+                "ubar"
+            ], 
+            [
+                "d", 
+                "dbar"
+            ]
         ], 
         "family": "pi", 
         "interactions": [
@@ -7506,8 +8696,14 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'ubar']", 
-            "['d', 'dbar']"
+            [
+                "u", 
+                "ubar"
+            ], 
+            [
+                "d", 
+                "dbar"
+            ]
         ], 
         "family": "pi", 
         "interactions": [
@@ -7532,7 +8728,10 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'dbar']"
+            [
+                "u", 
+                "dbar"
+            ]
         ], 
         "family": "pi", 
         "interactions": [
@@ -7557,7 +8756,10 @@
         "Strangeness": "0", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'dbar']"
+            [
+                "u", 
+                "dbar"
+            ]
         ], 
         "family": "pi", 
         "interactions": [
@@ -7614,7 +8816,10 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['b', 'bbar']"
+            [
+                "b", 
+                "bbar"
+            ]
         ], 
         "family": "Upsilon", 
         "interactions": [], 
@@ -7632,9 +8837,18 @@
         "Strangeness": "", 
         "antiparticle": "", 
         "composition": [
-            "['u', 'ubar']", 
-            "['d', 'dbar']", 
-            "['s', 'sbar']"
+            [
+                "u", 
+                "ubar"
+            ], 
+            [
+                "d", 
+                "dbar"
+            ], 
+            [
+                "s", 
+                "sbar"
+            ]
         ], 
         "family": "eta", 
         "interactions": [], 
