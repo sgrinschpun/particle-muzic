@@ -1,14 +1,18 @@
 from classes import myShape, myParticle
 
 def setup():
-  size(500,500)
+  size(600,600)
 
-particle =myParticle(['ubar','ubar','dbar'])
+p =myParticle(100,100,['u','u','d'])
+pi =myParticle(300,100,['u','dbar'])
+mu = myParticle(300,100,[])
+
 
 def draw():
     background(0)
     
-    particle.display()
+    p.display()
+    pi.display()
     
     #if frameCount%4 == 0:
      #   saveFrame()

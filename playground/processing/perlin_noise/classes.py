@@ -31,7 +31,9 @@ class myShape(object):
         'amp':{'1': 1, '2' : 4, '3' : 1}
     }
         
-    def __init__(self, radius, color0, type,gen,q3):
+    def __init__(self,x,y,radius, color0, type,gen,q3):
+        self.x = x
+        self.y = y
         self.r = radius
         self.colors = myShape.quarkParamsValues['colors'][type]
         self.col = self.colors[color0]
@@ -102,25 +104,27 @@ class myShape(object):
         noiseSeed(self._noiseSeed)
         self._set_noiseAmount()
         for i in range(0,myShape.N+1):
-            x = width/2 + self.r*cos(TWO_PI*i/myShape.N)
-            y = height/2 + self.r*sin(TWO_PI*i/myShape.N)
+            x = self.x  + self.r*cos(TWO_PI*i/myShape.N) #width/2
+            y = self.y + self.r*sin(TWO_PI*i/myShape.N) #height/2
             x += self.p3map(noise(myShape.noiseScale*x,myShape.noiseScale*y,0),0,1,-self.noiseAmount,self.noiseAmount)
             y += self.p3map(noise(myShape.noiseScale*x,myShape.noiseScale*y,1),0,1,-self.noiseAmount,self.noiseAmount)
             vertex(x,y)
         endShape()
 
 class myMeson(myShape):
-    def __init__(self, radius, color0, type,gen,q3):
-        super(myMeson, self).__init__(radius, color0, type,gen,q3)
+    def __init__(self, x, y,radius, color0, type,gen,q3):
+        super(myMeson, self).__init__(x,y, radius, color0, type,gen,q3)
 
 class myBaryon(myShape):
-    def __init__(self, radius, color0, type,gen,q3):
-        super(myBaryon, self).__init__(radius, color0, type,gen,q3)
+    def __init__(self, x,y,radius, color0, type,gen,q3):
+        super(myBaryon, self).__init__(x,y,radius, color0, type,gen,q3)
 
 class myLepton(myShape):
     w = color(255,255,255)
     
-    def __init__(self, radius, q3):
+    def __init__(self, x,y,radius, q3):
+        self.x = x
+        self.y = y
         self.r = radius
         self.col = myLepton.w
         self.colors = []
@@ -149,23 +153,25 @@ class myParticle(object):
     'bbar' : { 'type' : '1', 'gen' : '3', 'q3' : '1'}
     }
 
-    def __init__(self,composition):
+    def __init__(self,x,y,composition):
+        self.x= x
+        self.y = y
         self.composition = composition # array
         self._componentsObjects=[]
         self._addComponents()
     
     def _addComponents(self):
         if self.composition == []: # lepton also check boson!
-            self._componentsObjects.append(myLepton(80,1))
+            self._componentsObjects.append(myLepton(self.x,self.y,80,1))
         elif self.composition != []:
             for i, q in enumerate(self.composition):
                 type = myParticle.quarkParams[q]['type']
                 gen = myParticle.quarkParams[q]['gen']
                 q3 = myParticle.quarkParams[q]['q3']
                 if len(self.composition)==3:  # baryons
-                    self._componentsObjects.append(myBaryon(80,i,type,gen,q3))
+                    self._componentsObjects.append(myBaryon(self.x,self.y,80,i,type,gen,q3))
                 if len(self.composition)==2:  #mesons
-                    self._componentsObjects.append(myMeson(80,0,type,gen,q3))
+                    self._componentsObjects.append(myMeson(self.x,self.y,80,0,type,gen,q3))
                 
     def display(self):
         for i, val in enumerate(self._componentsObjects):
