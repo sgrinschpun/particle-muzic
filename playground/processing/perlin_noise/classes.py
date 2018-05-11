@@ -9,6 +9,7 @@ class myShape(object):
     currentCicleQuadEaseOutRatio = 0.
     currentCicleQuartEaseInRatio = 0.
     currentCicleQuartEaseOutRatio = 0.
+    currentCicleSextEaseOutRatio = 0.
     
     frameCountPerCicle = 50
     
@@ -34,13 +35,18 @@ class myShape(object):
     def __init__(self,x,y,radius, color0, type,gen,q3):
         self.x = x
         self.y = y
-        self.r = radius
+        self.r0 = radius
         self.colors = myShape.quarkParamsValues['colors'][type]
         self.col = self.colors[color0]
         self._set_color()
         self.ampFactor=myShape.quarkParamsValues['amp'][gen]
         self.weight =myShape.quarkParamsValues['wgt'][q3]
         self._noiseSeed = random.randint(1, 99)
+        self.testarray=[]
+        self.p1=[]
+        self.p2=[]
+        self.xoff = 0;
+        self.yoff = 1000;
         
     @staticmethod
     def updateCurrentCicleProgress():
@@ -51,6 +57,7 @@ class myShape(object):
         myShape.currentCicleQuadEaseOutRatio = -(myShape.currentCicleProgressRatio - 1)**2 + 1
         myShape.currentCicleQuartEaseInRatio = myShape.currentCicleProgressRatio**4
         myShape.currentCicleQuartEaseOutRatio = -(myShape.currentCicleProgressRatio - 1)**4 + 1
+        myShape.currentCicleSextEaseOutRatio = -(myShape.currentCicleProgressRatio - 1)**6 + 1
     
     @staticmethod
     def p3map(value,start1,end1,start2,end2):
@@ -87,6 +94,15 @@ class myShape(object):
             self.col = self.colors[int(myShape.cicle)%3]
         else:
             pass
+
+    def _set_r(self):
+        if myShape.cicle == 0:
+            self.r=self.r0*myShape.currentCicleSextEaseOutRatio
+        elif myShape.cicle == 5:
+            self.r=self.r0*(1-myShape.currentCicleSextEaseOutRatio)
+        else:
+            self.r=self.r0
+        
     
     def _set_color(self):
         if myShape.currentCicleProgressRatio == 0.0 and myShape.cicle>0:
@@ -94,22 +110,63 @@ class myShape(object):
         else:
             pass
             
+    def _set_gluon(self):
+        #if myShape.currentCicleProgressRatio == 0.0:
+        self.p1 = random.choice(self.testarray)
+        self.p2 = random.choice(self.testarray)
+        strokeWeight(6)
+        beginShape()
+        for i in range(0,5):
+            x = self.p1[0] + i*(self.p2[0]-self.p1[0])/5
+            y = self.p1[1] + i*(self.p2[1]-self.p1[1])/5
+           # x += self.p3map(noise(myShape.noiseScale*x,myShape.noiseScale*y,0),0,1,-self.noiseAmount,self.noiseAmount)
+            #y += self.p3map(noise(myShape.noiseScale*x,myShape.noiseScale*y,1),0,1,-self.noiseAmount,self.noiseAmount)
+            vertex(x,y)
+        endShape() 
+
+    def _set_wave(self):
+        for y in range(100, 500,10):
+            pushMatrix()
+            translate(0, y)
+            noFill()
+            strokeWeight(100);
+            stroke(0)
+            beginShape()
+            for x in range(100, 500,10):
+                ypos = map(noise(x/100 + self.xoff, y/100 + self.yoff), 0, 1, -100, 100);
+                vertex(x, ypos)
+            endShape()
+            popMatrix()
+        self.xoff += 0.01
+        self.yoff += -0.01
+        
+            
+            
+      
     def display(self):
         noFill()
         self._set_color()
+        self._set_r()
         stroke(self.col)
         strokeWeight(self.weight)
-        #print(myShape.currentCicleProgressRatio)
         beginShape()
         noiseSeed(self._noiseSeed)
         self._set_noiseAmount()
+        self.testarray=[]
+        
         for i in range(0,myShape.N+1):
             x = self.x  + self.r*cos(TWO_PI*i/myShape.N) #width/2
             y = self.y + self.r*sin(TWO_PI*i/myShape.N) #height/2
             x += self.p3map(noise(myShape.noiseScale*x,myShape.noiseScale*y,0),0,1,-self.noiseAmount,self.noiseAmount)
             y += self.p3map(noise(myShape.noiseScale*x,myShape.noiseScale*y,1),0,1,-self.noiseAmount,self.noiseAmount)
             vertex(x,y)
+            self.testarray.append([x,y])
         endShape()
+        
+        self._set_wave()
+
+        #self._set_gluon()
+    
 
 class myMeson(myShape):
     def __init__(self, x, y,radius, color0, type,gen,q3):
@@ -122,21 +179,20 @@ class myBaryon(myShape):
 class myLepton(myShape):
     w = color(255,255,255)
     
-    def __init__(self, x,y,radius, q3):
+    def __init__(self,x, y,radius, q3):
         self.x = x
         self.y = y
-        self.r = radius
+        self.r0 = radius
         self.col = myLepton.w
         self.colors = []
         self.ampFactor=myShape.quarkParamsValues['amp']['1']
         self.weight =myShape.quarkParamsValues['wgt']['1']
+        self.testarray=[]
         self._noiseSeed = random.randint(1, 99)
     
     def _set_color(self):
         pass
     
-    
-
 class myParticle(object):  
     quarkParams = {
     'u' : { 'type' : '0', 'gen' : '1', 'q3' : '2' },
@@ -154,7 +210,7 @@ class myParticle(object):
     }
 
     def __init__(self,x,y,composition):
-        self.x= x
+        self.x = x
         self.y = y
         self.composition = composition # array
         self._componentsObjects=[]
@@ -169,7 +225,7 @@ class myParticle(object):
                 gen = myParticle.quarkParams[q]['gen']
                 q3 = myParticle.quarkParams[q]['q3']
                 if len(self.composition)==3:  # baryons
-                    self._componentsObjects.append(myBaryon(self.x,self.y,80,i,type,gen,q3))
+                    self._componentsObjects.append(myBaryon(self.x,self.y,160,i,type,gen,q3))
                 if len(self.composition)==2:  #mesons
                     self._componentsObjects.append(myMeson(self.x,self.y,80,0,type,gen,q3))
                 

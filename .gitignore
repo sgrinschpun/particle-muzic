@@ -66,3 +66,6 @@ docs/public/
 
 #eclipse-java
 cat/
+
+#virtual env
+venv/
