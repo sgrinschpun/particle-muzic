@@ -20,5 +20,3 @@ def draw():
     
     for particle in allParticles:
         particle.display()
-    
-    saveFrame()

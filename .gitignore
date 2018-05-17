@@ -69,3 +69,6 @@ cat/
 
 #virtual env
 venv/
+
+#processing py
+*$py.class

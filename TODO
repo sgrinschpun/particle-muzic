@@ -5,6 +5,8 @@ particle properties to processing:
 - mass -> renormalized where?-> radius
 - id -> for tracking
 - time to decay -> renormalized where?
+- charge ->
+- other quantum numbers?
 - type -> to be able to build processing part object
 
 who handles the position? -> the particle class in processing

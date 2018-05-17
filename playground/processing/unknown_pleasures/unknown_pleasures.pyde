@@ -3,13 +3,13 @@ import math
 bg = 20
 s = 255
 
-xoff = 0
-yoff = 1000
+xoff = 0.
+yoff = 1000.
 
 r=180
 limits=[]
 
-N=100
+N=60
 
 magnitude=1
 
@@ -39,12 +39,11 @@ def draw():
     global yoff
     global magnitude
     limits = build_shape(N)
-    print('1')
     background(bg)
     for i in range(0,N+1):
         y= limits[i][0]
         #strokeWeight(int(y*0.005))
-        strokeWeight(1)
+        strokeWeight(2)
         #stroke(map(y,height*0.1,height*0.9,50,255))
         stroke(240)
         pushMatrix()
@@ -53,8 +52,8 @@ def draw():
         beginShape()
         for x in range(int(limits[i][1][0]), int(limits[i][1][1])):
             ypos=map(noise(x/100 + xoff, y/100 + yoff), 0, 1, -100, 100)
-            magnitude = map(x, width*0.5, width*0.9, 1, 0) 
-            ypos *= magnitude
+            #magnitude = map(x, width*0.5, width*0.9, 1, 0) 
+            #ypos *= magnitude
             #if ypos > 0: ypos = 0
             vertex(x, ypos)
         endShape()
