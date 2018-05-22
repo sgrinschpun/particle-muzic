@@ -32,8 +32,7 @@ def str_hook(obj):    # this is to convert unicodes to strings in json load. cop
 path = '/home/cristobal/Desenvolupament/OwnProjects/particle-muzik/particle_extra_info/part_extra_info.json'
 dirname = os.path.dirname(__file__)
 filename = os.path.join(dirname, path)
-particle_extra_info = json.load(open(filename), object_pairs_hook=str_hook)
-
+particle_extra_info = json.load(open(filename))
 
 
 class Particle(object):
@@ -126,7 +125,6 @@ class ParticleDT(Particle):
         self._set_decay_channels() #All the decay channels and BRs of the particle in format [(BR,[part1,..,partn]),...] from ParticleDataTool
         self._set_type() # Particle Type (quark, lepton, bosoon, meson, baryon) taken from json
         self._set_composition() # Particle quark compsition in format [[q1,q2],[q3,q4],...] taken from json. Check unicode vs string
-
         self._set_lifetime_ren() #Renormalization of the lifetime
         self._set_decay() # Particle decay channel chosen
         self._set_time_to_decay() # Particle time lived before decay, renormalized
@@ -231,7 +229,16 @@ class ParticleDT(Particle):
         return self._composition
 
     def _set_composition(self):
-        self._composition= particle_extra_info[str(self._pdgid)]['composition']
+    #    for index, item in enumerate(particle_extra_info[str(self._pdgid)]['composition']):
+    #        self._composition.append([])
+    #        for quark in item:
+    #            self._composition[index].append(quark.encode('utf-8'))
+        self._composition =[]
+        if particle_extra_info[str(self._pdgid)]['composition'] != []:
+            for quark in particle_extra_info[str(self._pdgid)]['composition'][0]: #only consider first superposition of quarks
+                self._composition.append(quark.encode('utf-8'))
+        else:
+            pass
 
     @property
     def decay_time(self):
