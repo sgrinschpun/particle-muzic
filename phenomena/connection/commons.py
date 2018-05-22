@@ -1,24 +1,16 @@
 from phenomena.connection.phenomena_message import IncomingMessage, OutcomingMessage
 from phenomena.utils.log import get_logger
+from phenomena.nodes import NodeController
 
 PORT = 16180
 DATASIZE = 5
 
-class PetitionHandler:
 
-    def __init__(self, conn):
+class PetitionCommon:
+
+    def __init__(self, log, conn):
         self._conn = conn
-        self._log = get_logger()
-
-    def attendPetition(self):
-        data = self._receiveData()
-        self._treatData(data)
-
-    def sendPetition(self, incoming_message):
-        assert isinstance(incoming_message, IncomingMessage)
-        self._sendData(incoming_message.serialize())
-        data = self._receiveData()
-        return OutcomingMessage.deserialize(data)
+        self._log = log
 
     def _receiveData(self):
         try:
@@ -28,24 +20,6 @@ class PetitionHandler:
         except Exception, ex:
             self._log.exception("Failed receiving data: {0}".format(ex.message))
 
-    def _sendData(self, message):
-        try:
-            self._send(str(len(message)).zfill(5))
-            self._send(message)
-        except Exception, ex:
-            self._log.exception("Failed sending data: {0}".format(ex.message))
-
-    def _treatData(self, data):
-        try:
-            new_message = IncomingMessage.deserialize(data)
-        except Exception, ex:
-            out_message = OutcomingMessage.errorSerializeMessage(ex.message)
-            self._sendData(out_message.serialize())
-        else:
-            self._log.info("Received Command!")
-            out_message = OutcomingMessage.okMessage(new_message, new_message.params)
-            self._sendData(out_message.serialize())
-
     def _send(self, msg):
         total_sent = 0
         message_length = len(msg)
@@ -54,6 +28,13 @@ class PetitionHandler:
             if sent == 0:
                 raise RuntimeError("socket connection broken")
             total_sent = total_sent + sent
+
+    def _sendData(self, message):
+        try:
+            self._send(str(len(message)).zfill(5))
+            self._send(message)
+        except Exception, ex:
+            self._log.exception("Failed sending data: {0}".format(ex.message))
 
     def _receive(self, message_length):
         chunks = []
@@ -65,3 +46,46 @@ class PetitionHandler:
             chunks.append(chunk)
             bytes_recd = bytes_recd + len(chunk)
         return b''.join(chunks)
+
+
+class ServerPetitionHandler(PetitionCommon):
+
+    def __init__(self, conn):
+        super(PetitionCommon, self).__init__(conn, get_logger())
+        self._log = get_logger()
+        self._node_controller = NodeController()
+
+    def attendPetition(self):
+        data = self._receiveData()
+        self._treatData(data)
+
+    def _treatData(self, data):
+        try:
+            new_message = IncomingMessage.deserialize(data)
+        except Exception, ex:
+            out_message = OutcomingMessage.errorSerializeMessage(ex.message)
+            self._sendData(out_message.serialize())
+        else:
+            self._log.info("Received Command!")
+            try:
+                node = self._node_controller.findModule(new_message.module_path)
+                node.execute(new_message)
+                out_message = OutcomingMessage.okMessage(new_message, new_message.params)
+                self._sendData(out_message.serialize())
+            except Exception, ex:
+                out_message = OutcomingMessage.errorMessage(new_message, ex.message)
+                self._sendData(out_message.serialize())
+
+
+
+class ClientPetitionHandler(PetitionCommon):
+
+    def __init__(self, conn):
+        super(PetitionCommon, self).__init__(conn, get_logger())
+        self._log = get_logger()
+
+    def sendPetition(self, incoming_message):
+        assert isinstance(incoming_message, IncomingMessage)
+        self._sendData(incoming_message.serialize())
+        data = self._receiveData()
+        return OutcomingMessage.deserialize(data)

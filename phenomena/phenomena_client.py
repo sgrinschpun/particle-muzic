@@ -13,7 +13,7 @@ class Phenomena:
         return Phenomena._command_id
 
     def addParticle(self, particle):
-        message = IncomingMessage.fromData(command_id=Phenomena.getCommandId(), command_name="ADD", module_path="node", params={'particlename': particle})
+        message = IncomingMessage.fromData(command_id=Phenomena.getCommandId(), command_name="ADD", module_path="node", params={'particle_name': particle})
         received_message = self._sendMessage(message)
         return received_message
 
