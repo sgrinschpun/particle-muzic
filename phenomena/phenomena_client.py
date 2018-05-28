@@ -26,6 +26,7 @@ if __name__ == '__main__':
     import time
     phenomena = Phenomena()
     begin_time = time.time()
-    for i in range(1000):
-        phenomena.addParticle("pi+")
+    for i in range(5):
+        print phenomena.addParticle("pi+")
+        time.sleep(.5)
     print "Total time: {0}".format(time.time() - begin_time)

@@ -93,7 +93,7 @@ class BasicParticle(Particle):
     def mass(self):
         return self._mass
 
-    def toDictionaly(self):
+    def toDictionary(self):
         return {"name": self._name,
                 "id": self._id,
                 "mass": self._mass,
@@ -229,10 +229,10 @@ class ParticleDT(Particle):
         return self._composition
 
     def _set_composition(self):
-    #    for index, item in enumerate(particle_extra_info[str(self._pdgid)]['composition']):
-    #        self._composition.append([])
-    #        for quark in item:
-    #            self._composition[index].append(quark.encode('utf-8'))
+        #    for index, item in enumerate(particle_extra_info[str(self._pdgid)]['composition']):
+        #        self._composition.append([])
+        #        for quark in item:
+        #            self._composition[index].append(quark.encode('utf-8'))
         self._composition =[]
         if particle_extra_info[str(self._pdgid)]['composition'] != []:
             for quark in particle_extra_info[str(self._pdgid)]['composition'][0]: #only consider first superposition of quarks
@@ -340,6 +340,14 @@ class ParticleDT(Particle):
                 ParticleDT(part).get_decay_tree_random(leaf+1)
         else:
             print wrapper.fill('Stable')
+
+    def toDictionary(self):
+        return {"name": self._name,
+                "id": self._id,
+                "mass": self._mass,
+                "charge": self._charge,
+                "decay_time": self._decay_time,
+                "composition": self._composition}
 
 class ParticleBoosted(ParticleDT):
     c= 299792458 #m/s

@@ -5,6 +5,14 @@ from phenomena.nodes import JsonRemoteAudioVideoNode
 
 from phenomena.particles.particle_action import ParticleAccumulatorNode, ParticleEntryNode
 
+_node_controller = None
+
+def getNodeController():
+    global _node_controller
+    if _node_controller == None: _node_controller = NodeController()
+    return _node_controller
+
+
 
 class NodeController(ExecutableNode):
     _commands = {'ADD': "_addParticle"}
@@ -21,7 +29,7 @@ class NodeController(ExecutableNode):
 
     def _addParticle(self, **kwargs):
         particle_str = kwargs['particle_name']
-        assert issubclass(type(particle_str), str)
+        print particle_str, type(particle_str)
         particle = ParticleDT(particle_str)
         self._root_node.addParticle(particle)
 
@@ -38,7 +46,7 @@ class NodeController(ExecutableNode):
     def execute(self, incoming_message):
         assert isinstance(incoming_message, IncomingMessage)
         exec_method = getattr(self, NodeController._commands[incoming_message.command_name])
-        exec_method(incoming_message.params)
+        exec_method(**incoming_message.params)
 
 
 

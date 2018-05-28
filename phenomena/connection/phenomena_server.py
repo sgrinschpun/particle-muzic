@@ -4,6 +4,7 @@ import threading
 from phenomena.utils.log import get_logger
 from phenomena.connection.commons import PORT
 from phenomena.connection import ServerPetitionHandler
+from phenomena.nodes import getNodeController
 
 
 HOST = '0.0.0.0'
@@ -11,10 +12,11 @@ HOST = '0.0.0.0'
 class PhenomenaServer:
 
     def __init__(self):
-        self._log.info("Creating Server")
         self._log = get_logger()
+        self._log.info("Creating Server")
         self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self._socket.settimeout(2.0)
+        self._socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self._out = False
 
     def startServer(self):
@@ -25,6 +27,7 @@ class PhenomenaServer:
     def _startServer(self):
         # Bind socket to local host and port
         try:
+            getNodeController()
             self._socket.bind((HOST, PORT))
         except socket.error as msg:
             self._log.exception('Bind failed. Error Code : ' + str(msg[0]) + ' Message ' + msg[1])

@@ -1,14 +1,14 @@
 from phenomena.connection.phenomena_message import IncomingMessage, OutcomingMessage
 from phenomena.utils.log import get_logger
-from phenomena.nodes import NodeController
+from phenomena.nodes import getNodeController
 
 PORT = 16180
 DATASIZE = 5
 
 
-class PetitionCommon:
+class PetitionCommon():
 
-    def __init__(self, log, conn):
+    def __init__(self, conn, log):
         self._conn = conn
         self._log = log
 
@@ -51,9 +51,9 @@ class PetitionCommon:
 class ServerPetitionHandler(PetitionCommon):
 
     def __init__(self, conn):
-        super(PetitionCommon, self).__init__(conn, get_logger())
+        PetitionCommon.__init__(self, conn, get_logger())
         self._log = get_logger()
-        self._node_controller = NodeController()
+        self._node_controller = getNodeController()
 
     def attendPetition(self):
         data = self._receiveData()
@@ -73,6 +73,7 @@ class ServerPetitionHandler(PetitionCommon):
                 out_message = OutcomingMessage.okMessage(new_message, new_message.params)
                 self._sendData(out_message.serialize())
             except Exception, ex:
+                print "exception!: ", ex.message
                 out_message = OutcomingMessage.errorMessage(new_message, ex.message)
                 self._sendData(out_message.serialize())
 
@@ -81,7 +82,7 @@ class ServerPetitionHandler(PetitionCommon):
 class ClientPetitionHandler(PetitionCommon):
 
     def __init__(self, conn):
-        super(PetitionCommon, self).__init__(conn, get_logger())
+        PetitionCommon.__init__(self, conn, get_logger())
         self._log = get_logger()
 
     def sendPetition(self, incoming_message):
