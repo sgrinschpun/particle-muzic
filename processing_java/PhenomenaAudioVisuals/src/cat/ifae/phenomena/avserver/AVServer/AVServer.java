@@ -2,7 +2,6 @@ package cat.ifae.phenomena.avserver.AVServer;
 
 import processing.core.PApplet;
 import processing.net.*;
-import cat.ifae.phenomena.avserver.visuals.VisualManager;
 
 public class AVServer extends PApplet {
 	int port = 1234;
