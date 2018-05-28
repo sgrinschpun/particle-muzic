@@ -1,16 +1,22 @@
 from classes import myShape, myParticle
 
-def setup():
-  size(500,500)
 
-particle =myParticle(['ubar','ubar','dbar'])
+
+def setup():
+  size(600,600)
+
+allParticles=[]
+p =myParticle(300,300,['u','u','d'])
+allParticles.append(p)
+#pi =myParticle(300,100,['u','dbar'])
+#allParticles.append(pi)
+#mu = myParticle(500,100,[])
+#allParticles.append(mu)
+
 
 def draw():
+
     background(0)
     
-    particle.display()
-    
-    #if frameCount%4 == 0:
-     #   saveFrame()
-    #else:
-    #    pass
+    for particle in allParticles:
+        particle.display()
