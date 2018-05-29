@@ -1,10 +1,11 @@
 package cat.ifae.phenomena.avserver.AVServer;
 
 import java.util.ArrayList;
+
+import cat.ifae.phenomena.avserver.audio.AudioManager;
 import cat.ifae.phenomena.avserver.json.PARAMS;
 import cat.ifae.phenomena.avserver.json.PhenomenaCMD;
 import cat.ifae.phenomena.avserver.visuals.VisualManager;
-import cat.ifae.phenomeva.avserver.audio.AudioManager;
 import processing.core.PApplet;
 
 public class ListManager {

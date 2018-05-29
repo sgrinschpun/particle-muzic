@@ -1,35 +1,32 @@
-package cat.ifae.phenomeva.avserver.audio;
+package cat.ifae.phenomena.avserver.audio;
 
 import beads.*;
 
 class ParticleSynth {
-	private int id;
-	private WavePlayer wp0 = null;
-	private WavePlayer wp1 = null;
-	private WavePlayer wp2 = null;
-	private WavePlayer wp3 = null;
-	private Envelope e = null;
-	private Envelope filterCutoffEnvelope;
-	private LPRezFilter lowPassFilter;
-	private Gain g = null;
-	private Gain gOsc0 = null;
-	private Gain gOsc1 = null;
-	private Gain gOsc2 = null;
-	private Gain gOsc3 = null;
-	private int pitch = -1;
+	int id;
+	WavePlayer wp0 = null;
+	WavePlayer wp1 = null;
+	WavePlayer wp2 = null;
+	WavePlayer wp3 = null;
+	Envelope e = null;
+	Envelope filterCutoffEnvelope;
+	LPRezFilter lowPassFilter;
+	Gain g = null;
+	Gain gOsc0 = null;
+	Gain gOsc1 = null;
+	Gain gOsc2 = null;
+	Gain gOsc3 = null;
+	int pitch = -1;
+	int decay = 500;
 
-	// the constructor for our sine wave synthesizer
 	public ParticleSynth(AudioContext ac, int id, int midiPitch, Gain synthGain) {
 		this.id = id;
 		pitch = midiPitch;
-		// set up the new WavePlayer, convert the MidiPitch to a
-		// frequency
-
 		float freq = midiToFreq(midiPitch);
 		System.out.println("-MIDIPITCH: " + midiPitch + "\t-Freq at midi to freq: " + freq);
-		wp0 = new WavePlayer(ac, freq, Buffer.SINE);
+		wp0 = new WavePlayer(ac, freq / 2, Buffer.SINE);
 		wp1 = new WavePlayer(ac, freq, Buffer.SINE);
-		wp2 = new WavePlayer(ac, freq, Buffer.TRIANGLE);
+		wp2 = new WavePlayer(ac, freq / 2, Buffer.TRIANGLE);
 		wp3 = new WavePlayer(ac, freq, Buffer.TRIANGLE);
 		e = new Envelope(ac);
 		lowPassFilter = new LPRezFilter(ac);
@@ -50,7 +47,7 @@ class ParticleSynth {
 		g.addInput(lowPassFilter);
 		synthGain.addInput(g);
 		e.addSegment((float) 0.4, 5);
-		filterCutoffEnvelope.addSegment((float) 0.05, 5);
+		filterCutoffEnvelope.addSegment((float) 0.05, 50);
 		lowPassFilter.setFrequency(200);
 		lowPassFilter.setRes((float) 0.4);
 		g.setGain((float) 0.05);
@@ -59,12 +56,19 @@ class ParticleSynth {
 		gOsc2.setGain((float) 0.05);
 		gOsc3.setGain((float) 0.05);
 	}
+	
+	public void setDecay(int decay){
+		this.decay = decay;
+	}
+	
+	public void setFilter(float cutoff, float resonance){
+		lowPassFilter.setFrequency(cutoff);
+		lowPassFilter.setRes(resonance);
+	}
 
-	// when this note is killed, ramp the amplitude down to 0
-	// over 300ms
 	public void kill() {
-		e.addSegment(0, 500, new KillTrigger(g));
-		filterCutoffEnvelope.addSegment(0, 500, new KillTrigger(g));
+		e.addSegment(0, decay, new KillTrigger(g));
+		filterCutoffEnvelope.addSegment(0, decay, new KillTrigger(g));
 	}
 
 	// destroy the component beads so that they can be cleaned
