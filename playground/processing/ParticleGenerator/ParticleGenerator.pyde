@@ -1,24 +1,34 @@
 from __future__ import division
-import random, math
+import random, math, json
 
 from myParticle import MyParticle
 from particle_list import *
 
+from particleInit import particle_json
+
+print(particle_json('n0'))
+print(n0_params)
+
+#n0 = MyParticle(300,300,particle_json('n0'))
+
 
 e= MyParticle(100,100,e_params)
-mu = MyParticle(100,200,mu_params)
-tau = MyParticle(100,300,tau_params)
-pi=MyParticle(200,100,pi_params)
-n0 = MyParticle(300,100,n0_params)
+#mu = MyParticle(100,200,mu_params)
+#tau = MyParticle(100,300,tau_params)
+#pi=MyParticle(200,100,pi_params)
 
-allParticles=[e,pi,n0,mu,tau]
+#Z0 = MyParticle(400,100,Z0_params)
+#Wplus = MyParticle(400,300,Wplus_params)
+#Wminus = MyParticle(400,400,Wminus_params)
+#H0 = MyParticle(400,200,H0_params)
+
+allParticles=[e]
 
 def setup():
   size(600,600)
 
 def draw():
     background(0)
-    
+
     for particle in allParticles:
         particle.display()
-    
