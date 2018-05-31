@@ -4,10 +4,6 @@ import random, math, json
 from myParticle import MyParticle
 from particle_list import *
 
-from particleInit import particle_json
-
-print(particle_json('n0'))
-print(n0_params)
 
 #n0 = MyParticle(300,300,particle_json('n0'))
 
@@ -15,14 +11,14 @@ print(n0_params)
 e= MyParticle(100,100,e_params)
 #mu = MyParticle(100,200,mu_params)
 #tau = MyParticle(100,300,tau_params)
-#pi=MyParticle(200,100,pi_params)
+pi=MyParticle(200,100,pi_params)
 
-#Z0 = MyParticle(400,100,Z0_params)
+Z0 = MyParticle(400,100,Z0_params)
 #Wplus = MyParticle(400,300,Wplus_params)
 #Wminus = MyParticle(400,400,Wminus_params)
 #H0 = MyParticle(400,200,H0_params)
 
-allParticles=[e]
+allParticles=[pi]
 
 def setup():
   size(600,600)
