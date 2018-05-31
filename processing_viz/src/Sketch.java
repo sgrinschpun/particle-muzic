@@ -3,6 +3,8 @@ import cat.ifae.phenomena.viz.particle.MyParticle;
 import processing.core.PApplet;
 import java.util.ArrayList;
 
+import beads.*;
+
 public class Sketch extends PApplet{
 
     public ArrayList<MyParticle> allParticles;
@@ -17,7 +19,7 @@ public class Sketch extends PApplet{
 
     MyParticle testParticle, testParticle2;
 
-
+    AudioContext ac;
 
     public void settings(){
         fullScreen();
@@ -35,10 +37,11 @@ public class Sketch extends PApplet{
         allParticles.add(new MyParticle(this,800, 400, muplusData));
 
 
+        ac = new AudioContext();
+        WavePlayer wp = new WavePlayer(ac, 440, Buffer.SINE);
+        ac.out.addInput(wp);
+        ac.start();
 
-
-        //testParticle = new MyParticle(this,640, 360, ZData);
-        //testParticle2 = new MyParticle(this,300, 300, neutronData);
      }
 
     public void draw(){
