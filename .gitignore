@@ -64,8 +64,6 @@ node_modules/
 # hugo builds
 docs/public/
 
-#eclipse-java
-cat/
 
 #virtual env
 venv/

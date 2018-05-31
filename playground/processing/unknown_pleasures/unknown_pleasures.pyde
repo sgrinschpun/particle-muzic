@@ -6,10 +6,10 @@ s = 255
 xoff = 0.
 yoff = 1000.
 
-r=180
+r=260
 limits=[]
 
-N=60
+N=12
 
 magnitude=1
 
@@ -43,7 +43,7 @@ def draw():
     for i in range(0,N+1):
         y= limits[i][0]
         #strokeWeight(int(y*0.005))
-        strokeWeight(2)
+        strokeWeight(10)
         #stroke(map(y,height*0.1,height*0.9,50,255))
         stroke(240)
         pushMatrix()
@@ -52,11 +52,11 @@ def draw():
         beginShape()
         for x in range(int(limits[i][1][0]), int(limits[i][1][1])):
             ypos=map(noise(x/100 + xoff, y/100 + yoff), 0, 1, -100, 100)
-            #magnitude = map(x, width*0.5, width*0.9, 1, 0) 
-            #ypos *= magnitude
+            magnitude = map(x, width*0.5, width*0.9, 1, 0) 
+            ypos *= magnitude
             #if ypos > 0: ypos = 0
             vertex(x, ypos)
         endShape()
         popMatrix()
-    xoff += 0.01
+    xoff += 0.0001
     yoff += -0.01
