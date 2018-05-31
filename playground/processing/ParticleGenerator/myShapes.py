@@ -1,5 +1,8 @@
-import abc
+from __future__ import division
+import abc, math
 import random
+
+from MyParams import MyColors
 
 class MyShape(object):
     __metaclass__  = abc.ABCMeta
@@ -71,4 +74,64 @@ class myWaveRing(MyShape):
                 self._noiseSeed = random.randint(1, 99)
             else:
                 pass
-   
+
+class myWaveCircle(MyShape):
+    
+    def __init__(self,x,y,paramsWaveCircle, currentCicle):
+        self._x = x
+        self._y = y
+        self._strokeWeight = 6
+        self._strokeColor = 240
+        self._N = 2
+        self._xoff = 0.
+        self._yoff = 1000.
+        self._deltaxoff = 0.01
+        self._deltayoff = 0.01
+        self._r0 = paramsWaveCircle['radius']
+        self._magnitude = 1
+        self._build_shape()
+        
+        
+        self._currentCicle = currentCicle
+    
+    def _set_line(self,i,y):
+        for x in range(int(self._limits[i][1][0]), int(self._limits[i][1][1])):
+            ypos=map(noise(x/100 + self._xoff, y/100 + self._yoff), 0, 1, -100, 100)
+            #magnitude = map(x, width*0.5, width*0.9, 1, 0) 
+            #ypos *= magnitude
+            #if ypos > 0: ypos = 0
+            vertex(x, ypos)    
+    
+    def _set_lines(self):
+        for i in range(0,self._N+1):
+            y= self._limits[i][0]
+            #strokeWeight(int(y*0.005))
+            strokeWeight(self._strokeWeight)
+            #stroke(map(y,height*0.1,height*0.9,50,255))
+            stroke(random.choice(MyColors.allColors))
+            #stroke(self._strokeColor)
+            pushMatrix()
+            translate(0, y)
+            noFill()
+            beginShape()
+            self._set_line(i,y)
+            endShape()
+            popMatrix()
+        
+    
+    def display(self):
+        
+        self._set_lines()
+        self._xoff += self._deltaxoff
+        self._yoff += self._deltayoff
+  
+    def move(self):
+        pass  
+    
+    def _build_shape(self):
+        limits=[0 for x in range(self._N+1)]
+        for i in range(0,self._N+1):
+            limits[i]=[]
+            limits[i].append(self._y+ self._r0*math.sin(2*math.pi*i/self._N))
+            limits[i].append([self._x- self._r0*math.cos(2*math.pi*i/self._N),self._x + self._r0*math.cos(2*math.pi*i/self._N)])
+        self._limits=limits

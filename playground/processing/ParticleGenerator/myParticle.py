@@ -1,7 +1,7 @@
-import abc
+import abc, math
 from MyParams import MyColors, myQuarkParams
 from CurrentCicle import CurrentCicle
-from myShapes import myWaveRing
+from myShapes import myWaveRing, myWaveCircle
 
 class MyParticle(object):
     def __init__(self,x,y,params):
@@ -21,7 +21,7 @@ class MyParticle(object):
             self._particle = MyBaryon(self._x,self._y,self._params)
         
         if self._params['type'] == 'boson':
-            pass
+            self._particle = MyBoson(self._x,self._y,self._params)
     
     def display(self):
         self._particle.display()
@@ -45,12 +45,16 @@ class MyParticleFamily(object):
     def move(self):
         """Moves to next position on screen"""
     
+    @staticmethod
+    def mass_map(x):
+        return  3000*((math.log10(1+x) / math.log10(1+173.21))**2)
+    
         
 class MyLepton(MyParticleFamily):
     def __init__(self,x,y,params):
         super(MyLepton, self).__init__(x,y,params)
-        self.paramsWaveRing = {'radius':40, 
-                               'weight': 4,
+        self.paramsWaveRing = {'radius':MyLepton.mass_map(self._params['mass']), 
+                               'weight': 2,
                                'noiseScale': 0.01,
                                'ampFactor': 70,
                                'speed':60
@@ -71,6 +75,8 @@ class MyLepton(MyParticleFamily):
     
     def move(self):
         pass
+    
+
 
 class MyMeson(MyParticleFamily):
     def __init__(self,x,y,params):
@@ -87,7 +93,7 @@ class MyMeson(MyParticleFamily):
     def add_myShapes(self):
         for index, quark in enumerate(self._params['composition']):
             quarkParams = {
-                    'radius':40, 
+                    'radius':MyMeson.mass_map(self._params['mass']), 
                     'weight': myQuarkParams.getWeight(quark),
                     'noiseScale': 0.01,
                     'ampFactor': myQuarkParams.getAmpFactor(quark),
@@ -125,9 +131,9 @@ class MyBaryon(MyParticleFamily):
     def add_myShapes(self):
         for index, quark in enumerate(self._params['composition']):
             quarkParams = {
-                    'radius':40, 
+                    'radius':MyBaryon.mass_map(self._params['mass'])*2, 
                     'weight': myQuarkParams.getWeight(quark),
-                    'noiseScale': 0.01,
+                    'noiseScale': myQuarkParams.getnoiseScale(quark), #0.01,
                     'ampFactor': myQuarkParams.getAmpFactor(quark),
                     'speed':myQuarkParams.getSpeed(quark)
             }
@@ -138,12 +144,39 @@ class MyBaryon(MyParticleFamily):
             self.paramsWaveRing[index]['colors']=self.myColors[index]
             
             self._myShapes.append(myWaveRing(self._x,self._y,self.paramsWaveRing[index], self.currentCicle[index]))
+        paramsWaveCircle = {
+            'radius': MyBaryon.mass_map(self._params['mass'])
+        }
+        self._myShapes.append(myWaveCircle(self._x,self._y,paramsWaveCircle, self.currentCicle))
             
     def display(self):
         text(self._params['name'], self._x, self._y)
         for shape in self._myShapes:
             blendMode(ADD)
             shape.display()
+    
+    def move(self):
+        pass
+
+
+class MyBoson(MyParticleFamily):
+    def __init__(self,x,y,params):
+        super(MyBoson, self).__init__(x,y,params)
+        self._paramsWaveCircle = {
+            'radius': MyBoson.mass_map(self._params['mass'])/10
+        }
+        self.currentCicle = 0
+        self.add_myShapes()
+
+    def add_myShapes(self):
+        self._myShapes = []
+        self._myShapes.append(myWaveCircle(self._x,self._y,self._paramsWaveCircle, self.currentCicle))
+
+    def display(self):
+        text(self._params['name'], self._x, self._y)
+        for shape in self._myShapes:
+            shape.display()
+        
     
     def move(self):
         pass

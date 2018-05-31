@@ -21,6 +21,8 @@ class MyColors(object):
     
     antimatterColors = [c,m,y]
     
+    allColors = [r,g,b,c,m,y]
+    
     w = r+g+b
     b =color(0)
     
@@ -66,18 +68,18 @@ class MyColors(object):
 
 class myQuarkParams(object):
     quarkParams = {
-        'u' : { 'type' : '0', 'gen' : '1', 'q3' : '2' },
-        'd' : { 'type' : '0', 'gen' : '1', 'q3' : '-1'},
-        'c' : { 'type' : '0', 'gen' : '2', 'q3' : '2' },
-        's' : { 'type' : '0', 'gen' : '2', 'q3' : '-1'},
-        't' : { 'type' : '0', 'gen' : '3', 'q3' : '2'},
-        'b' : { 'type' : '0', 'gen' : '3', 'q3' : '-1'},
-        'ubar' : { 'type' : '1', 'gen' : '1', 'q3' : '-2' },
-        'dbar' : { 'type' : '1', 'gen' : '1', 'q3' : '1'},
-        'cbar' : { 'type' : '1', 'gen' : '2', 'q3' : '-2' },
-        'sbar' : { 'type' : '1', 'gen' : '2', 'q3' : '1'},
-        'tbar' : { 'type' : '1', 'gen' : '3', 'q3' : '-2'},
-        'bbar' : { 'type' : '1', 'gen' : '3', 'q3' : '1'}
+        'u' : { 'type' : '0', 'gen' : '1', 'q3' : '2', 'mass':0.0022 },
+        'd' : { 'type' : '0', 'gen' : '1', 'q3' : '-1', 'mass':0.0047},
+        'c' : { 'type' : '0', 'gen' : '2', 'q3' : '2', 'mass':1.27 },
+        's' : { 'type' : '0', 'gen' : '2', 'q3' : '-1', 'mass':0.096},
+        't' : { 'type' : '0', 'gen' : '3', 'q3' : '2', 'mass':173.21},
+        'b' : { 'type' : '0', 'gen' : '3', 'q3' : '-1', 'mass':4.18},
+        'ubar' : { 'type' : '1', 'gen' : '1', 'q3' : '-2', 'mass':0.0022 },
+        'dbar' : { 'type' : '1', 'gen' : '1', 'q3' : '1', 'mass':0.0047},
+        'cbar' : { 'type' : '1', 'gen' : '2', 'q3' : '-2', 'mass':1.27 },
+        'sbar' : { 'type' : '1', 'gen' : '2', 'q3' : '1', 'mass':0.096},
+        'tbar' : { 'type' : '1', 'gen' : '3', 'q3' : '-2', 'mass':173.21},
+        'bbar' : { 'type' : '1', 'gen' : '3', 'q3' : '1', 'mass':4.18}
         }
 
     quarkParamsValues={
@@ -89,6 +91,12 @@ class myQuarkParams(object):
 
     def __init__(self):
         pass
+        
+    @staticmethod
+    def getnoiseScale(quark):
+        #return map(myQuarkParams.quarkParams[quark]['mass'],0.0022,4.18,0.01,1)
+        return 0.008
+    
     
     @staticmethod
     def getColorSet(quark):
@@ -96,7 +104,8 @@ class myQuarkParams(object):
     
     @staticmethod
     def getAmpFactor(quark):
-        return myQuarkParams.quarkParamsValues['amp'][myQuarkParams.quarkParams[quark]['gen']]
+        #return myQuarkParams.quarkParamsValues['amp'][myQuarkParams.quarkParams[quark]['gen']]
+        return 80
     
     @staticmethod
     def getWeight(quark):
@@ -104,4 +113,5 @@ class myQuarkParams(object):
 
     @staticmethod
     def getSpeed(quark):
-        return myQuarkParams.quarkParamsValues['speed'][myQuarkParams.quarkParams[quark]['gen']]
+        #return myQuarkParams.quarkParamsValues['speed'][myQuarkParams.quarkParams[quark]['gen']]
+        return 70
