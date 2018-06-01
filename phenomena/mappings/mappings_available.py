@@ -22,13 +22,15 @@ class MirrorMapping(Mapping):
     def updateMapping(self, new_values):
         pass
 
+import random
 class ConstMapping(Mapping):
 
     def __init__(self, value = 0):
         self._value = value
 
     def translateValue(self, value):
-        return self._value
+        #return self._value
+        return random.uniform(0, 1)
 
     def updateMapping(self, new_values):
         pass

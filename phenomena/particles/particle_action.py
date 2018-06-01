@@ -85,7 +85,7 @@ class ParticleActionNodeChain(ParticleAction, ConfigurableNode):
 class ParticleAccumulatorNode(ParticleActionNodeChain):
 
     def __init__(self):
-        super(ParticleActionNodeChain, self).__init__()
+        ParticleActionNodeChain.__init__(self)
         self._particles_available = []
         self._transform_lock = Lock()
 
@@ -112,13 +112,15 @@ class ParticleAccumulatorNode(ParticleActionNodeChain):
 
     def _decayedParticle(self, particle, new_particles):
         self._transform_lock.acquire()
+        tr_new_particles = []
         try:
             print "particle: {0}".format(particle.name),
             print "Will transform in: ",
             for new_particle in new_particles:
-                print "{0} ".format(new_particle.name),
-            print ""
-            self._node.getNextNode(self).transformParticle(particle, new_particles)
+                print "{0} ".format(ParticleDT(new_particle)),
+                tr_new_particles.append(ParticleDT(new_particle))
+            print " New particles: ", new_particles
+            self._node.getNextNode(self).transformParticle(particle, tr_new_particles)
         finally:
             self._transform_lock.release()
 
@@ -144,7 +146,6 @@ class ParticleEntryNode(ParticleActionNodeEnd):
 
     def addParticle(self, particle):
         assert issubclass(type(particle), Particle)
-        print "Entrying particle: {0}".format(particle.name)
         self._node.getNextNode(self).addParticle(particle)
 
     def removeParticle(self, particle):

@@ -242,7 +242,7 @@ class ParticleDT(Particle):
 
     @property
     def decay_time(self):
-        return self._decay
+        return "1"
 
     def _set_decay(self):
         list_decay = []
@@ -254,9 +254,9 @@ class ParticleDT(Particle):
                     #list_decay.append(ParticleDT(ParticleDT.apdgid(part).name))  this actually creates objects
                     list_decay.append(ParticleDT.apdgid(part).name)  # this just shows particles names
             finally:
-                self._decay = list_decay
+                self.decay = list_decay
         else:
-            self._decay = []
+            self.decay = []
 
     @property
     def time_to_decay(self):
@@ -266,7 +266,8 @@ class ParticleDT(Particle):
         if self._lifetime != None :
             self._timetodecay = self._next_decay()
         else:
-            self._timetodecay = 'stable'  # mixing strings with floats ???
+            #self._timetodecay = 'stable'  # mixing strings with floats ???
+            self._timetodecay = 0
 
     def _build_weights(self):
         seq = []
@@ -346,7 +347,7 @@ class ParticleDT(Particle):
                 "id": self._id,
                 "mass": self._mass,
                 "charge": self._charge,
-                "decay_time": self._decay_time,
+                "decay_time": self._timetodecay,
                 "composition": self._composition}
 
 class ParticleBoosted(ParticleDT):
@@ -442,6 +443,7 @@ if __name__ == '__main__':
     #new_particles = particle.decay
     #for particle in new_particles:
     #    print particle.name
-    a = BasicParticle("a", 1, 2)
-    a.mass = 15
-    print a.mass
+    a = ParticleDT("pi-")
+    a.start()
+    import time
+    time.sleep(10)

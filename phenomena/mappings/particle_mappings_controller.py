@@ -12,8 +12,9 @@ class MappingsController:
 
     def translateParticle(self, particle):
         assert issubclass(type(particle), Particle)
-        translated_values = {'name': particle}
-        for characteristic, mapping in self._map_dictionary:
+        translated_values = {'name': particle.name}
+        translated_values['id'] = particle.id
+        for characteristic, mapping in self._map_dictionary.items():
             original_value = getattr(particle, characteristic)
             translated_value = mapping.translateValue(original_value)
             translated_values[characteristic] = translated_value

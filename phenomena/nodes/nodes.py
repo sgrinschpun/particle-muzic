@@ -56,12 +56,12 @@ class ListSaveNodes:
         index = self._nodes.index(actual_node)
         past_index = index - 1
         if past_index <= 0: return self._nodes[-1]
-        return self._nodes[past_index]
 
     def setNextNode(self, actual_node, add_node):
         assert issubclass(type(add_node), Node)
         index = self._nodes.index(actual_node) + 1
         self._nodes.insert(index, add_node)
+        print self._nodes
 
     def setPastNode(self, actual_node, add_node):
         assert issubclass(type(add_node), Node)
