@@ -243,9 +243,9 @@ class ParticleDT(Particle):
         print 'Decays to: %s in %s' % (self.decay, self.time_to_decay)
 
     #Timer trigger method
-    def start(self):
+    def start(self, callback):
         if self.time_to_decay != 'stable':
-            threading.Timer( self.time_to_decay, self.decay_callback).start()
+            threading.Timer( self.time_to_decay, callback).start()
         else:
             pass
 
