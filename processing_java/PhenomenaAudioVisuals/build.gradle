@@ -1,0 +1,118 @@
+apply plugin: 'java'
+
+def objectname = 'phenomena_av_node'
+def buildversion = '1.0.0'
+
+
+def Phenomenainstalldir = '/usr/share/Phenomena/java'
+def installdir = Phenomenainstalldir + '/AudioVisuals'
+def libdir = installdir + '/lib/'
+def bindir = installdir + '/bin/'
+
+def beads_lib = 'beads'
+def processingcore_lib = 'core'
+def processingnet_lib = 'net'
+def json_lib = 'gson-2.8.2'
+
+
+repositories {
+	flatDir {
+       dirs './lib', '/usr/share/java', libdir
+   }
+}
+
+dependencies {
+	compile name: beads_lib
+	compile name: processingcore_lib
+	compile name: processingnet_lib
+	compile name: json_lib
+}
+
+task packageTests(type: Jar) {
+  baseName objectname + "_test"
+  version buildversion
+    manifest {
+    attributes 'Implementation-Title': 'ndeploy',
+				'Implementation-Version': buildversion,
+				'Built-By': System.getProperty('user.name'),
+				'Built-Date': new Date(),
+				'Built-JDK': System.getProperty('java.version'),
+				'Class-Path': 'PhenomenaAudioVisuals.jar' 
+  }
+  from sourceSets.test.output
+}
+
+jar {
+    baseName objectname
+    version buildversion
+    manifest {
+    attributes 'Implementation-Title': 'ndeploy',
+				'Implementation-Version': buildversion,
+				'Built-By': System.getProperty('user.name'),
+				'Built-Date': new Date(),
+				'Built-JDK': System.getProperty('java.version'),
+				'Class-Path': configurations.compile.collect { libdir + "$it.name" }.join(' ') + configurations.runtime.collect { libdir + "$it.name" }.join(' ') 
+  }
+}
+
+clean{
+    delete './output/'
+}
+
+task install(dependsOn: ["installJar", "installOther", test]){
+	description = "Installs all the code locally"
+}
+
+task create_package(dependsOn: ["createJar", "installOther", test, "tgzTask"]){
+	description = "Creates a package that will be ready for being install in any machine"
+}
+
+task createJar(dependsOn:[jar]){ 
+	doLast{
+		Phen_installdir = './build/Phenomena'
+		//installdir = Phen_installdir + '/av_node/'
+		//libdir = Phen_installdir + '/lib/'
+    	copy {
+    		from jar
+    		into libdir
+    	}
+    	def basejar = "./" +  objectname + '-' + buildversion + '.jar'
+		def baselink = libdir +  objectname + '.jar'
+		ant.symlink(resource: basejar, link: baselink, overwrite: true)
+	}
+}
+
+
+task installJar(dependsOn:[jar]){
+	doLast{
+    	copy {
+    		from jar
+    		into libdir
+    	}
+    	def basejar = "./" +  objectname + '-' + buildversion + '.jar'
+		def baselink = libdir +  objectname + '.jar'
+		ant.symlink(resource: basejar, link: baselink, overwrite: true)
+	}
+}
+
+task installOther(dependsOn:[jar]){
+	doLast {
+		copy {
+		from './other/scripts/phenomena_avnode.sh'
+		into bindir
+		fileMode = 0755	
+  		}
+  		copy {
+    		duplicatesStrategy 'EXCLUDE'
+    		into libdir
+    		from configurations.testCompile + configurations.compile
+  		}
+  	}
+}
+
+task tgzTask(){
+	doLast{
+	def basename = "./output/" + objectname + '_' + buildversion + ".tar.gz"
+   	ant.tar(destfile: basename, basedir: Phenomenainstalldir, compression: 'gzip')
+   	}
+}

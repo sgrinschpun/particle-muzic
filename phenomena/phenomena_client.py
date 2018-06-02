@@ -13,7 +13,7 @@ class Phenomena:
         return Phenomena._command_id
 
     def addParticle(self, particle):
-        message = IncomingMessage.fromData(command_id=Phenomena.getCommandId(), command_name="ADD", module_path="node", params={'particlename': particle})
+        message = IncomingMessage.fromData(command_id=Phenomena.getCommandId(), command_name="ADD", module_path="node", params={'particle_name': particle})
         received_message = self._sendMessage(message)
         return received_message
 
@@ -26,6 +26,7 @@ if __name__ == '__main__':
     import time
     phenomena = Phenomena()
     begin_time = time.time()
-    for i in range(1000):
-        phenomena.addParticle("pi+")
+    for i in range(5):
+        print phenomena.addParticle("mu-")
+        #time.sleep()
     print "Total time: {0}".format(time.time() - begin_time)

@@ -1,4 +1,5 @@
 import json
+import yaml
 from copy import deepcopy
 from phenomena.connection.phenomena_exception import DeserializationException
 
@@ -9,6 +10,7 @@ class IncomingMessage:
         value = {}
         try:
             value = json.loads(serialized_string)
+            print value
         except Exception, ex:
             raise DeserializationException(ex.message)
         _incoming_message = IncomingMessage()
@@ -143,7 +145,14 @@ class OutcomingMessage:
         return json.dumps(ret_dict).encode("ascii")
 
     def __str__(self):
-        return "Outcoming message: type: {0} id {1} Name: {2} Module Path: {3} ".format(self._type,
+        if self._type == OutcomingMessage.OK:
+            return "OK ! Outcoming message: type: {0} id {1} Name: {2} Module Path: {3}".format(self._type,
                                                                                         self._command_id,
                                                                                         self._command_name,
                                                                                         self._module_path)
+        else:
+            return "FAILED ! Outcoming message: type: {0} id {1} Name: {2} Module Path: {3} Return: {4} ".format(self._type,
+                                                                                                         self._command_id,
+                                                                                                         self._command_name,
+                                                                                                         self._module_path,
+                                                                                                         self._return)

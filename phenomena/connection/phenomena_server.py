@@ -2,7 +2,9 @@ import socket
 import sys
 import threading
 from phenomena.utils.log import get_logger
-from phenomena.connection.commons import PORT, PetitionHandler
+from phenomena.connection.commons import PORT
+from phenomena.connection import ServerPetitionHandler
+from phenomena.nodes import getNodeController
 
 
 HOST = '0.0.0.0'
@@ -11,17 +13,21 @@ class PhenomenaServer:
 
     def __init__(self):
         self._log = get_logger()
+        self._log.info("Creating Server")
         self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self._socket.settimeout(2.0)
+        self._socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self._out = False
 
     def startServer(self):
+        self._log.info("Starting Server")
         self._server_thread = threading.Thread(target = self._startServer)
         self._server_thread.start()
 
     def _startServer(self):
         # Bind socket to local host and port
         try:
+            getNodeController()
             self._socket.bind((HOST, PORT))
         except socket.error as msg:
             self._log.exception('Bind failed. Error Code : ' + str(msg[0]) + ' Message ' + msg[1])
@@ -35,7 +41,7 @@ class PhenomenaServer:
             try:
                 conn, addr = self._socket.accept()
                 self._log.info('New petition from: ' + addr[0] + ':' + str(addr[1]))
-                petition_handler = PetitionHandler(conn)
+                petition_handler = ServerPetitionHandler(conn)
                 petition_handler.attendPetition()
             except socket.timeout:
                 self._log.info("Server petition timeout")
@@ -52,9 +58,6 @@ if __name__ == '__main__':
     import time
     server = PhenomenaServer()
     server.startServer()
-    while(True):
-        pass
-
 
 """
 Json:

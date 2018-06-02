@@ -1,7 +1,6 @@
 import socket
-import sys
 from phenomena.connection.commons import PORT
-from phenomena.connection.commons import PetitionHandler
+from phenomena.connection import ClientPetitionHandler
 
 class MessageSender:
 
@@ -11,7 +10,7 @@ class MessageSender:
         # Connect the socket to the port where the server is listening
         server_address = (host, PORT)
         self._socket.connect(server_address)
-        self._petition_handler = PetitionHandler(self._socket)
+        self._petition_handler = ClientPetitionHandler(self._socket)
 
     def sendMessage(self, petition):
         return self._petition_handler.sendPetition(petition)
