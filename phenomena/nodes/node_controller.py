@@ -29,7 +29,7 @@ class NodeController(ExecutableNode):
 
     def _addParticle(self, **kwargs):
         particle_str = kwargs['particle_name']
-        print particle_str, type(particle_str)
+        print "THIS: ", particle_str, type(particle_str)
         particle = ParticleDT(particle_str)
         self._root_node.addParticle(particle)
 

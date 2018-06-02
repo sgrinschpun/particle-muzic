@@ -41,7 +41,7 @@ public class VisualManager implements PhenoCallback {
 			PARAMS params = cmd.getPARAMS();
 			String sent[] = {};
 			MyParticleData particle_data = new MyParticleData(params.getName(), 
-														"lepton",
+														params.getType(),
 														params.getComposition(),
 														(double) params.getMass(), 
 														(double) params.getCharge(),

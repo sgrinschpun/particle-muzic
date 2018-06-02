@@ -17,8 +17,7 @@ class ParticleDecayTimer:
     def __init__(self, particle, decay_callback):
         self._decayCallback = decay_callback
         self._particle = particle
-        t = Timer(2, self._particleDecay)
-        t.start()
+        self._particle.start(self._particleDecay)
 
     def _particleDecay(self):
         new_particles = self._particle.decay
