@@ -1,5 +1,6 @@
 package cat.ifae.phenomena.viz.particle;
 
+
 import cat.ifae.phenomena.viz.params.MyParams;
 import cat.ifae.phenomena.viz.shapes.MyShape;
 import cat.ifae.phenomena.viz.data.MyParticleData;
@@ -7,14 +8,15 @@ import cat.ifae.phenomena.viz.data.MyParticleData;
 
 import cat.ifae.phenomena.viz.shapes.MyWaveDisc;
 import processing.core.PApplet;
+import beads.AudioContext;
 
 import java.util.ArrayList;
 
 public class MyBoson extends MyParticleFamily{
 
 
-    public MyBoson(PApplet p, float x, float y, MyParticleData particleData){
-        super(p, x, y, particleData);
+    public MyBoson(PApplet p, AudioContext ac, float x, float y, MyParticleData particleData){
+        super(p, ac, x, y, particleData);
         this.myParams= new MyParams(p, particleData);
         addMyShapes();
     }

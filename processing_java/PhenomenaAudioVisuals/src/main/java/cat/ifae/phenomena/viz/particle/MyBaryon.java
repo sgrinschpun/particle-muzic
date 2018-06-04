@@ -1,5 +1,6 @@
 package cat.ifae.phenomena.viz.particle;
 
+import beads.AudioContext;
 import cat.ifae.phenomena.viz.data.MyParticleData;
 import cat.ifae.phenomena.viz.cicle.CurrentCicle;
 import cat.ifae.phenomena.viz.shapes.MyShape;
@@ -13,8 +14,9 @@ import java.util.ArrayList;
 
 public class MyBaryon extends MyParticleFamily{
 
-    public MyBaryon(PApplet p, float x, float y, MyParticleData particleData){
-        super(p, x, y, particleData);
+
+    public MyBaryon(PApplet p, AudioContext ac, float x, float y, MyParticleData particleData){
+        super(p, ac, x, y, particleData);
         addMyShapes();
     }
 
@@ -28,8 +30,6 @@ public class MyBaryon extends MyParticleFamily{
             shapes.add(new MyWaveRing(p,x,y,currentCicle,myParams.quark));
             j++;
         }
-        p.println(myParams.quark);
-        p.println(myParams.gluon.getColor());
         shapes.add(new MyWaveDisc(p,x,y,myParams.gluon));
     }
 

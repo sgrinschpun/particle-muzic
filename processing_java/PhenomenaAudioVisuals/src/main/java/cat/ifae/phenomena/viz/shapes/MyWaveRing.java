@@ -32,6 +32,8 @@ public class MyWaveRing extends MyShape {
         p.noFill();
         currentCicle.update();
         updateColor();
+        p.println(color);
+        p.println(weight);
         setR();
         p.stroke(color);
         p.strokeWeight(weight);

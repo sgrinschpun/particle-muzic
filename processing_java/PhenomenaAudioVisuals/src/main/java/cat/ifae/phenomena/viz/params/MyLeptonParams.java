@@ -99,7 +99,6 @@ public class MyLeptonParams extends MyFamilyParams{
     @Override
     public float getWeight(){
         int i = getGen(lepton);
-        p.println(leptonParamsValues.get("wgt").get(i));
         return (float) (int) leptonParamsValues.get("wgt").get(i);
     }
 

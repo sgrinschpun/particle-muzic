@@ -21,14 +21,14 @@ public class AVServer extends PApplet {
 		frameRate(24);
 		noStroke();
 		smooth();
-		colorMode(HSB, 360, 100, 100);
+		//colorMode(HSB, 360, 100, 100);
 		server = new Server(this, port);
 		handleJson = new JsonHandler();
 		manageList = new ListManager(this);
 	}
 
 	public void draw() {
-		background(255, 0, 0);
+		background(0);
 		Client thisClient = server.available();
 		if (thisClient != null) {
 			String receivedString = thisClient.readString();
