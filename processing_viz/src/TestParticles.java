@@ -11,5 +11,6 @@ public class TestParticles {
     public static MyParticleData neutron = new MyParticleData("n0","baryon",new String[]{"u","d", "d"},0.939565413, 0.0,1.333699306732677, new String[]{"nubar_e", "e-", "p+"});
     public static MyParticleData Z0 = new MyParticleData("Z0","boson",new String[0],91.1876, 0.0,0.01893509882150804, new String[]{"e-", "e+"});
     public static MyParticleData N1700 = new MyParticleData("N1700","baryon",new String[]{"u","d", "d"},1.7, 0.0,0.01893509882150804, new String[]{"mu-", "nubar_mu"});
+    public static MyParticleData ubar = new MyParticleData("ubar","quark",new String[0],0.022, -0.33,0, new String[0]);
 
 }

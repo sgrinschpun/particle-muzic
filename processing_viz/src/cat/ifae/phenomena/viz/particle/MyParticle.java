@@ -47,6 +47,9 @@ public class MyParticle {
             case "baryon":
                 this.particle = new MyBaryon(p,ac,x,y,particleData);
                 break;
+            case "quark":
+                this.particle = new MyQuark(p,ac,x,y,particleData);
+                break;
             case "boson":
                 this.particle = new MyBoson(p,ac,x,y,particleData);
                 break;

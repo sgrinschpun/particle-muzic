@@ -43,6 +43,9 @@ public class MyParams {
                 this.quark = new MyQuarkParams(p, particleData, q, i);
                 this.gluon = new MyGluonParams(p, particleData);
                 break;
+            case "quark":
+                this.quark = new MyQuarkParams(p, particleData, q, i);
+                break;
             case "boson":
                 this.boson = new MyBosonParams(p, particleData);
                 break;

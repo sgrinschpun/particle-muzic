@@ -15,6 +15,7 @@ public class Sketch extends PApplet{
     MyParticleData ZData = TestParticles.Z0;
     MyParticleData N1700Data = TestParticles.N1700;
     MyParticleData muplusData = TestParticles.muplus;
+    MyParticleData ubarData = TestParticles.ubar;
 
     AudioContext ac;
 
@@ -32,6 +33,7 @@ public class Sketch extends PApplet{
         allParticles.add(new MyParticle(this,ac,500, 200, electronData));
         allParticles.add(new MyParticle(this,ac,800, 200, pionData));
         allParticles.add(new MyParticle(this,ac,200, 400, neutronData));
+        allParticles.add(new MyParticle(this,ac,500, 400, ubarData));
         //allParticles.add(new MyParticle(this,ac,500, 400, N1700Data));
         //allParticles.add(new MyParticle(this,ac,800, 400, muplusData));
 
