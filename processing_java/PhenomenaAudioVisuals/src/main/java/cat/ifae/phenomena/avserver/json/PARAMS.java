@@ -7,6 +7,7 @@ public class PARAMS {
 	private float charge;
 	private float decay_time;
 	private String[] composition;
+	private String type;
 
 	public int getId() {
 		return id;
@@ -22,6 +23,14 @@ public class PARAMS {
 
 	public void setMass(float mass) {
 		this.mass = mass;
+	}
+	
+	public String getType() {
+		return this.type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public float getDecayTime() {
@@ -58,7 +67,7 @@ public class PARAMS {
 
 	@Override
 	public String toString() {
-		return "PhenomenaCMD [mass = " + mass + ", id = " + id + ", decayTime = " + decay_time + ", charge = " + charge
+		return "PhenomenaCMD [type = " + type + "mass = " + mass + ", id = " + id + ", decayTime = " + decay_time + ", charge = " + charge
 				+ ", name = " + name + ", composition = " + composition + "]";
 	}
 

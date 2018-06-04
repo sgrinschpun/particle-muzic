@@ -8,7 +8,7 @@ from phenomena.particles import Particle
 from phenomena.utils import get_logger
 
 class JsonRemoteAudioVideoNode(ParticleActionNodeChain):
-    _IP =  "172.16.7.12"
+    _IP =  "127.0.0.1"
     _PORT = 1234
     def __init__(self):
         super(ParticleActionNodeChain, self).__init__()
@@ -65,7 +65,6 @@ class JsonRemoteAudioVideoNode(ParticleActionNodeChain):
             new_message['PARAMS'] = new_particle.toDictionary()
             new_messages.append(new_message)
             self._sendMessage(new_message)
-            time.sleep(0.2)
         return new_messages
 
 

@@ -8,7 +8,8 @@ class MappingsController:
         self._map_dictionary = {"charge": ConstMapping(),
                                "mass": ConstMapping(),
                                "decay_time": ConstMapping(),
-                               "composition": MirrorMapping()}
+                               "composition": MirrorMapping(),
+                                "type": MirrorMapping()}
 
     def translateParticle(self, particle):
         assert issubclass(type(particle), Particle)
