@@ -20,6 +20,11 @@ public class MyBaryon extends MyParticleFamily{
         addMyShapes();
     }
 
+    public MyBaryon(PApplet p, float x, float y, MyParticleData particleData){
+        super(p, x, y, particleData);
+        addMyShapes();
+    }
+
     @Override
     public void addMyShapes(){
         shapes = new ArrayList<MyShape>();

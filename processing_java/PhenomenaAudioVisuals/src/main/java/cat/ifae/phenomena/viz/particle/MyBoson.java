@@ -21,6 +21,12 @@ public class MyBoson extends MyParticleFamily{
         addMyShapes();
     }
 
+    public MyBoson(PApplet p, float x, float y, MyParticleData particleData){
+        super(p, x, y, particleData);
+        this.myParams= new MyParams(p, particleData);
+        addMyShapes();
+    }
+
     @Override
     public void addMyShapes(){
         shapes = new ArrayList<MyShape>();

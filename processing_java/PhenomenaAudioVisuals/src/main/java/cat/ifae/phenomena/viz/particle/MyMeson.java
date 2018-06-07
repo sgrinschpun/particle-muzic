@@ -19,6 +19,12 @@ class MyMeson extends MyParticleFamily{
         addMyShapes();
     }
 
+    public MyMeson(PApplet p, float x, float y, MyParticleData particleData){
+        super(p, x, y, particleData);
+
+        addMyShapes();
+    }
+
     @Override
     public void addMyShapes(){
         int j = 0;

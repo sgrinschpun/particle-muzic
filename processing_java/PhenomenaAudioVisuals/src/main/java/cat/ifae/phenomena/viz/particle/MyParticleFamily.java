@@ -39,6 +39,16 @@ class MyParticleFamily {
 
     }
 
+    public MyParticleFamily(PApplet p, float x, float y, MyParticleData particleData){
+        this.p = p;
+        this.x = x;
+        this.y = y;
+        this.particleData = particleData;
+        this.shapes = new ArrayList<MyShape>();
+        this.sounds = new ArrayList<MySynth>();
+
+    }
+
     protected void addMyShapes(){}
 
     protected void addMySounds(){}
