@@ -34,7 +34,6 @@ public class MyParticle {
         this.particleData = particleData;
 
         buildParticle();
-        p.println(particleData.getType());
     }
 
     private void buildParticle(){
