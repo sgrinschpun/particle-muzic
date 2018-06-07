@@ -29,7 +29,7 @@ def str_hook(obj):    # this is to convert unicodes to strings in json load. cop
     return {k.encode('utf-8') if isinstance(k,unicode) else k :
             v.encode('utf-8') if isinstance(v, unicode) else v
             for k,v in obj}
-path = '/home/cristobal/Desenvolupament/OwnProjects/particle-muzik/particle_extra_info/part_extra_info.json'
+path = '/home/cristobal/Desenvolupament/OwnProjects/particle-muzik/python/particle_extra_info/part_extra_info.json'
 dirname = os.path.dirname(__file__)
 filename = os.path.join(dirname, path)
 particle_extra_info = json.load(open(filename))
