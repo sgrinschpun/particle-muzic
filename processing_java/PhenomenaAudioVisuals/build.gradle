@@ -4,7 +4,7 @@ def objectname = 'phenomena_av_node'
 def buildversion = '1.0.0'
 
 
-def Phenomenainstalldir = '/Users/sgrinschpun/Phenomena/java'
+def Phenomenainstalldir = '/usr/share/Phenomena/java/'
 def installdir = Phenomenainstalldir + '/AudioVisuals'
 def libdir = installdir + '/lib/'
 def bindir = installdir + '/bin/'

@@ -6,10 +6,14 @@ public class CurrentCicle {
 
     PApplet p;
 
-    double frameCountPerCicle;
+    double frameCountPerCicle, hz;
 
     public double getFrameCount() {
         return FrameCount;
+    }
+
+    public double gethz() {
+        return hz;
     }
 
     public double getProgressRatioMax() {
@@ -48,7 +52,7 @@ public class CurrentCicle {
         return SextEaseOutRatio;
     }
 
-    double FrameCount;
+    double FrameCount, myFrameRate;
     double ProgressRatioMax, number, ProgressRatio, QuadEaseInRatio, QuadEaseOutRatio, QuartEaseInRatio, QuartEaseOutRatio, SextEaseInRatio, SextEaseOutRatio;
 
 
@@ -56,6 +60,8 @@ public class CurrentCicle {
         this.p = p;
         this.frameCountPerCicle = frameCountPerCicle;
         this.ProgressRatioMax = (double) (frameCountPerCicle-1)/frameCountPerCicle;
+        this.myFrameRate = p.frameRate;
+        this.hz = myFrameRate/frameCountPerCicle;
     }
 
     public void update(){

@@ -2,6 +2,7 @@ package cat.ifae.phenomena.avserver.json;
 
 public class PARAMS {
 	private int id;
+	public int parent;
 	private String name;
 	private float mass;
 	private float charge;
@@ -64,10 +65,18 @@ public class PARAMS {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public void setParent(int parent) {
+		this.parent = parent;
+	}
+	
+	public int getParent() {
+		return parent;
+	}
 
 	@Override
 	public String toString() {
-		return "PhenomenaCMD [type = " + type + "mass = " + mass + ", id = " + id + ", decayTime = " + decay_time + ", charge = " + charge
+		return "PhenomenaCMD [type = " + type + " parent = "+ parent + " mass = " + mass + ", id = " + id + ", decayTime = " + decay_time + ", charge = " + charge
 				+ ", name = " + name + ", composition = " + composition + "]";
 	}
 

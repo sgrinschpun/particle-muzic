@@ -14,7 +14,8 @@ public class JsonHandler {
 	public String[] parsetoString(String clientString) {
 		PhenomenaCMD phenoCMD = parse(clientString);
 		return new String[] { "-CMD: " + phenoCMD.getCMD(), "-ID: " + phenoCMD.getPARAMS().getId(),
-				"-name: " + phenoCMD.getPARAMS().getName(), phenoCMD.getPARAMS().getType(), "-type: " + phenoCMD.getPARAMS().getMass(),
+				"-parent: " + phenoCMD.getPARAMS().getParent(), "-name: " + phenoCMD.getPARAMS().getName(), 
+				"-type: " + phenoCMD.getPARAMS().getType(),  "-mass: " + phenoCMD.getPARAMS().getMass(),
 				"-charge: " + phenoCMD.getPARAMS().getCharge(), "-decayTime: " + phenoCMD.getPARAMS().getDecayTime(),
 				"-composition: " + phenoCMD.getPARAMS().getComposition().toString() };
 	}

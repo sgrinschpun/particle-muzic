@@ -1,6 +1,5 @@
 package cat.ifae.phenomena.avserver.visuals;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,10 +34,15 @@ public class VisualManager implements PhenoCallback {
 	public void callback(PhenomenaCMD cmd) {
 		switch (cmd.getCMD()) {
 		case "ADD":
-			System.out.println("Adding particle-pic to list!");
 			/*ParticlePic partPic = new ParticlePic(parent, cmd.getPARAMS().getId(), cmd.getPARAMS().getMass(),
 					cmd.getPARAMS().getDecayTime(), cmd.getPARAMS().getCharge());*/
 			PARAMS params = cmd.getPARAMS();
+			String message = String.format("Adding particle-pic to list!: ID: %d - Parent: %d type: %s", 
+				params.getId(),
+				params.getParent(),
+				params.getType()
+				);
+			System.out.println(message);
 			String sent[] = {};
 			MyParticleData particle_data = new MyParticleData(params.getName(), 
 														params.getType(),

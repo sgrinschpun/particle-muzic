@@ -24,7 +24,7 @@ public class MySynth {
     public MySynth(AudioContext ac, CurrentCicle currentCicle, float freq){
         this.ac = ac;
         this.currentCicle = currentCicle;
-        this.hz = 440f;
+        this.hz = currentCicle.gethz();
 
 
         envelope = new Envelope(ac, 0.0f);
