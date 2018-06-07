@@ -21,6 +21,14 @@ class MyLepton extends MyParticleFamily{
         addMySounds();
     }
 
+    public MyLepton(PApplet p, float x, float y, MyParticleData particleData){
+        super(p, x,y, particleData);
+        this.myParams= new MyParams(p, particleData);
+        this.currentCicle = new CurrentCicle(p, myParams.lepton.getSpeed());
+
+        addMyShapes();
+    }
+
     @Override
     public void addMyShapes(){
         shapes.add(new MyWaveRing(p,x,y,currentCicle,myParams.lepton));
@@ -28,7 +36,7 @@ class MyLepton extends MyParticleFamily{
 
     @Override
     public void addMySounds(){
-        //sounds.add(new MySynth(ac, currentCicle, 440.0f));
+        sounds.add(new MySynth(ac, currentCicle, 440.0f));
     }
 
     @Override

@@ -15,15 +15,19 @@ public class MyWaveRing extends MyShape {
     private float r0, weight, ampFactor, noiseScale, r;
     private int color, noiseSeed;
 
-    private static int N = 100;
+    private static int N = 300;
 
     public MyWaveRing(PApplet p, float x, float y, CurrentCicle currentCicle, MyFamilyParams myParams){
         super(p, x, y, myParams);
         this.currentCicle = currentCicle;
-        this.r0 = (float) myParams.getSize();
-        this.weight = myParams.getWeight();
-        this.ampFactor = myParams.getAmpFactor();
-        this.noiseScale = (float) myParams.getNoiseScale();
+        //this.r0 = (float) myParams.getSize();
+        this.r0 = 2000;
+        //this.weight = myParams.getWeight();
+        this.weight = 80;
+        //this.ampFactor = myParams.getAmpFactor();
+        this.ampFactor = 400;
+        //this.noiseScale = (float) myParams.getNoiseScale();
+        this.noiseScale = 0.001f;
         this.color = myParams.getColor();
         this.noiseSeed = ThreadLocalRandom.current().nextInt(1, 100);
     }
@@ -32,8 +36,6 @@ public class MyWaveRing extends MyShape {
         p.noFill();
         currentCicle.update();
         updateColor();
-        p.println(color);
-        p.println(weight);
         setR();
         p.stroke(color);
         p.strokeWeight(weight);

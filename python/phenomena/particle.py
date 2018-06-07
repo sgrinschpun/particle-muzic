@@ -13,6 +13,8 @@ import time, threading
 
 import numpy as np
 
+sys.path.insert(0, '../')
+
 #ParticleDataTool gives us the decay channels
 from ParticleDataTool import ParticleDataTool as pdt
 pythia = pdt.PYTHIAParticleData(file_path='ParticleData.ppl', use_cache=True)
@@ -24,12 +26,7 @@ part_dict = {}
 for p in tbl:
     part_dict[p.name]= p.id
 
-#particle_extra_info gives us information about composition, interactions, type,...
-def str_hook(obj):    # this is to convert unicodes to strings in json load. copied from somewhere. doe snot work very well
-    return {k.encode('utf-8') if isinstance(k,unicode) else k :
-            v.encode('utf-8') if isinstance(v, unicode) else v
-            for k,v in obj}
-path = '/Users/xmp/Documents/workspace/particle-muzic/particle_extra_info/part_extra_info.json'
+path = '../particle_extra_info/part_extra_info.json'
 dirname = os.path.dirname(__file__)
 filename = os.path.join(dirname, path)
 particle_extra_info = json.load(open(filename))
@@ -38,81 +35,19 @@ particle_extra_info = json.load(open(filename))
 class Particle(object):
     __metaclass__ = abc.ABCMeta
 
-    @abc.abstractproperty
+    @abc.abstractmethod
     def name(self):
-        pass
-
-
-    @abc.abstractproperty
-    def charge(self):
-        pass
-
-    @abc.abstractproperty
-    def composition(self):
-        pass
-
-    @abc.abstractproperty
-    def decay_time(self):
-        pass
-
-    @abc.abstractproperty
-    def mass(self):
-        pass
-
-    @abc.abstractproperty
-    def type(self):
         pass
 
     @abc.abstractmethod
-    def toDictionary(self):
+    def mass(self):
         pass
 
-class BasicParticle(Particle):
-
-    def __init__(self, id, name, type, mass, charge, composition, decay_time):
-        self._id = id
-        self._name = name
-        self._type = type
-        self._mass = mass
-        self._composition = composition
-        self._charge = charge
-        self._decay_time = decay_time
-
-    @property
-    def name(self):
-        return self._name
-
-    @property
+    @abc.abstractmethod
     def charge(self):
-        return self._charge
+        pass
 
-    @property
-    def composition(self):
-        return self._composition
-
-    @property
-    def decay_time(self):
-        return self._decay_time
-
-    @property
-    def mass(self):
-        return self._mass
-
-    @property
-    def type(self):
-        return self._type
-
-    def toDictionary(self):
-        return {"name": self._name,
-                "id": self._id,
-                "type": self._type,
-                "mass": self._mass,
-                "charge": self._charge,
-                "decay_time": self._decay_time,
-                "composition": self._composition}
-import traceback
 class ParticleDT(Particle):
-    STABLE = -1
 
     def __new__(cls, *args, **kw):
         if args[0] in ['u','d','c','s','t','b']:
@@ -124,7 +59,7 @@ class ParticleDT(Particle):
             except Exception, ex:
                 raise Exception("Exception: {0}".format(ex.message))
 
-    class_counter = 0
+    class_counter= 0
 
     def __init__(self, name):
         self._set_name(name)  # Name of the particle pypdt convention
@@ -138,7 +73,8 @@ class ParticleDT(Particle):
         self._set_composition() # Particle quark compsition in format [[q1,q2],[q3,q4],...] taken from json. Check unicode vs string
         self._set_lifetime_ren() #Renormalization of the lifetime
         self._set_decay() # Particle decay channel chosen
-        self._set_time_to_decay()  # Particle time lived before decay, renormalized
+        self._set_time_to_decay() # Particle time lived before decay, renormalized
+
 
     @staticmethod
     def apdgid(partid):
@@ -150,6 +86,7 @@ class ParticleDT(Particle):
                 return pypdt.get(partid[1:])
             else:
                 return ValueError("Id not found")
+
 
     @staticmethod
     def magnitude(x):
@@ -238,16 +175,20 @@ class ParticleDT(Particle):
         return self._composition
 
     def _set_composition(self):
-        #    for index, item in enumerate(particle_extra_info[str(self._pdgid)]['composition']):
-        #        self._composition.append([])
-        #        for quark in item:
-        #            self._composition[index].append(quark.encode('utf-8'))
+    #    for index, item in enumerate(particle_extra_info[str(self._pdgid)]['composition']):
+    #        self._composition.append([])
+    #        for quark in item:
+    #            self._composition[index].append(quark.encode('utf-8'))
         self._composition =[]
         if particle_extra_info[str(self._pdgid)]['composition'] != []:
             for quark in particle_extra_info[str(self._pdgid)]['composition'][0]: #only consider first superposition of quarks
                 self._composition.append(quark.encode('utf-8'))
         else:
             pass
+
+    @property
+    def decay(self):
+        return self._decay
 
     def _set_decay(self):
         list_decay = []
@@ -259,20 +200,19 @@ class ParticleDT(Particle):
                     #list_decay.append(ParticleDT(ParticleDT.apdgid(part).name))  this actually creates objects
                     list_decay.append(ParticleDT.apdgid(part).name)  # this just shows particles names
             finally:
-                self.decay = list_decay
+                self._decay = list_decay
         else:
-            self.decay = []
+            self._decay = []
 
     @property
-    def decay_time(self):
-        return self._time_to_decay
+    def time_to_decay(self):
+        return self._timetodecay
 
     def _set_time_to_decay(self): #this is just a proof of concept. need to be improved
         if self._lifetime != None :
-            self._time_to_decay = self._next_decay()
+            self._timetodecay = self._next_decay()
         else:
-            #self._timetodecay = 'stable'  # mixing strings with floats ???
-            self._time_to_decay = ParticleDT.STABLE
+            self._timetodecay = 'stable'  # mixing strings with floats ???
 
     def _build_weights(self):
         seq = []
@@ -300,17 +240,14 @@ class ParticleDT(Particle):
 
     #Callback  the timer trigger
     def decay_callback(self):
-        print 'Decays to: %s in %s' % (self.decay, self._time_to_decay)
+        print 'Decays to: %s in %s' % (self.decay, self.time_to_decay)
 
     #Timer trigger method
     def start(self, callback):
-        if self._time_to_decay != ParticleDT.STABLE:
-            wait_time = ParticleDT.renormalize_time(self._time_to_decay)
-            print "Wait for: ", wait_time
-            threading.Timer(wait_time, callback).start()
+        if self.time_to_decay != 'stable':
+            threading.Timer( self.time_to_decay, callback).start()
         else:
-            print "Wait for: ", 10
-            threading.Timer(10, callback).start()
+            pass
 
     def get_channel_names(self):
         dc_names = []
@@ -336,7 +273,7 @@ class ParticleDT(Particle):
                     print wrapper2.fill(part)
                     ParticleDT(part).get_decay_tree_all(leaf+1)
         else:
-            print wrapper2.fill(ParticleDT.STABLE)
+            print wrapper2.fill('Stable')
 
     def get_decay_tree_random(self, leaf=1):
         wrapper = textwrap.TextWrapper(initial_indent='-'*leaf, width=70)
@@ -348,16 +285,7 @@ class ParticleDT(Particle):
                 print wrapper.fill(part)
                 ParticleDT(part).get_decay_tree_random(leaf+1)
         else:
-            print wrapper.fill(ParticleDT.STABLE)
-
-    def toDictionary(self):
-        return {"name": self._name,
-                "id": self._id,
-                "type": self._type,
-                "mass": self._mass,
-                "charge": self._charge,
-                "decay_time": self._time_to_decay,
-                "composition": self._composition}
+            print wrapper.fill('Stable')
 
 class ParticleBoosted(ParticleDT):
     c= 299792458 #m/s
@@ -446,13 +374,9 @@ class ParticleBoosted(ParticleDT):
 
 
 if __name__ == '__main__':
-    #particle = ParticleDT("pi-")
-    #print particle.name
-    #print particle.charge
-    #new_particles = particle.decay
-    #for particle in new_particles:
-    #    print particle.name
-    a = ParticleDT("pi-")
-    a.start()
-    import time
-    time.sleep(10)
+    particle = ParticleDT("pi-")
+    print particle.name
+    print particle.charge
+    new_particles = particle.decay
+    for particle in new_particles:
+        print particle.name

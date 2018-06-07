@@ -26,7 +26,11 @@ if __name__ == '__main__':
     import time
     phenomena = Phenomena()
     begin_time = time.time()
+<<<<<<< HEAD:phenomena/phenomena_client.py
     for i in range(2):
+=======
+    for i in range(1):
+>>>>>>> 2084da8f3662d093c66d6455021c7929cb6f73a7:python/phenomena/phenomena_client.py
         print phenomena.addParticle("K-")
         #time.sleep()
     print "Total time: {0}".format(time.time() - begin_time)

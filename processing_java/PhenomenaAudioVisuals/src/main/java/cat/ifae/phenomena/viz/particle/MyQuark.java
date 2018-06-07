@@ -18,6 +18,12 @@ class MyQuark extends MyParticleFamily{
         addMyShapes();
     }
 
+    public MyQuark(PApplet p, float x, float y, MyParticleData particleData){
+        super(p, x, y, particleData);
+
+        addMyShapes();
+    }
+
     @Override
     public void addMyShapes(){
         myParams = new MyParams(p, particleData,particleData.getName(),0);
