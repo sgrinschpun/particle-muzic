@@ -19,7 +19,7 @@ pythia = pdt.PYTHIAParticleData(file_path='ParticleData.ppl', use_cache=True)
 
 #PYPDT gives us info about mass, charge, lifetime
 import pypdt
-tbl = pypdt.ParticleDataTable("/home/cristobal/mass_width_2016.mcd")
+tbl = pypdt.ParticleDataTable()
 part_dict = {}
 for p in tbl:
     part_dict[p.name]= p.id
@@ -29,7 +29,11 @@ def str_hook(obj):    # this is to convert unicodes to strings in json load. cop
     return {k.encode('utf-8') if isinstance(k,unicode) else k :
             v.encode('utf-8') if isinstance(v, unicode) else v
             for k,v in obj}
-path = '/home/cristobal/Desenvolupament/particle-muzik/particle_extra_info/part_extra_info.json'
+<<<<<<< HEAD:phenomena/particles/particle.py
+path = '/Users/xmp/Documents/workspace/particle-muzic/particle_extra_info/part_extra_info.json'
+=======
+path = '/home/cristobal/Desenvolupament/OwnProjects/particle-muzik/python/particle_extra_info/part_extra_info.json'
+>>>>>>> 2084da8f3662d093c66d6455021c7929cb6f73a7:python/phenomena/particles/particle.py
 dirname = os.path.dirname(__file__)
 filename = os.path.join(dirname, path)
 particle_extra_info = json.load(open(filename))
@@ -39,9 +43,12 @@ class Particle(object):
     __metaclass__ = abc.ABCMeta
 
     @abc.abstractproperty
-    def name(self):
+    def parent(self):
         pass
 
+    @abc.abstractproperty
+    def name(self):
+        pass
 
     @abc.abstractproperty
     def charge(self):
@@ -69,7 +76,8 @@ class Particle(object):
 
 class BasicParticle(Particle):
 
-    def __init__(self, id, name, type, mass, charge, composition, decay_time):
+    def __init__(self, parent, id, name, type, mass, charge, composition, decay_time):
+        self._parent = parent
         self._id = id
         self._name = name
         self._type = type
@@ -99,18 +107,24 @@ class BasicParticle(Particle):
         return self._mass
 
     @property
+    def parent(self):
+        return self._parent
+
+    @property
     def type(self):
         return self._type
 
     def toDictionary(self):
         return {"name": self._name,
+                "parent": self._parent,
                 "id": self._id,
                 "type": self._type,
                 "mass": self._mass,
                 "charge": self._charge,
                 "decay_time": self._decay_time,
                 "composition": self._composition}
-import traceback
+
+NO_PARENT = -1
 class ParticleDT(Particle):
     STABLE = -1
 
@@ -124,9 +138,9 @@ class ParticleDT(Particle):
             except Exception, ex:
                 raise Exception("Exception: {0}".format(ex.message))
 
-    class_counter = 0
+    CLASS_COUNTER = 0
 
-    def __init__(self, name):
+    def __init__(self, name, parent = NO_PARENT):
         self._set_name(name)  # Name of the particle pypdt convention
         self._set_id() # Class Counter
         self._set_pdgid(name) # Id from PDG, taken from pypdt
@@ -139,6 +153,14 @@ class ParticleDT(Particle):
         self._set_lifetime_ren() #Renormalization of the lifetime
         self._set_decay() # Particle decay channel chosen
         self._set_time_to_decay()  # Particle time lived before decay, renormalized
+        self._setParent(parent)
+
+    @property
+    def parent(self):
+        return self._parent
+
+    def _setParent(self, parent):
+        self._parent = parent
 
     @staticmethod
     def apdgid(partid):
@@ -177,8 +199,8 @@ class ParticleDT(Particle):
         return self._id
 
     def _set_id(self):
-        self._id = ParticleDT.class_counter
-        ParticleDT.class_counter += 1
+        self._id = ParticleDT.CLASS_COUNTER
+        ParticleDT.CLASS_COUNTER += 1
 
     @property
     def pdgid(self):

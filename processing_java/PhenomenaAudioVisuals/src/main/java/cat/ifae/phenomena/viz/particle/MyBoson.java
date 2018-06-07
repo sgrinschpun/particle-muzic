@@ -5,7 +5,7 @@ import cat.ifae.phenomena.viz.params.MyParams;
 import cat.ifae.phenomena.viz.shapes.MyShape;
 import cat.ifae.phenomena.viz.data.MyParticleData;
 
-
+import cat.ifae.phenomena.viz.shapes.MyWaveLines;
 import cat.ifae.phenomena.viz.shapes.MyWaveDisc;
 import processing.core.PApplet;
 import beads.AudioContext;
@@ -30,7 +30,8 @@ public class MyBoson extends MyParticleFamily{
     @Override
     public void addMyShapes(){
         shapes = new ArrayList<MyShape>();
-        shapes.add(new MyWaveDisc(p,x,y,myParams.boson));
+        //shapes.add(new MyWaveDisc(p,x,y,myParams.boson));
+        shapes.add(new MyWaveLines(p,x,y,myParams.boson));
 
     }
 

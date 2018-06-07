@@ -36,7 +36,7 @@ class MyLepton extends MyParticleFamily{
 
     @Override
     public void addMySounds(){
-        //sounds.add(new MySynth(ac, currentCicle, 440.0f));
+        sounds.add(new MySynth(ac, currentCicle, 440.0f));
     }
 
     @Override

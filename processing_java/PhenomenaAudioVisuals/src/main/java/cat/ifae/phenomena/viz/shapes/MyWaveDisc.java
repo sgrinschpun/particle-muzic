@@ -19,14 +19,18 @@ public class MyWaveDisc extends MyShape  {
         this.myParams = myParams;
         this.color = myParams.getColor();
 
-        this.weight = myParams.getWeight();
-        this.N = myParams.getN();
+        //this.weight = myParams.getWeight();
+        this.weight = 80;
+        //this.N = myParams.getN();
+        this.N= 100;
         this.xoff = (float) 0;
-        this.yoff = (float) 1;
-        this.deltaxoff = myParams.getdeltaxoff();
-        this.deltayoff = myParams.getdeltayoff();
-        this.r0 = 70;
-        this.magnitude = 1;
+        this.yoff = (float) 1000;
+        //this.deltaxoff = myParams.getdeltaxoff();
+        //this.deltayoff = myParams.getdeltayoff();
+        this.deltaxoff = 0.01f;
+        this.deltayoff = 0.01f;
+        this.r0 = 2000;
+        //this.magnitude = 1;
 
         this.myLimits = build_shape();
     }
@@ -41,9 +45,16 @@ public class MyWaveDisc extends MyShape  {
         return limits;
     }
 
+    float u(float n) {
+        return p.width/100 * n;
+    }
+
     private void setLine(int i, float y1){
-        for (float x1=myLimits[i][1][0]; x1<myLimits[i][1][1]; x1++){
+        for (float x1=myLimits[i][1][0]; x1<myLimits[i][1][1]; x1+= u(0.1f)){
             float ypos=p.map(p.noise(x1/100 + xoff, y1/100 + yoff), 0, 1, -100, 100);
+            float magnitude = x < p.width*0.5 ? p.map(x, p.width*0.1f, p.width*0.5f,0f, 1f) : p.map(x, p.width*0.5f, p.width*0.9f, 1f, 0f) ;
+            ypos *= magnitude;
+            if(ypos > 0) ypos = 0;
             p.vertex(x1, ypos);
         }
     }
@@ -67,7 +78,7 @@ public class MyWaveDisc extends MyShape  {
     public void display(){
         setLines();
         xoff += deltaxoff;
-        yoff += deltayoff;
+        yoff -= deltayoff;
     }
 
     public void move(){

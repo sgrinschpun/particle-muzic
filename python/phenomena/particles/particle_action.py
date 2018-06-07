@@ -117,7 +117,7 @@ class ParticleAccumulatorNode(ParticleActionNodeChain):
             print "Will transform in: ",
             for new_particle in new_particles:
                 print "{0} ".format(ParticleDT(new_particle)),
-                tr_new_particles.append(ParticleDT(new_particle))
+                tr_new_particles.append(ParticleDT(new_particle, parent = particle.id))
             print " New particles: ", new_particles
             self._node.getNextNode(self).transformParticle(particle, tr_new_particles)
         finally:

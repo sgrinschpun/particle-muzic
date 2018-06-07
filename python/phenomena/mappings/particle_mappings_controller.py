@@ -9,12 +9,13 @@ class MappingsController:
                                "mass": ConstMapping(),
                                "decay_time": ConstMapping(),
                                "composition": MirrorMapping(),
-                                "type": MirrorMapping()}
+                               "type": MirrorMapping()}
 
     def translateParticle(self, particle):
         assert issubclass(type(particle), Particle)
         translated_values = {'name': particle.name}
         translated_values['id'] = particle.id
+        translated_values['parent'] = particle.parent
         for characteristic, mapping in self._map_dictionary.items():
             original_value = getattr(particle, characteristic)
             translated_value = mapping.translateValue(original_value)
