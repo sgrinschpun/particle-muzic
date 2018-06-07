@@ -20,7 +20,7 @@ public class AVServer extends PApplet {
 
 	public void setup() {
 		frameRate(24);
-		noStroke();
+		//noStroke();
 		smooth();
 		//colorMode(HSB, 360, 100, 100);
 		server = new Server(this, port);
