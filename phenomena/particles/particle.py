@@ -19,7 +19,7 @@ pythia = pdt.PYTHIAParticleData(file_path='ParticleData.ppl', use_cache=True)
 
 #PYPDT gives us info about mass, charge, lifetime
 import pypdt
-tbl = pypdt.ParticleDataTable("/home/cristobal/mass_width_2016.mcd")
+tbl = pypdt.ParticleDataTable()
 part_dict = {}
 for p in tbl:
     part_dict[p.name]= p.id
@@ -29,7 +29,7 @@ def str_hook(obj):    # this is to convert unicodes to strings in json load. cop
     return {k.encode('utf-8') if isinstance(k,unicode) else k :
             v.encode('utf-8') if isinstance(v, unicode) else v
             for k,v in obj}
-path = '/home/cristobal/Desenvolupament/particle-muzik/particle_extra_info/part_extra_info.json'
+path = '/Users/xmp/Documents/workspace/particle-muzic/particle_extra_info/part_extra_info.json'
 dirname = os.path.dirname(__file__)
 filename = os.path.join(dirname, path)
 particle_extra_info = json.load(open(filename))
