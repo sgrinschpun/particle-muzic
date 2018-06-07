@@ -20,8 +20,8 @@ public class Sketch extends PApplet{
     AudioContext ac;
 
     public void settings(){
-        //fullScreen();
-        size(5000,5000, P2D);
+        fullScreen();
+        //size(5000,5000, P2D);
         smooth(4);
     }
 
@@ -53,7 +53,7 @@ public class Sketch extends PApplet{
         for (MyParticle particle: allParticles){
             particle.display();
         }
-         saveFrame("test/boson-######.png");
+        // saveFrame("test/boson-######.png");
 
     }
 }
