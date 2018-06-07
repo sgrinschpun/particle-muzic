@@ -29,13 +29,13 @@ public class Sketch extends PApplet{
         frameRate(30);
         ac = new AudioContext();
         allParticles = new ArrayList<MyParticle>();
-        allParticles.add(new MyParticle(this,ac,width/2, height/2, ZData));
-        //allParticles.add(new MyParticle(this,ac,500, 200, electronData));
-        //allParticles.add(new MyParticle(this,ac,800, 200, pionData));
-        //allParticles.add(new MyParticle(this,ac,width/2, height/2, neutronData));
-        //allParticles.add(new MyParticle(this,ac,500, 400, ubarData));
-        //allParticles.add(new MyParticle(this,ac,500, 400, N1700Data));
-        //allParticles.add(new MyParticle(this,ac,800, 400, muplusData));
+        allParticles.add(new MyParticle(this, ZData));
+        allParticles.add(new MyParticle(this, electronData));
+        allParticles.add(new MyParticle(this, pionData));
+        //allParticles.add(new MyParticle(this, neutronData));
+        //allParticles.add(new MyParticle(this, ubarData));
+        //allParticles.add(new MyParticle(this, N1700Data));
+        //allParticles.add(new MyParticle(this, muplusData));
 
 
         //for (MyParticle particle: allParticles){

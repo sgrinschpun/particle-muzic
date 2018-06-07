@@ -14,19 +14,19 @@ public class MyShape {
 
     PVector location;
     PVector velocity;
-
-
+    PVector acceleration;
+    float topSpeed;
 
     protected MyFamilyParams myParams;
 
-    public MyShape(PApplet p, float x, float y, MyFamilyParams myParams) {
-
+    public MyShape(PApplet p, PVector location, PVector acceleration, MyFamilyParams myParams) {
         this.p = p;
-        this.x = x;
-        this.y = y;
-        this.location = new PVector(x, y);
-        this.velocity = new PVector(p.random(-2,2),p.random(-2,2));
+        this.location = location;
+        this.velocity = new PVector(0,0);
+        this.topSpeed = 10;
+        this.acceleration = acceleration;
         this.myParams = myParams;
+
     }
 
     public void display(){}
@@ -37,6 +37,9 @@ public class MyShape {
     }
 
     private void update() {
+
+        velocity.add(acceleration);
+        velocity.limit(topSpeed);
         location.add(velocity);
     }
 

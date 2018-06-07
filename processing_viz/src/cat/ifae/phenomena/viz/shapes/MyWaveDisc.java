@@ -4,6 +4,8 @@ import cat.ifae.phenomena.viz.cicle.CurrentCicle;
 import cat.ifae.phenomena.viz.params.MyFamilyParams;
 
 import processing.core.PApplet;
+import processing.core.PVector;
+
 import static processing.core.PConstants.TWO_PI;
 
 
@@ -14,8 +16,8 @@ public class MyWaveDisc extends MyShape  {
     public  float[][][] myLimits;
 
 
-    public MyWaveDisc(PApplet p, float x, float y, MyFamilyParams myParams){
-        super(p,x,y,myParams);
+    public MyWaveDisc(PApplet p, PVector location, PVector acceleration, MyFamilyParams myParams){
+        super(p, location, acceleration,myParams);
         this.myParams = myParams;
         this.color = myParams.getColor();
         this.weight = myParams.getWeight();
@@ -70,11 +72,6 @@ public class MyWaveDisc extends MyShape  {
         xoff += deltaxoff;
         yoff += deltayoff;
     }
-
-    //public void move(){
-
-    //}
-
 
 }
 

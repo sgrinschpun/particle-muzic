@@ -8,6 +8,7 @@ import cat.ifae.phenomena.viz.params.MyParams;
 import cat.ifae.phenomena.viz.sound.MySynth;
 
 import processing.core.PApplet;
+import processing.core.PVector;
 
 import java.util.ArrayList;
 
@@ -25,14 +26,15 @@ class MyParticleFamily {
     protected int i;
     protected String q;
 
+    public PVector location, acceleration;
+
     public ArrayList<MyShape> shapes;
     public ArrayList<MySynth> sounds;
 
-    public MyParticleFamily(PApplet p, AudioContext ac, float x, float y, MyParticleData particleData){
+    public MyParticleFamily(PApplet p, PVector location, PVector acceleration, MyParticleData particleData){
         this.p = p;
-        this.ac = ac;
-        this.x = x;
-        this.y = y;
+        this.location = location;
+        this.acceleration = acceleration;
         this.particleData = particleData;
         this.shapes = new ArrayList<MyShape>();
         this.sounds = new ArrayList<MySynth>();
@@ -50,8 +52,5 @@ class MyParticleFamily {
             sound.ac.start();
         }
     }
-
-    public void move(){}
-
 
 }

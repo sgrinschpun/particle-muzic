@@ -9,14 +9,15 @@ import cat.ifae.phenomena.viz.shapes.MyWaveLines;
 import cat.ifae.phenomena.viz.shapes.MyWaveDisc;
 import processing.core.PApplet;
 import beads.AudioContext;
+import processing.core.PVector;
 
 import java.util.ArrayList;
 
 public class MyBoson extends MyParticleFamily{
 
 
-    public MyBoson(PApplet p, AudioContext ac, float x, float y, MyParticleData particleData){
-        super(p, ac, x, y, particleData);
+    public MyBoson(PApplet p, PVector location, PVector acceleration, MyParticleData particleData){
+        super(p, location, acceleration, particleData);
         this.myParams= new MyParams(p, particleData);
         addMyShapes();
     }
@@ -24,7 +25,7 @@ public class MyBoson extends MyParticleFamily{
     @Override
     public void addMyShapes(){
         shapes = new ArrayList<MyShape>();
-        shapes.add(new MyWaveDisc(p,x,y,myParams.boson));
+        shapes.add(new MyWaveDisc(p,location,acceleration,myParams.boson));
         //shapes.add(new MyWaveLines(p,x,y,myParams.boson));
 
     }
@@ -36,10 +37,4 @@ public class MyBoson extends MyParticleFamily{
         }
     }
 
-    @Override
-    public void move(){
-        for (MyShape shape: shapes){
-            shape.move();
-        }
-    }
 }

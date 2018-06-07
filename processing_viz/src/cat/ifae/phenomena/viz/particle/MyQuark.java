@@ -9,11 +9,12 @@ import cat.ifae.phenomena.viz.shapes.MyShape;
 import cat.ifae.phenomena.viz.shapes.MyWaveDisc;
 import cat.ifae.phenomena.viz.shapes.MyWaveRing;
 import processing.core.PApplet;
+import processing.core.PVector;
 
 class MyQuark extends MyParticleFamily{
 
-    public MyQuark(PApplet p, AudioContext ac, float x, float y, MyParticleData particleData){
-        super(p, ac, x, y, particleData);
+    public MyQuark(PApplet p, PVector location, PVector acceleration, MyParticleData particleData){
+        super(p, location, acceleration, particleData);
 
         addMyShapes();
     }
@@ -22,7 +23,7 @@ class MyQuark extends MyParticleFamily{
     public void addMyShapes(){
         myParams = new MyParams(p, particleData,particleData.getName(),0);
         currentCicle = new CurrentCicle(p, myParams.quark.getSpeed());
-        shapes.add(new MyWaveRing(p,x,y,currentCicle,myParams.quark));
+        shapes.add(new MyWaveRing(p,location,acceleration,currentCicle,myParams.quark));
     }
 
     @Override
@@ -31,13 +32,6 @@ class MyQuark extends MyParticleFamily{
         p.blendMode(PApplet.ADD);
         for (MyShape shape: shapes){
             shape.display();
-        }
-    }
-
-    @Override
-    public void move(){
-        for (MyShape shape: shapes){
-            shape.move();
         }
     }
 

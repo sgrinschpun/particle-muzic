@@ -4,6 +4,8 @@ import cat.ifae.phenomena.viz.cicle.CurrentCicle;
 import cat.ifae.phenomena.viz.params.MyFamilyParams;
 
 import processing.core.PApplet;
+import processing.core.PVector;
+
 import java.util.concurrent.ThreadLocalRandom;
 import static processing.core.PConstants.TWO_PI;
 
@@ -17,22 +19,19 @@ public class MyWaveRing extends MyShape {
 
     private static int N = 300;
 
-    public MyWaveRing(PApplet p, float x, float y, CurrentCicle currentCicle, MyFamilyParams myParams){
-        super(p, x, y, myParams);
+    public MyWaveRing(PApplet p, PVector location, PVector acceleration, CurrentCicle currentCicle, MyFamilyParams myParams){
+        super(p, location, acceleration,myParams);
         this.currentCicle = currentCicle;
-        //this.r0 = (float) myParams.getSize();
-        this.r0 = 2000;
-        //this.weight = myParams.getWeight();
-        this.weight = 80;
-        //this.ampFactor = myParams.getAmpFactor();
-        this.ampFactor = 400;
-        //this.noiseScale = (float) myParams.getNoiseScale();
-        this.noiseScale = 0.001f;
+        this.r0 = (float) myParams.getSize();
+        this.weight = myParams.getWeight();
+        this.ampFactor = myParams.getAmpFactor();
+        this.noiseScale = (float) myParams.getNoiseScale();
         this.color = myParams.getColor();
         this.noiseSeed = ThreadLocalRandom.current().nextInt(1, 100);
     }
 
     public void display(){
+        move();
         p.noFill();
         currentCicle.update();
         updateColor();
@@ -46,8 +45,6 @@ public class MyWaveRing extends MyShape {
         p.endShape();
     }
 
-    //public void move(){
-    //}
 
     public void updateColor(){
         if (currentCicle.getProgressRatio() == currentCicle.getProgressRatioMax()){
@@ -81,8 +78,8 @@ public class MyWaveRing extends MyShape {
 
     private void setVertex(){
         for (Integer i =0; i<N+1;i++) {
-            float x1 = (float) (x + r * Math.cos(TWO_PI * i / N));
-            float y1 = (float) (y + r * Math.sin(TWO_PI * i / N));
+            float x1 = (float) (location.x + r * Math.cos(TWO_PI * i / N));
+            float y1 = (float) (location.y + r * Math.sin(TWO_PI * i / N));
             x1 += p.map(p.noise(noiseScale*x1,noiseScale*y1),0,1,-noiseAmount,noiseAmount);
             y1 += p.map(p.noise(noiseScale*x1,noiseScale*y1),0,1,-noiseAmount,noiseAmount);
             p.vertex(x1,y1);
