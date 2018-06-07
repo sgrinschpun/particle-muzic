@@ -46,8 +46,8 @@ public class MyWaveRing extends MyShape {
         p.endShape();
     }
 
-    public void move(){
-    }
+    //public void move(){
+    //}
 
     public void updateColor(){
         if (currentCicle.getProgressRatio() == currentCicle.getProgressRatioMax()){
