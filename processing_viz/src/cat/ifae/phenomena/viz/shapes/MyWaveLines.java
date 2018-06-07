@@ -7,20 +7,20 @@ import processing.core.PApplet;
 import static processing.core.PConstants.TWO_PI;
 
 
-public class MyWaveDisc extends MyShape  {
+public class MyWaveLines extends MyShape  {
     private int color, N;
     private float r0, weight, xoff, yoff, deltaxoff, deltayoff, magnitude;
     private CurrentCicle currentCicle;
     public  float[][][] myLimits;
 
 
-    public MyWaveDisc(PApplet p, float x, float y, MyFamilyParams myParams){
+    public MyWaveLines(PApplet p, float x, float y, MyFamilyParams myParams){
         super(p,x,y,myParams);
         this.myParams = myParams;
         this.color = myParams.getColor();
 
         //this.weight = myParams.getWeight();
-        this.weight = 80;
+        this.weight = 8;
         //this.N = myParams.getN();
         this.N= 100;
         this.xoff = (float) 0;
@@ -50,7 +50,7 @@ public class MyWaveDisc extends MyShape  {
     }
 
     private void setLine(int i, float y1){
-        for (float x1=myLimits[i][1][0]; x1<myLimits[i][1][1]; x1+= u(0.1f)){
+        for(float x1 = p.width*0.1f; x < (float) p.width*0.9f; x++){
             float ypos=p.map(p.noise(x1/100 + xoff, y1/100 + yoff), 0, 1, -100, 100);
             float magnitude = x < p.width*0.5 ? p.map(x, p.width*0.1f, p.width*0.5f,0f, 1f) : p.map(x, p.width*0.5f, p.width*0.9f, 1f, 0f) ;
             ypos *= magnitude;
@@ -60,16 +60,21 @@ public class MyWaveDisc extends MyShape  {
     }
 
     private void setLines() {
-        for (Integer i=0; i<N+1; i++) {
-            float y1= myLimits[i][0][0];
+        for(float y = p.height*0.1f; y < p.height*0.9f; y += u(1.5f)) {
             p.strokeWeight(weight);
             color = myParams.getColor();
             p.stroke(color);
             p.pushMatrix();
-            p.translate(0, y1);
+            p.translate(0, y);
             p.noFill();
             p.beginShape();
-            setLine(i,y1);
+            for(float x = p.width*0.1f; x < p.width*0.9f; x++) {
+                float ypos = p.map(p.noise(x/100 + xoff, y/100 + yoff), 0, 1, -100, 100);
+                float magnitude = x < p.width*0.5 ? p.map(x, p.width*0.1f, p.width*0.5f, 0, 1) : p.map(x, p.width*0.5f, p.width*0.9f, 1, 0) ;
+                ypos *= magnitude;
+                if(ypos > 0) ypos = 0;
+                p.vertex(x, ypos);
+            }
             p.endShape();
             p.popMatrix();
         }
@@ -77,8 +82,8 @@ public class MyWaveDisc extends MyShape  {
 
     public void display(){
         setLines();
-        xoff += deltaxoff;
-        yoff -= deltayoff;
+        xoff += 0.01;
+        yoff += -0.01;
     }
 
     public void move(){

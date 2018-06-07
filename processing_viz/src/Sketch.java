@@ -20,19 +20,19 @@ public class Sketch extends PApplet{
     AudioContext ac;
 
     public void settings(){
-        fullScreen();
-        size(1280,720);
-        smooth();
+        //fullScreen();
+        size(5000,5000, P2D);
+        smooth(4);
     }
 
     public void setup(){
         frameRate(30);
         ac = new AudioContext();
         allParticles = new ArrayList<MyParticle>();
-        //allParticles.add(new MyParticle(this,ac,200, 200, ZData));
+        allParticles.add(new MyParticle(this,ac,width/2, height/2, ZData));
         //allParticles.add(new MyParticle(this,ac,500, 200, electronData));
-        allParticles.add(new MyParticle(this,ac,800, 200, pionData));
-        //allParticles.add(new MyParticle(this,ac,200, 400, neutronData));
+        //allParticles.add(new MyParticle(this,ac,800, 200, pionData));
+        //allParticles.add(new MyParticle(this,ac,width/2, height/2, neutronData));
         //allParticles.add(new MyParticle(this,ac,500, 400, ubarData));
         //allParticles.add(new MyParticle(this,ac,500, 400, N1700Data));
         //allParticles.add(new MyParticle(this,ac,800, 400, muplusData));
@@ -53,6 +53,8 @@ public class Sketch extends PApplet{
         for (MyParticle particle: allParticles){
             particle.display();
         }
+         saveFrame("test/boson-######.png");
+
     }
 }
 

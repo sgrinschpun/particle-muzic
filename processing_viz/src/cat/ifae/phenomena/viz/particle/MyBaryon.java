@@ -30,12 +30,12 @@ public class MyBaryon extends MyParticleFamily{
             shapes.add(new MyWaveRing(p,x,y,currentCicle,myParams.quark));
             j++;
         }
-        shapes.add(new MyWaveDisc(p,x,y,myParams.gluon));
+       //shapes.add(new MyWaveDisc(p,x,y,myParams.gluon));
     }
 
     @Override
     public void display(){
-        p.text(particleData.getName(), x, y);
+        //p.text(particleData.getName(), x, y);
         p.blendMode(PApplet.ADD);
         for (MyShape shape: shapes){
             shape.display();
