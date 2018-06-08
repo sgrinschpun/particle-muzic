@@ -43,9 +43,7 @@ public class MyParticle {
     public MyParticle(PApplet p, MyParticleData particleData){
         this.p = p;
         this.location = new PVector(p.width/2, p.height/2);
-        this.acceleration = PVector.random2D();
-        //acceleration.normalize();
-        acceleration.mult(p.random(0.5f));
+
         this.particleData = particleData;
         buildParticle();
     }
@@ -53,19 +51,19 @@ public class MyParticle {
     private void buildParticle(){
         switch(particleData.getType()){
             case "lepton":
-                this.particle = new MyLepton(p,location, acceleration, particleData);
+                this.particle = new MyLepton(p,location, particleData);
                 break;
             case "meson":
-                this.particle = new MyMeson(p,location, acceleration, particleData);
+                this.particle = new MyMeson(p,location, particleData);
                 break;
             case "baryon":
-                this.particle = new MyBaryon(p,location, acceleration, particleData);
+                this.particle = new MyBaryon(p,location, particleData);
                 break;
             case "quark":
-                this.particle = new MyQuark(p,location, acceleration, particleData);
+                this.particle = new MyQuark(p,location, particleData);
                 break;
             case "boson":
-                this.particle = new MyBoson(p,location, acceleration, particleData);
+                this.particle = new MyBoson(p,location, particleData);
                 break;
         }
     }

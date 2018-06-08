@@ -19,8 +19,8 @@ public class MyWaveRing extends MyShape {
 
     private static int N = 300;
 
-    public MyWaveRing(PApplet p, PVector location, PVector acceleration, CurrentCicle currentCicle, MyFamilyParams myParams){
-        super(p, location, acceleration,myParams);
+    public MyWaveRing(PApplet p, PVector location,  PVector velocity, PVector acceleration, CurrentCicle currentCicle, MyFamilyParams myParams){
+        super(p, location, velocity, acceleration,myParams);
         this.currentCicle = currentCicle;
         this.r0 = (float) myParams.getSize();
         this.weight = myParams.getWeight();

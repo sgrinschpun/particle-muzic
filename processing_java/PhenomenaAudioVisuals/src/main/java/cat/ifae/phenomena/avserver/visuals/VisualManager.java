@@ -18,11 +18,11 @@ public class VisualManager implements PhenoCallback {
 		parent = p;
 	}
 
-	public void moveParticles() {
-		for (MyParticle particle : this.list.values()) {
-			particle.move();
-		}
-	}
+	//public void moveParticles() {
+	//	for (MyParticle particle : this.list.values()) {
+	//		particle.move();
+	//	}
+	//}
 
 	public void displayParticles() {
 		for (MyParticle particle : this.list.values()) {
@@ -51,7 +51,7 @@ public class VisualManager implements PhenoCallback {
 														(double) params.getCharge(),
 														(double) params.getDecayTime(),
 														sent);
-			MyParticle particle_pic = new MyParticle(this.parent, 200, 200, particle_data);
+			MyParticle particle_pic = new MyParticle(this.parent, particle_data);
 			this.list.put(cmd.getPARAMS().getId(), particle_pic);
 			break;
 		case "REMOVE":

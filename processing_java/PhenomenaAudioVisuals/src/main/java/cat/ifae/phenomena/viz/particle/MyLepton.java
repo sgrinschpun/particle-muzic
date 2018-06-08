@@ -9,35 +9,28 @@ import cat.ifae.phenomena.viz.data.MyParticleData;
 import cat.ifae.phenomena.viz.params.MyParams;
 import processing.core.PApplet;
 import beads.AudioContext;
+import processing.core.PVector;
 
 class MyLepton extends MyParticleFamily{
 
-    public MyLepton(PApplet p, AudioContext ac, float x, float y, MyParticleData particleData){
-        super(p, ac, x,y, particleData);
+    public MyLepton(PApplet p, PVector location, MyParticleData particleData){
+        super(p, location, particleData);
         this.myParams= new MyParams(p, particleData);
         this.currentCicle = new CurrentCicle(p, myParams.lepton.getSpeed());
 
         addMyShapes();
-        addMySounds();
-    }
-
-    public MyLepton(PApplet p, float x, float y, MyParticleData particleData){
-        super(p, x,y, particleData);
-        this.myParams= new MyParams(p, particleData);
-        this.currentCicle = new CurrentCicle(p, myParams.lepton.getSpeed());
-
-        addMyShapes();
+        //addMySounds();
     }
 
     @Override
     public void addMyShapes(){
-        shapes.add(new MyWaveRing(p,x,y,currentCicle,myParams.lepton));
+        shapes.add(new MyWaveRing(p,location, velocity, acceleration,currentCicle,myParams.lepton));
     }
 
-    @Override
-    public void addMySounds(){
-        sounds.add(new MySynth(ac, currentCicle, 440.0f));
-    }
+    //@Override
+    //public void addMySounds(){
+    //    sounds.add(new MySynth(ac, currentCicle, 440.0f));
+    //}
 
     @Override
     public void display(){
@@ -54,10 +47,4 @@ class MyLepton extends MyParticleFamily{
         }
     }
 
-    @Override
-    public void move(){
-        for (MyShape shape: shapes){
-            shape.move();
-        }
-    }
 }

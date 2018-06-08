@@ -5,24 +5,18 @@ import cat.ifae.phenomena.viz.params.MyParams;
 import cat.ifae.phenomena.viz.shapes.MyShape;
 import cat.ifae.phenomena.viz.data.MyParticleData;
 
-import cat.ifae.phenomena.viz.shapes.MyWaveLines;
 import cat.ifae.phenomena.viz.shapes.MyWaveDisc;
 import processing.core.PApplet;
 import beads.AudioContext;
+import processing.core.PVector;
 
 import java.util.ArrayList;
 
 public class MyBoson extends MyParticleFamily{
 
 
-    public MyBoson(PApplet p, AudioContext ac, float x, float y, MyParticleData particleData){
-        super(p, ac, x, y, particleData);
-        this.myParams= new MyParams(p, particleData);
-        addMyShapes();
-    }
-
-    public MyBoson(PApplet p, float x, float y, MyParticleData particleData){
-        super(p, x, y, particleData);
+    public MyBoson(PApplet p, PVector location, MyParticleData particleData){
+        super(p, location, particleData);
         this.myParams= new MyParams(p, particleData);
         addMyShapes();
     }
@@ -30,8 +24,8 @@ public class MyBoson extends MyParticleFamily{
     @Override
     public void addMyShapes(){
         shapes = new ArrayList<MyShape>();
-        //shapes.add(new MyWaveDisc(p,x,y,myParams.boson));
-        shapes.add(new MyWaveLines(p,x,y,myParams.boson));
+        shapes.add(new MyWaveDisc(p,location,velocity,acceleration,myParams.boson));
+        //shapes.add(new MyWaveLines(p,x,y,myParams.boson));
 
     }
 
@@ -42,10 +36,4 @@ public class MyBoson extends MyParticleFamily{
         }
     }
 
-    @Override
-    public void move(){
-        for (MyShape shape: shapes){
-            shape.move();
-        }
-    }
 }

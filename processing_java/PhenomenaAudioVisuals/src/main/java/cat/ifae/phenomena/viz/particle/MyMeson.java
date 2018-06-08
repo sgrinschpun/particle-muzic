@@ -9,18 +9,14 @@ import cat.ifae.phenomena.viz.data.MyParticleData;
 import cat.ifae.phenomena.viz.params.MyParams;
 
 import processing.core.PApplet;
+
 import beads.AudioContext;
+import processing.core.PVector;
 
 class MyMeson extends MyParticleFamily{
 
-    public MyMeson(PApplet p, AudioContext ac, float x, float y, MyParticleData particleData){
-        super(p, ac, x, y, particleData);
-
-        addMyShapes();
-    }
-
-    public MyMeson(PApplet p, float x, float y, MyParticleData particleData){
-        super(p, x, y, particleData);
+    public MyMeson(PApplet p, PVector location, MyParticleData particleData){
+        super(p, location, particleData);
 
         addMyShapes();
     }
@@ -31,9 +27,9 @@ class MyMeson extends MyParticleFamily{
         for (String q: particleData.getComposition()) {
             myParams = new MyParams(p, particleData,q,j);
             currentCicle = new CurrentCicle(p, myParams.quark.getSpeed());
-            shapes.add(new MyWaveRing(p,x,y,currentCicle,myParams.quark));
+            shapes.add(new MyWaveRing(p,location, velocity, acceleration,currentCicle,myParams.quark));
         }
-        shapes.add(new MyWaveDisc(p,x,y,myParams.gluon));
+        shapes.add(new MyWaveDisc(p,location, velocity, acceleration,myParams.gluon));
     }
 
     @Override
@@ -42,13 +38,6 @@ class MyMeson extends MyParticleFamily{
         p.blendMode(PApplet.ADD);
         for (MyShape shape: shapes){
             shape.display();
-        }
-    }
-
-    @Override
-    public void move(){
-        for (MyShape shape: shapes){
-            shape.move();
         }
     }
 

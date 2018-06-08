@@ -16,8 +16,8 @@ public class MyWaveLines extends MyShape  {
     public  float[][][] myLimits;
 
 
-    public MyWaveLines(PApplet p, PVector location, PVector acceleration, MyFamilyParams myParams){
-        super(p, location, acceleration,myParams);
+    public MyWaveLines(PApplet p, PVector location, PVector velocity, PVector acceleration, MyFamilyParams myParams){
+        super(p, location, velocity, acceleration,myParams);
         this.myParams = myParams;
         this.color = myParams.getColor();
 

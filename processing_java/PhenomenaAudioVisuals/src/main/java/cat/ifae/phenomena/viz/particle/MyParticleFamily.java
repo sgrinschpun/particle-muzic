@@ -8,6 +8,7 @@ import cat.ifae.phenomena.viz.params.MyParams;
 import cat.ifae.phenomena.viz.sound.MySynth;
 
 import processing.core.PApplet;
+import processing.core.PVector;
 
 import java.util.ArrayList;
 
@@ -25,28 +26,32 @@ class MyParticleFamily {
     protected int i;
     protected String q;
 
+    public PVector location, acceleration, velocity;
+
     public ArrayList<MyShape> shapes;
     public ArrayList<MySynth> sounds;
 
-    public MyParticleFamily(PApplet p, AudioContext ac, float x, float y, MyParticleData particleData){
+    public MyParticleFamily(PApplet p, PVector location, MyParticleData particleData){
         this.p = p;
-        this.ac = ac;
-        this.x = x;
-        this.y = y;
+        this.location = location;
+        this.acceleration = setAcceleration();
+        acceleration.mult(p.random(0.05f));
+
+        this.velocity = setVelocity();
+
         this.particleData = particleData;
+
         this.shapes = new ArrayList<MyShape>();
         this.sounds = new ArrayList<MySynth>();
 
     }
 
-    public MyParticleFamily(PApplet p, float x, float y, MyParticleData particleData){
-        this.p = p;
-        this.x = x;
-        this.y = y;
-        this.particleData = particleData;
-        this.shapes = new ArrayList<MyShape>();
-        this.sounds = new ArrayList<MySynth>();
+    protected PVector setAcceleration(){
+        return PVector.random2D();
+    }
 
+    protected PVector setVelocity(){
+        return new PVector(0,0);
     }
 
     protected void addMyShapes(){}
@@ -60,8 +65,5 @@ class MyParticleFamily {
             sound.ac.start();
         }
     }
-
-    public void move(){}
-
 
 }

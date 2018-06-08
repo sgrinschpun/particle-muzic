@@ -13,8 +13,8 @@ import processing.core.PVector;
 
 class MyLepton extends MyParticleFamily{
 
-    public MyLepton(PApplet p, PVector location, PVector acceleration, MyParticleData particleData){
-        super(p, location, acceleration, particleData);
+    public MyLepton(PApplet p, PVector location, MyParticleData particleData){
+        super(p, location, particleData);
         this.myParams= new MyParams(p, particleData);
         this.currentCicle = new CurrentCicle(p, myParams.lepton.getSpeed());
 
@@ -24,7 +24,7 @@ class MyLepton extends MyParticleFamily{
 
     @Override
     public void addMyShapes(){
-        shapes.add(new MyWaveRing(p,location,acceleration,currentCicle,myParams.lepton));
+        shapes.add(new MyWaveRing(p,location, velocity, acceleration,currentCicle,myParams.lepton));
     }
 
     //@Override
