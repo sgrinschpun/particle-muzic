@@ -34,7 +34,7 @@ public class ListManager {
 	}
 
 	public void visualize() {
-		vManager.moveParticles();
+		//vManager.moveParticles();
 		vManager.displayParticles();
 	}
 

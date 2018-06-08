@@ -16,8 +16,8 @@ import java.util.ArrayList;
 public class MyBoson extends MyParticleFamily{
 
 
-    public MyBoson(PApplet p, PVector location, PVector acceleration, MyParticleData particleData){
-        super(p, location, acceleration, particleData);
+    public MyBoson(PApplet p, PVector location, MyParticleData particleData){
+        super(p, location, particleData);
         this.myParams= new MyParams(p, particleData);
         addMyShapes();
     }
@@ -25,7 +25,7 @@ public class MyBoson extends MyParticleFamily{
     @Override
     public void addMyShapes(){
         shapes = new ArrayList<MyShape>();
-        shapes.add(new MyWaveDisc(p,location,acceleration,myParams.boson));
+        shapes.add(new MyWaveDisc(p,location,velocity,acceleration,myParams.boson));
         //shapes.add(new MyWaveLines(p,x,y,myParams.boson));
 
     }

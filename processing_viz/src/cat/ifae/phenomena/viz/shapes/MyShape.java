@@ -19,10 +19,10 @@ public class MyShape {
 
     protected MyFamilyParams myParams;
 
-    public MyShape(PApplet p, PVector location, PVector acceleration, MyFamilyParams myParams) {
+    public MyShape(PApplet p, PVector location, PVector velocity, PVector acceleration, MyFamilyParams myParams) {
         this.p = p;
         this.location = location;
-        this.velocity = new PVector(0,0);
+        this.velocity = velocity;
         this.topSpeed = 10;
         this.acceleration = acceleration;
         this.myParams = myParams;

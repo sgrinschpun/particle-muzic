@@ -16,8 +16,8 @@ public class MyWaveDisc extends MyShape  {
     public  float[][][] myLimits;
 
 
-    public MyWaveDisc(PApplet p, PVector location, PVector acceleration, MyFamilyParams myParams){
-        super(p, location, acceleration,myParams);
+    public MyWaveDisc(PApplet p, PVector location, PVector velocity, PVector acceleration, MyFamilyParams myParams){
+        super(p, location, velocity, acceleration,myParams);
         this.myParams = myParams;
         this.color = myParams.getColor();
         this.weight = myParams.getWeight();

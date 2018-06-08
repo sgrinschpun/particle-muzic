@@ -9,19 +9,15 @@ import cat.ifae.phenomena.viz.shapes.MyWaveDisc;
 import cat.ifae.phenomena.viz.params.MyParams;
 
 import processing.core.PApplet;
+import processing.core.PVector;
 
 import java.util.ArrayList;
 
 public class MyBaryon extends MyParticleFamily{
 
 
-    public MyBaryon(PApplet p, AudioContext ac, float x, float y, MyParticleData particleData){
-        super(p, ac, x, y, particleData);
-        addMyShapes();
-    }
-
-    public MyBaryon(PApplet p, float x, float y, MyParticleData particleData){
-        super(p, x, y, particleData);
+    public MyBaryon(PApplet p, PVector location, MyParticleData particleData){
+        super(p, location, particleData);
         addMyShapes();
     }
 
@@ -32,10 +28,10 @@ public class MyBaryon extends MyParticleFamily{
         for (String q: particleData.getComposition()) {
             myParams = new MyParams(p, particleData,q,j);
             currentCicle = new CurrentCicle(p, myParams.quark.getSpeed());
-            shapes.add(new MyWaveRing(p,x,y,currentCicle,myParams.quark));
+            shapes.add(new MyWaveRing(p,location,velocity, acceleration,currentCicle,myParams.quark));
             j++;
         }
-       //shapes.add(new MyWaveDisc(p,x,y,myParams.gluon));
+       shapes.add(new MyWaveDisc(p,location, velocity, acceleration,myParams.gluon));
     }
 
     @Override
@@ -44,13 +40,6 @@ public class MyBaryon extends MyParticleFamily{
         p.blendMode(PApplet.ADD);
         for (MyShape shape: shapes){
             shape.display();
-        }
-    }
-
-    @Override
-    public void move(){
-        for (MyShape shape: shapes){
-            shape.move();
         }
     }
 

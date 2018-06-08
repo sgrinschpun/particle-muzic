@@ -15,8 +15,8 @@ import processing.core.PVector;
 
 class MyMeson extends MyParticleFamily{
 
-    public MyMeson(PApplet p, PVector location, PVector acceleration, MyParticleData particleData){
-        super(p, location, acceleration, particleData);
+    public MyMeson(PApplet p, PVector location, MyParticleData particleData){
+        super(p, location, particleData);
 
         addMyShapes();
     }
@@ -27,9 +27,9 @@ class MyMeson extends MyParticleFamily{
         for (String q: particleData.getComposition()) {
             myParams = new MyParams(p, particleData,q,j);
             currentCicle = new CurrentCicle(p, myParams.quark.getSpeed());
-            shapes.add(new MyWaveRing(p,location,acceleration,currentCicle,myParams.quark));
+            shapes.add(new MyWaveRing(p,location, velocity, acceleration,currentCicle,myParams.quark));
         }
-        shapes.add(new MyWaveDisc(p,location,acceleration,myParams.gluon));
+        shapes.add(new MyWaveDisc(p,location, velocity, acceleration,myParams.gluon));
     }
 
     @Override

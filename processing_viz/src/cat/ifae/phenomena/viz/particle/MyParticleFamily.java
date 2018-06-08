@@ -26,19 +26,32 @@ class MyParticleFamily {
     protected int i;
     protected String q;
 
-    public PVector location, acceleration;
+    public PVector location, acceleration, velocity;
 
     public ArrayList<MyShape> shapes;
     public ArrayList<MySynth> sounds;
 
-    public MyParticleFamily(PApplet p, PVector location, PVector acceleration, MyParticleData particleData){
+    public MyParticleFamily(PApplet p, PVector location, MyParticleData particleData){
         this.p = p;
         this.location = location;
-        this.acceleration = acceleration;
+        this.acceleration = setAcceleration();
+        acceleration.mult(p.random(0.05f));
+
+        this.velocity = setVelocity();
+
         this.particleData = particleData;
+
         this.shapes = new ArrayList<MyShape>();
         this.sounds = new ArrayList<MySynth>();
 
+    }
+
+    protected PVector setAcceleration(){
+        return PVector.random2D();
+    }
+
+    protected PVector setVelocity(){
+        return new PVector(0,0);
     }
 
     protected void addMyShapes(){}
