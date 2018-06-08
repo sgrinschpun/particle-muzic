@@ -1,3 +1,6 @@
+import os
+import sys
+
 from phenomena.connection.phenomena_message import IncomingMessage, OutcomingMessage
 from phenomena.utils.log import get_logger
 from phenomena.nodes import getNodeController
@@ -73,8 +76,11 @@ class ServerPetitionHandler(PetitionCommon):
                 out_message = OutcomingMessage.okMessage(new_message, new_message.params)
                 self._sendData(out_message.serialize())
             except Exception, ex:
-                print "exception!: ", ex.message
-                out_message = OutcomingMessage.errorMessage(new_message, ex.message)
+                exc_type, exc_obj, exc_tb = sys.exc_info()
+                fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+                message = "Exception: Type: {0} Name: {1} Line: {2} Messsage: {3}".format(exc_type, fname, exc_tb.tb_lineno, ex.message)
+                print "exception!: ", message
+                out_message = OutcomingMessage.errorMessage(new_message, message)
                 self._sendData(out_message.serialize())
 
 

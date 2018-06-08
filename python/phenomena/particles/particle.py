@@ -1,9 +1,8 @@
 from __future__ import division
 import abc
 
-import sys
-import os
-
+from os.path import expanduser, join
+HOME = expanduser("~")
 import random
 import math
 import json
@@ -29,16 +28,6 @@ def str_hook(obj):    # this is to convert unicodes to strings in json load. cop
     return {k.encode('utf-8') if isinstance(k,unicode) else k :
             v.encode('utf-8') if isinstance(v, unicode) else v
             for k,v in obj}
-<<<<<<< HEAD:phenomena/particles/particle.py
-path = '/Users/xmp/Documents/workspace/particle-muzic/particle_extra_info/part_extra_info.json'
-=======
-path = '/home/cristobal/Desenvolupament/OwnProjects/particle-muzik/python/particle_extra_info/part_extra_info.json'
->>>>>>> 2084da8f3662d093c66d6455021c7929cb6f73a7:python/phenomena/particles/particle.py
-dirname = os.path.dirname(__file__)
-filename = os.path.join(dirname, path)
-particle_extra_info = json.load(open(filename))
-
-
 class Particle(object):
     __metaclass__ = abc.ABCMeta
 
@@ -125,8 +114,12 @@ class BasicParticle(Particle):
                 "composition": self._composition}
 
 NO_PARENT = -1
+
 class ParticleDT(Particle):
     STABLE = -1
+    JSON_PATH = join(HOME, '.phenomena/conf/part_extra_info.json')
+    XTRA_INFO = json.load(open(JSON_PATH))
+    CLASS_COUNTER = 0
 
     def __new__(cls, *args, **kw):
         if args[0] in ['u','d','c','s','t','b']:
@@ -137,8 +130,6 @@ class ParticleDT(Particle):
                 return super(ParticleDT, cls).__new__(cls)
             except Exception, ex:
                 raise Exception("Exception: {0}".format(ex.message))
-
-    CLASS_COUNTER = 0
 
     def __init__(self, name, parent = NO_PARENT):
         self._set_name(name)  # Name of the particle pypdt convention
@@ -253,7 +244,7 @@ class ParticleDT(Particle):
         return self._type
 
     def _set_type(self):
-        self._type= particle_extra_info[str(self._pdgid)]['type']
+        self._type= ParticleDT.XTRA_INFO[str(self._pdgid)]['type']
 
     @property
     def composition(self):
@@ -265,8 +256,8 @@ class ParticleDT(Particle):
         #        for quark in item:
         #            self._composition[index].append(quark.encode('utf-8'))
         self._composition =[]
-        if particle_extra_info[str(self._pdgid)]['composition'] != []:
-            for quark in particle_extra_info[str(self._pdgid)]['composition'][0]: #only consider first superposition of quarks
+        if ParticleDT.XTRA_INFO[str(self._pdgid)]['composition'] != []:
+            for quark in ParticleDT.XTRA_INFO[str(self._pdgid)]['composition'][0]: #only consider first superposition of quarks
                 self._composition.append(quark.encode('utf-8'))
         else:
             pass

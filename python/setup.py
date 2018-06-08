@@ -1,11 +1,15 @@
+import os
 from setuptools.command.install import install
 from setuptools import find_packages
 from distutils import log
 from setuptools.command.install_scripts import install_scripts
-import os
+from os.path import expanduser, join
+HOME = expanduser("~")
+
+INSTALL_PATH = join(HOME, '.phenomena')
+CONFIG_PATH = join(INSTALL_PATH, 'conf')
 
 class OverrideInstall(install):
-
     def run(self):
         uid, gid = 0, 0
         mode = 0770
@@ -15,27 +19,24 @@ class OverrideInstall(install):
         os.chown("/etc/init.d/phenomenad", uid, gid)
         os.chmod("/etc/init.d/phenomenad", mode)
 
-
 packages = ['phenomena']
 #scripts = ['bin/myapp',]
 #cmdclasses = {'install_data': install_data}
-data_files = [('/etc/init.d/', ['other/utils/phenomenad'])]
-
+data_files = [('/etc/init.d/', ['other/utils/phenomenad']), (CONFIG_PATH, ["other/config/particle_extra_info/part_extra_info.json"])]
 setup_args = {
-    'name': 'phenomena',
-    'version': '0.1',
-    'packages': find_packages(),
-#    'cmdclass': cmdclasses,
-    'data_files': data_files,
-    'cmdclass':{'install': OverrideInstall}
-#    'scripts': scripts,
-#    'include_package_data': True,
-#    'test_suite': 'nose.collector'
-}
+        'name': 'phenomena',
+        'version': '0.1',
+        'packages': find_packages(),
+        #    'cmdclass': cmdclasses,
+        'data_files': data_files,
+        'cmdclass':{'install': OverrideInstall}
+        #    'scripts': scripts,
+        #    'include_package_data': True,
+        #    'test_suite': 'nose.collector'
+        }
 
 try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
-
-setup(**setup_args, install_requires=['mido'])
+setup(**setup_args)

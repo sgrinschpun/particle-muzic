@@ -8,7 +8,7 @@ from phenomena.particles import Particle
 from phenomena.utils import get_logger
 
 class JsonRemoteAudioVideoNode(ParticleActionNodeChain):
-    _IP =  "127.0.0.1"
+    _IP =  "172.16.7.173"
     _PORT = 1234
     def __init__(self):
         super(ParticleActionNodeChain, self).__init__()
@@ -22,8 +22,9 @@ class JsonRemoteAudioVideoNode(ParticleActionNodeChain):
             msg = self._addParticlesMessage([particle])
             #self._sendMessage(msg)
         except Exception, ex:
-            self._log.exception("Failed adding Particle on {0}".format(self.__class__.__name__))
-            print ex
+            message = "Failed adding Particle on {0} cause: {1}".format(self.__class__.__name__, ex.message)
+            self._log.exception(message)
+            raise Exception(message)
         finally:
             self._node.getNextNode(self).addParticle(particle)
 
@@ -82,6 +83,5 @@ class JsonRemoteAudioVideoNode(ParticleActionNodeChain):
         send_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server_address = (JsonRemoteAudioVideoNode._IP, JsonRemoteAudioVideoNode._PORT)
         send_socket.connect(server_address)
-        print "Going to send: " + json.dumps(messages).encode("ascii")
         send_socket.sendall(json.dumps(messages).encode("ascii"))
         send_socket.close()
