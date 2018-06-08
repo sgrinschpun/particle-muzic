@@ -40,11 +40,11 @@ class MyLepton extends MyParticleFamily{
         }
     }
 
-    @Override
+  /*  @Override
     public void sound(){
         for (MySynth sound: sounds){
             sound.ac.start();
         }
-    }
+    }*/
 
 }

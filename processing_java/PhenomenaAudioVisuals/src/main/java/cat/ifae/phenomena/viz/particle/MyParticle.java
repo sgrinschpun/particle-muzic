@@ -72,7 +72,7 @@ public class MyParticle {
         particle.display();
     }
 
-    public void sound() { particle.sound();}
+    //public void sound() { particle.sound();}
 }
 
 

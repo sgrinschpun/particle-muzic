@@ -14,8 +14,8 @@ public class AVServer extends PApplet {
 	}
 
 	public void settings() {
-		size(800, 600);
-		//fullScreen();
+		//size(800, 600);
+		fullScreen();
 	}
 
 	public void setup() {
@@ -46,8 +46,8 @@ public class AVServer extends PApplet {
 	}
 
 	public void keyPressed() {
-		if (key == 'l') {
+		/*if (key == 'l') {
 			println(manageList.getList());
-		}
+		}*/
 	}
 }

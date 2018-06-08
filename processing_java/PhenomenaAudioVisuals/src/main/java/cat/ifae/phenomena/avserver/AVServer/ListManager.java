@@ -9,15 +9,15 @@ import processing.core.PApplet;
 
 public class ListManager {
 	private PApplet parent;
-	private ParticleList particleList;
+	//private ParticleList particleList;
 	private VisualManager vManager;
 	private AudioManager aManager;
 
 	public ListManager(PApplet p) {
 		parent = p;
-		particleList = new ParticleList();
+		//particleList = new ParticleList();
 		vManager = new VisualManager(parent);
-		aManager = new AudioManager();
+		aManager = new AudioManager(parent);
 	}
 
 	public void updateList(PhenomenaCMD phenom) {
@@ -38,7 +38,7 @@ public class ListManager {
 		vManager.displayParticles();
 	}
 
-	public ArrayList<PARAMS> getList() {
+	/*public ArrayList<PARAMS> getList() {
 		return particleList.getList();
-	}
+	}*/
 }
