@@ -40,8 +40,8 @@ class JsonRemoteAudioVideoNode(ParticleActionNodeChain):
             self._node.getNextNode(self).removeParticle(particle)
 
     def transformParticle(self, particle, new_particles):
-        rm_message = self._removeParticlesMessage([particle])
         add_message = self._addParticlesMessage(new_particles)
+        rm_message = self._removeParticlesMessage([particle])
         all_messages = rm_message + add_message
         self._node.getNextNode(self).transformParticle(particle, new_particles)
         #self._sendMessage(all_messages)
