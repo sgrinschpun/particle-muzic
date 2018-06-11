@@ -16,13 +16,14 @@ class OverrideInstall(install):
         install.run(self) # calling install.run(self) insures that everything that happened previously still happens, so the installation does not break!
         # here we start with doing our overriding and private magic ..
         log.info("Changing phenomenad daemon properties")
-        os.chown("/etc/init.d/phenomenad", uid, gid)
-        os.chmod("/etc/init.d/phenomenad", mode)
+        #os.chown("/etc/init.d/phenomenad", uid, gid)
+        #os.chmod("/etc/init.d/phenomenad", mode)
 
 packages = ['phenomena']
 #scripts = ['bin/myapp',]
 #cmdclasses = {'install_data': install_data}
-data_files = [('/etc/init.d/', ['other/utils/phenomenad']), (CONFIG_PATH, ["other/config/particle_extra_info/part_extra_info.json"])]
+#data_files = [('/etc/init.d/', ['other/utils/phenomenad']), (CONFIG_PATH, ["other/config/particle_extra_info/part_extra_info.json"])]
+data_files = [(CONFIG_PATH, ["other/config/particle_extra_info/part_extra_info.json"])]
 setup_args = {
         'name': 'phenomena',
         'version': '0.1',

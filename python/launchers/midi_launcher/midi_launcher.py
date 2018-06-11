@@ -1,22 +1,23 @@
-#from phenomena import Phenomena
 import mido
-import rtmidi
+from phenomena import Phenomena
+import time
 
-#
-# class MidiLauncher:
-#
-#     def __init__(self):
-#         self._phenomena = Phenomena()
-#
-#     def send_particle(self):
-#         particle = str()  # self._ui.particle_select_cbox.currentText()
-#         number = 3  # self._ui.particles_number_spinbox.value()
-#         print "Sending: {0} {1} ".format(particle, number)
-#         self._phenomena.addParticle("K-")
-#
-#
-# if __name__ == '__main__':
-with mido.open_input('Teensy MIDI') as inport:
-    for message in inport:
-        print(message)
-#midiLauncher = MidiLauncher
+
+midiToPart = { 36 : "u", 37 : "d", 38 : "c", 39 : "s", 40 : "t",
+               41 : "b", 42 : "mu+", 43 : "tau-e+", 44 : "nubar_e", 45 : "nubar_tau"}
+
+inport = mido.open_input('Teensy MIDI')
+phenomena = Phenomena()
+begin_time = time.time()
+
+while True:
+    msg = inport.receive()
+    print "Received message: ", msg.bytes()
+    isNoteOn = msg.bytes()[2] == 100
+    note = msg.bytes()[1]
+    if isNoteOn:
+        print midiToPart[note]
+        phenomena.addParticle(midiToPart[note])
+
+
+print "Total time: {0}".format(time.time() - begin_time)

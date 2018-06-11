@@ -8,8 +8,7 @@ from phenomena.particles import Particle
 from phenomena.utils import get_logger
 
 class JsonRemoteAudioVideoNode(ParticleActionNodeChain):
-    #_IP =  "172.16.7.173"
-    _IP = "127.0.0.1"
+    _IP =  "172.16.7.173"
     _PORT = 1234
     def __init__(self):
         super(ParticleActionNodeChain, self).__init__()
