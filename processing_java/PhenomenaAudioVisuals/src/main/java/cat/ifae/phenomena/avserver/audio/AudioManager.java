@@ -12,7 +12,7 @@ import themidibus.MidiBus;
 public class AudioManager implements PhenoCallback {
 	private PApplet parent;
 	private MidiOutputGenerator midiGen;
-	private ArrayList<ParticleNote> list;
+	private ArrayList<ParticleNote> particleNotesList;
 
 	/*
 	 * private AudioContext ac; 
@@ -25,7 +25,7 @@ public class AudioManager implements PhenoCallback {
 	public AudioManager(PApplet p) {
 		parent = p;
 		midiGen = new MidiOutputGenerator(parent);
-		list = new ArrayList<ParticleNote>();
+		particleNotesList = new ArrayList<ParticleNote>();
 		// list = new ArrayList<ParticleSynth>();
 		/*
 		 * ac = new AudioContext(); synthGain = new Gain(ac, 1); reverb = new
@@ -48,23 +48,24 @@ public class AudioManager implements PhenoCallback {
 																	// * 440 +
 																	// 440)
 			int type = 0;
-			ParticleNote partNote = new ParticleNote(midiGen, cmd.getPARAMS().getId(), type,
+			ParticleNote particleNote = new ParticleNote(midiGen, cmd.getPARAMS().getId(), type,
 					(int) (cmd.getPARAMS().getMass() * 12));
 			System.out.println("What's sent to getMass: " + (cmd.getPARAMS().getMass() * 12));
-			list.add(partNote);
+			particleNotesList.add(particleNote);
 			break;
+			
 		/*
-		 * ParticleSynth partSynth = new ParticleSynth(ac,
-		 * cmd.getPARAMS().getId(), (int) (cmd.getPARAMS().getMass() * 12),
-		 * synthGain); System.out.println("What's sent to getMass: " +
-		 * (cmd.getPARAMS().getMass() * 12) ); list.add(partSynth);
+		 * ParticleSynth partSynth = new ParticleSynth(ac, cmd.getPARAMS().getId(), 
+		 * 			(int) (cmd.getPARAMS().getMass() * 12), synthGain); 
+		 * System.out.println("What's sent to getMass: " + (cmd.getPARAMS().getMass() * 12) ); 
+		 * list.add(partSynth);
 		 */
 
 		case "REMOVE":
-			for (int i = 0; i < list.size(); i++) {
-				if (list.get(i).getId() == cmd.getPARAMS().getId()) {
-					list.get(i).killNote();
-					list.remove(i);
+			for (int i = 0; i < particleNotesList.size(); i++) {
+				if (particleNotesList.get(i).getId() == cmd.getPARAMS().getId()) {
+					particleNotesList.get(i).killNote();
+					particleNotesList.remove(i);
 					System.out.println("Removing particle-note from list!");
 					break;
 					// list.get(i).kill();

@@ -5,9 +5,9 @@ import processing.core.PApplet;
 public class ParticleNote {
 	PApplet parent;
 	int id;
-	int channel = 1;
+	int channel = 0;
 	int pitch = -1;
-	int velocity = 90;
+	int velocity = 80;
 	MidiOutputGenerator midiGen;
 
 	public ParticleNote(MidiOutputGenerator mGen, int id, int channel, int midiPitch) {
