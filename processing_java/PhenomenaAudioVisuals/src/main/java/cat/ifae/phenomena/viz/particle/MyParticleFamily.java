@@ -16,7 +16,7 @@ public
 class MyParticleFamily {
 
     PApplet p;
-    public AudioContext ac;
+    //public AudioContext ac;
     public float x;
     public float y;
     public MyParticleData particleData;
@@ -60,10 +60,10 @@ class MyParticleFamily {
 
     public void display(){}
 
-    public void sound(){
+   /* public void sound(){
         for (MySynth sound: sounds){
             sound.ac.start();
         }
-    }
+    }*/
 
 }
