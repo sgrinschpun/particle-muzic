@@ -18,16 +18,16 @@
         <entry file="file://$PROJECT_DIR$/phenomena/phenomena_client.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="465">
-              <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+              <caret line="32" selection-start-line="32" selection-end-line="32" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="midi_launcher.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="midi_launcher.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/launchers/midi_launcher/midi_launcher.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
-              <caret line="22" column="22" lean-forward="true" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+              <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -35,11 +35,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="simple_launcher_ui.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/launchers/simple_launcher/simple_launcher_ui.py">
+      <file leaf-file-name="node_controller.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/phenomena/nodes/node_controller.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="655">
-              <caret line="113" column="76" lean-forward="true" selection-start-line="113" selection-start-column="76" selection-end-line="113" selection-end-column="85" />
+            <state>
+              <folding>
+                <element signature="e#0#42#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="audiovideo_node.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/phenomena/nodes/audiovideo_node.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="16" column="32" lean-forward="true" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -51,9 +62,9 @@
       <list>
         <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/phenomena/phenomena_client.py" />
-        <option value="$PROJECT_DIR$/phenomena/nodes/audiovideo_node.py" />
         <option value="$PROJECT_DIR$/launchers/simple_launcher/simple_launcher.py" />
         <option value="$PROJECT_DIR$/launchers/midi_launcher/midi_launcher.py" />
+        <option value="$PROJECT_DIR$/phenomena/nodes/audiovideo_node.py" />
       </list>
     </option>
   </component>
@@ -67,6 +78,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -102,11 +114,16 @@
               <item name="phenomena" type="462c0819:PsiDirectoryNode" />
               <item name="mappings" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="python" type="b2602c69:ProjectViewProjectNode" />
+              <item name="python" type="462c0819:PsiDirectoryNode" />
+              <item name="phenomena" type="462c0819:PsiDirectoryNode" />
+              <item name="nodes" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -229,8 +246,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1050" width="1680" height="1050" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="10" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="3" show_stripe_button="false" />
@@ -265,6 +283,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/launchers/simple_launcher/simple_launcher_ui.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1695">
+          <caret line="113" column="76" lean-forward="true" selection-start-line="113" selection-start-column="76" selection-end-line="113" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/launchers/midi_launcher/midi_launcher.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="22" column="22" lean-forward="true" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/phenomena/phenomena_client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/launchers/midi_launcher/midi_launcher.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -285,18 +327,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/phenomena/nodes/node_controller.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/phenomena/phenomena_client.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="28" column="20" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/phenomena/connection/phenomena_server.py">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/phenomena/nodes/audiovideo_node.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -309,9 +345,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="7" column="33" lean-forward="true" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -339,25 +372,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/phenomena/nodes/node_controller.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/phenomena/particle.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
           <caret line="33" selection-start-line="33" selection-end-line="33" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/phenomena/nodes/audiovideo_node.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/phenomena/connection/phenomena_server.py">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$USER_HOME$/virtual-environments/particle-muzik/lib/python2.7/site-packages/mido/backends/rtmidi.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -369,49 +389,50 @@
     <entry file="file://$PROJECT_DIR$/phenomena/phenomena_client.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
-          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/phenomena/mappings/mappings_available.py">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/phenomena/mappings/particle_mappings_controller.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#58#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/launchers/simple_launcher/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/launchers/simple_launcher/simple_launcher.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="67" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/launchers/simple_launcher/simple_launcher_ui.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="655">
-          <caret line="113" column="76" lean-forward="true" selection-start-line="113" selection-start-column="76" selection-end-line="113" selection-end-column="85" />
+        <state relative-caret-position="1695">
+          <caret line="113" column="76" selection-start-line="113" selection-start-column="76" selection-end-line="113" selection-end-column="85" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/launchers/midi_launcher/midi_launcher.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
-          <caret line="22" column="22" lean-forward="true" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+          <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/phenomena/nodes/node_controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/phenomena/nodes/audiovideo_node.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="16" column="32" lean-forward="true" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
         </state>
       </provider>
     </entry>
