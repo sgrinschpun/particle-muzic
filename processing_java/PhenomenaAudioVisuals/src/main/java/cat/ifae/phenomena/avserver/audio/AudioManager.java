@@ -48,9 +48,8 @@ public class AudioManager implements PhenoCallback {
 																	// * 440 +
 																	// 440)
 			int type = 0;
-			ParticleNote particleNote = new ParticleNote(midiGen, cmd.getPARAMS().getId(), type,
+			ParticleNote particleNote = new ParticleNote(midiGen, cmd.getPARAMS().getId(), cmd.getPARAMS().getType(),
 					(int) (cmd.getPARAMS().getMass() * 12));
-			System.out.println("What's sent to getMass: " + (cmd.getPARAMS().getMass() * 12));
 			particleNotesList.add(particleNote);
 			break;
 			

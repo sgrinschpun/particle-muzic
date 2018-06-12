@@ -40,4 +40,4 @@ try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
-setup(**setup_args)
+setup(**setup_args, install_requires=['mido'])

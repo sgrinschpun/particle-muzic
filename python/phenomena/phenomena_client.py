@@ -3,8 +3,8 @@ from phenomena.connection.phenomena_message import IncomingMessage, OutcomingMes
 
 HOST = '127.0.0.1'
 
-class Phenomena:
 
+class Phenomena:
     _command_id = 0
 
     @staticmethod
@@ -13,7 +13,8 @@ class Phenomena:
         return Phenomena._command_id
 
     def addParticle(self, particle):
-        message = IncomingMessage.fromData(command_id=Phenomena.getCommandId(), command_name="ADD", module_path="node", params={'particle_name': particle})
+        message = IncomingMessage.fromData(command_id=Phenomena.getCommandId(), command_name="ADD", module_path="node",
+                                           params={'particle_name': particle})
         received_message = self._sendMessage(message)
         return received_message
 
@@ -24,9 +25,10 @@ class Phenomena:
 
 if __name__ == '__main__':
     import time
+
     phenomena = Phenomena()
     begin_time = time.time()
     for i in range(2):
-        print phenomena.addParticle("K-")
-        #time.sleep()
+        print phenomena.addParticle("W+")
+        # time.sleep()
     print "Total time: {0}".format(time.time() - begin_time)

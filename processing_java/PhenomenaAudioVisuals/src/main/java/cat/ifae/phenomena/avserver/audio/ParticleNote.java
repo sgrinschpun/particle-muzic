@@ -10,11 +10,11 @@ public class ParticleNote {
 	int velocity = 80;
 	MidiOutputGenerator midiGen;
 
-	public ParticleNote(MidiOutputGenerator mGen, int id, int channel, int midiPitch) {
+	public ParticleNote(MidiOutputGenerator mGen, int id, String type, int midiPitch) {
 		midiGen = mGen;
 		this.id = id;
-		this.channel = channel;
-		pitch = midiPitch + 69;
+		typeToChannel(type);
+		pitch = midiPitch + 52;
 		System.out.println("-MIDIPITCH: " + pitch);
 		midiGen.sendNoteOn(this.channel, this.pitch, this.velocity);
 	}
@@ -38,6 +38,26 @@ public class ParticleNote {
 	public void killNote(){
 		midiGen.sendNoteOff(this.channel, this.pitch);
 	}
+	
+    private void typeToChannel(String type){
+        switch(type){
+            case "lepton":
+                this.channel = 0;
+                break;
+            case "meson":
+            	this.channel = 1;
+                break;
+            case "baryon":
+            	this.channel = 2;
+                break;
+            case "quark":
+            	this.channel = 0;
+                break;
+            case "boson":
+            	this.channel = 1;
+                break;
+        }
+    }
 
 	/*
 	 * private float midiToFreq(int midiPitch) { return (float) (Math.pow(2.0,

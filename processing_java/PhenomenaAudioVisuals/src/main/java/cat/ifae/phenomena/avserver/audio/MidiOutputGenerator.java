@@ -14,10 +14,11 @@ public class MidiOutputGenerator {
 	}
 
 	public void sendNoteOn(int channel, int note, int velocity){
-		midiBus.sendNoteOn(channel+1, note, velocity);
-		System.out.println("Sent Note ON -> CH: "+ channel +" -Note: "+ note);
+		midiBus.sendNoteOn(channel, note, velocity);
+		System.out.println("Sent Note ON => -CH: "+ channel +" -Note: "+ note);
 	}
 	 public void sendNoteOff(int channel, int note){
 		 midiBus.sendNoteOff(channel,  note, 0);
+		 System.out.println("Sent Note OFF =>  -CH: "+ channel +" -Note: "+ note);
 	 }
 }
