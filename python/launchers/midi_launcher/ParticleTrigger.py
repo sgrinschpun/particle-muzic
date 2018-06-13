@@ -1,10 +1,13 @@
 import mido
 from phenomena import Phenomena
+from phenomena.utils.log import get_logger
 
 
 class ParticleTrigger:
 
     def __init__(self, input_port_name):
+        self._log = get_logger()
+        self._log.info("Starting Particle Trigger MIDI Launcher")
         self._input_port_name = input_port_name
         self._input_port = mido.open_input(self._input_port_name)
         self._phenomena = Phenomena()
@@ -20,20 +23,20 @@ class ParticleTrigger:
 
     def receive_midi_message(self):
         self._msg = self._input_port.receive()
-        print "Received message ", self._msg.bytes(), " from ", self._input_port_name
+        self._log.info("Received message " + str(self._msg.bytes()) + " from " + str(self._input_port_name))
         self._is_note_on = self._msg.bytes()[2] != 0
         self._note = self._msg.bytes()[1]
         self._manage_antimatter_note()
 
     def _manage_antimatter_note(self):
         if self._note == self._switching_note and self._is_note_on:
-            print "Is the anti-matter switch note!"
+            self._log.info( "Is the anti-matter switch note!")
             if self._switch_particle < len(self._midi_to_particle[self._last_triggering_note])-1:
                 self._switch_particle += 1
-                print "Incrementing dictionary list position by one"
+                self._log.info("Incrementing dictionary list position by one")
             elif self._switch_particle >= len(self._midi_to_particle[self._last_triggering_note])-1:
                 self._switch_particle = 0
-                print "Resetting dictionary list position to zero"
+                self._log.info("Resetting dictionary list position to zero")
 
     @property
     def is_triggering_note(self):
@@ -41,13 +44,13 @@ class ParticleTrigger:
 
     def send_particle_to_phenomena(self):
         if particle_trigger.is_triggering_note:
-            print "Is a triggering note!"
+            self._log.info("Is a triggering note!")
             self._last_triggering_note = self._note
             if self._switch_particle > len(self._midi_to_particle[self._note])-1:
                 self._switch_particle = len(self._midi_to_particle[self._note])-1
             particle_string = self._midi_to_particle[self._note][self._switch_particle]  # type: str
             self._phenomena.addParticle(particle_string)
-            print "Sent ", particle_string, " to Phenomena server."
+            self._log.info("Sent " + str(particle_string) + " to Phenomena server.")
 
 
 if __name__ == '__main__':

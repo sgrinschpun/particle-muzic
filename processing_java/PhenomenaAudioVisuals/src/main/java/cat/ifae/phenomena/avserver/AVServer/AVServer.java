@@ -2,7 +2,6 @@ package cat.ifae.phenomena.avserver.AVServer;
 
 import processing.core.PApplet;
 import processing.net.*;
-import processing.opengl.*;
 
 public class AVServer extends PApplet {
 	int port = 1234;
@@ -16,7 +15,7 @@ public class AVServer extends PApplet {
 
 	public void settings() {
 		//size(800, 600);
-		fullScreen();
+		fullScreen(P3D);
 	}
 
 	public void setup() {

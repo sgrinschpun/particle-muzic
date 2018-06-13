@@ -23,7 +23,7 @@ public class ParticleNote {
 		return this.channel;
 	}
 
-	public int getNote() {
+	public int getNote() { 
 		return this.pitch;
 	}
 
