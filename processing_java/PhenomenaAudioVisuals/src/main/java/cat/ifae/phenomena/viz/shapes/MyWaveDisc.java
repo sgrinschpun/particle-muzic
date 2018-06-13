@@ -16,8 +16,8 @@ public class MyWaveDisc extends MyShape  {
     public  float[][][] myLimits;
 
 
-    public MyWaveDisc(PApplet p, PVector location, PVector velocity, PVector acceleration, MyFamilyParams myParams){
-        super(p, location, velocity, acceleration,myParams);
+    public MyWaveDisc(PApplet p, MyFamilyParams myParams){
+        super(p ,myParams);
         this.myParams = myParams;
         this.color = myParams.getColor();
         this.weight = myParams.getWeight();
@@ -28,8 +28,6 @@ public class MyWaveDisc extends MyShape  {
         this.deltayoff = myParams.getdeltayoff();
         this.r0 = 70;
         this.magnitude = 1;
-
-        this.myLimits = build_shape();
     }
 
     private float[][][] build_shape(){
@@ -43,7 +41,7 @@ public class MyWaveDisc extends MyShape  {
     }
 
     private void setLine(int i, float y1){
-        myLimits = build_shape();
+
         for (float x1=myLimits[i][1][0]; x1<myLimits[i][1][1]; x1++){
             float ypos=p.map(p.noise(x1/100 + xoff, y1/100 + yoff), 0, 1, -100, 100);
             p.vertex(x1, ypos);
@@ -51,6 +49,7 @@ public class MyWaveDisc extends MyShape  {
     }
 
     private void setLines() {
+        myLimits = build_shape();
         for (Integer i=0; i<N+1; i++) {
             float y1= myLimits[i][0][0];
             p.strokeWeight(weight);
@@ -67,11 +66,19 @@ public class MyWaveDisc extends MyShape  {
     }
 
     public void display(){
-        move();
+        checkEdges();
+        draw();
+    }
+
+
+    private void draw(){
         setLines();
         xoff += deltaxoff;
         yoff += deltayoff;
     }
+
+
+
 
 }
 

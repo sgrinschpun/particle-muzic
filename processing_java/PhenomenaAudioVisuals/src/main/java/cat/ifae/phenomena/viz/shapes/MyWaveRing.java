@@ -19,8 +19,8 @@ public class MyWaveRing extends MyShape {
 
     private static int N = 300;
 
-    public MyWaveRing(PApplet p, PVector location,  PVector velocity, PVector acceleration, CurrentCicle currentCicle, MyFamilyParams myParams){
-        super(p, location, velocity, acceleration,myParams);
+    public MyWaveRing(PApplet p, CurrentCicle currentCicle, MyFamilyParams myParams){
+        super(p,myParams);
         this.currentCicle = currentCicle;
         this.r0 = (float) myParams.getSize();
         this.weight = myParams.getWeight();
@@ -31,7 +31,11 @@ public class MyWaveRing extends MyShape {
     }
 
     public void display(){
-        move();
+        checkEdges();
+        draw();
+    }
+
+    private void draw(){
         p.noFill();
         currentCicle.update();
         updateColor();
@@ -46,7 +50,7 @@ public class MyWaveRing extends MyShape {
     }
 
 
-    public void updateColor(){
+    private void updateColor(){
         if (currentCicle.getProgressRatio() == currentCicle.getProgressRatioMax()){
             color = myParams.updateColor();
         }

@@ -1,11 +1,9 @@
 package cat.ifae.phenomena.viz.particle;
 
-import beads.AudioContext;
 import cat.ifae.phenomena.viz.cicle.CurrentCicle;
 import cat.ifae.phenomena.viz.shapes.MyShape;
 import cat.ifae.phenomena.viz.data.MyParticleData;
 import cat.ifae.phenomena.viz.params.MyParams;
-import cat.ifae.phenomena.viz.sound.MySynth;
 
 import processing.core.PApplet;
 import processing.core.PVector;
@@ -16,7 +14,6 @@ public
 class MyParticleFamily {
 
     PApplet p;
-    //public AudioContext ac;
     public float x;
     public float y;
     public MyParticleData particleData;
@@ -26,44 +23,48 @@ class MyParticleFamily {
     protected int i;
     protected String q;
 
-    public PVector location, acceleration, velocity;
+    protected PVector location, acceleration, velocity;
 
     public ArrayList<MyShape> shapes;
-    public ArrayList<MySynth> sounds;
+
+    protected float topSpeed;
 
     public MyParticleFamily(PApplet p, PVector location, MyParticleData particleData){
         this.p = p;
-        this.location = location;
-        this.acceleration = setAcceleration();
-        acceleration.mult(p.random(0.05f));
 
+        this.location = location.copy();
+        this.acceleration = setAcceleration();
+        this.acceleration.mult(p.random(2f));
         this.velocity = setVelocity();
+        this.topSpeed = 10f;
 
         this.particleData = particleData;
 
         this.shapes = new ArrayList<MyShape>();
-        this.sounds = new ArrayList<MySynth>();
+
 
     }
 
     protected PVector setAcceleration(){
-        return PVector.random2D();
+
+        //return PVector.random2D(p);
+        return new PVector(p.random(-2,2),p.random(-2,2));
     }
 
     protected PVector setVelocity(){
-        return new PVector(0,0);
+        //return PVector.random2D(p);
+        return new PVector(0f,0f);
     }
 
     protected void addMyShapes(){}
 
-    protected void addMySounds(){}
-
     public void display(){}
 
-   /* public void sound(){
-        for (MySynth sound: sounds){
-            sound.ac.start();
-        }
-    }*/
+    protected void update() {
+        velocity.add(acceleration);
+        velocity.limit(topSpeed);
+        location.add(velocity);
+    }
+
 
 }

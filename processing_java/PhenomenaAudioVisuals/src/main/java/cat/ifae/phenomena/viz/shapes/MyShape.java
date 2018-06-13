@@ -9,41 +9,24 @@ import java.util.Random;
 
 public class MyShape {
     PApplet p;
-    protected float x;
-    protected float y;
 
-    PVector location;
-    PVector velocity;
-    PVector acceleration;
-    float topSpeed;
+    public PVector location;
 
     protected MyFamilyParams myParams;
 
-    public MyShape(PApplet p, PVector location, PVector velocity, PVector acceleration, MyFamilyParams myParams) {
+    public MyShape(PApplet p, MyFamilyParams myParams) {
         this.p = p;
-        this.location = location;
-        this.velocity = velocity;
-        this.topSpeed = 10;
-        this.acceleration = acceleration;
         this.myParams = myParams;
+    }
 
+    public void setLocation(PVector location){
+        this.location = location;
     }
 
     public void display(){}
 
-    public void move(){
-        update();
-        checkEdges();
-    }
 
-    private void update() {
-
-        velocity.add(acceleration);
-        velocity.limit(topSpeed);
-        location.add(velocity);
-    }
-
-    private void checkEdges() {
+    public void checkEdges() {
 
         if (location.x > p.width) {
             location.x = 0;

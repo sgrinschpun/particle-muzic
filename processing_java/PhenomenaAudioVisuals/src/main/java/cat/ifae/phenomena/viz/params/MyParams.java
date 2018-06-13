@@ -9,7 +9,7 @@ public class MyParams {
     PApplet p;
     private int i;
     private String q;
-    private MyParticleData particleData;
+    public MyParticleData particleData;
 
     public MyQuarkParams quark;
     public MyGluonParams gluon;

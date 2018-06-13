@@ -87,7 +87,7 @@ public class MyLeptonParams extends MyFamilyParams{
 
     @Override
     public double getSize(){
-        return 50+ 10*massRenorm(mass);
+        return  50 + 10*massRenorm(mass);
     }
 
     @Override

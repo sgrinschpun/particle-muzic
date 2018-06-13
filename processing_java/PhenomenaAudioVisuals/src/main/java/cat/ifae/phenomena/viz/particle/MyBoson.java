@@ -24,14 +24,16 @@ public class MyBoson extends MyParticleFamily{
     @Override
     public void addMyShapes(){
         shapes = new ArrayList<MyShape>();
-        shapes.add(new MyWaveDisc(p,location,velocity,acceleration,myParams.boson));
+        shapes.add(new MyWaveDisc(p,myParams.boson));
         //shapes.add(new MyWaveLines(p,x,y,myParams.boson));
 
     }
 
     @Override
     public void display(){
+        update();
         for (MyShape shape: shapes){
+            shape.setLocation(location);
             shape.display();
         }
     }

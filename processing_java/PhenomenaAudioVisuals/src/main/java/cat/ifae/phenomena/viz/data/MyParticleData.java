@@ -10,6 +10,7 @@ public class MyParticleData {
     private double charge;
     private double time_to_decay;
     private String[] decay;
+    private int parent_particle;
 
     private HashMap<String,Object> myParticleHash = new HashMap<String,Object>();
 
@@ -78,6 +79,7 @@ public class MyParticleData {
         this.time_to_decay = time_to_decay;
         this.decay = decay;
 
+
         setMyParticleHash();
     }
 
@@ -92,8 +94,7 @@ public class MyParticleData {
         myParticleHash.put("mass",mass);
         myParticleHash.put("charge",charge);
         myParticleHash.put("time_to_decay",time_to_decay);
-        myParticleHash.put("decay",decay);
-    }
+        myParticleHash.put("decay",decay); }
 }
 
 

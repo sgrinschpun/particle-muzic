@@ -26,6 +26,9 @@ Temporary Items
 .apdisk
 
 
+*.egg-info
+
+
 ## Ignore Sublime text stuff
 
 # cache files for sublime text

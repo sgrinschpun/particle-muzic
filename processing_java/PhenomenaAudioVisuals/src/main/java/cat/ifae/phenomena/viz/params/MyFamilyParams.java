@@ -9,7 +9,7 @@ public class MyFamilyParams {
 
     public PApplet p;
 
-    protected MyParticleData particleData;
+    public MyParticleData particleData;
     public MyColors colors;
 
     protected int myColor;

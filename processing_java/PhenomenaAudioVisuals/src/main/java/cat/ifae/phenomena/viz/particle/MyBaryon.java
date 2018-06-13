@@ -28,17 +28,19 @@ public class MyBaryon extends MyParticleFamily{
         for (String q: particleData.getComposition()) {
             myParams = new MyParams(p, particleData,q,j);
             currentCicle = new CurrentCicle(p, myParams.quark.getSpeed());
-            shapes.add(new MyWaveRing(p,location,velocity, acceleration,currentCicle,myParams.quark));
+            shapes.add(new MyWaveRing(p,currentCicle,myParams.quark));
             j++;
         }
-       shapes.add(new MyWaveDisc(p,location, velocity, acceleration,myParams.gluon));
+       shapes.add(new MyWaveDisc(p,myParams.gluon));
     }
 
     @Override
     public void display(){
-        //p.text(particleData.getName(), x, y);
+        p.text(particleData.getName(), location.x, location.y);
+        update();
         p.blendMode(PApplet.ADD);
         for (MyShape shape: shapes){
+            shape.setLocation(location);
             shape.display();
         }
     }
