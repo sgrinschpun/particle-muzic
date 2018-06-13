@@ -31,6 +31,9 @@ dirname = os.path.dirname(__file__)
 filename = os.path.join(dirname, path)
 particle_extra_info = json.load(open(filename))
 
+quarks={'d':1,'u':2,'s': 3, 'c':4 , 'b':5, 't':6 }
+aquarks={'d':-1,'u':-2,'s': -3, 'c':-4 , 'b':-5, 't':-6 }
+
 
 class Particle(object):
     __metaclass__ = abc.ABCMeta
@@ -122,7 +125,10 @@ class ParticleDT(Particle):
         return self._pdgid
 
     def _set_pdgid(self, name):
-        self._pdgid = part_dict[name]
+        if name in list(aquarks.keys()):
+            self._pdgid = aquarks[name]
+        else:
+            self._pdgid = part_dict[name]
 
     @property
     def mass(self):
@@ -195,10 +201,12 @@ class ParticleDT(Particle):
         if self._decay_channels != []:
             try:
                 choice = self._weighted_choice(self._build_weights()[0],self._build_weights()[1])
-                channels = self._decay_channels[choice][1]
-                for part in channels:
-                    #list_decay.append(ParticleDT(ParticleDT.apdgid(part).name))  this actually creates objects
-                    list_decay.append(ParticleDT.apdgid(part).name)  # this just shows particles names
+                channel = self._decay_channels[choice][1]
+                for part in channel:
+                    if part in quarks.values():
+                        list_decay.append(quarks.keys()[quarks.values().index(part)])
+                    else:
+                        list_decay.append(ParticleDT.apdgid(part).name)  # this just shows particles names
             finally:
                 self._decay = list_decay
         else:
