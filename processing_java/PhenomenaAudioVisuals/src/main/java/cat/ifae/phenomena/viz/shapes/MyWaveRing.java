@@ -31,7 +31,6 @@ public class MyWaveRing extends MyShape {
     }
 
     public void display(){
-        checkEdges();
         draw();
     }
 

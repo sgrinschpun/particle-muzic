@@ -58,9 +58,21 @@ class MyParticleFamily {
     public void display(){}
 
     protected void update() {
+        checkEdges();
         velocity.add(acceleration);
         velocity.limit(topSpeed);
         location.add(velocity);
+    }
+
+    protected void checkEdges() {
+        if ((location.x > p.width) || (location.x < 0)) {
+            velocity.x = velocity.x * -1;
+            acceleration.x = acceleration.x * -1;
+        }
+        if ((location.y > p.height) || (location.y < 0)) {
+            velocity.y = velocity.y * -1;
+            acceleration.y = acceleration.y * -1;
+        }
     }
 
 
