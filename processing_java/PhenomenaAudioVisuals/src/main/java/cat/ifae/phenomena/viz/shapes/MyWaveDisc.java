@@ -6,6 +6,7 @@ import cat.ifae.phenomena.viz.params.MyFamilyParams;
 import processing.core.PApplet;
 import processing.core.PVector;
 
+import static processing.core.PConstants.CLOSE;
 import static processing.core.PConstants.TWO_PI;
 
 
@@ -40,6 +41,15 @@ public class MyWaveDisc extends MyShape  {
         return limits;
     }
 
+    private void setVertex1(){
+        for (Integer i =0; i<N+1;i++) {
+            float x1 = (float) (location.x + r0 * Math.cos(TWO_PI * i / N));
+            float y1 = (float) (location.y + r0 * Math.sin(TWO_PI * i / N));
+            p.vertex(x1,y1);
+
+        }
+    }
+
     private void setLine(int i, float y1){
 
         for (float x1=myLimits[i][1][0]; x1<myLimits[i][1][1]; x1++){
@@ -54,20 +64,26 @@ public class MyWaveDisc extends MyShape  {
             float y1= myLimits[i][0][0];
             p.strokeWeight(weight);
             color = myParams.getColor();
-            p.stroke(color);
+            //p.stroke(color);
+            p.stroke(p.random(255), p.random(255), p.random(255), 80);
             p.pushMatrix();
             p.translate(0, y1);
             p.noFill();
             p.beginShape();
             setLine(i,y1);
-            p.endShape();
+            //p.stroke(p.random(255), p.random(255), p.random(255), 40);
+            //p.strokeWeight(5);
+            //setLine(i,y1);
+            p.endShape(CLOSE);
             p.popMatrix();
         }
+
     }
 
     public void display(){
-        checkEdges();
         draw();
+
+
     }
 
 
@@ -75,6 +91,7 @@ public class MyWaveDisc extends MyShape  {
         setLines();
         xoff += deltaxoff;
         yoff += deltayoff;
+
     }
 
 

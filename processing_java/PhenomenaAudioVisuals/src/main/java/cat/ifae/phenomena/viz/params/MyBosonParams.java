@@ -38,13 +38,13 @@ public class MyBosonParams extends MyFamilyParams{
 
     @Override
     public float getdeltayoff(){
-        float value = p.map((float) massRenorm(mass),0,1, (float) 0,(float)0.1);
+        float value = p.map((float) massRenorm(mass),0,1, 0f,0.1f);
         return value;
     }
 
     @Override
     public float getdeltaxoff() {
-        float value = p.map((float) massRenorm(mass), 0, 1, 1, 0);
+        float value = p.map((float) massRenorm(mass), 0, 1, 0.01f, 0f);
         return value;
     }
 }

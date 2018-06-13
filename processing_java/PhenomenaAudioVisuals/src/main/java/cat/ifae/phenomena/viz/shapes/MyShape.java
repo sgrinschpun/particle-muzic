@@ -25,20 +25,4 @@ public class MyShape {
 
     public void display(){}
 
-
-    public void checkEdges() {
-
-        if (location.x > p.width) {
-            location.x = 0;
-        } else if (location.x < 0) {
-            location.x = p.width;
-        }
-
-        if (location.y > p.height) {
-            location.y = 0;
-        } else if (location.y < 0) {
-            location.y = p.height;
-        }
-
-    }
 }

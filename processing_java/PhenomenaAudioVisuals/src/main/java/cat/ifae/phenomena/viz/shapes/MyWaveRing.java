@@ -7,6 +7,9 @@ import processing.core.PApplet;
 import processing.core.PVector;
 
 import java.util.concurrent.ThreadLocalRandom;
+
+import static processing.core.PConstants.BLUR;
+import static processing.core.PConstants.CLOSE;
 import static processing.core.PConstants.TWO_PI;
 
 public class MyWaveRing extends MyShape {
@@ -17,7 +20,7 @@ public class MyWaveRing extends MyShape {
     private float r0, weight, ampFactor, noiseScale, r;
     private int color, noiseSeed;
 
-    private static int N = 300;
+    private static int N = 100;
 
     public MyWaveRing(PApplet p, CurrentCicle currentCicle, MyFamilyParams myParams){
         super(p,myParams);
@@ -44,8 +47,25 @@ public class MyWaveRing extends MyShape {
         p.beginShape();
         p.noiseSeed(noiseSeed);
         setNoiseAmount();
-        setVertex();
+        setVertex1(r);
+        p.endShape(CLOSE);
+
+        /*p.beginShape();
+        p.strokeWeight(30);
+        p.stroke(p.random(255), p.random(255), p.random(255), 40);
+        setVertex2(r);
+        p.endShape();*/
+
+
+        // if charged particle, alpha and weight depending on charge
+        p.stroke(p.random(255), p.random(255), p.random(255), 40);
+        p.strokeWeight(20);
+        p.beginShape();
+        p.noiseSeed(noiseSeed);
+        setNoiseAmount();
+        setVertex1(r);
         p.endShape();
+
     }
 
 
@@ -79,13 +99,27 @@ public class MyWaveRing extends MyShape {
         }
     }
 
-    private void setVertex(){
+    private void setVertex1(float r){
         for (Integer i =0; i<N+1;i++) {
             float x1 = (float) (location.x + r * Math.cos(TWO_PI * i / N));
             float y1 = (float) (location.y + r * Math.sin(TWO_PI * i / N));
+
             x1 += p.map(p.noise(noiseScale*x1,noiseScale*y1),0,1,-noiseAmount,noiseAmount);
             y1 += p.map(p.noise(noiseScale*x1,noiseScale*y1),0,1,-noiseAmount,noiseAmount);
             p.vertex(x1,y1);
+
+        }
+    }
+
+    private void setVertex2(float r){
+        for (Integer i =0; i<N+1;i++) {
+
+            float x2 = (float) (location.x + r * Math.cos(TWO_PI * i / N));
+            float y2 = (float) (location.y + r * Math.sin(TWO_PI * i / N));;
+
+            x2 += p.noise(location.x * 0.2f, location.x* 0.2f) * 10 + 5;
+            y2 += p.noise(location.y * 0.2f, location.y* 0.2f) * 10 + 5;
+            p.vertex(x2,y2);
         }
     }
 

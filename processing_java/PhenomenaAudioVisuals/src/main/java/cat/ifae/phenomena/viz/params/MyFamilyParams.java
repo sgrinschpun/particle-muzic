@@ -14,13 +14,14 @@ public class MyFamilyParams {
 
     protected int myColor;
     protected int[] myColorSet;
-    protected Double mass;
+    protected Double mass, charge;
 
     public MyFamilyParams(PApplet p, MyParticleData particleData){
         this.p = p;
         this.colors = new MyColors(p);
         this.particleData = particleData;
         this.mass = particleData.getMass();
+        this.charge = particleData.getCharge();
 
     }
 
@@ -41,6 +42,10 @@ public class MyFamilyParams {
         int next = i + 1;
         if (next > (colorSet.length-1)){ next = 0;}
         return next;
+    }
+
+    public double getCharge(){
+        return charge;
     }
 
     public float getAmpFactor(){return 40;}
