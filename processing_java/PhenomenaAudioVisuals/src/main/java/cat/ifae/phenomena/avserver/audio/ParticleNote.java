@@ -9,12 +9,25 @@ public class ParticleNote {
 	int pitch = -1;
 	int velocity = 80;
 	MidiOutputGenerator midiGen;
+	int FIRST_SYNTH_CHANNEL = 0;
+	int SECOND_SYNTH_CHANNEL = 1;
+	int THIRD_SYNTH_CHANNEL = 2;
+	int FOURTH_SYNTH_CHANNEL = 3;
+	int FIFTH_SYNTH_CHANNEL = 4;
+	int SUBBASS_CHANNEL = 5;
 
-	public ParticleNote(MidiOutputGenerator mGen, int id, String type, int midiPitch) {
+	public ParticleNote(MidiOutputGenerator mGen, int id, String type, String name, float mass) {
+		System.out.println("Mass is:" + mass);
 		midiGen = mGen;
 		this.id = id;
 		typeToChannel(type);
-		pitch = midiPitch + 52;
+		this.pitch = Math.round(mass*24) + 45;
+		if( mass == 0.0 || name.equals("nu_e") || name.equals("nu_mu") || name.equals("nu_tau") || 
+				name.equals("nubar_e") || name.equals("nubar_mu") || name.equals("nubar_tau") ){
+			System.out.println("This will be a SUBBASS note!");
+			this.channel = SUBBASS_CHANNEL;
+			this.pitch = 33;
+		}
 		System.out.println("-MIDIPITCH: " + pitch);
 		midiGen.sendNoteOn(this.channel, this.pitch, this.velocity);
 	}
@@ -23,7 +36,7 @@ public class ParticleNote {
 		return this.channel;
 	}
 
-	public int getNote() { 
+	public int getNote() {  
 		return this.pitch;
 	}
 
@@ -41,20 +54,20 @@ public class ParticleNote {
 	
     private void typeToChannel(String type){
         switch(type){
-            case "lepton":
-                this.channel = 0;
+            case "lepton":	// Soft Canada, is okay! 
+                this.channel = FIRST_SYNTH_CHANNEL ; 
                 break;
-            case "meson":
-            	this.channel = 1;
+            case "meson":	// 2 Circles w Signal Scope Inside
+            	this.channel = SECOND_SYNTH_CHANNEL ;
                 break;
-            case "baryon":
-            	this.channel = 2;
+            case "baryon":	// 3 Circles w Signal Scope inside
+            	this.channel = THIRD_SYNTH_CHANNEL ;
                 break;
-            case "quark":
-            	this.channel = 0;
+            case "quark":	// Organic Coloured Fuzzy Bubble!
+            	this.channel = FOURTH_SYNTH_CHANNEL ;
                 break;
-            case "boson":
-            	this.channel = 1;
+            case "boson":	// Unknows Coloured Pleasures!
+            	this.channel = FIFTH_SYNTH_CHANNEL ;
                 break;
         }
     }

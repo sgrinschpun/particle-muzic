@@ -43,13 +43,13 @@ public class AudioManager implements PhenoCallback {
 	public void callback(PhenomenaCMD cmd) {
 		switch (cmd.getCMD()) {
 		case "ADD":
-			System.out.println("Adding particle-note to list!"); // (int) (
+			System.out.println("Adding " +cmd.getPARAMS().getName() +" to list!"); // (int) (
 																	// cmd.getPARAMS().getMass()
 																	// * 440 +
 																	// 440)
 			int type = 0;
 			ParticleNote particleNote = new ParticleNote(midiGen, cmd.getPARAMS().getId(), cmd.getPARAMS().getType(),
-					(int) (cmd.getPARAMS().getMass() * 12));
+					cmd.getPARAMS().getName(), cmd.getPARAMS().getMass());
 			particleNotesList.add(particleNote);
 			break;
 			

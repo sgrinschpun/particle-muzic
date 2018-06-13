@@ -30,7 +30,7 @@ class ParticleTrigger:
 
     def _manage_antimatter_note(self):
         if self._note == self._switching_note and self._is_note_on:
-            self._log.info( "Is the anti-matter switch note!")
+            self._log.info("Is the anti-matter switch note!")
             if self._switch_particle < len(self._midi_to_particle[self._last_triggering_note])-1:
                 self._switch_particle += 1
                 self._log.info("Incrementing dictionary list position by one")
