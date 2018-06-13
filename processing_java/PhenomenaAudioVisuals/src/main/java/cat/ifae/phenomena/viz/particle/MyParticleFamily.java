@@ -46,13 +46,10 @@ class MyParticleFamily {
     }
 
     protected PVector setAcceleration(){
-
-        //return PVector.random2D(p);
-        return new PVector(p.random(-2,2),p.random(-2,2));
+        return PVector.random2D(p);
     }
 
     protected PVector setVelocity(){
-        //return PVector.random2D(p);
         return new PVector(0f,0f);
     }
 

@@ -9,6 +9,7 @@ import cat.ifae.phenomena.avserver.json.PhenomenaCMD;
 import cat.ifae.phenomena.viz.particle.MyParticle;
 import cat.ifae.phenomena.viz.data.MyParticleData;
 import processing.core.PApplet;
+import processing.core.PVector;
 
 public class VisualManager implements PhenoCallback {
 	private Map<Integer, MyParticle> list = new HashMap<Integer, MyParticle>();
@@ -28,6 +29,7 @@ public class VisualManager implements PhenoCallback {
 	public void callback(PhenomenaCMD cmd) {
 		switch (cmd.getCMD()) {
 		case "ADD":
+			MyParticle particle_pic;
 			/*ParticlePic partPic = new ParticlePic(parent, cmd.getPARAMS().getId(), cmd.getPARAMS().getMass(),
 					cmd.getPARAMS().getDecayTime(), cmd.getPARAMS().getCharge());*/
 			PARAMS params = cmd.getPARAMS();
@@ -45,7 +47,14 @@ public class VisualManager implements PhenoCallback {
 														(double) params.getCharge(),
 														(double) params.getDecayTime(),
 														sent);
-			MyParticle particle_pic = new MyParticle(this.parent, particle_data);
+			if (params.getParent() == -1) {
+				particle_pic = new MyParticle(this.parent, particle_data);
+			}
+			else {
+				MyParticle parentParticle = list.get(params.getParent());
+				PVector location = parentParticle.getLocation();
+				particle_pic = new MyParticle(this.parent, location , particle_data);
+			}
 			this.list.put(cmd.getPARAMS().getId(), particle_pic);
 			break;
 		case "REMOVE":
