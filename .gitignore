@@ -27,7 +27,9 @@ Temporary Items
 
 
 *.egg-info
-
+*.class
+*.xml
+*.iml
 
 ## Ignore Sublime text stuff
 

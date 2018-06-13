@@ -28,7 +28,6 @@ class MyLepton extends MyParticleFamily{
     public void display(){
         update();
         p.text(particleData.getName(), location.x, location.y);
-        p.println(particleData.getName(), location, velocity, acceleration);
         for (MyShape shape: shapes){
             shape.setLocation(location);
             shape.display();

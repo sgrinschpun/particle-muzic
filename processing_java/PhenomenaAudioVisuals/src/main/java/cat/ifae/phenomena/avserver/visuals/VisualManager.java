@@ -18,12 +18,6 @@ public class VisualManager implements PhenoCallback {
 		parent = p;
 	}
 
-	//public void moveParticles() {
-	//	for (MyParticle particle : this.list.values()) {
-	//		particle.move();
-	//	}
-	//}
-
 	public void displayParticles() {
 		for (MyParticle particle : this.list.values()) {
 			particle.display();

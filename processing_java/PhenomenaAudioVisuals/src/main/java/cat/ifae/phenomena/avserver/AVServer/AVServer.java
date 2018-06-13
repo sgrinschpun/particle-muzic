@@ -20,7 +20,6 @@ public class AVServer extends PApplet {
 
 	public void setup() {
 		frameRate(24);
-		//noStroke();
 		smooth();
 		//colorMode(HSB, 360, 100, 100);
 		server = new Server(this, port);
@@ -35,7 +34,6 @@ public class AVServer extends PApplet {
 			try {
 				String receivedString = thisClient.readString();
 				manageList.updateList(handleJson.parse(receivedString));
-			//	println(handleJson.parsetoString(receivedString));
 			}
 			catch(Exception ex) {
 				System.out.println("Failed loading particle!");
