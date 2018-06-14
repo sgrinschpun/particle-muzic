@@ -29,8 +29,8 @@ class ConstMapping(Mapping):
         self._value = value
 
     def translateValue(self, value):
-        #return self._value
-        return random.uniform(0, 1)
+        return self._value
+        #return random.uniform(0, 1)
 
     def updateMapping(self, new_values):
         pass
