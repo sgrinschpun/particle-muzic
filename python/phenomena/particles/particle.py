@@ -23,11 +23,10 @@ part_dict = {}
 for p in tbl:
     part_dict[p.name]= p.id
 
-#particle_extra_info gives us information about composition, interactions, type,...
-def str_hook(obj):    # this is to convert unicodes to strings in json load. copied from somewhere. doe snot work very well
-    return {k.encode('utf-8') if isinstance(k,unicode) else k :
-            v.encode('utf-8') if isinstance(v, unicode) else v
-            for k,v in obj}
+quarks={'d':1,'u':2,'s': 3, 'c':4 , 'b':5, 't':6 }
+aquarks={'d':-1,'u':-2,'s': -3, 'c':-4 , 'b':-5, 't':-6 }
+
+
 class Particle(object):
     __metaclass__ = abc.ABCMeta
 
@@ -198,7 +197,10 @@ class ParticleDT(Particle):
         return self._pdgid
 
     def _set_pdgid(self, name):
-        self._pdgid = part_dict[name]
+        if name in list(aquarks.keys()):
+            self._pdgid = aquarks[name]
+        else:
+            self._pdgid = part_dict[name]
 
     @property
     def mass(self):
@@ -267,10 +269,12 @@ class ParticleDT(Particle):
         if self._decay_channels != []:
             try:
                 choice = self._weighted_choice(self._build_weights()[0],self._build_weights()[1])
-                channels = self._decay_channels[choice][1]
-                for part in channels:
-                    #list_decay.append(ParticleDT(ParticleDT.apdgid(part).name))  this actually creates objects
-                    list_decay.append(ParticleDT.apdgid(part).name)  # this just shows particles names
+                channel = self._decay_channels[choice][1]
+                for part in channel:
+                    if part in quarks.values():
+                        list_decay.append(quarks.keys()[quarks.values().index(part)])
+                    else:
+                        list_decay.append(ParticleDT.apdgid(part).name)  # this just shows parti
             finally:
                 self.decay = list_decay
         else:
