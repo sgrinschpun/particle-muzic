@@ -101,8 +101,8 @@ public class MyQuarkParams extends MyFamilyParams{
 
     @Override
     public double getSize(){
-        //return massRenorm(mass);
-        return 70;
+        //return massRenorm(getMass(quark));
+        return 40;
     }
 
     @Override

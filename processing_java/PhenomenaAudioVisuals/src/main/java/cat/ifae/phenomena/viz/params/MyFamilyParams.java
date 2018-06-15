@@ -14,7 +14,7 @@ public class MyFamilyParams {
 
     protected int myColor;
     protected int[] myColorSet;
-    protected Double mass, charge;
+    public Double mass, charge;
 
     public MyFamilyParams(PApplet p, MyParticleData particleData){
         this.p = p;

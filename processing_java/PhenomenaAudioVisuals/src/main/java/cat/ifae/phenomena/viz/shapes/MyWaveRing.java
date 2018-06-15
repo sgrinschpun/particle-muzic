@@ -56,15 +56,16 @@ public class MyWaveRing extends MyShape {
         setVertex2(r);
         p.endShape();*/
 
-
         // if charged particle, alpha and weight depending on charge
-        p.stroke(p.random(255), p.random(255), p.random(255), 40);
-        p.strokeWeight(20);
-        p.beginShape();
-        p.noiseSeed(noiseSeed);
-        setNoiseAmount();
-        setVertex1(r);
-        p.endShape();
+        if (myParams.getCharge() != 0) {
+            p.stroke(p.random(255), p.random(255), p.random(255), 40);
+            p.strokeWeight(20);
+            p.beginShape();
+            p.noiseSeed(noiseSeed);
+            setNoiseAmount();
+            setVertex1(r);
+            p.endShape();
+        }
 
     }
 

@@ -40,7 +40,7 @@ public class VisualManager implements PhenoCallback {
 				);
 			System.out.println(message);
 			String sent[] = {};
-			MyParticleData particle_data = new MyParticleData(params.getName(), 
+			MyParticleData particle_data = new MyParticleData(params.getName(),
 														params.getType(),
 														params.getComposition(),
 														(double) params.getMass(), 

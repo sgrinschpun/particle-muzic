@@ -65,7 +65,7 @@ public class MyWaveDisc extends MyShape  {
             p.strokeWeight(weight);
             color = myParams.getColor();
             //p.stroke(color);
-            p.stroke(p.random(255), p.random(255), p.random(255), 80);
+            p.stroke(p.random(255), p.random(255), p.random(255), 90);
             p.pushMatrix();
             p.translate(0, y1);
             p.noFill();

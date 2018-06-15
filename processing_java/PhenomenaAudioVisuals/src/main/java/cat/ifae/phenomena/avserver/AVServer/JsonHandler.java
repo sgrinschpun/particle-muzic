@@ -21,6 +21,7 @@ public class JsonHandler {
 	}
 
 	public PhenomenaCMD parse(String clientString) {
+		System.out.println(clientString);
 		Gson gson = new Gson();
 		return gson.fromJson(clientString, PhenomenaCMD.class);
 	}
