@@ -5,9 +5,9 @@ from phenomena.particles.particle import Particle, BasicParticle
 class MappingsController:
 
     def __init__(self):
-        self._map_dictionary = {"charge": ConstMapping(),
-                               "mass": ConstMapping(),
-                               "decay_time": ConstMapping(),
+        self._map_dictionary = {"charge": MirrorMapping(),
+                               "mass": MirrorMapping(),
+                               "decay_time": MirrorMapping(),
                                "composition": MirrorMapping(),
                                "type": MirrorMapping()}
 
