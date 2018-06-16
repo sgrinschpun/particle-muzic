@@ -1,10 +1,13 @@
 import mido
+import random
+import time
 from phenomena import Phenomena
 from phenomena.utils.log import get_logger
 
 
-class ParticleTrigger:
 
+class ParticleTrigger:
+    TRIGGER_TIME = 15    
     def __init__(self, input_port_name):
         self._log = get_logger()
         self._log.info("Starting Particle Trigger MIDI Launcher")
@@ -20,13 +23,20 @@ class ParticleTrigger:
         self._is_note_on = None
         self._note = None
         self._switch_particle = 0
+        self._last_trigger_time = time.time()
 
     def receive_midi_message(self):
         self._msg = self._input_port.receive()
         self._log.info("Received message " + str(self._msg.bytes()) + " from " + str(self._input_port_name))
         self._is_note_on = self._msg.bytes()[2] != 0
-        self._note = self._msg.bytes()[1]
-        self._manage_antimatter_note()
+	self._is_note_on = False	
+	if self._is_note_on:
+        	self._note = self._msg.bytes()[1]
+	        self._manage_antimatter_note()
+	else:
+		if (time.time() - self._last_trigger_time) > ParticleTrigger.TRIGGER_TIME:
+			self._is_note_on = True
+			self._note = random.choice(random.choice(self._midi_to_particle.values()))						 	
 
     def _manage_antimatter_note(self):
         if self._note == self._switching_note and self._is_note_on:
@@ -44,6 +54,7 @@ class ParticleTrigger:
 
     def send_particle_to_phenomena(self):
         if particle_trigger.is_triggering_note:
+	    self._last_trigger_time = time.time()
             self._log.info("Is a triggering note!")
             self._last_triggering_note = self._note
             if self._switch_particle > len(self._midi_to_particle[self._note])-1:
@@ -52,11 +63,9 @@ class ParticleTrigger:
             self._phenomena.addParticle(particle_string)
             self._log.info("Sent " + str(particle_string) + " to Phenomena server.")
 
-
 if __name__ == '__main__':
-    import time
     begin_time = time.time()
-    particle_trigger = ParticleTrigger("Teensy MIDI")
+    particle_trigger = ParticleTrigger("Teensy MIDI:Teensy MIDI MIDI 1 20:0")
     while True:
         particle_trigger.receive_midi_message()
         particle_trigger.send_particle_to_phenomena()
