@@ -57,7 +57,10 @@ if __name__ == '__main__':
     import time
     begin_time = time.time()
     particle_trigger = ParticleTrigger("Teensy MIDI")
+    #particle_trigger2 = ParticleTrigger("Teensy MIDI")
     while True:
         particle_trigger.receive_midi_message()
+     #   particle_trigger2.receive_midi_message()
         particle_trigger.send_particle_to_phenomena()
+      #  particle_trigger2.send_particle_to_phenomena()
     print "Total time: {0}".format(time.time() - begin_time)
