@@ -14,14 +14,14 @@ public class AVServer extends PApplet {
 	}
 
 	public void settings() {
-		//size(800, 600);
-		fullScreen(P3D);
+		size(1920, 1200, P3D);
+		//fullScreen(P3D);
 	}
 
 	public void setup() {
 		frameRate(24);
 		smooth();
-		//colorMode(HSB, 360, 100, 100);
+		// colorMode(HSB, 360, 100, 100);
 		server = new Server(this, port);
 		handleJson = new JsonHandler();
 		manageList = new ListManager(this);
@@ -34,8 +34,7 @@ public class AVServer extends PApplet {
 			try {
 				String receivedString = thisClient.readString();
 				manageList.updateList(handleJson.parse(receivedString));
-			}
-			catch(Exception ex) {
+			} catch (Exception ex) {
 				System.out.println("Failed loading particle!");
 				ex.printStackTrace();
 			}
@@ -44,8 +43,8 @@ public class AVServer extends PApplet {
 	}
 
 	public void keyPressed() {
-		/*if (key == 'l') {
-			println(manageList.getList());
-		}*/
+		/*
+		 * if (key == 'l') { println(manageList.getList()); }
+		 */
 	}
 }

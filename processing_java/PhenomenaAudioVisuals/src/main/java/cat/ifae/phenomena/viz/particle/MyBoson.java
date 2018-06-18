@@ -31,6 +31,7 @@ public class MyBoson extends MyParticleFamily{
 
     @Override
     public void display(){
+    	p.text(particleData.getName(), location.x, location.y);
         update();
         for (MyShape shape: shapes){
             shape.setLocation(location);

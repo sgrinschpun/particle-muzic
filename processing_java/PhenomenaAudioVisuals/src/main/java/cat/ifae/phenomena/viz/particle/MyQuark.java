@@ -28,7 +28,7 @@ class MyQuark extends MyParticleFamily{
 
     @Override
     public void display(){
-        p.text(particleData.getName(), x, y);
+    	p.text(particleData.getName(), location.x, location.y);
         update();
         p.blendMode(PApplet.ADD);
         for (MyShape shape: shapes){

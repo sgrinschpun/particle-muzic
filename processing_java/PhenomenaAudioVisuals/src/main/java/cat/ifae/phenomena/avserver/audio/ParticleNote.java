@@ -21,8 +21,8 @@ public class ParticleNote {
 		this.id = id;
 		midiGen = mGen;
 		this.name = name;
-		this.pitch = massToPitch(mass);
 		typeToChannel(type);
+		this.pitch = massToPitch(mass);
 		System.out.println("-MIDIPITCH: " + pitch);
 		midiGen.sendNoteOn(this.channel, this.pitch, this.velocity);
 	}
