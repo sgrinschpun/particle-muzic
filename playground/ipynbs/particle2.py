@@ -26,7 +26,7 @@ part_dict = {}
 for p in tbl:
     part_dict[p.name]= p.id
 
-path = '../particle_extra_info/part_extra_info.json'
+path = 'particle_extra_info/part_extra_info.json'
 dirname = os.path.dirname(__file__)
 filename = os.path.join(dirname, path)
 particle_extra_info = json.load(open(filename))
