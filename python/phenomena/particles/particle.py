@@ -10,8 +10,6 @@ import textwrap
 from operator import itemgetter
 import time, threading
 
-import numpy as np
-
 #ParticleDataTool gives us the decay channels
 from ParticleDataTool import ParticleDataTool as pdt
 pythia = pdt.PYTHIAParticleData(file_path='ParticleData.ppl', use_cache=True)
@@ -145,6 +143,10 @@ class ParticleDT(Particle):
         self._set_time_to_decay()  # Particle time lived before decay, renormalized
         self._setParent(parent)
 
+    @staticmethod
+    def getmass(name):
+        return tbl[part_dict[name]].mass
+
     @property
     def parent(self):
         return self._parent
@@ -167,7 +169,6 @@ class ParticleDT(Particle):
     def magnitude(x):
         return int(math.log(x,10))
 
-
     @staticmethod
     def renormalize_time(n):
         # range 1 & 2 define the renormalization. Needs to be improved.
@@ -175,7 +176,7 @@ class ParticleDT(Particle):
         range2 = [1.e-3, 5.]
         delta1 = range1[1] - range1[0]
         delta2 = range2[1] - range2[0]
-        return np.around((delta2 * (n - range1[0]) / delta1) + range2[0], 2)
+        return (delta2 * (n - range1[0]) / delta1) + range2[0]
 
     @property
     def name(self):
@@ -376,89 +377,6 @@ class ParticleDT(Particle):
                 "decay_time": self._time_to_decay,
                 "composition": self._composition}
 
-class ParticleBoosted(ParticleDT):
-    c= 299792458 #m/s
-
-    def __init__(self, name, p=0, E=0, theta=0): #initialize either with momentum (p) or energy (e)
-        super(ParticleBoosted, self).__init__(name) #inherit properties from ParticleDT
-
-        self._set_boostvalues(p,E)
-
-        #check E can't be less than rest mass
-
-    @staticmethod
-    def beta_from_gamma(gamma):
-        return np.sqrt(1-np.divide(1,np.square(gamma)))
-
-    def _set_gamma_from_E(self):
-        return np.divide(self._E,self.mass)
-
-    def _set_gamma_from_p(self):
-        return np.sqrt(1+np.square(np.divide(self._p,self.mass)))
-
-    def _set_p_from_E(self):
-        return np.multiply(self._beta,self._E)
-
-    def _set_E_from_p(self):
-        return np.divide(self._p,self._beta)
-
-    def _set_T(self):
-        return np.multiply(self._gamma-1,self.mass)
-
-    def _set_boostvalues(self,p,E):
-        if p and E:
-            print ("You can't define both E & p")
-        elif p and not E:
-            self._p = p   # Momentum of the particle, GeV/c, because mass comes in GeV/c^2
-            self._gamma= self._set_gamma_from_p()
-            self._beta = ParticleBoosted.beta_from_gamma(self._gamma)
-            self._E = self._set_E_from_p()
-            self._T = self._set_T()
-        elif E and not p:
-            self._E = E   # Energy of the particle, GeV, because mass comes in GeV/c^2
-            self._gamma= self._set_gamma_from_E()
-            self._beta = ParticleBoosted.beta_from_gamma(self._gamma)
-            self._p = self._set_p_from_E()
-            self._T = self._set_T()
-        elif E==0 and p==0:
-            self._E = 0
-            self._p = 0
-            self._gamma=1
-            self._beta=0
-            self._T = self._set_T()
-
-
-    @property
-    def p(self):
-        return self._p
-
-    @p.setter
-    def p(self, value):
-        self._set_boostvalues(p=value, E=0)
-
-    @property
-    def E(self):
-        return self._E
-
-    @E.setter
-    def E(self, value):
-        self._set_boostvalues(P=0,E=value)
-
-    @property
-    def gamma(self):
-        return self._gamma
-
-    @property
-    def beta(self):
-        return self._beta
-
-    @property
-    def T(self):
-        return self._T
-
-    @ParticleDT.lifetime.getter
-    def lifetime(self):
-        return np.multiply(self._gamma,self._lifetime)
 
 
 

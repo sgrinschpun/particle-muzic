@@ -19,7 +19,7 @@ $\tau = \gamma \tau_0$
 
 $E_1=\frac{M^2+(m_1^2 - m_2^2 )}{2M} $
 $E_2=\frac{M^2-(m_1^2 - m_2^2 )}{2M} $
-$|p_1|=|p_2|= \frac{\sqrt{[M^2-(m_1^2 + m_2^2)][M^2-(m_1^2 - m_2^2)]}}{2M}$
+$|p_1|=|p_2|= \frac{\sqrt{[M^2-(m_1 + m_2)^2][M^2-(m_1 - m_2)^2]}}{2M}$
 $\theta_1 = -\theta_2$
 
 ####2-Body Decays, LAB frame
