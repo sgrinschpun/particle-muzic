@@ -3,18 +3,17 @@ import math, random
 
 from particle import Particle, ParticleDT
 
-from kinematics.twobody import CMcalc, LABcalc
+from kinematics.decay import LABcalc
 
 class ParticleBoosted(ParticleDT):
     c= 299792458 #m/s
 
     def __init__(self, name, p=0, E=0, theta=0): #initialize either with momentum (p) or energy (e)
         super(ParticleBoosted, self).__init__(name) #inherit properties from ParticleDT
-
+        self._theta = theta
         self._set_boostvalues(p,E)
 
-        if len(self.decay)==2:
-            self._set_decayvalues()
+        self._set_decayBoostedvalues()
 
     @staticmethod
     def beta_from_gamma(gamma):
@@ -61,32 +60,16 @@ class ParticleBoosted(ParticleDT):
             self._p = 0
             self._gamma=1
             self._beta=0
-            self._T = self._set_T()
+            self._T = 0
 
 
     def _set_decayAnglesCM(self):
         angle = 2*math.pi * random.random()
-        anglesCM = [angle,-angle]
-        self._decayAnglesCM = anglesCM
+        self._decayAnglesCM = [angle,angle+math.pi]
 
-    def _set_decayEnergies(self):
-        self.decayEnergies=CMcalc.E(self.mass,ParticleDT.getmass(self.decay[0]),ParticleDT.getmass(self.decay[1]))
-
-    def _set_decayPxy(self):
-        self.decayPxy=LABcalc.pxy(self.mass,ParticleDT.getmass(self.decay[0]),ParticleDT.getmass(self.decay[1]),self._decayAnglesCM[0] ,self.gamma)
-
-    def _set_decayP(self):
-        self.decayP=LABcalc.p(self.mass,ParticleDT.getmass(self.decay[0]),ParticleDT.getmass(self.decay[1]),self._decayAnglesCM[0] ,self.gamma)
-
-    def _set_decayThetaLAB(self):
-        self.decayThetaLAB=LABcalc.boostedTheta(self.mass,ParticleDT.getmass(self.decay[0]),ParticleDT.getmass(self.decay[1]),self._decayAnglesCM[0] ,self.gamma)
-
-    def _set_decayvalues(self):
+    def _set_decayBoostedvalues(self):
         self._set_decayAnglesCM()
-        self._set_decayEnergies()
-        self._set_decayPxy()
-        self._set_decayP()
-        self._set_decayThetaLAB()
+        self._decayvalues = LABcalc(self._mass,self._gamma,self.decay,self._decayAnglesCM,self._theta).values
 
     @property
     def p(self):
