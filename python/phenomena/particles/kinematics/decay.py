@@ -1,7 +1,8 @@
 from __future__ import division
 import math, random
 
-from phenomena.particles.particle import Particle, ParticleDT
+from phenomena.particles.particle import ParticleDT
+from phenomena.particles.kinematics.parameters import boostParams
 
 class CMcalc(object):
     @staticmethod
@@ -27,9 +28,6 @@ class CMcalc(object):
                 }]
 
 class LABcalc(object):
-    @staticmethod
-    def beta_from_gamma(gamma):
-        return math.sqrt(1-1/math.pow(gamma,2))
 
     def __init__(self,m0,gamma,decay,angleCM,parentTheta):
         self._decay = decay
@@ -64,7 +62,7 @@ class LABcalc(object):
         return self._values
 
     def _set_pxy2(self,m0,m1,m2,gamma,angleCM):
-        beta = LABcalc.beta_from_gamma(gamma)
+        beta = boostParams.beta_from_gamma(gamma)
         CMpxy = CMcalc.pxy(m0,m1,m2,angleCM)
         CME = CMcalc.E(m0,m1,m2)
         return [

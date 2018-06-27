@@ -7,10 +7,10 @@ $T =(\gamma-1)m_oc^2 $
 $\gamma=\frac{E}{E_R}=\frac{E [GeV]}{m_o [GeV/c^2]}$
 $\beta= \sqrt{1-(\frac{m_0}{E})^2}$
 $p=\gamma m_ov=\gamma m_o \beta c = \beta\frac{E}{c}$
-$\beta = \frac{1}{\sqrt{1+(\frac{m}{p})^2}}$
+$\beta = \frac{1}{\sqrt{1+(\frac{m}{p})^2}}$˚
 $\gamma = \sqrt{1+(\frac{p}{m})^2}$
 $E^2 = (pc)^2 + (m_oc^2)^2$
-
+˚
 $\tau = \gamma \tau_0$
 
 
