@@ -203,7 +203,6 @@ class ParticleDT(Particle):
 
     def _set_lifetime(self):
         if math.isnan(pythia.ctau(self._name)) or math.isinf(pythia.ctau(self._name)):
-        #if pythia.ctau(self._name) != float("inf") or not math.isnan(pythia.ctau(self._name)):
             self._lifetime = ParticleDT.STABLE
         else:
             self._lifetime = pythia.ctau(self._name)/ParticleDT.C
