@@ -6,13 +6,24 @@ HOME = expanduser("~")
 import random
 import math
 import json
+import textwrap
 from operator import itemgetter
 import time, threading
 
-#ParticleDataTool gives us the parameters and decay channels
-from particletools.tables import PYTHIAParticleData, SibyllParticleTable, print_decay_channels, print_stable
-pythia = PYTHIAParticleData()
-Sibyll = SibyllParticleTable()
+#ParticleDataTool gives us the decay channels
+from ParticleDataTool import ParticleDataTool as pdt
+pythia = pdt.PYTHIAParticleData(file_path='ParticleData.ppl', use_cache=True)
+
+#PYPDT gives us info about mass, charge, lifetime
+import pypdt
+tbl = pypdt.ParticleDataTable()
+part_dict = {}
+for p in tbl:
+    part_dict[p.name]= p.id
+
+quarks={'d':1,'u':2,'s': 3, 'c':4 , 'b':5, 't':6 }
+aquarks={'d':-1,'u':-2,'s': -3, 'c':-4 , 'b':-5, 't':-6 }
+
 
 class Particle(object):
     __metaclass__ = abc.ABCMeta
@@ -106,14 +117,16 @@ class ParticleDT(Particle):
     JSON_PATH = join(HOME, '.phenomena/conf/part_extra_info.json')
     XTRA_INFO = json.load(open(JSON_PATH))
     CLASS_COUNTER = 0
-    C = 29979245800 #cm/(s) 2.99792458e10
 
     def __new__(cls, *args, **kw):
-        try:
-            pythia.pdg_id(args[0])
+        if args[0] in ['u','d','c','s','t','b']:
             return super(ParticleDT, cls).__new__(cls)
-        except Exception, ex:
-            raise Exception("Exception: {0}".format(ex.message))
+        else:
+            try:
+                part_dict[args[0]]
+                return super(ParticleDT, cls).__new__(cls)
+            except Exception, ex:
+                raise Exception("Exception: {0}".format(ex.message))
 
     def __init__(self, name, parent = NO_PARENT):
         self._set_name(name)  # Name of the particle pypdt convention
@@ -124,16 +137,15 @@ class ParticleDT(Particle):
         self._set_lifetime() # Lifetime of the particle, taken from pypdt
         self._set_decay_channels() #All the decay channels and BRs of the particle in format [(BR,[part1,..,partn]),...] from ParticleDataTool
         self._set_type() # Particle Type (quark, lepton, bosoon, meson, baryon) taken from json
-        self._set_composition() # Particle quark compsition in format [[q1,q2],[q3,q4],...] taken from json.
-        self._set_lifetime_ren() #Renormalization of the lifetime THIS SHOULD BE DONE AT THE NODES and brought back with callback
+        self._set_composition() # Particle quark compsition in format [[q1,q2],[q3,q4],...] taken from json. Check unicode vs string
+        self._set_lifetime_ren() #Renormalization of the lifetime
         self._set_decay() # Particle decay channel chosen
         self._set_time_to_decay()  # Particle time lived before decay, renormalized
         self._setParent(parent)
 
     @staticmethod
     def getmass(name):
-        #return tbl[part_dict[name]].mass
-        return pythia.mass(name)
+        return tbl[part_dict[name]].mass
 
     @property
     def parent(self):
@@ -141,6 +153,17 @@ class ParticleDT(Particle):
 
     def _setParent(self, parent):
         self._parent = parent
+
+    @staticmethod
+    def apdgid(partid):
+        partid = str(partid)
+        if pypdt.get(partid) != None:
+            return pypdt.get(partid)
+        else:
+            if partid[0] == '-':
+                return pypdt.get(partid[1:])
+            else:
+                return ValueError("Id not found")
 
     @staticmethod
     def magnitude(x):
@@ -175,46 +198,38 @@ class ParticleDT(Particle):
         return self._pdgid
 
     def _set_pdgid(self, name):
-        self._pdgid = pythia.pdg_id(name)
-        #if name in list(aquarks.keys()):
-        #    self._pdgid = aquarks[name]
-        #else:
-        #    self._pdgid = part_dict[name]
+        if name in list(aquarks.keys()):
+            self._pdgid = aquarks[name]
+        else:
+            self._pdgid = part_dict[name]
 
     @property
     def mass(self):
         return self._mass
 
     def _set_mass(self):
-        self._mass = pythia.mass(self._name)
-        #self._mass= tbl[self._pdgid].mass
+        self._mass= tbl[self._pdgid].mass
 
     @property
     def charge(self):
         return self._charge
 
     def _set_charge(self):
-        self._charge = pythia.charge(self._name)
-        #self._charge= tbl[self._pdgid].charge
+        self._charge= tbl[self._pdgid].charge
 
     @property
     def lifetime(self):
         return self._lifetime
 
     def _set_lifetime(self):
-        if math.isnan(pythia.ctau(self._name)) or math.isinf(pythia.ctau(self._name)):
-        #if pythia.ctau(self._name) != float("inf") or not math.isnan(pythia.ctau(self._name)):
-            self._lifetime = ParticleDT.STABLE
-        else:
-            self._lifetime = pythia.ctau(self._name)/ParticleDT.C
-        #self._lifetime= tbl[self._pdgid].lifetime
+        self._lifetime= tbl[self._pdgid].lifetime
 
     @property
     def lifetime_ren(self):
         return self._lifetime_ren
 
     def _set_lifetime_ren(self):
-        if self._lifetime != ParticleDT.STABLE :
+        if self._lifetime != None :
             self._lifetime_ren= ParticleDT.renormalize_time(ParticleDT.magnitude(self._lifetime))
 
     @property
@@ -223,13 +238,13 @@ class ParticleDT(Particle):
 
     def _set_decay_channels(self):
         try:
-            self._decay_channels = pythia.decay_channels(self._name)
+            self._decay_channels = pythia.decay_channels(self._pdgid)
         except:
             self._decay_channels = []
 
     @property
     def type(self):
-        return self._type.encode('utf-8')
+        return self._type
 
     def _set_type(self):
         self._type= ParticleDT.XTRA_INFO[str(self._pdgid)]['type']
@@ -239,6 +254,10 @@ class ParticleDT(Particle):
         return self._composition
 
     def _set_composition(self):
+        #    for index, item in enumerate(particle_extra_info[str(self._pdgid)]['composition']):
+        #        self._composition.append([])
+        #        for quark in item:
+        #            self._composition[index].append(quark.encode('utf-8'))
         self._composition =[]
         if ParticleDT.XTRA_INFO[str(self._pdgid)]['composition'] != []:
             for quark in ParticleDT.XTRA_INFO[str(self._pdgid)]['composition'][0]: #only consider first superposition of quarks
@@ -253,7 +272,10 @@ class ParticleDT(Particle):
                 choice = self._weighted_choice(self._build_weights()[0],self._build_weights()[1])
                 channel = self._decay_channels[choice][1]
                 for part in channel:
-                    list_decay.append(pythia.name(part))  # this just shows parti
+                    if part in quarks.values():
+                        list_decay.append(quarks.keys()[quarks.values().index(part)])
+                    else:
+                        list_decay.append(ParticleDT.apdgid(part).name)  # this just shows parti
             finally:
                 self.decay = list_decay
         else:
@@ -264,9 +286,10 @@ class ParticleDT(Particle):
         return self._time_to_decay
 
     def _set_time_to_decay(self): #this is just a proof of concept. need to be improved
-        if self._lifetime != ParticleDT.STABLE :
+        if self._lifetime != None :
             self._time_to_decay = self._next_decay()
         else:
+            #self._timetodecay = 'stable'  # mixing strings with floats ???
             self._time_to_decay = ParticleDT.STABLE
 
     def _build_weights(self):
@@ -293,6 +316,10 @@ class ParticleDT(Particle):
         if self._lifetime != None:
             return random.expovariate(1/self._lifetime_ren)
 
+    #Callback  the timer trigger
+    def decay_callback(self):
+        print 'Decays to: %s in %s' % (self.decay, self._time_to_decay)
+
     #Timer trigger method
     def start(self, callback):
         if self._time_to_decay != ParticleDT.STABLE:
@@ -310,11 +337,36 @@ class ParticleDT(Particle):
                 if item[0] != 0.0:            # do not use channels with prob = 0.0
                     part_names =[]
                     for part in item[1]:
-                        part_names.append(pythia.name(part))
+                        part_names.append(ParticleDT.apdgid(part).name)     # use apdgid to process particles that are their own antiparticle
                     dc_names.append(tuple([item[0], part_names]))
             return sorted(dc_names,key=itemgetter(0), reverse=True)
         else:
             return dc_names
+
+    def get_decay_tree_all(self, leaf = 1):
+        wrapper1 = textwrap.TextWrapper(initial_indent='-'*leaf, width=70)
+        wrapper2 = textwrap.TextWrapper(initial_indent='-'*(leaf+1), width=70)
+        channel_names = self.get_channel_names()
+        if self._decay_channels !=[]:
+            for index, channel in enumerate(channel_names):
+                print wrapper1.fill('Channel {} : {}'.format(index, channel[0]))
+                for part in channel[1]:
+                    print wrapper2.fill(part)
+                    ParticleDT(part).get_decay_tree_all(leaf+1)
+        else:
+            print wrapper2.fill(ParticleDT.STABLE)
+
+    def get_decay_tree_random(self, leaf=1):
+        wrapper = textwrap.TextWrapper(initial_indent='-'*leaf, width=70)
+        channel_names = self.get_channel_names()
+        if self._decay_channels !=[]:
+            choice = self._weighted_choice(self._build_weights()[0],self._build_weights()[1])
+            channel = channel_names[choice][1]
+            for part in channel:
+                print wrapper.fill(part)
+                ParticleDT(part).get_decay_tree_random(leaf+1)
+        else:
+            print wrapper.fill(ParticleDT.STABLE)
 
     def toDictionary(self):
         return {"name": self._name,
@@ -325,50 +377,16 @@ class ParticleDT(Particle):
                 "decay_time": self._time_to_decay,
                 "composition": self._composition}
 
-    def printDecayChannels(self):
-        print_decay_channels(pythia.pdg_id(self._name))
 
-
-    @staticmethod
-    def get_list_all_particles():
-        particles = []
-        for pid, pd in pythia.iteritems():
-            if '~' not in pd.name: #except intermediate species
-                particles.append((pid, pd))
-        def cmp(a, b):
-            ctau = lambda x: 0 if math.isnan(x[1].ctau) else x[1].ctau
-            cta = ctau(a)
-            ctb = ctau(b)
-            if cta == ctb:
-                return 0
-            if cta < ctb:
-                return -1
-            return 1
-        #particles.sort(cmp)
-
-        print len(particles)
-        print('{:18s} {:>10} {:>10} {:>10} {:>6}'.format("name", "PDG ID", "mass[GeV]",
-                                             "ctau[cm]", "charge"))
-
-        for pid, pd in particles:
-            print('{name:18} {pid:10} {mass:10.3g} {ctau:10.3e} {charge:6.2g}'
-                  .format(name=pd.name, pid=pid, mass=pd.mass,
-                          ctau=pd.ctau, charge=pd.charge))
-
-    @staticmethod
-    def get_list_stable_particles(tau=1e-8):
-        print_stable(tau, title=('Particles with known finite lifetimes longer than ({0})').format(tau))
-
-    @staticmethod
-    def get_list_baryons():
-        return Sibyll.list_baryons()
-
-    @staticmethod
-    def get_list_mesons():
-        return Sibyll.list_mesons()
 
 
 if __name__ == '__main__':
+    #particle = ParticleDT("pi-")
+    #print particle.name
+    #print particle.charge
+    #new_particles = particle.decay
+    #for particle in new_particles:
+    #    print particle.name
     a = ParticleDT("pi-")
     a.start()
     import time
