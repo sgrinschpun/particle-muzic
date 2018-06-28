@@ -344,14 +344,14 @@ class ParticleDT(Particle):
         part_dict_ord = collections.OrderedDict(sorted(part_dict.items()))
         #print sorted(part_dict)
         print json.dumps(part_dict_ord, indent=1)
-        print len(particles)
-        print('{:18s} {:>10} {:>10} {:>10} {:>6}'.format("name", "PDG ID", "mass[GeV]",
-                                             "ctau[cm]", "charge"))
+        #print len(particles)
+        #print('{:18s} {:>10} {:>10} {:>10} {:>6}'.format("name", "PDG ID", "mass[GeV]",
+        #                                     "ctau[cm]", "charge"))
 
-        for pid, pd in particles:
-            print('{name:18} {pid:10} {mass:10.3g} {ctau:10.3e} {charge:6.2g}'
-                  .format(name=pd.name, pid=pid, mass=pd.mass,
-                          ctau=pd.ctau, charge=pd.charge))
+        #for pid, pd in particles:
+        #    print('{name:18} {pid:10} {mass:10.3g} {ctau:10.3e} {charge:6.2g}'
+        #           .format(name=pd.name, pid=pid, mass=pd.mass,
+        #                  ctau=pd.ctau, charge=pd.charge))
 
 
 
