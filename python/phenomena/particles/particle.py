@@ -6,6 +6,7 @@ HOME = expanduser("~")
 import random
 import math
 import json
+import collections
 from operator import itemgetter
 import time, threading
 
@@ -129,11 +130,6 @@ class ParticleDT(Particle):
         self._set_decay() # Particle decay channel chosen
         self._set_time_to_decay()  # Particle time lived before decay, renormalized
         self._setParent(parent)
-
-    @staticmethod
-    def getmass(name):
-        #return tbl[part_dict[name]].mass
-        return pythia.mass(name)
 
     @property
     def parent(self):
@@ -327,24 +323,27 @@ class ParticleDT(Particle):
     def printDecayChannels(self):
         print_decay_channels(pythia.pdg_id(self._name))
 
+    @staticmethod
+    def getmass(name):
+        #return tbl[part_dict[name]].mass
+        return pythia.mass(name)
 
     @staticmethod
     def get_list_all_particles():
         particles = []
+        part_dict = {}
         for pid, pd in pythia.iteritems():
-            if '~' not in pd.name: #except intermediate species
+            if '~' in pd.name: #except intermediate species
                 particles.append((pid, pd))
-        def cmp(a, b):
-            ctau = lambda x: 0 if math.isnan(x[1].ctau) else x[1].ctau
-            cta = ctau(a)
-            ctb = ctau(b)
-            if cta == ctb:
-                return 0
-            if cta < ctb:
-                return -1
-            return 1
-        #particles.sort(cmp)
-
+                part_dict[pd.name] = {
+                    'pdg_id':pid,
+                    'mass':pd.mass,
+                    'ctau':pd.ctau,
+                    'charge':pd.charge
+                }
+        part_dict_ord = collections.OrderedDict(sorted(part_dict.items()))
+        #print sorted(part_dict)
+        print json.dumps(part_dict_ord, indent=1)
         print len(particles)
         print('{:18s} {:>10} {:>10} {:>10} {:>6}'.format("name", "PDG ID", "mass[GeV]",
                                              "ctau[cm]", "charge"))
@@ -353,6 +352,8 @@ class ParticleDT(Particle):
             print('{name:18} {pid:10} {mass:10.3g} {ctau:10.3e} {charge:6.2g}'
                   .format(name=pd.name, pid=pid, mass=pd.mass,
                           ctau=pd.ctau, charge=pd.charge))
+
+
 
     @staticmethod
     def get_list_stable_particles(tau=1e-8):
