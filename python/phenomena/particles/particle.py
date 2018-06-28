@@ -22,6 +22,7 @@ class Particle(object):
     def parent(self):
         pass
 
+    #pdg attributes
     @abc.abstractproperty
     def name(self):
         pass
@@ -46,13 +47,26 @@ class Particle(object):
     def type(self):
         pass
 
+    #boost attributes (minimum, i.e, interesting for visualization)
+    @abc.abstractproperty
+    def p(self):
+        pass
+
+    @abc.abstractproperty
+    def theta(self):
+        pass
+
+    @abc.abstractproperty
+    def beta(self):
+        pass
+
     @abc.abstractmethod
     def toDictionary(self):
         pass
 
 class BasicParticle(Particle):
 
-    def __init__(self, parent, id, name, type, mass, charge, composition, decay_time):
+    def __init__(self, parent, id, name, type, mass, charge, composition, decay_time, p, theta, beta):
         self._parent = parent
         self._id = id
         self._name = name
@@ -61,6 +75,9 @@ class BasicParticle(Particle):
         self._composition = composition
         self._charge = charge
         self._decay_time = decay_time
+        self._p = p
+        self._theta = theta
+        self._theta = beta
 
     @property
     def name(self):
@@ -90,15 +107,20 @@ class BasicParticle(Particle):
     def type(self):
         return self._type
 
+    @property
+    def p(self):
+        return self._p
+
+    @property
+    def theta(self):
+        return self._theta
+
+    @property
+    def beta(self):
+        return self._beta
+
     def toDictionary(self):
-        return {"name": self._name,
-                "parent": self._parent,
-                "id": self._id,
-                "type": self._type,
-                "mass": self._mass,
-                "charge": self._charge,
-                "decay_time": self._decay_time,
-                "composition": self._composition}
+        return toDictionary(self)
 
 NO_PARENT = -1
 
@@ -224,10 +246,10 @@ class ParticleDT(Particle):
 
     @property
     def type(self):
-        return self._type.encode('utf-8')
+        return self._type
 
     def _set_type(self):
-        self._type= ParticleDT.XTRA_INFO[str(self._pdgid)]['type']
+        self._type= ParticleDT.XTRA_INFO[str(self._pdgid)]['type'].encode('utf-8')
 
     @property
     def composition(self):
@@ -312,13 +334,19 @@ class ParticleDT(Particle):
             return dc_names
 
     def toDictionary(self):
-        return {"name": self._name,
-                "id": self._id,
-                "type": self._type,
-                "mass": self._mass,
-                "charge": self._charge,
-                "decay_time": self._time_to_decay,
-                "composition": self._composition}
+        return toDictionary(self)
+
+    @property
+    def p(self):
+        return 0
+
+    @property
+    def theta(self):
+        return 0
+
+    @property
+    def beta(self):
+        return 0
 
     def printDecayChannels(self):
         print_decay_channels(pythia.pdg_id(self._name))
@@ -366,6 +394,19 @@ class ParticleDT(Particle):
     @staticmethod
     def get_list_mesons():
         return Sibyll.list_mesons()
+
+
+def toDictionary(particle):
+    return {"name": particle.name,
+            "id": particle.id,
+            "type": particle.type,
+            "mass": particle.mass,
+            "charge": particle.charge,
+            "decay_time": particle.decay_time,
+            "composition": particle.composition,
+            "p": particle.p,
+            "theta": particle.theta,
+            "beta": particle.beta}
 
 
 if __name__ == '__main__':

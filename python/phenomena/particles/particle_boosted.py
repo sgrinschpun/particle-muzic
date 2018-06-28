@@ -1,7 +1,7 @@
 from __future__ import division
 import math, random
 
-from particle import Particle, ParticleDT
+from particle import Particle, ParticleDT, toDictionary
 
 from phenomena.particles.kinematics.decay import LABcalc
 from phenomena.particles.kinematics.parameters import boostParams
@@ -13,8 +13,11 @@ class ParticleBoosted(ParticleDT):
         super(ParticleBoosted, self).__init__(name) #inherit properties from ParticleDT
         self._theta = theta #the angle of this instance measured
         self._decayAnglesCM = self._set_decayAnglesCM() #the angle of the decay particles
-
+        #calculate and assign boosted parameters
         self._setBoostedParameters(kwargs)
+
+        # increase lifetime by gamma factor
+        self._lifetime *= self._gamma
 
 
     def _setBoostedParameters(self,kwargs):
@@ -57,6 +60,5 @@ class ParticleBoosted(ParticleDT):
     def T(self):
         return self._T
 
-    @ParticleDT.lifetime.getter
-    def lifetime(self):
-        return self._gamma*self._lifetime
+    def toDictionary(self):
+        return toDictionary(self)
