@@ -10,6 +10,7 @@ import abc
 from threading import Timer, Lock
 
 from particle import Particle, ParticleDT
+from particle_boosted import ParticleBoosted
 from phenomena.nodes import get_save_node, ConfigurableNode
 
 
@@ -20,7 +21,7 @@ class ParticleDecayTimer:
         self._particle.start(self._particleDecay)
 
     def _particleDecay(self):
-        new_particles = self._particle.decay
+        new_particles = self._particle.decayvalues   #changed
         self._decayCallback(self._particle, new_particles)
 
     def getParticle(self):
@@ -116,9 +117,13 @@ class ParticleAccumulatorNode(ParticleActionNodeChain):
             print "particle: {0}".format(particle.name),
             print "Will transform in: ",
             for new_particle in new_particles:
-                print "{0} ".format(ParticleDT(new_particle)),
-                tr_new_particles.append(ParticleDT(new_particle, parent = particle.id))
-            print " New particles: ", new_particles
+                name = new_particle['name']
+                theta = new_particle['theta']
+                p = new_particle['p']
+                #print "{0} ".format(ParticleBoosted(name, parent = particle.id, theta = theta, p = p)),
+                tr_new_particles.append(ParticleBoosted(name, parent = particle.id, theta = theta, p = p))
+            print " New particles: "
+            for new_particle in new_particles: print new_particle['name'], new_particle['p'], new_particle['theta']
             self._node.getNextNode(self).transformParticle(particle, tr_new_particles)
         finally:
             self._transform_lock.release()
@@ -169,4 +174,4 @@ class ParticleEntryNode(ParticleActionNodeEnd):
 
 if __name__ == '__main__':
     a = ParticleAccumulatorNode()
-    a.transformParticle(ParticleDT("e+"), [])
+    a.transformParticle(ParticleDT("mu+"), [])

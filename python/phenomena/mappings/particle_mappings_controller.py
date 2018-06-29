@@ -9,7 +9,11 @@ class MappingsController:
                                "mass": MirrorMapping(),
                                "decay_time": MirrorMapping(),
                                "composition": MirrorMapping(),
-                               "type": MirrorMapping()}
+                               "type": MirrorMapping(),
+                               "p": MirrorMapping(),
+                               "theta": MirrorMapping(),
+                               "beta": MirrorMapping()
+                               }
 
     def translateParticle(self, particle):
         assert issubclass(type(particle), Particle)

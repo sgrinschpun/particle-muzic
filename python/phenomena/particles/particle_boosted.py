@@ -6,11 +6,13 @@ from particle import Particle, ParticleDT, toDictionary
 from phenomena.particles.kinematics.decay import LABcalc
 from phenomena.particles.kinematics.parameters import boostParams
 
+
+NO_PARENT = -1
 class ParticleBoosted(ParticleDT):
     c= 299792458 #m/s
 
-    def __init__(self, name, theta=0, **kwargs): #initialize either with momentum (p) or energy (E)
-        super(ParticleBoosted, self).__init__(name) #inherit properties from ParticleDT
+    def __init__(self, name, parent = NO_PARENT, theta=0, **kwargs): #initialize either with momentum (p) or energy (E)
+        super(ParticleBoosted, self).__init__(name,parent) #inherit properties from ParticleDT
         self._theta = theta #the angle of this instance measured
         self._decayAnglesCM = self._set_decayAnglesCM() #the angle of the decay particles
         #calculate and assign boosted parameters
@@ -38,7 +40,7 @@ class ParticleBoosted(ParticleDT):
 
     def _set_decayBoostedvalues(self):
         self._set_decayAnglesCM()
-        self._decayvalues = LABcalc(self._mass,self._gamma,self.decay,self._decayAnglesCM,self._theta).values
+        self.decayvalues = LABcalc(self._mass,self._gamma,self.decay,self._decayAnglesCM,self._theta).values
 
     @property
     def p(self):

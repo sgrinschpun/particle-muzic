@@ -77,11 +77,15 @@ class BasicParticle(Particle):
         self._decay_time = decay_time
         self._p = p
         self._theta = theta
-        self._theta = beta
+        self._beta = beta
 
     @property
     def name(self):
         return self._name
+
+    @property
+    def id(self):
+        return self._id
 
     @property
     def charge(self):

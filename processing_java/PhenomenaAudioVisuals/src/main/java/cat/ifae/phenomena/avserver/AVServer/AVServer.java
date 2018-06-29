@@ -14,8 +14,8 @@ public class AVServer extends PApplet {
 	}
 
 	public void settings() {
-		size(1920, 1200, P3D);
-		//fullScreen(P3D);
+		//size(1920, 1200, P3D);
+		fullScreen(P3D);
 	}
 
 	public void setup() {
