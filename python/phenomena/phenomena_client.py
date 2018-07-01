@@ -12,9 +12,9 @@ class Phenomena:
         Phenomena._command_id += 1
         return Phenomena._command_id
 
-    def addParticle(self, particle, theta=0, **kwargs):
+    def addParticle(self, particle, **kwargs):
         message = IncomingMessage.fromData(command_id=Phenomena.getCommandId(), command_name="ADD", module_path="node",
-                                           params={'particle_name': particle, 'theta': theta,'p':kwargs.get('p',None),      'E':kwargs.get('E',None)})
+                                           params={'particle_name': particle, 'theta': kwargs.get('theta',0),'p':kwargs.get('p',None),'E':kwargs.get('E',None)})
         received_message = self._sendMessage(message)
         return received_message
 

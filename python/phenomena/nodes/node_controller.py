@@ -29,11 +29,9 @@ class NodeController(ExecutableNode):
 
     def _addParticle(self, **kwargs):
         particle_str = kwargs['particle_name']
-        theta = kwargs['theta']
-        p = kwargs['p']
-        E = kwargs['E']
         print "THIS: ", particle_str, type(particle_str)
-        particle = ParticleBoosted(particle_str,theta,p)
+        particle = ParticleBoosted(particle_str,**kwargs)
+        print particle.theta
         self._root_node.addParticle(particle)
 
     def findModule(self, module_path):

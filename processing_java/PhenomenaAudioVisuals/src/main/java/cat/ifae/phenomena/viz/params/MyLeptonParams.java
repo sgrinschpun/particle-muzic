@@ -39,9 +39,9 @@ public class MyLeptonParams extends MyFamilyParams{
         leptonParams.put("nu_e", new Lepton(0, 1, 1, 0));
         leptonParams.put("nu_mu", new Lepton(0, 2, 1, 0));
         leptonParams.put("nu_tau", new Lepton(0, 3, 1, 0));
-        leptonParams.put("nubar_e", new Lepton(1, 1, 1, 0));
-        leptonParams.put("nubar_mu", new Lepton(1, 2, 1, 0));
-        leptonParams.put("nubar_tau", new Lepton(1, 3, 1, 0));
+        leptonParams.put("nu_ebar", new Lepton(1, 1, 1, 0));
+        leptonParams.put("nu_mubar", new Lepton(1, 2, 1, 0));
+        leptonParams.put("nu_taubar", new Lepton(1, 3, 1, 0));
 
     }
 

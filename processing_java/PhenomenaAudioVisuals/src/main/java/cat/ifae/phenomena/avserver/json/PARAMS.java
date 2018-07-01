@@ -9,6 +9,9 @@ public class PARAMS {
 	private float decay_time;
 	private String[] composition;
 	private String type;
+	private float p;
+	private float beta;
+	private float theta;
 
 	public int getId() {
 		return id;
@@ -74,10 +77,34 @@ public class PARAMS {
 		return parent;
 	}
 
+	public void setp(int p) {
+		this.p = p;
+	}
+
+	public float getp() {
+		return p;
+	}
+
+	public void setBeta(int beta) {
+		this.beta = beta;
+	}
+
+	public float getBeta() {
+		return beta;
+	}
+
+	public void setTheta(int theta) {
+		this.theta = theta;
+	}
+
+	public float getTheta() {
+		return theta;
+	}
+
 	@Override
 	public String toString() {
 		return "PhenomenaCMD [type = " + type + " parent = "+ parent + " mass = " + mass + ", id = " + id + ", decayTime = " + decay_time + ", charge = " + charge
-				+ ", name = " + name + ", composition = " + composition + "]";
+				+ ", name = " + name + ", composition = " + composition + ", p = " + p + ", beta = " + beta + ", theta = " + theta + "]";
 	}
 
 	public boolean equals(PARAMS p) {

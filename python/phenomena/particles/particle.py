@@ -402,6 +402,7 @@ class ParticleDT(Particle):
 
 def toDictionary(particle):
     return {"name": particle.name,
+            "parent": particle.parent,
             "id": particle.id,
             "type": particle.type,
             "mass": particle.mass,

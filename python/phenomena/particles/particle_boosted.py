@@ -11,9 +11,12 @@ NO_PARENT = -1
 class ParticleBoosted(ParticleDT):
     c= 299792458 #m/s
 
-    def __init__(self, name, parent = NO_PARENT, theta=0, **kwargs): #initialize either with momentum (p) or energy (E)
-        super(ParticleBoosted, self).__init__(name,parent) #inherit properties from ParticleDT
-        self._theta = theta #the angle of this instance measured
+    def __init__(self, name, parent = NO_PARENT, **kwargs): #initialize either with momentum (p) or energy (E)
+        super(ParticleBoosted, self).__init__(name,parent)
+        print kwargs
+        print kwargs.get('theta',0)  #inherit properties from ParticleDT
+        self._theta = kwargs.get('theta',0)
+        print self._theta #the angle of this instance measured
         self._decayAnglesCM = self._set_decayAnglesCM() #the angle of the decay particles
         #calculate and assign boosted parameters
         self._setBoostedParameters(kwargs)
@@ -57,6 +60,10 @@ class ParticleBoosted(ParticleDT):
     @property
     def beta(self):
         return self._beta
+
+    @property
+    def theta(self):
+        return self._theta
 
     @property
     def T(self):

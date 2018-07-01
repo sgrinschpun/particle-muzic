@@ -17,7 +17,8 @@ public class JsonHandler {
 				"-parent: " + phenoCMD.getPARAMS().getParent(), "-name: " + phenoCMD.getPARAMS().getName(), 
 				"-type: " + phenoCMD.getPARAMS().getType(),  "-mass: " + phenoCMD.getPARAMS().getMass(),
 				"-charge: " + phenoCMD.getPARAMS().getCharge(), "-decayTime: " + phenoCMD.getPARAMS().getDecayTime(),
-				"-composition: " + phenoCMD.getPARAMS().getComposition().toString() };
+				"-composition: " + phenoCMD.getPARAMS().getComposition().toString(),  "-p: " + phenoCMD.getPARAMS().getp(),
+				"-beta: " + phenoCMD.getPARAMS().getBeta(), "-theta: " + phenoCMD.getPARAMS().getTheta()		};
 	}
 
 	public PhenomenaCMD parse(String clientString) {

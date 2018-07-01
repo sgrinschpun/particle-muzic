@@ -27,7 +27,7 @@ class boostParams(object):
         self._T = boostParams.T_from_gamma(self._m,self._gamma)
 
     def _build_from_E(self,E):
-        assert (E>self._m), "E needs to be > than mass"
+        #assert (E>self._m), "E needs to be > than mass"
         self._E = E
         self._gamma = boostParams.gamma_from_E(self._m,self._E)
         self._beta =  boostParams.beta_from_gamma(self._gamma)
