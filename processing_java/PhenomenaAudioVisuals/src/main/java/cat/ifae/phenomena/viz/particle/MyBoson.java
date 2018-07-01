@@ -15,8 +15,8 @@ import java.util.ArrayList;
 public class MyBoson extends MyParticleFamily{
 
 
-    public MyBoson(PApplet p, PVector location, MyParticleData particleData){
-        super(p, location, particleData);
+    public MyBoson(PApplet p, PVector location, PVector velocity, MyParticleData particleData){
+        super(p, location, velocity, particleData);
         this.myParams= new MyParams(p, particleData);
         addMyShapes();
     }

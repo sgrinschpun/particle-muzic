@@ -13,8 +13,8 @@ import processing.core.PVector;
 
 class MyQuark extends MyParticleFamily{
 
-    public MyQuark(PApplet p, PVector location, MyParticleData particleData){
-        super(p, location, particleData);
+    public MyQuark(PApplet p, PVector location, PVector velocity, MyParticleData particleData){
+        super(p, location, velocity, particleData);
 
         addMyShapes();
     }

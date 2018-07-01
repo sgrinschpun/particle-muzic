@@ -14,8 +14,7 @@ public
 class MyParticleFamily {
 
     PApplet p;
-    public float x;
-    public float y;
+
     public MyParticleData particleData;
     public MyParams myParams;
     public CurrentCicle currentCicle;
@@ -29,13 +28,16 @@ class MyParticleFamily {
 
     protected float topSpeed;
 
-    public MyParticleFamily(PApplet p, PVector location, MyParticleData particleData){
+    public MyParticleFamily(PApplet p, PVector location, PVector velocity, MyParticleData particleData){
         this.p = p;
 
         this.location = location.copy();
+        this.velocity = velocity.copy();
+
+
         this.acceleration = setAcceleration();
-        this.acceleration.mult(p.random(0.5f));
-        this.velocity = setVelocity();
+        //this.acceleration.mult(p.random(0.5f));
+
         this.topSpeed = 2f;
 
         this.particleData = particleData;
@@ -46,12 +48,12 @@ class MyParticleFamily {
     }
 
     protected PVector setAcceleration(){
-        return PVector.random2D(p);
+
+        return new PVector(0f,0f);
+        //return PVector.random2D(p);
     }
 
-    protected PVector setVelocity(){
-        return new PVector(0f,0f);
-    }
+
 
     protected void addMyShapes(){}
 

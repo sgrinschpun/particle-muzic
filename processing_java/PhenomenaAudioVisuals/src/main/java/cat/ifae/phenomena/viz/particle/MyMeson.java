@@ -14,8 +14,8 @@ import processing.core.PVector;
 
 class MyMeson extends MyParticleFamily{
 
-    public MyMeson(PApplet p, PVector location, MyParticleData particleData){
-        super(p, location, particleData);
+    public MyMeson(PApplet p, PVector location, PVector velocity, MyParticleData particleData){
+        super(p, location, velocity, particleData);
 
         addMyShapes();
     }

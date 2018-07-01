@@ -16,8 +16,8 @@ import java.util.ArrayList;
 public class MyBaryon extends MyParticleFamily{
 
 
-    public MyBaryon(PApplet p, PVector location, MyParticleData particleData){
-        super(p, location, particleData);
+    public MyBaryon(PApplet p, PVector location, PVector velocity, MyParticleData particleData){
+        super(p, location, velocity, particleData);
         addMyShapes();
     }
 

@@ -10,8 +10,8 @@ import processing.core.PVector;
 
 class MyLepton extends MyParticleFamily{
 
-    public MyLepton(PApplet p, PVector location, MyParticleData particleData){
-        super(p, location, particleData);
+    public MyLepton(PApplet p, PVector location, PVector velocity, MyParticleData particleData){
+        super(p, location, velocity, particleData);
         this.myParams= new MyParams(p, particleData);
         this.currentCicle = new CurrentCicle(p, myParams.lepton.getSpeed());
         addMyShapes();
