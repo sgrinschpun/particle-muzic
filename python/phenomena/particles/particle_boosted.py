@@ -3,7 +3,7 @@ import math, random
 
 from particle import Particle, ParticleDT, toDictionary
 
-from phenomena.particles.kinematics.decay import LABcalc
+from phenomena.particles.kinematics.decay.calculations import DecayCalc
 from phenomena.particles.kinematics.parameters import boostParams
 
 
@@ -41,7 +41,7 @@ class ParticleBoosted(ParticleDT):
 
     def _set_decayBoostedvalues(self):
         self._set_decayAnglesCM()
-        self.decayvalues = LABcalc(self._mass,self._gamma,self.decay,self._decayAnglesCM,self._theta).values
+        self.decayvalues = DecayCalc(self._mass,self._gamma,self._theta,self.decay,self._decayAnglesCM).values
 
     @property
     def p(self):

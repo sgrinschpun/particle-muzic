@@ -42,6 +42,7 @@ class MyParticleFamily {
 
         this.particleData = particleData;
 
+
         this.shapes = new ArrayList<MyShape>();
 
 

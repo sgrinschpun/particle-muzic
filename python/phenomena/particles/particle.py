@@ -365,7 +365,7 @@ class ParticleDT(Particle):
         particles = []
         part_dict = {}
         for pid, pd in pythia.iteritems():
-            if '~' in pd.name: #except intermediate species
+            if '~' not in pd.name: #except intermediate species
                 particles.append((pid, pd))
                 part_dict[pd.name] = {
                     'pdg_id':pid,
