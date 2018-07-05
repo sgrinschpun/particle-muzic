@@ -14,7 +14,6 @@ class ParticleBoosted(ParticleDT):
     def __init__(self, name, parent = NO_PARENT, **kwargs): #initialize either with momentum (p) or energy (E)
         super(ParticleBoosted, self).__init__(name,parent)#inherit properties from ParticleDT
         self._theta = kwargs.get('theta',0) #the angle of this instance
-        self._decayAnglesCM = self._set_decayAnglesCM() #the angle of the decay particles
 
         #calculate and assign boosted parameters
         self._setBoostedParameters(kwargs)
@@ -31,17 +30,9 @@ class ParticleBoosted(ParticleDT):
         self._beta = self._params.beta
         self._T = self._params.T
 
-        self._set_decayBoostedvalues() # sets values for decay particles
+        self.decayvalues = DecayCalc(self._mass,self._gamma,self._theta,self.decay).values # sets values for decay particles
 
-    def _set_decayAnglesCM(self):
-        #this should be imporved for nbody decays
-        angle = 2*math.pi * random.random()
-        #angle = math.radians(55) just to test
-        return [angle,angle+math.pi]
 
-    def _set_decayBoostedvalues(self):
-        self._set_decayAnglesCM()
-        self.decayvalues = DecayCalc(self._mass,self._gamma,self._theta,self.decay,self._decayAnglesCM).values
 
     @property
     def p(self):

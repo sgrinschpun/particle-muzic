@@ -1,5 +1,5 @@
 from __future__ import division
-import math
+import math, random
 
 from phenomena.particles.kinematics.parameters import boostParams
 
@@ -31,11 +31,11 @@ class CM2BodyCalc(nbody.CMCalc):
 
 class LAB2BodyCalc(nbody.LabCalc):
 
-    def __init__(self,decay,masses,angles,gamma):
+    def __init__(self,decay,masses,theta,gamma):
         self._decay = decay
         self._gamma = gamma
         self._masses = masses
-        self._anglesCM = angles
+        self._anglesCM = self._set_AnglesCM(theta)
 
         self._pxy = self._set_pxy(self._masses,self._anglesCM, self._gamma)
         self._p = self._set_p()
@@ -43,6 +43,14 @@ class LAB2BodyCalc(nbody.LabCalc):
 
         self._values = self._set_values()
 
+    def _set_AnglesCM(self, theta):
+        anglesCM = []  # list 0:parent particle angle, 1:first decay particle angle in CM, etc
+        anglesCM.append(theta)
+        angle = 2*math.pi * random.random()
+        angles = [angle,angle+math.pi]
+        for angle in angles:
+            anglesCM.append(angle)
+        return anglesCM
 
     def _set_pxy(self,masses,angles,gamma):
         beta = boostParams.beta_from_gamma(gamma)
