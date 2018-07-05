@@ -1,14 +1,12 @@
-package cat.ifae.phenomena.viz.shapes;
+package cat.ifae.phenomena.viz.quantumuniverse.shapes;
 
-import cat.ifae.phenomena.viz.cicle.CurrentCicle;
-import cat.ifae.phenomena.viz.params.MyFamilyParams;
+import cat.ifae.phenomena.viz.quantumuniverse.cicle.CurrentCicle;
+import cat.ifae.phenomena.viz.quantumuniverse.params.MyFamilyParams;
 
 import processing.core.PApplet;
-import processing.core.PVector;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-import static processing.core.PConstants.BLUR;
 import static processing.core.PConstants.CLOSE;
 import static processing.core.PConstants.TWO_PI;
 

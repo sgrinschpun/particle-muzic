@@ -1,8 +1,8 @@
-package cat.ifae.phenomena.viz.particle;
+package cat.ifae.phenomena.viz.quantumuniverse;
 
 
-import cat.ifae.phenomena.viz.data.MyParticleData;
-
+import cat.ifae.phenomena.viz.MyParticleData;
+import cat.ifae.phenomena.viz.quantumuniverse.particle.*;
 import processing.core.PApplet;
 import processing.core.PVector;
 
@@ -27,7 +27,6 @@ public class MyParticle {
 
         buildParticle();
     }
-
 
     public MyParticle(PApplet p, float theta, float beta, MyParticleData particleData) {
         this.p = p;
@@ -76,6 +75,7 @@ public class MyParticle {
 
     public PVector getLocation() {
         return particle.location;
+
     }
 
 }

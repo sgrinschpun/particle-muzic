@@ -1,4 +1,4 @@
-package cat.ifae.phenomena.viz.cicle;
+package cat.ifae.phenomena.viz.quantumuniverse.cicle;
 
 import processing.core.PApplet;
 

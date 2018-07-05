@@ -1,7 +1,6 @@
-package cat.ifae.phenomena.viz.params;
+package cat.ifae.phenomena.viz.quantumuniverse.params;
 
-import cat.ifae.phenomena.viz.colors.MyColors;
-import cat.ifae.phenomena.viz.data.MyParticleData;
+import cat.ifae.phenomena.viz.MyParticleData;
 import processing.core.PApplet;
 
 public class MyGluonParams extends MyFamilyParams{

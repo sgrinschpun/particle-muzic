@@ -1,11 +1,9 @@
-package cat.ifae.phenomena.viz.shapes;
+package cat.ifae.phenomena.viz.quantumuniverse.shapes;
 
-import cat.ifae.phenomena.viz.cicle.CurrentCicle;
-import cat.ifae.phenomena.viz.params.MyFamilyParams;
+import cat.ifae.phenomena.viz.quantumuniverse.params.*;
 
 import processing.core.PApplet;
 import processing.core.PVector;
-import java.util.Random;
 
 public class MyShape {
     PApplet p;

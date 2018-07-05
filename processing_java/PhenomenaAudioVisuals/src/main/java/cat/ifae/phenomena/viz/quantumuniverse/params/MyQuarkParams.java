@@ -1,6 +1,6 @@
-package cat.ifae.phenomena.viz.params;
+package cat.ifae.phenomena.viz.quantumuniverse.params;
 
-import cat.ifae.phenomena.viz.data.MyParticleData;
+import cat.ifae.phenomena.viz.MyParticleData;
 import processing.core.PApplet;
 
 
@@ -157,7 +157,7 @@ class Quark{
 
     @Override
     public String toString() {
-        return "cat.ifae.phenomena.viz.params.Quark{" +
+        return "cat.ifae.phenomena.viz.quantumuniverse.params.Quark{" +
                 "type='" + type + '\'' +
                 ", gen='" + gen + '\'' +
                 ", q3='" + Float.toString(gen) + '\'' +

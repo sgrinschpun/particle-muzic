@@ -1,6 +1,6 @@
-package cat.ifae.phenomena.viz.params;
+package cat.ifae.phenomena.viz.quantumuniverse.params;
 
-import cat.ifae.phenomena.viz.data.MyParticleData;
+import cat.ifae.phenomena.viz.MyParticleData;
 import processing.core.PApplet;
 
 import java.util.HashMap;
@@ -144,7 +144,7 @@ class Lepton{
 
     @Override
     public String toString() {
-        return "cat.ifae.phenomena.viz.params.Lepton{" +
+        return "cat.ifae.phenomena.viz.quantumuniverse.params.Lepton{" +
                 "type='" + type + '\'' +
                 ", gen='" + gen + '\'' +
                 '}';

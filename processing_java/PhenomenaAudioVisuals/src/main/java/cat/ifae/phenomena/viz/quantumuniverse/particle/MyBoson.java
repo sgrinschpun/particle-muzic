@@ -1,13 +1,11 @@
-package cat.ifae.phenomena.viz.particle;
+package cat.ifae.phenomena.viz.quantumuniverse.particle;
 
+import cat.ifae.phenomena.viz.MyParticleData;
+import cat.ifae.phenomena.viz.quantumuniverse.params.MyParams;
+import cat.ifae.phenomena.viz.quantumuniverse.shapes.MyShape;
+import cat.ifae.phenomena.viz.quantumuniverse.shapes.MyWaveDisc;
 
-import cat.ifae.phenomena.viz.params.MyParams;
-import cat.ifae.phenomena.viz.shapes.MyShape;
-import cat.ifae.phenomena.viz.data.MyParticleData;
-
-import cat.ifae.phenomena.viz.shapes.MyWaveDisc;
 import processing.core.PApplet;
-import beads.AudioContext;
 import processing.core.PVector;
 
 import java.util.ArrayList;

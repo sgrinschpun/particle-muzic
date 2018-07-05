@@ -1,15 +1,15 @@
 package cat.ifae.phenomena.avserver.visuals;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import cat.ifae.phenomena.avserver.AVServer.PhenoCallback;
 import cat.ifae.phenomena.avserver.json.PARAMS;
 import cat.ifae.phenomena.avserver.json.PhenomenaCMD;
-import cat.ifae.phenomena.viz.particle.MyParticle;
-import cat.ifae.phenomena.viz.data.MyParticleData;
+import cat.ifae.phenomena.viz.MyParticleData;
+import cat.ifae.phenomena.viz.quantumuniverse.MyParticle;
 import processing.core.PApplet;
 import processing.core.PVector;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class VisualManager implements PhenoCallback {
 	private Map<Integer, MyParticle> list = new HashMap<Integer, MyParticle>();

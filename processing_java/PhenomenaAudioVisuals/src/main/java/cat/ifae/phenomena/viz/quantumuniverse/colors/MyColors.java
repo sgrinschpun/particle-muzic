@@ -1,7 +1,6 @@
-package cat.ifae.phenomena.viz.colors;
+package cat.ifae.phenomena.viz.quantumuniverse.colors;
 
 import processing.core.PApplet;
-import static processing.core.PApplet.*;
 
 public class MyColors {
 

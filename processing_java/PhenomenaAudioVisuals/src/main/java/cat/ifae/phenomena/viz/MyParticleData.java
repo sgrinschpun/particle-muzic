@@ -1,4 +1,4 @@
-package cat.ifae.phenomena.viz.data;
+package cat.ifae.phenomena.viz;
 
 import java.util.HashMap;
 

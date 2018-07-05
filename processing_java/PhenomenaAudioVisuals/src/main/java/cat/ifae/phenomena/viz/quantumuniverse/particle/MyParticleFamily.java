@@ -1,17 +1,16 @@
-package cat.ifae.phenomena.viz.particle;
+package cat.ifae.phenomena.viz.quantumuniverse.particle;
 
-import cat.ifae.phenomena.viz.cicle.CurrentCicle;
-import cat.ifae.phenomena.viz.shapes.MyShape;
-import cat.ifae.phenomena.viz.data.MyParticleData;
-import cat.ifae.phenomena.viz.params.MyParams;
+import cat.ifae.phenomena.viz.MyParticleData;
+import cat.ifae.phenomena.viz.quantumuniverse.cicle.CurrentCicle;
+import cat.ifae.phenomena.viz.quantumuniverse.params.MyParams;
+import cat.ifae.phenomena.viz.quantumuniverse.shapes.MyShape;
 
 import processing.core.PApplet;
 import processing.core.PVector;
 
 import java.util.ArrayList;
 
-public
-class MyParticleFamily {
+public class MyParticleFamily {
 
     PApplet p;
 
@@ -22,7 +21,9 @@ class MyParticleFamily {
     protected int i;
     protected String q;
 
-    protected PVector location, acceleration, velocity;
+    public PVector location;
+    protected PVector acceleration;
+    protected PVector velocity;
 
     public ArrayList<MyShape> shapes;
 
