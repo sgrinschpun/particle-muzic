@@ -22,5 +22,5 @@ class LabCalc(object):
 
     @abc.abstractproperty
     def values(self):
-        """Returns list of dictonaries of child particles momentum and angle"""
+        """Returns list of dictonaries of child particles momentum, angle and energy"""
         pass

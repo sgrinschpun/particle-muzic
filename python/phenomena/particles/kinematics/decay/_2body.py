@@ -36,8 +36,7 @@ class LAB2BodyCalc(nbody.LabCalc):
         self._gamma = gamma
         self._masses = masses
         self._anglesCM = self._set_AnglesCM(theta)
-
-        self._pxy = self._set_pxy(self._masses,self._anglesCM, self._gamma)
+        self._pExyz = self._set_pExyz(self._masses,self._anglesCM, self._gamma)
         self._p = self._set_p()
         self._theta = self._set_boostedAngles()
 
@@ -52,28 +51,32 @@ class LAB2BodyCalc(nbody.LabCalc):
             anglesCM.append(angle)
         return anglesCM
 
-    def _set_pxy(self,masses,angles,gamma):
+    def _set_pExyz(self,masses,angles,gamma):
         beta = boostParams.beta_from_gamma(gamma)
         CMpxy = CM2BodyCalc.pxy(masses,angles)
         CME = CM2BodyCalc.E(masses)
         return [
             {
             'x':gamma*(CMpxy[0]['x']+ beta*CME[0]),
-            'y':CMpxy[0]['y']
+            'y':CMpxy[0]['y'],
+            'z':0,
+            'E':gamma*(beta*CMpxy[0]['x']+ CME[0])
             },
             {
             'x':gamma*(CMpxy[1]['x']+ beta*CME[1]),
-            'y':CMpxy[1]['y']
+            'y':CMpxy[1]['y'],
+            'z':0,
+            'E':gamma*(beta*CMpxy[1]['x']+ CME[1])
             }
         ]
 
     def _set_p(self):
-        return [math.sqrt(self._pxy[0]['x']**2+self._pxy[0]['y']**2),math.sqrt(self._pxy[1]['x']**2+self._pxy[1]['y']**2)]
+        return [math.sqrt(self._pExyz[0]['x']**2+self._pExyz[0]['y']**2),math.sqrt(self._pExyz[1]['x']**2+self._pExyz[1]['y']**2)]
 
     def _set_boostedAngles(self):
         if self._gamma != 1:
-            theta0 = self._pxy[0]['y']/self._pxy[0]['x']
-            theta1 = self._pxy[1]['y']/self._pxy[1]['x']
+            theta0 = self._pExyz[0]['y']/self._pExyz[0]['x']
+            theta1 = self._pExyz[1]['y']/self._pExyz[1]['x']
             theta = [math.atan(theta0),math.atan(theta1)]
         else:
             theta = self._anglesCM[1:]
@@ -85,10 +88,12 @@ class LAB2BodyCalc(nbody.LabCalc):
         return  [{
                     'name': self._decay[0],
                     'p': self._p[0],
-                    'theta':self._theta[0]},{
+                    'theta':self._theta[0],
+                    'E':self._pExyz[0]['E']      },{
                     'name': self._decay[1],
                     'p': self._p[1],
-                    'theta':self._theta[1]
+                    'theta':self._theta[1],
+                    'E':self._pExyz[1]['E']
                 }]
 
     @property
