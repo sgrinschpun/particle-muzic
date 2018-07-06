@@ -26,6 +26,10 @@ class CMCalc(object):
     __metaclass__ = abc.ABCMeta
 
     @abc.abstractmethod
+    def p3(masses):
+        """Returns one particle's momemntum for 3body decay"""
+
+    @abc.abstractmethod
     def E(masses):
         """Returns list of child particles energies"""
 

@@ -47,20 +47,20 @@ class C12M3BodyCalc(nbody.C12MCalc):
 
 class CM3BodyCalc(nbody.CMCalc):
 
-    def _p3(self,masses,dalitz):
-        p3 = ((dalitz[0]**2-(masses[1]+masses[2])**2)*(dalitz[0]**2-(masses[1]-masses[2])**2))**(1/2)
+    @staticmethod
+    def p3(masses,dalitz):
+        p3 = ((dalitz**2-(masses[1]+masses[2])**2)*(dalitz**2-(masses[1]-masses[2])**2))**(1/2)
         return p3
 
     @staticmethod
     def pExyz(masses,angles):
-        dalitz = []
-        dalitz[0] = C12M3BodyCalc.dalitz1(masses)
-        C12ME = C12M3BodyCalc.E(masses,dalitz[0])
+        dalitz = C12M3BodyCalc.dalitz1(masses)
+        C12ME = C12M3BodyCalc.E(masses,dalitz)
 #        dalitz[1] = C12M3BodyCalc._dalitz2(masses,C12ME)
         p3 = CM3BodyCalc._p3(masses,dalitz)
-        gamma = (1+p3**2/dalitz[0]**2)**(1/2)
+        gamma = (1+p3**2/dalitz**2)**(1/2)
         beta = boostParams.beta_from_gamma()
-        C12Mpxy = C12M3BodyCalc.pxy(masses,dalitz[0],angles)
+        C12Mpxy = C12M3BodyCalc.pxy(masses,dalitz,angles)
 
         return [
             {
