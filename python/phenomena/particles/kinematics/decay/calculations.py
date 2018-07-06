@@ -5,6 +5,7 @@ import abc
 from phenomena.particles.particle import ParticleDT
 from phenomena.particles.kinematics.decay._2body import LAB2BodyCalc
 from phenomena.particles.kinematics.decay._3body import LAB3BodyCalc
+from phenomena.particles.kinematics.decay._4body import LAB4BodyCalc
 
 class DecayCalc(object):
     """ Checks number of decay particles and assigns appropriate calculation.
@@ -31,8 +32,11 @@ class DecayCalc(object):
     def _setCalculation(self, decay, masses, theta, gamma):
         if len(decay) == 2:
             self._values = LAB2BodyCalc(decay,masses,theta,gamma).values
+        elif len(decay) == 3:
+            self._values = LAB3BodyCalc(decay,masses,theta,gamma).values
         else:
-            self._values = LAB3BodyCalc(decay,masses,theta,gamma).values  #change when 3body is implemented
+            self._values = LAB4BodyCalc(decay,masses,theta,gamma).values
+
 
     @property
     def values(self):
