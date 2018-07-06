@@ -5,6 +5,10 @@ class C12MCalc(object):
     __metaclass__ = abc.ABCMeta
 
     @abc.abstractmethod
+    def dalitz1(masses):
+        """Returns the randomized dalitz plot variable m12"""
+
+    @abc.abstractmethod
     def E(masses,dalitz):
         """Returns list of child particles energies"""
 
