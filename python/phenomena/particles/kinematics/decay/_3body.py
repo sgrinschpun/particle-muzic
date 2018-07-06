@@ -92,7 +92,7 @@ class LAB3BodyCalc(nbody.LabCalc):
         self._anglesCM = self._set_AnglesCM12(theta)
         self._pExyz = self._set_pExyz(self._masses, self._anglesCM, self._gamma)
         self._p = self._set_p()
-        self._theta = self._set_boostedAngles(angles) # Boost angles from CM RF to LAB RF
+        self._theta = self._set_boostedAngles(self._anglesCM) # Boost angles from CM RF to LAB RF
 
         self._values = self._set_values()
 
@@ -115,13 +115,13 @@ class LAB3BodyCalc(nbody.LabCalc):
         theta0 = CMpExy[0]['y']/CMpExy[0]['x']
         theta1 = CMpExy[1]['y']/CMpExy[1]['x']
         alpha = 2*math.pi * random.random()
-        angles[1:4] = [math.atan(theta0)+alpha,math.atan(theta1)+alpha,alpha]
+        self._anglesCM[1:4] = [math.atan(theta0)+alpha,math.atan(theta1)+alpha,alpha]
 
         # Update the momenta with the new angles
         p = [math.sqrt(CMpExy[0]['x']**2+CMpExy[0]['y']**2),math.sqrt(CMpExy[1]['x']**2+CMpExy[1]['y']**2),math.sqrt(CMpExy[2]['x']**2+CMpExy[2]['y']**2)]
         for i in range(1,4):
-            CMpExy[i-1]['x'] = p[i-1]*math.cos(angles[i])
-            CMpExy[i-1]['y'] = p[i-1]*math.sin(angles[i])
+            CMpExy[i-1]['x'] = p[i-1]*math.cos(self._anglesCM[i])
+            CMpExy[i-1]['y'] = p[i-1]*math.sin(self._anglesCM[i])
 
 
         return [
