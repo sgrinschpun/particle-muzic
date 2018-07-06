@@ -92,7 +92,7 @@ class LAB3BodyCalc(nbody.LabCalc):
         self._anglesCM = self._set_AnglesCM12(theta)
         self._pExyz = self._set_pExyz(self._masses, self._anglesCM, self._gamma)
         self._p = self._set_p()
-        self._theta = self._set_boostedAngles() # Boost angles from CM RF to LAB RF
+        self._theta = self._set_boostedAngles(angles) # Boost angles from CM RF to LAB RF
 
         self._values = self._set_values()
 
@@ -103,7 +103,7 @@ class LAB3BodyCalc(nbody.LabCalc):
         angle = 2*math.pi * random.random()
         angles = [angle,angle+math.pi]
         for angle in angles:
-            anglesCM.append(angle)
+            anglesCM.append(angles)
         return anglesCM
 
     def _set_pExyz(self,masses,angles,gamma):
@@ -148,16 +148,16 @@ class LAB3BodyCalc(nbody.LabCalc):
     def _set_p(self):
         return [math.sqrt(self._pExyz[0]['x']**2+self._pExyz[0]['y']**2),math.sqrt(self._pExyz[1]['x']**2+self._pExyz[1]['y']**2),math.sqrt(self._pExyz[2]['x']**2+self._pExyz[2]['y']**2)]
 
-    def _set_boostedAngles(self):
+    def _set_boostedAngles(self, angles):
         if self._gamma != 1:
             theta0 = self._pExyz[0]['y']/self._pExyz[0]['x']
             theta1 = self._pExyz[1]['y']/self._pExyz[1]['x']
             theta2 = self._pExyz[2]['y']/self._pExyz[2]['x']
             theta = [math.atan(theta0),math.atan(theta1),math.atan(theta2)]
         else:
-            theta = self._anglesCM[1:]
+            theta = angles[1:]
 
-        return [theta[0]+self._anglesCM[0],theta[1]+self._anglesCM[0]]
+        return [theta[0]+self._anglesCM[0],theta[1]+self._anglesCM[0],theta[2]+self_anglesCM[0]]
 
 
     def _set_values(self):
