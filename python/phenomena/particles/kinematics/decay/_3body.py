@@ -118,7 +118,7 @@ class LAB3BodyCalc(nbody.LabCalc):
         angles[1:4] = [math.atan(theta0)+alpha,math.atan(theta1)+alpha,alpha]
 
         # Update the momenta with the new angles
-        p = self._set_p()
+        p = [math.sqrt(CMpExy[0]['x']**2+CMpExy[0]['y']**2),math.sqrt(CMpExy[1]['x']**2+CMpExy[1]['y']**2),math.sqrt(CMpExy[2]['x']**2+CMpExy[2]['y']**2)]
         for i in range(1,4):
             CMpExy[i]['x'] = p[i]['x']*math.cos(angles[i])
             CMpExy[i]['y'] = p[i]['y']*math.sin(angles[i])
