@@ -12,7 +12,7 @@ from phenomena.particles.particle import ParticleDT
 
 
 class MyTest(unittest.TestCase):
-    def test(self, pi):
+    def test(self):
         self.pi = ParticleBoosted('pi+', theta=3, p=1)
         self.p = [self.pi.p]
         for moment in self.pi.decayvalues:
@@ -33,4 +33,4 @@ class MyTest(unittest.TestCase):
         self.assertEqual(round(sum(self.py[1:]), 5), round(self.py[0], 5))
         self.assertEqual(round(sum(self.E[1:]), 5), round(self.E[0], 5))
 
-unittest.main(pi1)
+unittest.main()
