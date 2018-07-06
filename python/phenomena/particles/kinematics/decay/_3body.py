@@ -8,7 +8,7 @@ import nbody
 class C12M3BodyCalc(nbody.C12MCalc):
     # Calculations for energies and momenta in the CM for particles 1 and 2 only (CM 1-2)
     @staticmethod
-    def dalitz1(masses):
+    def dalitz(masses):
         m12 = random.uniform(masses[1]+masses[2],masses[0]-masses[3])
         return m12
 
@@ -23,6 +23,7 @@ class C12M3BodyCalc(nbody.C12MCalc):
 #    def _dalitz2(self,masses, E):
 #        m23 = random.uniform((E[1]+E[2])**2-((E[1]**2-masses[2]**2)**(1/2)+(E[2]**2-masses[3]**2)**(1/2))**2,(E[1]+E[2])**2-((E[1]**2-masses[2]**2)**(1/2)-(E[2]**2-masses[3]**2)**(1/2))**2)
 #        return m23
+#  It's not needed since we use this degree of freedom to randomize the angle between p1 and p3
 
     @staticmethod
     def p(masses,m12):
@@ -44,16 +45,18 @@ class C12M3BodyCalc(nbody.C12MCalc):
 class CM3BodyCalc(nbody.CMCalc):
 
     @staticmethod
-    def p3(masses,dalitz):
-        p3 = ((dalitz**2-(masses[1]+masses[2])**2)*(dalitz**2-(masses[1]-masses[2])**2))**(1/2)
+    def p3(masses,m12):
+        num1 = masses[0]**2-(m12+masses[3])**2
+        num2 = masses[0]**2-(m12-masses[3])**2
+        p = (num1*num2)**(1/2)/(2*masses[0])
         return p3
 
     @staticmethod
     def pExyz(masses,angles):
-        dalitz = C12M3BodyCalc.dalitz1(masses)
-        C12ME = C12M3BodyCalc.E(masses,dalitz)
+        m12 = C12M3BodyCalc.dalitz(masses)
+        C12ME = C12M3BodyCalc.E(masses,m12)
 #        dalitz[1] = C12M3BodyCalc._dalitz2(masses,C12ME)
-        p3 = CM3BodyCalc.p3(masses,dalitz)
+        p3 = CM3BodyCalc.p3(masses,m12)
         gamma = (1+p3**2/dalitz**2)**(1/2)
         beta = boostParams.beta_from_gamma(gamma)
         C12Mpxy = C12M3BodyCalc.pxy(masses,dalitz,angles)
