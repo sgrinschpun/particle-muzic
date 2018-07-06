@@ -51,7 +51,7 @@ class CM3BodyCalc(nbody.CMCalc):
         return p3
 
     @staticmethod
-    def pExy(self,masses,angles):
+    def pExyz(self,masses,angles):
         dalitz = []
         dalitz[0] = C12M3BodyCalc.dalitz1(masses)
         C12ME = C12M3BodyCalc.E(masses,dalitz[0])
@@ -107,7 +107,7 @@ class LAB3BodyCalc(nbody.LabCalc):
 
     def _set_pExyz(self,masses,angles,gamma):
         beta = boostParams.beta_from_gamma(gamma)
-        CMpExy = CM3BodyCalc._pExyz(masses,angles)
+        CMpExy = CM3BodyCalc.pExyz(masses,angles)
 
         # Change the angles from the CM 1-2 to the new frame CM
         # Also add a random angle between the plane of the decay in CM and the speed of P
