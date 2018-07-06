@@ -54,7 +54,7 @@ class CM3BodyCalc(nbody.CMCalc):
     @staticmethod
     def pExyz(masses,angles):
         dalitz = []
-        dalitz[0] = C12M3BodyCalc._dalitz1(masses)
+        dalitz[0] = C12M3BodyCalc.dalitz1(masses)
         C12ME = C12M3BodyCalc.E(masses,dalitz[0])
 #        dalitz[1] = C12M3BodyCalc._dalitz2(masses,C12ME)
         p3 = CM3BodyCalc._p3(masses,dalitz)
