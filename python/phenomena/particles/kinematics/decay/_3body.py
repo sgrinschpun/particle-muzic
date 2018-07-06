@@ -103,7 +103,7 @@ class LAB3BodyCalc(nbody.LabCalc):
         angle = 2*math.pi * random.random()
         angles = [angle,angle+math.pi]
         for angle in angles:
-            anglesCM.append(angles)
+            anglesCM.append(angle)
         return anglesCM
 
     def _set_pExyz(self,masses,angles,gamma):
