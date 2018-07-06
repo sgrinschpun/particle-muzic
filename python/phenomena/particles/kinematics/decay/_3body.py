@@ -138,7 +138,7 @@ class LAB3BodyCalc(nbody.LabCalc):
             },
             {
             'x':gamma*(CMpExy[2]['x']+ beta*CMpExy[2]['E']),
-            'y':CMpExy[1]['y'],
+            'y':CMpExy[2]['y'],
             'z':0,
             'E':gamma*(beta*CMpExy[2]['x']+ CMpExy[2]['E'])
             }
