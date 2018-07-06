@@ -157,7 +157,7 @@ class LAB3BodyCalc(nbody.LabCalc):
         else:
             theta = angles[1:]
 
-        return [theta[0]+self._anglesCM[0],theta[1]+self._anglesCM[0],theta[2]+self_anglesCM[0]]
+        return [theta[0]+self._anglesCM[0],theta[1]+self._anglesCM[0],theta[2]+self._anglesCM[0]]
 
 
     def _set_values(self):
