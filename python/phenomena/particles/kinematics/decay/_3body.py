@@ -111,10 +111,10 @@ class LAB3BodyCalc(nbody.LabCalc):
 
         # Change the angles from the CM 1-2 to the new frame CM
         # Also add a random angle between the plane of the decay in CM and the speed of P
-        theta0 = CMpExy[0]['y']/CMpExy[0]['x']
-        theta1 = CMpExy[1]['y']/CMpExy[1]['x']
+        tantheta0 = math.atan2(CMpExy[0]['y'],CMpExy[0]['x'])
+        tantheta1 = math.atan2(CMpExy[1]['y'],CMpExy[1]['x'])
         alpha = 2*math.pi * random.random()
-        self._anglesCM[1:4] = [math.atan(theta0)+alpha,math.atan(theta1)+alpha,alpha]
+        self._anglesCM[1:4] = [tantheta0+alpha,tantheta1+alpha,alpha]
 
         # Update the momenta with the new angles
         p = [math.sqrt(CMpExy[0]['x']**2+CMpExy[0]['y']**2),math.sqrt(CMpExy[1]['x']**2+CMpExy[1]['y']**2),math.sqrt(CMpExy[2]['x']**2+CMpExy[2]['y']**2)]
