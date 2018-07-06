@@ -13,10 +13,11 @@ from phenomena.particles.particle import ParticleDT
 
 class MyTest(unittest.TestCase):
     def test(self):
-        part = ParticleBoosted('mu+', theta=3, p=1)
+        part = ParticleBoosted('mu+', theta=3, p=100)
         p = [part.p]
         for moment in part.decayvalues:
             p.append(moment['p'])
+
 
         theta = [part.theta]
         for angle in part.decayvalues:
@@ -28,6 +29,15 @@ class MyTest(unittest.TestCase):
 
         px = p * np.cos(theta)
         py = p * np.sin(theta)
+
+#        print(p)
+#        print(theta)
+#        print(px)
+#        print(py)
+#        print(E)
+#        print('\n')
+#        print(round(px[0], 5) - round(sum(px[1:]), 5))
+#        print(round(py[0], 5) - round(sum(py[1:]), 5))
 
         self.assertEqual(round(sum(px[1:]), 5), round(px[0], 5))
         self.assertEqual(round(sum(py[1:]), 5), round(py[0], 5))
