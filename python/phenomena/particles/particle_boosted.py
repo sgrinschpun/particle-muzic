@@ -6,7 +6,7 @@ from particle import Particle, ParticleDT, toDictionary
 from phenomena.particles.kinematics.decay.calculations import DecayCalc
 from phenomena.particles.kinematics.parameters import boostParams
 
-#Angel was here
+#Angel was not here
 
 NO_PARENT = -1
 class ParticleBoosted(ParticleDT):
