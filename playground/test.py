@@ -26,10 +26,10 @@ class MyTest(unittest.TestCase):
         for energy in part.decayvalues:
             E.append(energy['E'])
 
-        px = p * np.sin(theta)
-        py = p * np.cos(theta)
+        px = p * np.cos(theta)
+        py = p * np.sin(theta)
 
-        #self.assertEqual(round(sum(self.px[1:]), 5), round(self.px[0], 5))
+        self.assertEqual(round(sum(px[1:]), 5), round(px[0], 5))
         self.assertEqual(round(sum(py[1:]), 5), round(py[0], 5))
         self.assertEqual(round(sum(E[1:]), 5), round(E[0], 5))
 
