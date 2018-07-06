@@ -3,7 +3,7 @@ import sys
 import unittest
 import numpy as np
 
-python_path = 'C:\Users\Santi\Documents\IFAE\particle-muzic-boosted\python'
+python_path = 'C:\Users\Santi\Documents\GitHub\particle-muzic\python'
 sys.path.append(python_path)
 
 from phenomena.particles.particle_boosted import ParticleBoosted
