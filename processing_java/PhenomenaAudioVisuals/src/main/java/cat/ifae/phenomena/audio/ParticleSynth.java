@@ -1,4 +1,4 @@
-package cat.ifae.phenomena.avserver.audio;
+package cat.ifae.phenomena.audio;
 
 import beads.*;
 

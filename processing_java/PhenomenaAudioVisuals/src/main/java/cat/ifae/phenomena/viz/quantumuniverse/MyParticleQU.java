@@ -1,40 +1,24 @@
 package cat.ifae.phenomena.viz.quantumuniverse;
 
 
+import cat.ifae.phenomena.viz.MyParticle;
 import cat.ifae.phenomena.viz.MyParticleData;
 import cat.ifae.phenomena.viz.quantumuniverse.particle.*;
 import processing.core.PApplet;
 import processing.core.PVector;
 
-public class MyParticle {
+public class MyParticleQU extends MyParticle {
 
-    PApplet p;
-    private MyParticleData particleData;
     private MyParticleFamily particle;
-    public PVector location, velocity;
 
-    protected float theta, beta;
-
-
-    public MyParticle(PApplet p, PVector location, float theta, float beta, MyParticleData particleData) {
-        this.p = p;
-        this.location = location;
-        this.theta = theta;
-        this.beta = beta;
-        this.velocity = setVelocity(theta, beta);
-
-        this.particleData = particleData;
-
+    public MyParticleQU(PApplet p, PVector location, float theta, float beta, MyParticleData particleData) {
+        super(p ,location, theta,beta,particleData);
         buildParticle();
     }
 
-    public MyParticle(PApplet p, float theta, float beta, MyParticleData particleData) {
-        this.p = p;
+    public MyParticleQU(PApplet p, float theta, float beta, MyParticleData particleData) {
+        super(p, theta,beta,particleData);
         this.location = new PVector((float) p.width / 2, (float) p.height / 2);
-        this.theta = theta;
-        this.beta = beta;
-        this.velocity = setVelocity(theta, beta);
-        this.particleData = particleData;
         buildParticle();
     }
 
@@ -47,9 +31,8 @@ public class MyParticle {
         //return new PVector(0f,0f);
     }
 
-
-    private void buildParticle() {
-        switch (particleData.getType()) {
+    public void buildParticle() {
+        switch (this.particleData.getType()) {
             case "lepton":
                 this.particle = new MyLepton(p, location, velocity, particleData);
                 break;
@@ -68,11 +51,13 @@ public class MyParticle {
         }
     }
 
+    @Override
     public void display() {
         particle.display();
     }
 
 
+    @Override
     public PVector getLocation() {
         return particle.location;
 

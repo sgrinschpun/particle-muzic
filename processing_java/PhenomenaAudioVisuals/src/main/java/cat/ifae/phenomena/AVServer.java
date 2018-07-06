@@ -1,16 +1,22 @@
-package cat.ifae.phenomena.avserver.AVServer;
+package cat.ifae.phenomena;
 
+import cat.ifae.phenomena.server.json.JsonHandler;
+import cat.ifae.phenomena.server.ListManager;
+import cat.ifae.phenomena.viz.MyViz;
 import processing.core.PApplet;
-import processing.net.*;
+import processing.net.Client;
+import processing.net.Server;
 
 public class AVServer extends PApplet {
 	int port = 1234;
 	Server server;
 	JsonHandler handleJson;
 	ListManager manageList;
+	MyViz myViz;
+
 
 	public static void main(String[] args) {
-		PApplet.main("cat.ifae.phenomena.avserver.AVServer.AVServer");
+		PApplet.main("cat.ifae.phenomena.AVServer");
 	}
 
 	public void settings() {
@@ -21,10 +27,14 @@ public class AVServer extends PApplet {
 	public void setup() {
 		frameRate(24);
 		smooth();
-		// colorMode(HSB, 360, 100, 100);
+
 		server = new Server(this, port);
 		handleJson = new JsonHandler();
-		manageList = new ListManager(this);
+
+		//define your visualization
+		myViz = new MyViz(this, "quantumuniverse");
+
+		manageList = new ListManager( this, myViz);
 	}
 
 	public void draw() {
@@ -43,8 +53,6 @@ public class AVServer extends PApplet {
 	}
 
 	public void keyPressed() {
-		/*
-		 * if (key == 'l') { println(manageList.getList()); }
-		 */
+
 	}
 }

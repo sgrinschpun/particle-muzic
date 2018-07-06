@@ -1,4 +1,4 @@
-package cat.ifae.phenomena.avserver.json;
+package cat.ifae.phenomena.server.json;
 
 public class PhenomenaCMD {
 	private String CMD;

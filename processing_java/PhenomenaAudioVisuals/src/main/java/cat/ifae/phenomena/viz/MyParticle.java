@@ -3,12 +3,12 @@ package cat.ifae.phenomena.viz;
 import processing.core.PApplet;
 import processing.core.PVector;
 
-public class MyParticleViz {
+public abstract class MyParticle {
 
-    PApplet p;
-    private MyParticleData particleData;
+    public PApplet p;
+    public MyParticleData particleData;
     public PVector location, velocity;
-    protected float theta, beta;
+    public float theta, beta;
 
 
     public MyParticle(PApplet p, PVector location, float theta, float beta, MyParticleData particleData) {
@@ -29,12 +29,9 @@ public class MyParticleViz {
         this.particleData = particleData;
 
         //this.location = new PVector((float) p.width / 2, (float) p.height / 2);
-
     }
 
-
-
-
+    // non-abstract methods it has default implementation
     protected PVector setVelocity(float theta, float beta){
 
         velocity = PVector.fromAngle(theta);
@@ -43,15 +40,9 @@ public class MyParticleViz {
 
     }
 
-
-
-    public void display() {
-    }
-
-
-    public PVector getLocation() {
-        return this.location;
-    }
+    // abstract methods which will be implemented by its subclass(es)
+    abstract public void display();
+    abstract public PVector getLocation();
 
 
 }

@@ -1,10 +1,10 @@
-package cat.ifae.phenomena.avserver.visuals;
+package cat.ifae.phenomena.server;
 
-import cat.ifae.phenomena.avserver.AVServer.PhenoCallback;
-import cat.ifae.phenomena.avserver.json.PARAMS;
-import cat.ifae.phenomena.avserver.json.PhenomenaCMD;
+import cat.ifae.phenomena.server.json.PARAMS;
+import cat.ifae.phenomena.server.json.PhenomenaCMD;
+import cat.ifae.phenomena.viz.MyParticle;
 import cat.ifae.phenomena.viz.MyParticleData;
-import cat.ifae.phenomena.viz.quantumuniverse.MyParticle;
+import cat.ifae.phenomena.viz.MyViz;
 import processing.core.PApplet;
 import processing.core.PVector;
 
@@ -13,10 +13,14 @@ import java.util.Map;
 
 public class VisualManager implements PhenoCallback {
 	private Map<Integer, MyParticle> list = new HashMap<Integer, MyParticle>();
-	private PApplet parent;
+	private PApplet p;
 
-	public VisualManager(PApplet p) {
-		parent = p;
+	private MyViz myViz;
+
+	public VisualManager(PApplet p, MyViz myViz) {
+
+		this.p = p;
+		this.myViz = myViz;
 	}
 
 	public void displayParticles() {
@@ -46,13 +50,16 @@ public class VisualManager implements PhenoCallback {
 														(double) params.getDecayTime(),
 														sent);
 			if (params.getParent() == -1) {
-				particle_pic = new MyParticle(this.parent, params.getTheta(), params.getBeta(), particle_data);
+				//particle_pic = new MyParticleQU(this.parent, params.getTheta(), params.getBeta(), particle_data);
+				particle_pic = myViz.particle(params.getTheta(), params.getBeta(), particle_data);
 			}
 			else {
 				MyParticle parentParticle = list.get(params.getParent());
 				PVector location = parentParticle.getLocation();
-				particle_pic = new MyParticle(this.parent, location, params.getTheta(), params.getBeta(), particle_data);
-			}
+				//particle_pic = new MyParticleQU(this.parent, location, params.getTheta(), params.getBeta(), particle_data);
+                particle_pic = myViz.particle(location, params.getTheta(), params.getBeta(), particle_data);
+
+            }
 			this.list.put(cmd.getPARAMS().getId(), particle_pic);
 			break;
 		case "REMOVE":

@@ -1,13 +1,14 @@
-package cat.ifae.phenomena.avserver.audio;
+package cat.ifae.phenomena.server;
+
+import cat.ifae.phenomena.audio.MidiOutputGenerator;
+import cat.ifae.phenomena.audio.ParticleNote;
+import cat.ifae.phenomena.server.json.PhenomenaCMD;
+import processing.core.PApplet;
 
 import java.util.ArrayList;
 
 //import java.util.ArrayList;
 //import beads.*;
-import cat.ifae.phenomena.avserver.AVServer.PhenoCallback;
-import cat.ifae.phenomena.avserver.json.PhenomenaCMD;
-import processing.core.PApplet;
-import themidibus.MidiBus;
 
 public class AudioManager implements PhenoCallback {
 	private PApplet parent;
