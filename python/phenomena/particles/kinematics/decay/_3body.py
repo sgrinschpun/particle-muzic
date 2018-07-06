@@ -48,7 +48,7 @@ class CM3BodyCalc(nbody.CMCalc):
     def p3(masses,m12):
         num1 = masses[0]**2-(m12+masses[3])**2
         num2 = masses[0]**2-(m12-masses[3])**2
-        p = (num1*num2)**(1/2)/(2*masses[0])
+        p3 = (num1*num2)**(1/2)/(2*masses[0])
         return p3
 
     @staticmethod
@@ -57,9 +57,9 @@ class CM3BodyCalc(nbody.CMCalc):
         C12ME = C12M3BodyCalc.E(masses,m12)
 #        dalitz[1] = C12M3BodyCalc._dalitz2(masses,C12ME)
         p3 = CM3BodyCalc.p3(masses,m12)
-        gamma = (1+p3**2/dalitz**2)**(1/2)
+        gamma = (1+p3**2/m12**2)**(1/2)
         beta = boostParams.beta_from_gamma(gamma)
-        C12Mpxy = C12M3BodyCalc.pxy(masses,dalitz,angles)
+        C12Mpxy = C12M3BodyCalc.pxy(masses,m12,angles)
 
         return [
             {
