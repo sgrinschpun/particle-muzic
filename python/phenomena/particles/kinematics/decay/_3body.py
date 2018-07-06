@@ -12,7 +12,7 @@ import nbody
 class C12M3BodyCalc(nbody.C12MCalc):
     # Calculations for energies and momenta in the CM for particles 1 and 2 only (CM 1-2)
     def _dalitz1(self,masses):
-        m12 = random.uniform(masses[1]+masses[2],masses[3])
+        m12 = random.uniform(masses[1]+masses[2],masses[0]-masses[3])
         return m12
 
     @staticmethod
