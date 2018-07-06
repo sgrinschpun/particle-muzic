@@ -11,7 +11,7 @@ import nbody
 
 class C12M3BodyCalc(nbody.C12MCalc):
     # Calculations for energies and momenta in the CM for particles 1 and 2 only (CM 1-2)
-    def _Dalitz1(masses):
+    def _dalitz1(self,masses):
         m12 = random.uniform(masses[1]+masses[2],masses[3])
         return m12
 
@@ -23,7 +23,7 @@ class C12M3BodyCalc(nbody.C12MCalc):
         return [E1,E2,E3]
 
     # We divide the Dalitz calculation so we can calculate and save the energies needed for m23
-    def _Dalitz2(masses, E):
+    def _dalitz2(self,masses, E):
         m23 = random.uniform((E[1]+E[2])**2-((E[1]**2-masses[2]**2)**(1/2)+(E[2]**2-masses[3]**2)**(1/2))**2,(E[1]+E[2])**2-((E[1]**2-masses[2]**2)**(1/2)-(E[2]**2-masses[3]**2)**(1/2))**2)
         return m23
 
@@ -46,17 +46,17 @@ class C12M3BodyCalc(nbody.C12MCalc):
 
 class CM3BodyCalc(nbody.CMCalc):
 
-    def _p3(masses,dalitz):
+    def _p3(self,masses,dalitz):
         p3 = ((dalitz[0]**2-(masses[1]+masses[2])**2)*(dalitz[0]**2-(masses[1]-masses[2])**2))**(1/2)
         return p3
 
     @staticmethod
-    def pExyz(self,masses,angles):
+    def pExyz(masses,angles):
         dalitz = []
-        dalitz[0] = C12M3BodyCalc.dalitz1(masses)
+        dalitz[0] = C12M3BodyCalc._dalitz1(masses)
         C12ME = C12M3BodyCalc.E(masses,dalitz[0])
-        dalitz[1] = C12M3BodyCalc.dalitz2(masses,C12ME)
-        p3 = CM3BodyCalc.p3(masses,dalitz)
+        dalitz[1] = C12M3BodyCalc._dalitz2(masses,C12ME)
+        p3 = CM3BodyCalc._p3(masses,dalitz)
         gamma = (1+p3**2/dalitz[0]**2)**(1/2)
         beta = boostParams.beta_from_gamma()
         C12Mpxy = C12M3BodyCalc.pxy(masses,dalitz[0],angles)
