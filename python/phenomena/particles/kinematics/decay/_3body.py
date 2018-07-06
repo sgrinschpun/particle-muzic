@@ -89,7 +89,7 @@ class LAB3BodyCalc(nbody.LabCalc):
         self._gamma = gamma
         self._masses = masses
         self._anglesCM12 = self._set_AnglesCM12(theta)
-        self._pExyz = self._set_pExyz(self._masses, self._anglesCM, self._gamma, self._dalitzvar, self._energies)
+        self._pExyz = self._set_pExyz(self._masses, self._anglesCM12, self._gamma, self._dalitzvar, self._energies)
         self._p = self._set_p()
         self._theta = self._set_boostedAngles() # Boost angles from CM RF to LAB RF
 
