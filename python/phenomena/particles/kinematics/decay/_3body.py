@@ -107,7 +107,7 @@ class LAB3BodyCalc(nbody.LabCalc):
 
     def _set_pExyz(self,masses,angles,gamma):
         beta = boostParams.beta_from_gamma(gamma)
-        CMpExy = CM3BodyCalc.pExyz(masses,angles)
+        CMpExy = CM3BodyCalc._pExyz(masses,angles)
 
         # Change the angles from the CM 1-2 to the new frame CM
         # Also add a random angle between the plane of the decay in CM and the speed of P
