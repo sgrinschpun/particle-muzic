@@ -146,13 +146,13 @@ class LAB3BodyCalc(nbody.LabCalc):
         ]
 
     def _set_p(self):
-        return [math.sqrt(self._pxy[0]['x']**2+self._pxy[0]['y']**2),math.sqrt(self._pxy[1]['x']**2+self._pxy[1]['y']**2),math.sqrt(self._pxy[2]['x']**2+self._pxy[2]['y']**2)]
+        return [math.sqrt(self._pExyz[0]['x']**2+self._pExyz[0]['y']**2),math.sqrt(self._pExyz[1]['x']**2+self._pExyz[1]['y']**2),math.sqrt(self._pExyz[2]['x']**2+self._pExyz[2]['y']**2)]
 
     def _set_boostedAngles(self):
         if self._gamma != 1:
-            theta0 = self._pxy[0]['y']/self._pxy[0]['x']
-            theta1 = self._pxy[1]['y']/self._pxy[1]['x']
-            theta2 = self._pxy[2]['y']/self._pxy[2]['x']
+            theta0 = self._pExyz[0]['y']/self._pExyz[0]['x']
+            theta1 = self._pExyz[1]['y']/self._pExyz[1]['x']
+            theta2 = self._pExyz[2]['y']/self._pExyz[2]['x']
             theta = [math.atan(theta0),math.atan(theta1),math.atan(theta2)]
         else:
             theta = self._anglesCM[1:]
