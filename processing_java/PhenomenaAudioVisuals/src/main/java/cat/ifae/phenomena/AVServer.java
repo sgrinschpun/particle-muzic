@@ -28,17 +28,23 @@ public class AVServer extends PApplet {
 		frameRate(24);
 		smooth();
 
+
+
 		server = new Server(this, port);
 		handleJson = new JsonHandler();
 
 		//define your visualization
-		myViz = new MyViz(this, "quantumuniverse");
+		//myViz = new MyViz(this, "quantumuniverse");
+		myViz = new MyViz(this, "bubblechamber");
+
+        background(myViz.getColor());
+
 
 		manageList = new ListManager( this, myViz);
 	}
 
 	public void draw() {
-		background(0);
+		//background(myViz.getColor());
 		Client thisClient = server.available();
 		if (thisClient != null) {
 			try {

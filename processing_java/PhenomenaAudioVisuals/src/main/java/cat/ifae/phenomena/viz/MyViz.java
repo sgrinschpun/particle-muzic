@@ -10,11 +10,13 @@ public class MyViz {
     private PApplet p;
     private String vizName;
     public MyParticle particle;
+    private int color;
 
 
     public MyViz (PApplet p, String vizName ) {
         this.p = p;
         this.vizName = vizName;
+        this.color = setBackgroundColor();
     }
 
     public MyParticle particle(PVector location, float theta, float beta, MyParticleData particleData) {
@@ -41,6 +43,23 @@ public class MyViz {
         return particle;
     }
 
+    public int getColor(){
+        return color;
+    }
+
+
+    protected int setBackgroundColor(){
+        switch (vizName) {
+            case "quantumuniverse" :
+                color = p.color(0,0,0);
+                break;
+            case "bubblechamber" :
+                color =  p.color(255,255,255);
+                break;
+        }
+        return color;
+
+    }
 
 
 
