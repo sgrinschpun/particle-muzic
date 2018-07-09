@@ -2,7 +2,8 @@ package cat.ifae.phenomena.viz.bubblechamber;
 
 import cat.ifae.phenomena.viz.MyParticle;
 import cat.ifae.phenomena.viz.MyParticleData;
-
+import cat.ifae.phenomena.viz.bubblechamber.display.MyTrack;
+import cat.ifae.phenomena.viz.bubblechamber.dynamics.MyDynamics;
 import processing.core.PApplet;
 import processing.core.PVector;
 
@@ -10,6 +11,7 @@ public class MyParticleBC extends MyParticle {
 
     protected MyDynamics myDinamics;
     protected static float topVelocity = 20f;
+    protected MyTrack myTrack;
 
     protected PVector acceleration;
 
@@ -17,14 +19,16 @@ public class MyParticleBC extends MyParticle {
         super(p ,location,theta,beta,particleData);
 
         myDinamics = new MyDynamics(particleData);
+        myTrack = new MyTrack(p, particleData);
 
     }
 
     public MyParticleBC(PApplet p, float theta, float beta, MyParticleData particleData) {
         super(p, theta,beta,particleData);
-        this.location = new PVector((float) p.width / 2, (float) p.height / 2);
+        this.location = new PVector(0f, (float) p.height / 2);
 
         myDinamics = new MyDynamics(particleData);
+        myTrack = new MyTrack(p, particleData);
     }
 
     protected PVector setAcceleration(){
@@ -41,8 +45,7 @@ public class MyParticleBC extends MyParticle {
     }
 
     protected void draw() {
-        p.stroke(0);
-        p.point(location.x,location.y);
+        myTrack.drawCircleTrack(location,velocity);
     }
 
     public void display(){

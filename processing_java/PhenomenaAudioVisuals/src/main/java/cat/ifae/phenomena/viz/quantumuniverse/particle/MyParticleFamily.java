@@ -32,8 +32,8 @@ public class MyParticleFamily {
     public MyParticleFamily(PApplet p, PVector location, PVector velocity, MyParticleData particleData){
         this.p = p;
 
-        this.location = location.copy();
-        this.velocity = velocity.copy();
+        this.location = location;
+        this.velocity = velocity;
 
 
         this.acceleration = setAcceleration();

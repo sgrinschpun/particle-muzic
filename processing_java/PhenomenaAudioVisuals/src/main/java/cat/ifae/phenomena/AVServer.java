@@ -28,8 +28,6 @@ public class AVServer extends PApplet {
 		frameRate(24);
 		smooth();
 
-
-
 		server = new Server(this, port);
 		handleJson = new JsonHandler();
 
@@ -37,15 +35,17 @@ public class AVServer extends PApplet {
 		//myViz = new MyViz(this, "quantumuniverse");
 		myViz = new MyViz(this, "bubblechamber");
 
-        background(myViz.getColor());
+        background(myViz.getBackgroundColor());
 
 
 		manageList = new ListManager( this, myViz);
 	}
 
 	public void draw() {
-		//background(myViz.getColor());
-		Client thisClient = server.available();
+
+	    myViz.refresh();
+
+        Client thisClient = server.available();
 		if (thisClient != null) {
 			try {
 				String receivedString = thisClient.readString();

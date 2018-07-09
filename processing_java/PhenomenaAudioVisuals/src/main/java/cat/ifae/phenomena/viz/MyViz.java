@@ -43,7 +43,7 @@ public class MyViz {
         return particle;
     }
 
-    public int getColor(){
+    public int getBackgroundColor(){
         return color;
     }
 
@@ -58,13 +58,18 @@ public class MyViz {
                 break;
         }
         return color;
-
     }
 
+    public void refresh(){
+        switch (vizName) {
+            case "quantumuniverse" :
+                p.background(getBackgroundColor());
+                break;
+            case "bubblechamber" :
+                break;
+        }
 
-
-
-
+    }
 
 
 }

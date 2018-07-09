@@ -1,4 +1,4 @@
-package cat.ifae.phenomena.viz.bubblechamber;
+package cat.ifae.phenomena.viz.bubblechamber.dynamics;
 
 import cat.ifae.phenomena.viz.MyParticleData;
 import processing.core.PVector;
@@ -20,8 +20,8 @@ public class MyDynamics {
     }
 
     private PVector Bforce (PVector v){
-
-        return B.cross(v).mult(q/m);
+        int mass = 1;
+        return B.cross(v).mult(q/mass);
     }
 
     private PVector Eforce (){
@@ -36,9 +36,12 @@ public class MyDynamics {
     }
 
     protected PVector Kloss(PVector velocity){
+        float speed = velocity.mag();
+        float dragMagnitude = speed*speed/500;
         PVector drag = velocity.copy();
         drag.normalize();
-        drag.mult(-0.01f);
+        drag.mult(-1);
+        drag.mult(dragMagnitude);
 
         return drag;
     }
@@ -46,7 +49,7 @@ public class MyDynamics {
     public PVector getAcceleration(PVector velocity) {
         PVector acceleration = new PVector (0, 0);
         acceleration.add(applyForce(Bforce(velocity)));
-        acceleration.add(applyForce(Eforce()));
+        //acceleration.add(applyForce(Eforce()));
         acceleration.add(applyForce(Kloss(velocity)));
 
         return acceleration;

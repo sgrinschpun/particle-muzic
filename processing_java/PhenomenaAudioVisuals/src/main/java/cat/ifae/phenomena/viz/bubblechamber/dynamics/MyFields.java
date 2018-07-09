@@ -1,4 +1,4 @@
-package cat.ifae.phenomena.viz.bubblechamber;
+package cat.ifae.phenomena.viz.bubblechamber.dynamics;
 
 import processing.core.PVector;
 

@@ -13,7 +13,7 @@ public abstract class MyParticle {
 
     public MyParticle(PApplet p, PVector location, float theta, float beta, MyParticleData particleData) {
         this.p = p;
-        this.location = location;
+        this.location = location.copy();
         this.theta = theta;
         this.beta = beta;
         this.velocity = setVelocity(theta, beta);
@@ -33,11 +33,9 @@ public abstract class MyParticle {
 
     // non-abstract methods it has default implementation
     protected PVector setVelocity(float theta, float beta){
-
         velocity = PVector.fromAngle(theta);
         velocity.mult(3*beta);
         return velocity;
-
     }
 
     // abstract methods which will be implemented by its subclass(es)
