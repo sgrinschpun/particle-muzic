@@ -38,7 +38,7 @@ class MyParticleFamily {
         this.acceleration = setAcceleration();
         //this.acceleration.mult(p.random(0.5f));
 
-        this.topSpeed = 2f;
+        this.topSpeed = 4f;
 
         this.particleData = particleData;
 
