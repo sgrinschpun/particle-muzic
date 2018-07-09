@@ -5,43 +5,38 @@ import abc
 from phenomena.particles.particle import ParticleDT
 from phenomena.particles.kinematics.decay._2body import LAB2BodyCalc
 from phenomena.particles.kinematics.decay._3body import LAB3BodyCalc
+from phenomena.particles.kinematics.decay._4body import LAB4BodyCalc
 
 class DecayCalc(object):
     """ Checks number of decay particles and assigns appropriate calculation.
         Creates aray of values:
             - masses = [m0, m1, m2,....mn]
-            - anglesCM = [theta0, theta1, theta2,....thetan]
             - values = [{'name':, 'p':, 'theta':},]
     """
 
-    def __init__(self, mass, gamma, theta, decay, angles):
+    def __init__(self, mass, gamma, theta, decay):
         self._gamma = gamma
         self._decay = decay
         self._setMassArray(mass,decay)
-        self._setAnglesCMArray(theta,angles)
+        self._theta = theta
 
-        self._setCalculation(self._decay, self._masses, self._anglesCM, self._gamma)
+        self._setCalculation(self._decay, self._masses, self._theta, self._gamma)
 
     def _setMassArray(self, mass, decay):
-        masses = [mass]
+        masses = [mass]  # array of masses 0: parent particle, 1: first decay particle, ...
         for particle in decay:
             masses.append(ParticleDT.getmass(particle))
 
         self._masses = masses
 
-    def _setAnglesCMArray(self, theta, angles):
-        anglesCM = []
-        anglesCM.append(theta)
-        for angle in angles:
-            anglesCM.append(angle)
-
-        self._anglesCM = anglesCM
-
-    def _setCalculation(self, decay, masses, angles, gamma):
+    def _setCalculation(self, decay, masses, theta, gamma):
         if len(decay) == 2:
-            self._values = LAB2BodyCalc(decay,masses,angles,gamma).values
+            self._values = LAB2BodyCalc(decay,masses,theta,gamma).values
+        elif len(decay) == 3:
+            self._values = LAB3BodyCalc(decay,masses,theta,gamma).values
         else:
-            self._values = LAB3BodyCalc(decay,masses,angles,gamma).values  #change when 3ody is implemented
+            self._values = LAB4BodyCalc(decay,masses,theta,gamma).values
+
 
     @property
     def values(self):
