@@ -45,7 +45,7 @@ public class MyParticleBC extends MyParticle {
     }
 
     protected void draw() {
-        myTrack.drawCircleTrack(location,velocity);
+        myTrack.drawDotTrack(location);
     }
 
     public void display(){
