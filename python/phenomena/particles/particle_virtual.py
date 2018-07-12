@@ -103,7 +103,7 @@ class ParticleVirtual(ParticleBoosted):
                         combs['23'].append([parent.attrib['antiName'],parent.attrib['m0']])
 
 
-        print(set(combs['01']['name']).intersection(combs['23']))
+        print(set(combs['01']).intersection(combs['23']))
         print(set(combs['02']).intersection(combs['13']))
         print(set(combs['03']).intersection(combs['12']))
 
