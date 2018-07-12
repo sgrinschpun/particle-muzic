@@ -6,15 +6,16 @@ import numpy as np
 python_path = 'C:\Users\Santi\Documents\GitHub\particle-muzic\python'
 sys.path.append(python_path)
 
-from phenomena.particles.particle_boosted import ParticleBoosted
+from phenomena.particles.particle_virtual import ParticleVirtual
 from phenomena.particles.particle import ParticleDT
 
 #Santi was here
 
 class MyTest(unittest.TestCase):
     def test(self):
-        part = ParticleBoosted('pi+')
+        part = ParticleVirtual('mu+', p=1)
         p = [part.p]
+        print(part.decayvalues)
         for moment in part.decayvalues:
             p.append(moment['p'])
 
