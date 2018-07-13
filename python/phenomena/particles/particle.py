@@ -137,7 +137,7 @@ class ParticleDT(Particle):
 
     def __new__(cls, *args, **kw):
         try:
-            pythia.pdg_id(args[0])
+#        pythia.pdg_id(args[0])
             return super(ParticleDT, cls).__new__(cls)
         except Exception, ex:
             raise Exception("Exception: {0}".format(ex.message))
