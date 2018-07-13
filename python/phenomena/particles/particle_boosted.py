@@ -5,7 +5,7 @@ from particle import Particle, ParticleDT, toDictionary
 
 from phenomena.particles.kinematics.decay.calculations import DecayCalc
 from phenomena.particles.kinematics.parameters import boostParams
-from phenomena.particles.virtual_particle import VirtualChannel
+# from phenomena.particles.virtual_particle import VirtualChannel
 
 #Santi was here
 
@@ -22,7 +22,7 @@ class ParticleBoosted(ParticleDT):
             self._theta = kwargs.get('theta',0) #the angle of this instance
 
             #decide if we want the decay to happen through a virtual channel
-            VirtualChannel(self.decay,self._masses)
+            # VirtualChannel(self.decay,self._masses)
             #the decay particles and masses have been reset inside ParticleVirtual if necessary
 
             #calculate and assign boosted parameters
@@ -32,10 +32,10 @@ class ParticleBoosted(ParticleDT):
             self._lifetime *= self._gamma
         else:
             # Scenario for handling virtual particles
-            self._set_name(name['name'])  # Name of the particle pypdt convention
+            self._set_name(name._name)  # Name of the particle pypdt convention
             self._set_id() # Class Counter
-            self._set_pdgid(name['name']) # Id from PDG, taken from pypdt
-            self._mass = name['mass'] # Mass of the particle in GeV
+            self._set_pdgid(name._name) # Id from PDG, taken from pypdt
+            self._mass = name._mass # Mass of the particle in GeV
             self._set_charge() # Charge of the particle taken from pypdt
             self._set_virtual_lifetime() # Lifetime of the particle, taken from pypdt
             # Virtual particles have lifetimes that are too short, so we make them large. This can be changed to a more realistic approach
@@ -43,7 +43,7 @@ class ParticleBoosted(ParticleDT):
             self._type = virtual # Particle Type will always be virtual
             self._set_composition() # Particle quark compsition in format [[q1,q2],[q3,q4],...] taken from json.
             self._set_lifetime_ren() #Renormalization of the lifetime THIS SHOULD BE DONE AT THE NODES and brought back with callback
-            self.decay = name['decay'] # Particle decay channel chosen
+            self.decay = name._decay # Particle decay channel chosen
             self._set_time_to_decay()  # Particle time lived before decay, renormalized
             self._setParent(parent)
 
