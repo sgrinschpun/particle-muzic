@@ -1,4 +1,4 @@
-from phenomena.particles import ParticleDT, ParticleBoosted
+from phenomena.particles import ParticleDT, ParticleBoosted, ParticleVirtual
 from phenomena.connection.phenomena_message import IncomingMessage
 from phenomena.nodes import get_save_node, ExecutableNode
 from phenomena.nodes import JsonRemoteAudioVideoNode
