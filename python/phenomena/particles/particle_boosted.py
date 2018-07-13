@@ -18,7 +18,7 @@ class ParticleBoosted(ParticleDT):
         self._theta = kwargs.get('theta',0) #the angle of this instance
 
         #decide if we want the decay to happen through a virtual channel
-        VirtualChannel(self._decay,self._masses)
+        VirtualChannel(self.decay,self._masses)
         #the decay particles and masses have been reset inside ParticleVirtual if necessary
 
         #calculate and assign boosted parameters

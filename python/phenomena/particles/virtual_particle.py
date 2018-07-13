@@ -7,22 +7,31 @@ from particletools.tables import PYTHIAParticleData
 pythia = PYTHIAParticleData()
 
 NO_PARENT = -1
-class VirtualParticle(ParticleBoosted):
+class ParticleVirtual(ParticleBoosted):
 
-    def __init__(self, name, parent = NO_PARENT):
-        self._set_name(name)  # Name of the particle pypdt convention
+    def __init__(self, virtualdata, parent = NO_PARENT, **kwargs):
+        self._set_name(virtualdata._name)  # Name of the particle pypdt convention
         self._set_id() # Class Counter
-        self._set_pdgid(name) # Id from PDG, taken from pypdt
-        self._set_mass() # Mass of the particle in GeV, taken from pypdt
-        self._set_charge() # Charge of the particle, taken from pypdt
-        self._set_lifetime() # Lifetime of the particle, taken from pypdt
-        self._set_decay_channels() #All the decay channels and BRs of the particle in format [(BR,[part1,..,partn]),...] from ParticleDataTool
-        self._set_type() # Particle Type (quark, lepton, bosoon, meson, baryon) taken from json
+        self._set_pdgid(virtualdata._name) # Id from PDG, taken from pypdt
+        self._mass = virtualdata._mass # Mass of the particle in GeV
+        self._set_charge() # Charge of the particle taken from pypdt
+        self._set_virtual_lifetime() # Lifetime of the particle, taken from pypdt
+        self._type = virtual # Particle Type will always be virtual
         self._set_composition() # Particle quark compsition in format [[q1,q2],[q3,q4],...] taken from json.
         self._set_lifetime_ren() #Renormalization of the lifetime THIS SHOULD BE DONE AT THE NODES and brought back with callback
-        self._set_decay() # Particle decay channel chosen
+        self.decay = virtualdata._decay # Particle decay channel chosen
         self._set_time_to_decay()  # Particle time lived before decay, renormalized
         self._setParent(parent)
+
+        self._params = boostParams._build_from_p(p=kwargs.get('p',None))
+        self._theta = kwargs.get('theta',0)
+        self._p = self._params.p
+        self._E = self._params.E
+        self._gamma = self._params.gamma
+        self._beta = self._params.beta
+        self._T = self._params.T
+
+        self.decayvalues = DecayCalc(self._mass,self._gamma,self._theta,self.decay).values # sets values for decay particles
 
 class VirtualChannel(object):
 
@@ -172,7 +181,7 @@ class VirtualChannel(object):
 
         # We set the threshold for no virtual decay if the virtual mass is on the lower end of our distribution
         # This way, it's more probable to see a virtual particle when we're close
-        if virtual_mass => (limits[channel][0]+limits[channel][1])/2
+        if (virtual_particle in ['W-','W+','Z0']) or self.virtual_mass => (limits[channel][0]+limits[channel][1])/2
             self._virtualp._name = virtual_particle
             self._virtualp._mass = virtual_mass
             self._virtualp._realmass = virtual_particle_mass
@@ -182,15 +191,16 @@ class VirtualChannel(object):
 
     def _set_mass(self,masses,virtual_mass):
 
-        vrt_masses = []
+        # We don't need the masses of the daughter particles, because they are looked up in DecayCalc
+        # vrt_masses = []
         new_masses = []
         for particle in self._is_virtual
-            if self._is_virtual[particle] == 1:
-                vrt_masses.append(masses[particle])
-            else:
-                new_masses.append(masses[particle])
+            # if self._is_virtual[particle] == 1:
+            #     vrt_masses.append(masses[particle])
+            # else:
+            new_masses.append(masses[particle])
         new_masses.append(virtual_mass)
-        self._virtualp._masses = vrt_masses
+        # self._virtualp._masses = vrt_masses
         self._masses = new_masses
 
 
