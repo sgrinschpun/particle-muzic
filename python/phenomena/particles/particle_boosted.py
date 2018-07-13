@@ -5,7 +5,7 @@ from particle import Particle, ParticleDT, toDictionary
 
 from phenomena.particles.kinematics.decay.calculations import DecayCalc
 from phenomena.particles.kinematics.parameters import boostParams
-from phenomena.particles.kinematics.virtual_particle import VirtualChannel
+from phenomena.particles.virtual_particle import VirtualChannel
 
 #Santi was here
 
