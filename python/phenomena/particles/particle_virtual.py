@@ -72,7 +72,7 @@ class ParticleVirtual(ParticleBoosted):
             [str(-ids[3]),str(-ids[1])],
             [str(-ids[3]),str(-ids[2])]]
         combs = {'01':[], '02':[], '03':[], '12':[], '13':[], '23':[]}
-        masses={}
+        masses= {'01':[], '02':[], '03':[], '12':[], '13':[], '23':[]}
         for parent in root:
             if parent.tag == 'particle':
                 for channel in parent:
@@ -115,12 +115,12 @@ class ParticleVirtual(ParticleBoosted):
                         masses['23'].append(parent.attrib['m0'])
 
         print(masses['12'])
-        print(set(combs['01']).intersection(combs['23']))
-        print(set(masses['01']).intersection(masses['23']))
-        print(set(combs['02']).intersection(combs['13']))
-        print(set(masses['02']).intersection(masses['13']))
-        print(set(combs['03']).intersection(combs['12']))
-        print(set(masses['03']).intersection(masses['12']))
+        print(list(set(combs['01']).intersection(combs['23'])))
+        print(list(set(masses['01']).intersection(masses['23'])))
+        print(list(set(combs['02']).intersection(combs['13'])))
+        print(list(set(masses['02']).intersection(masses['13'])))
+        print(list(set(combs['03']).intersection(combs['12'])))
+        print(list(set(masses['03']).intersection(masses['12'])))
 
         print('\n')
         print(self.decay)
