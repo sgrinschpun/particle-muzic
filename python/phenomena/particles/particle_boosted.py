@@ -5,6 +5,7 @@ from particle import Particle, ParticleDT, toDictionary
 
 from phenomena.particles.kinematics.decay.calculations import DecayCalc
 from phenomena.particles.kinematics.parameters import boostParams
+from phenomena.particles.kinematics.particle_virtual import VirtualChannel
 
 #Santi was here
 
@@ -15,6 +16,10 @@ class ParticleBoosted(ParticleDT):
     def __init__(self, name, parent = NO_PARENT, **kwargs): #initialize either with momentum (p) or energy (E)
         super(ParticleBoosted, self).__init__(name,parent)#inherit properties from ParticleDT
         self._theta = kwargs.get('theta',0) #the angle of this instance
+
+        #decide if we want the decay to happen through a virtual channel
+        VirtualChannel(self._decay,self._masses)
+        #the decay particles and masses have been reset inside ParticleVirtual if necessary
 
         #calculate and assign boosted parameters
         self._setBoostedParameters(kwargs)
