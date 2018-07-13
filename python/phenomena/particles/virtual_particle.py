@@ -14,10 +14,11 @@ class VirtualChannel(object):
 
         limits = self._set_limits(mass,masses)
         self._set_channel_choice(limits)
-        if self._virtualp._name != []:
+        if self._virtualp[0] != []:
             self._set_mass(masses,self._virtualp._mass)
             self._set_virtual_decay(decay)
-            self.decay[-1] = self._virtualp
+            self.decay[-1] = self._virtualp #In the place of the virtual particle we have a list with name in [0], mass in [1] and decay in [2]
+
 
 
     def _load_xml(self):
@@ -128,12 +129,13 @@ class VirtualChannel(object):
         # Mass
         virtual_mass =
 
-        self._virtualp._mass = virtual_mass
+        return virtual_mass
 
     def _set_channel_choice(self,decay,limits):
 
         #Choose channel
         self._is_virtual = []
+
         # In general we can use
         chnum = []
         for particle in self._is_virtual
@@ -156,11 +158,11 @@ class VirtualChannel(object):
         # We set the threshold for no virtual decay if the virtual mass is on the lower end of our distribution
         # This way, it's more probable to see a virtual particle when we're close
         if (virtual_particle in ['W-','W+','Z0']) or self.virtual_mass => (limits[channel][0]+limits[channel][1])/2
-            self._virtualp._name = virtual_particle
-            self._virtualp._mass = virtual_mass
-            self._virtualp._realmass = virtual_particle_mass
+            self._virtualp[0] = virtual_particle
+            self._virtualp[1] = virtual_mass
+            self._virtualp[3] = virtual_particle_mass
         else:
-            self._virtualp._name = []
+            self._virtualp[0] = []
 
 
     def _set_mass(self,masses,virtual_mass):
@@ -187,5 +189,5 @@ class VirtualChannel(object):
             else:
                 new_decay.append(decay[particle])
         new_decay.append(self._virtualp._name)
-        self._virtualp._decay = vrt_decay
-        self._decay = new_decay
+        self._virtualp[2] = vrt_decay
+        self.decay = new_decay
