@@ -7,9 +7,22 @@ from particletools.tables import PYTHIAParticleData
 pythia = PYTHIAParticleData()
 
 NO_PARENT = -1
-class Virtual_Particle(object):
+class VirtualParticle(ParticleBoosted):
 
-
+    def __init__(self, name, parent = NO_PARENT):
+        self._set_name(name)  # Name of the particle pypdt convention
+        self._set_id() # Class Counter
+        self._set_pdgid(name) # Id from PDG, taken from pypdt
+        self._set_mass() # Mass of the particle in GeV, taken from pypdt
+        self._set_charge() # Charge of the particle, taken from pypdt
+        self._set_lifetime() # Lifetime of the particle, taken from pypdt
+        self._set_decay_channels() #All the decay channels and BRs of the particle in format [(BR,[part1,..,partn]),...] from ParticleDataTool
+        self._set_type() # Particle Type (quark, lepton, bosoon, meson, baryon) taken from json
+        self._set_composition() # Particle quark compsition in format [[q1,q2],[q3,q4],...] taken from json.
+        self._set_lifetime_ren() #Renormalization of the lifetime THIS SHOULD BE DONE AT THE NODES and brought back with callback
+        self._set_decay() # Particle decay channel chosen
+        self._set_time_to_decay()  # Particle time lived before decay, renormalized
+        self._setParent(parent)
 
 class VirtualChannel(object):
 
