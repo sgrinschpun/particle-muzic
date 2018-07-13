@@ -32,10 +32,13 @@ class ParticleBoosted(ParticleDT):
             self._lifetime *= self._gamma
         else:
             # Scenario for handling virtual particles
-            self._set_name(name[0])  # Name of the particle pypdt convention
+            pname = name(0)
+            mass = name(1)
+            decay = [name(2),name(3)]
+            self._set_name(pname)  # Name of the particle pypdt convention
             self._set_id() # Class Counter
-            self._set_pdgid(name[0]) # Id from PDG, taken from pypdt
-            self._mass = name[1] # Mass of the particle in GeV
+            self._set_pdgid(pname) # Id from PDG, taken from pypdt
+            self._mass = mass # Mass of the particle in GeV
             self._set_charge() # Charge of the particle taken from pypdt
             self._set_virtual_lifetime() # Lifetime of the particle, taken from pypdt
             # Virtual particles have lifetimes that are too short, so we make them large. This can be changed to a more realistic approach
@@ -43,7 +46,7 @@ class ParticleBoosted(ParticleDT):
             self._type = virtual # Particle Type will always be virtual
             self._set_composition() # Particle quark compsition in format [[q1,q2],[q3,q4],...] taken from json.
             self._set_lifetime_ren() #Renormalization of the lifetime THIS SHOULD BE DONE AT THE NODES and brought back with callback
-            self.decay = name[2] # Particle decay channel chosen
+            self.decay = decay # Particle decay channel chosen
             self._set_time_to_decay()  # Particle time lived before decay, renormalized
             self._setParent(parent)
 
