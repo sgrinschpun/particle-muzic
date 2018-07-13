@@ -6,33 +6,6 @@ from particle_boosted import ParticleBoosted
 from particletools.tables import PYTHIAParticleData
 pythia = PYTHIAParticleData()
 
-NO_PARENT = -1
-class ParticleVirtual(ParticleBoosted):
-
-    def __init__(self, virtualdata, parent = NO_PARENT, **kwargs):
-        self._set_name(virtualdata._name)  # Name of the particle pypdt convention
-        self._set_id() # Class Counter
-        self._set_pdgid(virtualdata._name) # Id from PDG, taken from pypdt
-        self._mass = virtualdata._mass # Mass of the particle in GeV
-        self._set_charge() # Charge of the particle taken from pypdt
-        self._set_virtual_lifetime() # Lifetime of the particle, taken from pypdt
-        self._type = virtual # Particle Type will always be virtual
-        self._set_composition() # Particle quark compsition in format [[q1,q2],[q3,q4],...] taken from json.
-        self._set_lifetime_ren() #Renormalization of the lifetime THIS SHOULD BE DONE AT THE NODES and brought back with callback
-        self.decay = virtualdata._decay # Particle decay channel chosen
-        self._set_time_to_decay()  # Particle time lived before decay, renormalized
-        self._setParent(parent)
-
-        self._params = boostParams._build_from_p(p=kwargs.get('p',None))
-        self._theta = kwargs.get('theta',0)
-        self._p = self._params.p
-        self._E = self._params.E
-        self._gamma = self._params.gamma
-        self._beta = self._params.beta
-        self._T = self._params.T
-
-        self.decayvalues = DecayCalc(self._mass,self._gamma,self._theta,self.decay).values # sets values for decay particles
-
 class VirtualChannel(object):
 
     def __init__(self,decay,mass,masses):
@@ -44,6 +17,7 @@ class VirtualChannel(object):
         if self._virtualp._name != []:
             self._set_mass(masses,self._virtualp._mass)
             self._set_virtual_decay(decay)
+            self.decay[-1] = self._virtualp
 
 
     def _load_xml(self):
@@ -213,5 +187,5 @@ class VirtualChannel(object):
             else:
                 new_decay.append(decay[particle])
         new_decay.append(self._virtualp._name)
-        self._virtualp._vrtdecay = vrt_decay
+        self._virtualp._decay = vrt_decay
         self._decay = new_decay
