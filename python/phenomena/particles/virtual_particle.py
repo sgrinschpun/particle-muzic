@@ -17,7 +17,8 @@ class VirtualChannel(object):
         if self._virtualp._name != []:
             self._set_mass(masses,self._virtualp._mass)
             self._set_virtual_decay(decay)
-            self.decay[-1] = tuple(self._virtualp._name,self._virtualp._mass,self._virtualp._decay[0],self._virtualp._decay[1]) #In the place of the virtual particle we have a tuple with name in [0], mass in [1] and decay in [2]
+            self.decay[-1] = tuple(self._virtualp._name,self._virtualp._mass,self._virtualp._decay[0],self._virtualp._decay[1])
+            #In the place of the virtual particle we have a tuple with name in [0], mass in [1] and decay in [2],[3]
 
 
 

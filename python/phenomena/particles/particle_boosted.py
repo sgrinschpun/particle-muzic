@@ -40,7 +40,7 @@ class ParticleBoosted(ParticleDT):
             self._set_pdgid(pname) # Id from PDG, taken from pypdt
             self._mass = mass # Mass of the particle in GeV
             self._set_charge() # Charge of the particle taken from pypdt
-            self._set_virtual_lifetime() # Lifetime of the particle, taken from pypdt
+            self._set_lifetime() # Lifetime of the particle, taken from pypdt
             # Virtual particles have lifetimes that are too short, so we make them large. This can be changed to a more realistic approach
             self._lifetime *= 1.e10 #!!CHECK!!#
             self._type = virtual # Particle Type will always be virtual
