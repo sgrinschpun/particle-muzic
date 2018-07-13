@@ -32,9 +32,9 @@ class ParticleBoosted(ParticleDT):
             self._lifetime *= self._gamma
         else:
             # Scenario for handling virtual particles
-            pname = name(0)
-            mass = name(1)
-            decay = [name(2),name(3)]
+            pname = name[0]
+            mass = name[1]
+            decay = [name[2],name[3]]
             self._set_name(pname)  # Name of the particle pypdt convention
             self._set_id() # Class Counter
             self._set_pdgid(pname) # Id from PDG, taken from pypdt
