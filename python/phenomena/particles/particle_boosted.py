@@ -43,21 +43,20 @@ class ParticleBoosted(ParticleDT):
             self._set_lifetime() # Lifetime of the particle, taken from pypdt
             # Virtual particles have lifetimes that are too short, so we make them large. This can be changed to a more realistic approach
             self._lifetime *= 1.e10 #!!CHECK!!#
-            self._type = virtual # Particle Type will always be virtual
+            self._set_type() # Particle Type will always be virtual
             self._set_composition() # Particle quark compsition in format [[q1,q2],[q3,q4],...] taken from json.
             self._set_lifetime_ren() #Renormalization of the lifetime THIS SHOULD BE DONE AT THE NODES and brought back with callback
             self.decay = decay # Particle decay channel chosen
             self._set_time_to_decay()  # Particle time lived before decay, renormalized
             self._setParent(parent)
 
-            self._params = boostParams._build_from_p(p=kwargs.get('p',None))
-            self._theta = kwargs.get('theta',0)
-            self._p = self._params.p
-            self._E = self._params.E
-            self._gamma = self._params.gamma
-            self._beta = self._params.beta
-            self._T = self._params.T
+            self._p = kwargs.get('p',None)
+            self._gamma = boostParams.gamma_from_p(self.mass,self._p)
+            self._beta =  boostParams.beta_from_gamma(self._gamma)
+            self._E = boostParams.E_from_p(self._beta,self._p)
+            self._T = boostParams.T_from_gamma(self.mass,self._gamma)
 
+            self._theta = kwargs.get('theta',0)
             self.decayvalues = DecayCalc(self._mass,self._gamma,self._theta,self.decay).values # sets values for decay particles
 
             # increase lifetime by gamma factor
