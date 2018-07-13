@@ -9,7 +9,7 @@ pythia = PYTHIAParticleData()
 NO_PARENT = -1
 class Virtual_Particle(object):
 
-    
+
 
 class VirtualChannel(object):
 
@@ -138,7 +138,7 @@ class VirtualChannel(object):
 
         #Choose channel
         self._is_virtual = []
-        # In general we can used
+        # In general we can use
         chnum = []
         for particle in self._is_virtual
             if self._is_virtual(particle) == 1:
