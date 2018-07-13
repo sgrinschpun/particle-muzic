@@ -135,7 +135,7 @@ class VirtualChannel(object):
     def _set_channel_choice(self,decay,limits):
 
         #Choose channel
-        self._is_virtual = []
+
 
         # In general we can use
         chnum = []
@@ -151,10 +151,15 @@ class VirtualChannel(object):
         # else:
         #     channel = '12'
 
-        virtual_particle = []
-        # We must set the virtual particle name (could be empty) and then flag which masses will come from the virtual particle
+        self._is_virtual = []
+        fd =
+        # We get FD
+        virtual_particle = fd[0]
+        virtual_particle_mass = fd[1]
+        virtual_particle_width = fd[2]
 
-        virtual_mass = self._set_BW_mass(virtual_particle_mass)
+        # We must set the virtual particle name (could be empty) and then flag which masses will come from the virtual particle
+        virtual_mass = self._set_BW_mass(virtual_particle_mass, virtual_particle_width)
 
         # We set the threshold for no virtual decay if the virtual mass is on the lower end of our distribution
         # This way, it's more probable to see a virtual particle when we're close
