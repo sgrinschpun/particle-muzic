@@ -26,7 +26,7 @@ class VirtualChannel(object):
             self._decay[-1] = self._virtualp
             #In the place of the virtual particle we have a tuple with name in [0], mass in [1] and decay in [2],[3]
 
-    def _set_mass_limits(self, mass,masses):
+    def _set_mass_limits(self,mass,masses):
         return {
                     '12' : [masses[0]+masses[1],mass-masses[2]],
                     '13' : [masses[0]+masses[2],mass-masses[1]],
@@ -232,9 +232,9 @@ class VirtualChannel(object):
             fd = _weighted_choice(fp, weights)
 
         chnum = []
-        for ind in len(self._is_virtual):
-        if self._is_virtual(ind) == 1:
-           chnum.append(str(ind+1)))
+        for ind in len(self._decay):
+            if self._decay(ind) != fd[3]:
+                chnum.append(str(ind+1)))
         channel = ''.join(chnum)
         # For this specific 3 particle case, it might be simpler to use:
         # if self._is_virtual[0] == 0:
@@ -250,7 +250,7 @@ class VirtualChannel(object):
         virtual_channel_freepart = fd[3]
 
         # We must set the virtual particle name (could be empty) and then flag which masses will come from the virtual particle
-        virtual_mass = self._set_BW_mass(virtual_particle_mass, virtual_particle_width, limits)
+        virtual_mass = self._set_BW_mass(virtual_particle_mass, virtual_particle_width,limits[channel])
 
         # We set the threshold for no virtual decay if the virtual mass is on the lower end of our distribution
         # This way, it's more probable to see a virtual particle when we're close
