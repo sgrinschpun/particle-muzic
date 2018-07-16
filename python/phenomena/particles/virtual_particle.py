@@ -15,14 +15,14 @@ class VirtualChannel(object):
 
     def __init__(self,decay,mass,masses,name):
         self._name = name
-        self.decay = decay
+        self._decay = decay
         self._virtualp = {}
         limits = self._set_mass_limits(mass,masses)
         self._set_channel_choice(decay, limits)
         if self._virtualp['name'] != []:
             self._set_mass(masses,self._virtualp['mass'])
             self._set_virtual_decay(decay)
-            self.decay[-1] = (self._virtualp['name'],self._virtualp['mass'],self._virtualp['decay'][0],self._virtualp['decay'][1])
+            self._decay[-1] = self._virtualp
             #In the place of the virtual particle we have a tuple with name in [0], mass in [1] and decay in [2],[3]
 
     def _set_mass_limits(self, mass,masses):
@@ -73,9 +73,9 @@ class VirtualChannel(object):
 
         k = pythia.pdg_id(self._name)
         ids = [k]
-        ids.append(pythia.pdg_id(self.decay[0]))
-        ids.append(pythia.pdg_id(self.decay[1]))
-        ids.append(pythia.pdg_id(self.decay[2]))
+        ids.append(pythia.pdg_id(self._decay[0]))
+        ids.append(pythia.pdg_id(self._decay[1]))
+        ids.append(pythia.pdg_id(self._decay[2]))
 
         tags = [[str(ids[0]),str(-ids[1])],
             [str(ids[0]),str(-ids[2])],
@@ -295,4 +295,4 @@ class VirtualChannel(object):
                 new_decay.append(decay[particle])
         new_decay.append(self._virtualp['name'])
         self._virtualp['decay'] = vrt_decay
-        self.decay = new_decay
+        self._decay = new_decay

@@ -1,5 +1,7 @@
 from __future__ import division
 import math, random
+import collections
+import six
 
 from particle import Particle, ParticleDT, toDictionary
 
@@ -29,61 +31,63 @@ class ParticleBoosted(ParticleDT):
         else:
             return None
 
-        def _virtual_init(self, argv, **kwargs):
-            self._name = argv[0].get['name']
 
-        if type(name) is str:
-            # Scenario for handling regular particles
-            super(ParticleBoosted, self).__init__(name,parent)#inherit properties from ParticleDT
-            self._theta = kwargs.get('theta',0) #the angle of this instance
 
-            masses = []  # array of masses 0: parent particle, 1: first decay particle, ...
-            for particle in self.decay:
-                masses.append(ParticleDT.getmass(particle))
+    # Scenario for handling virtual particles
+    def _virtual_init(self, *argv, **kwargs):
+        name = argv[0].get('name')
+        mass = argv[0].get('mass')
+        decay = argv[0].get('decay')
 
-            self._masses = masses
+        self._set_name(name)  # Name of the particle pypdt convention
+        self._set_id() # Class Counter
+        self._set_pdgid(pname) # Id from PDG, taken from pypdt
+        self._mass = mass # Mass of the particle in GeV
+        self._set_charge() # Charge of the particle taken from pypdt
+        self._set_lifetime() # Lifetime of the particle, taken from pypdt
+        # Virtual particles have lifetimes that are too short, so we make them large. This can be changed to a more realistic approach
+        self._lifetime *= 1.e10 #!!CHECK!!#
+        self._set_type() # Particle Type will always be virtual
+        self._set_composition() # Particle quark compsition in format [[q1,q2],[q3,q4],...] taken from json.
+        self._set_lifetime_ren() #Renormalization of the lifetime THIS SHOULD BE DONE AT THE NODES and brought back with callback
+        self.decay = decay # Particle decay channel chosen
+        self._set_time_to_decay()  # Particle time lived before decay, renormalized
+        self._setParent(parent)
 
-            #decide if we want the decay to happen through a virtual channel
-            if len(self.decay) == 3:
-                VirtualChannel(self.decay,self.mass, self._masses, self.name)
-            #the decay particles and masses have been reset inside ParticleVirtual if necessary
+        self._p = kwargs.get('p',None)
+        self._gamma = boostParams.gamma_from_p(self.mass,self._p)
+        self._beta =  boostParams.beta_from_gamma(self._gamma)
+        self._E = boostParams.E_from_p(self._beta,self._p)
+        self._T = boostParams.T_from_gamma(self.mass,self._gamma)
 
-            #calculate and assign boosted parameters
-            self._setBoostedParameters(kwargs)
+        self._theta = kwargs.get('theta',0)
+        self.decayvalues = DecayCalc(self._mass,self._gamma,self._theta,self.decay).values # sets values for decay particles
 
-            # increase lifetime by gamma factor
-            self._lifetime *= self._gamma
-        else:
-            # Scenario for handling virtual particles
-            pname = name[0]
-            mass = name[1]
-            decay = [name[2],name[3]]
-            self._set_name(pname)  # Name of the particle pypdt convention
-            self._set_id() # Class Counter
-            self._set_pdgid(pname) # Id from PDG, taken from pypdt
-            self._mass = mass # Mass of the particle in GeV
-            self._set_charge() # Charge of the particle taken from pypdt
-            self._set_lifetime() # Lifetime of the particle, taken from pypdt
-            # Virtual particles have lifetimes that are too short, so we make them large. This can be changed to a more realistic approach
-            self._lifetime *= 1.e10 #!!CHECK!!#
-            self._set_type() # Particle Type will always be virtual
-            self._set_composition() # Particle quark compsition in format [[q1,q2],[q3,q4],...] taken from json.
-            self._set_lifetime_ren() #Renormalization of the lifetime THIS SHOULD BE DONE AT THE NODES and brought back with callback
-            self.decay = decay # Particle decay channel chosen
-            self._set_time_to_decay()  # Particle time lived before decay, renormalized
-            self._setParent(parent)
+        # increase lifetime by gamma factor
+        self._lifetime *= self._gamma
 
-            self._p = kwargs.get('p',None)
-            self._gamma = boostParams.gamma_from_p(self.mass,self._p)
-            self._beta =  boostParams.beta_from_gamma(self._gamma)
-            self._E = boostParams.E_from_p(self._beta,self._p)
-            self._T = boostParams.T_from_gamma(self.mass,self._gamma)
+    # Scenario for handling regular particles
+    def _real_init(self, *argv, **kwargs):
+        name = argv[0]
+        super(ParticleBoosted, self).__init__(name,parent)#inherit properties from ParticleDT
+        self._theta = kwargs.get('theta',0) #the angle of this instance
 
-            self._theta = kwargs.get('theta',0)
-            self.decayvalues = DecayCalc(self._mass,self._gamma,self._theta,self.decay).values # sets values for decay particles
+        masses = []  # array of masses 0: parent particle, 1: first decay particle, ...
+        for particle in self.decay:
+            masses.append(ParticleDT.getmass(particle))
 
-            # increase lifetime by gamma factor
-            self._lifetime *= self._gamma
+        self._masses = masses
+
+        #decide if we want the decay to happen through a virtual channel
+        if len(self.decay) == 3:
+            self.decay = VirtualChannel(self.decay,self.mass, self._masses, self.name)._decay
+        #the decay particles and masses have been reset inside ParticleVirtual if necessary
+
+        #calculate and assign boosted parameters
+        self._setBoostedParameters(kwargs)
+
+        # increase lifetime by gamma factor
+        self._lifetime *= self._gamma
 
     def _setBoostedParameters(self,kwargs):
         self._params = boostParams(self._name,p=kwargs.get('p',None),E=kwargs.get('E',None)) # sets boosted parameters for this instance
