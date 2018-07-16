@@ -274,7 +274,11 @@ class ParticleDT(Particle):
                 choice = self._weighted_choice(self._build_weights()[0],self._build_weights()[1])
                 channel = self._decay_channels[choice][1]
                 for part in channel:
-                    list_decay.append(pythia.name(part))  # this just shows parti
+                    print(part)
+                    try:
+                        list_decay.append(pythia.name(part))  # this just shows parti
+                    except:
+                        list_decay.append(pythia.name(-part))
             finally:
                 self.decay = list_decay
         else:

@@ -42,6 +42,15 @@ class VirtualChannel(object):
             weights.append(invmass/sum(invmasses))
         return weights
 
+    def _weighted_choice(self, seq, weights):
+        assert len(weights) == len(seq)
+        #assert abs(1. - sum(weights)) < 1e-6
+        x = random.random()
+        for i, elmt in enumerate(seq):
+            if x <= weights[i]:
+                return elmt
+            x -= weights[i]
+
     def _set_BW_mass(self,mass,width,limits):
         # Use self._virtualp._name
         # Mass
@@ -230,7 +239,7 @@ class VirtualChannel(object):
             fd = ew[n]
         else:
             weights = self._set_weights(fp)
-            fd = _weighted_choice(fp, weights)
+            fd = self._weighted_choice(fp, weights)
 
         chnum = []
         for ind in range(len(self._decay)):
@@ -255,22 +264,13 @@ class VirtualChannel(object):
 
         # We set the threshold for no virtual decay if the virtual mass is on the lower end of our distribution
         # This way, it's more probable to see a virtual particle when we're close
-        if (virtual_particle in ['W-','W+','Z0']) or self.virtual_mass >= (limits[channel][0]+limits[channel][1])/2.:
+        if (virtual_particle in ['W-','W+','Z0']) or virtual_mass >= (limits[channel][0]+limits[channel][1])/2.:
             self._virtualp['name'] = virtual_particle
             self._virtualp['mass'] = virtual_mass
             self._virtualp['realmass'] = virtual_particle_mass
             self._virtualp['channel'] = virtual_channel_freepart
         else:
             self._virtualp['name'] = []
-
-    def _weighted_choice(self, seq, weights):
-        assert len(weights) == len(seq)
-        #assert abs(1. - sum(weights)) < 1e-6
-        x = random.random()
-        for i, elmt in enumerate(seq):
-            if x <= weights[i]:
-                return elmt
-            x -= weights[i]
 
 
     def _set_mass(self,masses,virtual_mass):
