@@ -41,7 +41,7 @@ class ParticleBoosted(ParticleDT):
 
         self._set_name(name)  # Name of the particle pypdt convention
         self._set_id() # Class Counter
-        self._set_pdgid(pname) # Id from PDG, taken from pypdt
+        self._set_pdgid(name) # Id from PDG, taken from pypdt
         self._mass = mass # Mass of the particle in GeV
         self._set_charge() # Charge of the particle taken from pypdt
         self._set_lifetime() # Lifetime of the particle, taken from pypdt
@@ -52,7 +52,7 @@ class ParticleBoosted(ParticleDT):
         self._set_lifetime_ren() #Renormalization of the lifetime THIS SHOULD BE DONE AT THE NODES and brought back with callback
         self.decay = decay # Particle decay channel chosen
         self._set_time_to_decay()  # Particle time lived before decay, renormalized
-        self._setParent(parent)
+        self._setParent(self._parent)
 
         self._setVirtualBoostedParameters(kwargs)
         # increase lifetime by gamma factor
@@ -61,7 +61,7 @@ class ParticleBoosted(ParticleDT):
     # Scenario for handling regular particles
     def _real_init(self, *argv, **kwargs):
         name = argv[0]
-        super(ParticleBoosted, self).__init__(name,parent)#inherit properties from ParticleDT
+        super(ParticleBoosted, self).__init__(name,self._parent)#inherit properties from ParticleDT
         self._theta = kwargs.get('theta',0) #the angle of this instance
 
         masses = []  # array of masses 0: parent particle, 1: first decay particle, ...
