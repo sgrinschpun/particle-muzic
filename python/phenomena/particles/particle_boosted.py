@@ -54,15 +54,7 @@ class ParticleBoosted(ParticleDT):
         self._set_time_to_decay()  # Particle time lived before decay, renormalized
         self._setParent(parent)
 
-        self._p = kwargs.get('p',None)
-        self._gamma = boostParams.gamma_from_p(self.mass,self._p)
-        self._beta =  boostParams.beta_from_gamma(self._gamma)
-        self._E = boostParams.E_from_p(self._beta,self._p)
-        self._T = boostParams.T_from_gamma(self.mass,self._gamma)
-
-        self._theta = kwargs.get('theta',0)
-        self.decayvalues = DecayCalc(self._mass,self._gamma,self._theta,self.decay).values # sets values for decay particles
-
+        self._setVirtualBoostedParameters(kwargs)
         # increase lifetime by gamma factor
         self._lifetime *= self._gamma
 
@@ -99,6 +91,15 @@ class ParticleBoosted(ParticleDT):
 
         self.decayvalues = DecayCalc(self._mass,self._gamma,self._theta,self.decay).values # sets values for decay particles
 
+    def _setVirtualBoostedParameters(self,kwargs): # Regular boosted parameters fetches de mass from pdg. For virtual particles it's the wrong mass
+        self._p = kwargs.get('p',None)
+        self._gamma = boostParams.gamma_from_p(self.mass,self._p)
+        self._beta =  boostParams.beta_from_gamma(self._gamma)
+        self._E = boostParams.E_from_p(self._beta,self._p)
+        self._T = boostParams.T_from_gamma(self.mass,self._gamma)
+
+        self._theta = kwargs.get('theta',0)
+        self.decayvalues = DecayCalc(self._mass,self._gamma,self._theta,self.decay).values # sets values for decay particles
 
     @property
     def p(self):
