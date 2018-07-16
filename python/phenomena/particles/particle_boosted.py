@@ -5,7 +5,7 @@ from particle import Particle, ParticleDT, toDictionary
 
 from phenomena.particles.kinematics.decay.calculations import DecayCalc
 from phenomena.particles.kinematics.parameters import boostParams
-# from phenomena.particles.virtual_particle import VirtualChannel
+from phenomena.particles.virtual_particle import VirtualChannel
 
 #Santi was here
 
@@ -15,14 +15,37 @@ class ParticleBoosted(ParticleDT):
 
     # With virtual particles added, name is no longer always the name.
     # If it doesn't raise trouble anywhere else, it should be changed into something else (pdata, particle, etc)
-    def __init__(self, name, parent = NO_PARENT, **kwargs): #initialize either with momentum (p) or energy (E)
+    def __init__(self, *argv, **kwargs): #initialize either with momentum (p) or energy (E)
+
+        try:
+            self._parent = argv[1]
+        except:
+            self._parent = -1
+
+        if isinstance(argv[0], collections.Mapping):
+            self._virtual_init(*argv, **kwargs)
+        elif isinstance(argv[0], six.string_types):
+            self._real_init(*argv, **kwargs)
+        else:
+            return None
+
+        def _virtual_init(self, argv, **kwargs):
+            self._name = argv[0].get['name']
+
         if type(name) is str:
             # Scenario for handling regular particles
             super(ParticleBoosted, self).__init__(name,parent)#inherit properties from ParticleDT
             self._theta = kwargs.get('theta',0) #the angle of this instance
 
+            masses = []  # array of masses 0: parent particle, 1: first decay particle, ...
+            for particle in self.decay:
+                masses.append(ParticleDT.getmass(particle))
+
+            self._masses = masses
+
             #decide if we want the decay to happen through a virtual channel
-            # VirtualChannel(self.decay,self._masses)
+            if len(self.decay) == 3:
+                VirtualChannel(self.decay,self.mass, self._masses, self.name)
             #the decay particles and masses have been reset inside ParticleVirtual if necessary
 
             #calculate and assign boosted parameters
