@@ -3,8 +3,8 @@ import math, random
 from scipy.stats import rv_continuous
 import numpy as np
 
-from phenomena.particles.kinematics.decay.Breit_Wigner import nonrel_breit_wigner_gen
-from phenomena.particles.kinematics.decay.Breit_Wigner import rel_breit_wigner_gen
+from phenomena.particles.kinematics.decay.Breit_Wigner import lim_nonrel_breit_wigner_gen
+from phenomena.particles.kinematics.decay.Breit_Wigner import lim_rel_breit_wigner_gen
 from phenomena.particles.particle import ParticleDT
 
 from particletools.tables import PYTHIAParticleData
@@ -45,8 +45,11 @@ class VirtualChannel(object):
     def _set_BW_mass(self,mass,width,limits):
         # Use self._virtualp._name
         # Mass
-        rel_breit_wigner = rel_breit_wigner_gen(a=0, b=np.inf, shapes='mass, width')
-        virtual_mass = rel_breit_wigner(mass=float(mass), width=float(width)).rvs()
+        #nonrel_breit_wigner = nonrel_breit_wigner_gen(a=limits[0], b=limits[1], shapes='mass, width, limit1, limit2')
+        #virtual_mass = nonrel_breit_wigner(mass=float(mass), width=float(width), limit1=limits[0], limit1=limits[1]).rvs()
+
+        lim_rel_breit_wigner = lim_rel_breit_wigner_gen(a=limits[0], b=limits[1], shapes='mass, width, limit1, limit2')
+        virtual_mass = lim_rel_breit_wigner(mass=float(mass), width=float(width), limit1=limits[0], limit1=limits[1]).rvs()
 
         return virtual_mass
 
