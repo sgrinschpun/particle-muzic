@@ -9,28 +9,44 @@ class nonrel_breit_wigner_gen(rv_continuous):
 # Nonrelativistic Breit-Wigner distribution for a particle
 # given his math and his width.
 
-    def _pdf(self, m, mass, width):
+    def _nlpdf(self, m, mass, width):
 
         k = 1/(np.pi/2.+np.arctan(mass/width))
 
-        return k*width/((m-mass)**2+width**2)
+        return float(k*width/((m-mass)**2+width**2))
 
-    def _cdf(self, m, mass, width):
+    def _nlcdf(self, m, mass, width):
 
         k = 1/(np.pi/2.+np.arctan(mass/width))
         cdf=k*(np.arctan((m-mass)/width)+np.arctan(mass/width))
 
-        return cdf
+        return float(cdf)
+
+class lim_nonrel_breit_wigner_gen(nonrel_breit_wigner_gen):
+
+    def _pdf(self, m, mass, width, limit1, limit2):
+
+        C=self._nlcdf(limit2, mass, width)-self._nlcdf(limit1, mass, width)
+        C=float(C)
+
+        return float(1./C)*float(self._nlpdf(m, mass, width))
+
+    def _cdf(self, m, mass, width, limit1, limit2):
+
+
+        C=self._nlcdf(limit2, mass, width)-self._nlcdf(limit1, mass, width)
+        C=float(C)
+
+        return (1./C)*(self._nlcdf(m, mass, width)-self._nlcdf(limit1, mass, width))
+
 
 class rel_breit_wigner_gen(rv_continuous):
 
 # Nonrelativistic Breit-Wigner distribution for a particle
 # given his math and his width.
 
-    def _argcheck(self, mass, width):
-        return (mass > 0) & (width > 0)
 
-    def _pdf(self, m, mass, width):
+    def _nlpdf(self, m, mass, width):
 
         alpha_ = width / mass
         gamma_ = mass**2 * (1. + alpha_**2)**0.5
@@ -38,7 +54,7 @@ class rel_breit_wigner_gen(rv_continuous):
 
         return k / ((m**2 - mass**2)**2 + mass**4 * alpha_**2)
 
-    def _cdf(self, m, mass, width):
+    def _nlcdf(self, m, mass, width):
 
         alpha_ = width / mass
         gamma_ = mass**2 * (1. + alpha_**2)**0.5
@@ -54,6 +70,25 @@ class rel_breit_wigner_gen(rv_continuous):
         cdf_ = cdf_.real
 
         return cdf_
+
+class lim_rel_breit_wigner_gen(rel_breit_wigner_gen):
+
+    def _pdf(self, m, mass, width, limit1, limit2):
+
+        C=self._nlcdf(limit2, mass, width)-self._nlcdf(limit1, mass, width)
+        C=float(C)
+
+        return float(1./C)*float(self._nlpdf(m, mass, width))
+
+    def _cdf(self, m, mass, width, limit1, limit2):
+
+
+        C=self._nlcdf(limit2, mass, width)-self._nlcdf(limit1, mass, width)
+        C=float(C)
+
+        return (1./C)*(self._nlcdf(m, mass, width)-self._nlcdf(limit1, mass, width))
+
+
 
 # If one wants to randomly generate numbers that follow these distributions,
 # use the rvs method of the SciPy class rv_continuous. For more detail, see
