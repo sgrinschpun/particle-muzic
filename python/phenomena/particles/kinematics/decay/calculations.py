@@ -1,6 +1,8 @@
 from __future__ import division
 import math
 import abc
+import collections
+import six
 
 from phenomena.particles.particle import ParticleDT
 from phenomena.particles.kinematics.decay._2body import LAB2BodyCalc
@@ -25,7 +27,10 @@ class DecayCalc(object):
     def _setMassArray(self, mass, decay):
         masses = [mass]  # array of masses 0: parent particle, 1: first decay particle, ...
         for particle in decay:
-            masses.append(ParticleDT.getmass(particle))
+            if isinstance(particle, collections.Mapping):
+                masses.append(particle['mass'])
+            elif isinstance(particle, six.string_types):
+                masses.append(ParticleDT.getmass(particle))
 
         self._masses = masses
 

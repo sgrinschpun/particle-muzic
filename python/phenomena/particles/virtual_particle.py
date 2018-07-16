@@ -5,7 +5,7 @@ import numpy as np
 
 from phenomena.particles.kinematics.decay.Breit_Wigner import nonrel_breit_wigner_gen
 from phenomena.particles.kinematics.decay.Breit_Wigner import rel_breit_wigner_gen
-from phenomena.particles.particle import _weighted_choice
+from phenomena.particles.particle import ParticleDT
 
 from particletools.tables import PYTHIAParticleData
 pythia = PYTHIAParticleData()
@@ -232,8 +232,8 @@ class VirtualChannel(object):
             fd = _weighted_choice(fp, weights)
 
         chnum = []
-        for ind in len(self._decay):
-            if self._decay(ind) != fd[3]:
+        for ind in range(len(self._decay)):
+            if ind != fd[3]-1:
                 chnum.append(str(ind+1))
         channel = ''.join(chnum)
         # For this specific 3 particle case, it might be simpler to use:
@@ -250,7 +250,7 @@ class VirtualChannel(object):
         virtual_channel_freepart = fd[3]
 
         # We must set the virtual particle name (could be empty) and then flag which masses will come from the virtual particle
-        virtual_mass = self._set_BW_mass(virtual_particle_mass, virtual_particle_width,limits[channel])
+        virtual_mass = self._set_BW_mass(virtual_particle_mass, virtual_particle_width, limits[channel])
 
         # We set the threshold for no virtual decay if the virtual mass is on the lower end of our distribution
         # This way, it's more probable to see a virtual particle when we're close
@@ -258,8 +258,18 @@ class VirtualChannel(object):
             self._virtualp['name'] = virtual_particle
             self._virtualp['mass'] = virtual_mass
             self._virtualp['realmass'] = virtual_particle_mass
+            self._virtualp['channel'] = virtual_channel_freepart
         else:
             self._virtualp['name'] = []
+
+    def _weighted_choice(self, seq, weights):
+        assert len(weights) == len(seq)
+        #assert abs(1. - sum(weights)) < 1e-6
+        x = random.random()
+        for i, elmt in enumerate(seq):
+            if x <= weights[i]:
+                return elmt
+            x -= weights[i]
 
 
     def _set_mass(self,masses,virtual_mass):
@@ -267,7 +277,7 @@ class VirtualChannel(object):
         # We don't need the masses of the daughter particles, because they are looked up in DecayCalc
         # vrt_masses = []
         new_masses = []
-        new_masses.append(masses[virtual_channel_freep])
+        new_masses.append(masses[self._virtualp['channel']-1])
         new_masses.append(virtual_mass)
         # self._virtualp._masses = vrt_masses
         self._masses = new_masses
@@ -276,8 +286,8 @@ class VirtualChannel(object):
     def _set_virtual_decay(self,decay):
         vrt_decay = []
         new_decay = []
-        for index in len(decay):
-            if index != virtual_channel_freep-1:
+        for index in range(len(decay)):
+            if index != self._virtualp['channel']-1:
                 vrt_decay.append(decay[index])
             else:
                 new_decay.append(decay[index])
