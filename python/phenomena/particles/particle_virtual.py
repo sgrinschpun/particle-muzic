@@ -10,8 +10,6 @@ from phenomena.particles.particle import ParticleDT
 from particletools.tables import PYTHIAParticleData
 pythia = PYTHIAParticleData()
 
-#Santi was here
-
 class VirtualChannel(object):
 
     def __init__(self,decay,mass,masses,name):
