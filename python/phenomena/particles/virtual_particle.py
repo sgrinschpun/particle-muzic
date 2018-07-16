@@ -234,7 +234,7 @@ class VirtualChannel(object):
         chnum = []
         for ind in len(self._decay):
             if self._decay(ind) != fd[3]:
-                chnum.append(str(ind+1)))
+                chnum.append(str(ind+1))
         channel = ''.join(chnum)
         # For this specific 3 particle case, it might be simpler to use:
         # if self._is_virtual[0] == 0:
