@@ -22,7 +22,7 @@ class ParticleBoosted(ParticleDT):
         try:
             self._parent = argv[1]
         except:
-            self._parent = -1
+            self._parent = NO_PARENT
 
         if isinstance(argv[0], collections.Mapping):
             self._virtual_init(*argv, **kwargs)

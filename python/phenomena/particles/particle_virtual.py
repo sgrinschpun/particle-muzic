@@ -49,7 +49,7 @@ class VirtualChannel(object):
         #virtual_mass = nonrel_breit_wigner(mass=float(mass), width=float(width), limit1=limits[0], limit1=limits[1]).rvs()
 
         lim_rel_breit_wigner = lim_rel_breit_wigner_gen(a=limits[0], b=limits[1], shapes='mass, width, limit1, limit2')
-        virtual_mass = lim_rel_breit_wigner(mass=float(mass), width=float(width), limit1=limits[0], limit1=limits[1]).rvs()
+        virtual_mass = lim_rel_breit_wigner(mass=float(mass), width=float(width), limit1=limits[0], limit2=limits[1]).rvs()
 
         return virtual_mass
 
