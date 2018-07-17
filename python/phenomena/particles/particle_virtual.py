@@ -3,8 +3,7 @@ import math, random
 from scipy.stats import rv_continuous
 import numpy as np
 
-from phenomena.particles.kinematics.decay.Breit_Wigner import lim_nonrel_breit_wigner_gen
-from phenomena.particles.kinematics.decay.Breit_Wigner import lim_rel_breit_wigner_gen
+from phenomena.particles.kinematics.decay.Breit_Wigner import lim_nonrel_breit_wigner_gen, lim_rel_breit_wigner_gen
 from phenomena.particles.particle import ParticleDT
 
 from particletools.tables import PYTHIAParticleData
