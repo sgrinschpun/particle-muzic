@@ -28,7 +28,6 @@ class ParticleBoosted(ParticleDT):
             return None
 
 
-
     # Scenario for handling virtual particles
     def _virtual_init(self, *argv, **kwargs):
         name = argv[0].get('name')
@@ -47,7 +46,7 @@ class ParticleBoosted(ParticleDT):
         self._set_charge() # Charge of the particle taken from pypdt
         self._set_lifetime() # Lifetime of the particle, taken from pypdt
         # Virtual particles have lifetimes that are too short, so we make them large. This can be changed to a more realistic approach
-        self._lifetime *= 1.e10 #!!CHECK!!#
+        self._lifetime *= 5.e9 #!!CHECK!!#
         self._set_type() # Particle Type will always be virtual
         self._set_composition() # Particle quark compsition in format [[q1,q2],[q3,q4],...] taken from json.
         self._set_lifetime_ren() #Renormalization of the lifetime THIS SHOULD BE DONE AT THE NODES and brought back with callback
