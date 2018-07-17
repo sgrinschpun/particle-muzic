@@ -29,13 +29,13 @@ public class MyTrack {
     }
 
     public void drawDotTrack(PVector location){
-        p.stroke(0);
+        p.stroke(255);
         p.point(location.x,location.y);
     }
 
     public void drawCircleTrack(PVector location, PVector velocity){
         p.noStroke();
-        p.fill(0);
+        p.fill(255);
         float width = getWidth(velocity);
         p.ellipse(location.x,location.y,width,width);
     }

@@ -54,7 +54,7 @@ public class MyViz {
                 color = p.color(0,0,0);
                 break;
             case "bubblechamber" :
-                color =  p.color(255,255,255);
+                color =  p.color(0,0,0);
                 break;
         }
         return color;

@@ -32,8 +32,8 @@ public class AVServer extends PApplet {
 		handleJson = new JsonHandler();
 
 		//define your visualization
-		myViz = new MyViz(this, "quantumuniverse");
-		//myViz = new MyViz(this, "bubblechamber");
+		//myViz = new MyViz(this, "quantumuniverse");
+		myViz = new MyViz(this, "bubblechamber");
 
         background(myViz.getBackgroundColor());
 
