@@ -121,25 +121,34 @@ class LAB3BodyCalc(nbody.LabCalc):
         for i in range(1,4):
             CMpExy[i-1]['x'] = p[i-1]*math.cos(self._anglesCM[i])
             CMpExy[i-1]['y'] = p[i-1]*math.sin(self._anglesCM[i])
+            CMpExy[i-1]['z'] = 0
 
+        # For 3 dimensions we only need to add another angle representing the perpendicular rotation of the CM plane
+        # around the direction of the incoming particle and use this update of momenta instead of the one above
+
+        # self._angle3D = math.pi * random.random() # It will be the same angle for all 3 decay particles in the CM plane
+        # for i in range(1,4): # Modified for 3D
+        #     CMpExy[i-1]['x'] = p[i-1]*math.cos(self._anglesCM[i])*math.cos(self._angle3D)
+        #     CMpExy[i-1]['z'] = p[i-1]*math.cos(self._anglesCM[i])*math.sin(self._angle3D)
+        #     CMpExy[i-1]['y'] = p[i-1]*math.sin(self._anglesCM[i])
 
         return [
             {
             'x':gamma*(CMpExy[0]['x']+ beta*CMpExy[0]['E']),
             'y':CMpExy[0]['y'],
-            'z':0,
+            'z':CMpExy[0]['z'],
             'E':gamma*(beta*CMpExy[0]['x']+ CMpExy[0]['E'])
             },
             {
             'x':gamma*(CMpExy[1]['x']+ beta*CMpExy[1]['E']),
             'y':CMpExy[1]['y'],
-            'z':0,
+            'z':CMpExy[1]['z'],
             'E':gamma*(beta*CMpExy[1]['x']+ CMpExy[1]['E'])
             },
             {
             'x':gamma*(CMpExy[2]['x']+ beta*CMpExy[2]['E']),
             'y':CMpExy[2]['y'],
-            'z':0,
+            'z':CMpExy[2]['z'],
             'E':gamma*(beta*CMpExy[2]['x']+ CMpExy[2]['E'])
             }
         ]
