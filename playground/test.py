@@ -2,6 +2,7 @@ from __future__ import print_function
 import sys
 import unittest
 import numpy as np
+from skhep.simulation import pdgid
 
 python_path = 'C:\Users\Santi\Documents\GitHub\particle-muzic\python'
 sys.path.append(python_path)
@@ -14,19 +15,16 @@ from phenomena.particles.particle import ParticleDT
 class MyTest(unittest.TestCase):
     def test(self):
 #        part = ParticleBoosted({'name':'W+', 'mass':500, 'decay':['mu+', 'nu_mubar']}, p=1)
-        part = ParticleBoosted('tau+')
+        part = ParticleBoosted('rho+')
         p = [part.p]
-        for moment in part.decayvalues:
-            p.append(moment['p'])
-
         theta = [part.theta]
-        for angle in part.decayvalues:
-            theta.append(angle['theta'])
-
         En = [part.E]
-        for energy in part.decayvalues:
-            print(energy)
-            En.append(energy['E'])
+        for particle in part.decayvalues:
+            p.append(particle['p'])
+            theta.append(particle['theta'])
+            En.append(particle['E'])
+
+
 
         px = p * np.cos(theta)
         py = p * np.sin(theta)
