@@ -280,9 +280,9 @@ class ParticleDT(Particle):
                     except:
                         list_decay.append(pythia.name(-part))
             finally:
-                self.decay = list_decay
+                self._decay = list_decay
         else:
-            self.decay = []
+            self._decay = []
 
     @property
     def decay_time(self):

@@ -37,7 +37,12 @@ class ParticleBoosted(ParticleDT):
     def _virtual_init(self, *argv, **kwargs):
         name = argv[0].get('name')
         mass = argv[0].get('mass')
-        decay = argv[0].get('decay')
+
+        try:  # Particle decay channel chosen
+            self._decay = argv[0].get('decay')
+        except:
+            self._set_decay_channels()
+            self._set_decay()
 
         self._set_name(name)  # Name of the particle pypdt convention
         self._set_id() # Class Counter
@@ -50,7 +55,6 @@ class ParticleBoosted(ParticleDT):
         self._set_type() # Particle Type will always be virtual
         self._set_composition() # Particle quark compsition in format [[q1,q2],[q3,q4],...] taken from json.
         self._set_lifetime_ren() #Renormalization of the lifetime THIS SHOULD BE DONE AT THE NODES and brought back with callback
-        self.decay = decay # Particle decay channel chosen
         self._set_time_to_decay()  # Particle time lived before decay, renormalized
         self._setParent(self._parent)
 
@@ -65,14 +69,14 @@ class ParticleBoosted(ParticleDT):
         self._theta = kwargs.get('theta',0) #the angle of this instance
 
         masses = []  # array of masses 0: parent particle, 1: first decay particle, ...
-        for particle in self.decay:
+        for particle in self._decay:
             masses.append(ParticleDT.getmass(particle))
 
         self._masses = masses
 
         #decide if we want the decay to happen through a virtual channel
-        if len(self.decay) == 3:
-            self.decay = VirtualChannel(self.decay,self.mass, self._masses, self.name)._decay
+        if len(self._decay) == 3:
+            self._decay = VirtualChannel(self._decay,self.mass, self._masses, self.name)._decay
         #the decay particles and masses have been reset inside ParticleVirtual if necessary
 
         #calculate and assign boosted parameters
@@ -89,7 +93,7 @@ class ParticleBoosted(ParticleDT):
         self._beta = self._params.beta
         self._T = self._params.T
 
-        self.decayvalues = DecayCalc(self._mass,self._gamma,self._theta,self.decay).values # sets values for decay particles
+        self.decayvalues = DecayCalc(self._mass,self._gamma,self._theta,self._decay).values # sets values for decay particles
 
     def _setVirtualBoostedParameters(self,kwargs): # Regular boosted parameters fetches de mass from pdg. For virtual particles it's the wrong mass
         self._p = kwargs.get('p',None)
@@ -99,7 +103,7 @@ class ParticleBoosted(ParticleDT):
         self._T = boostParams.T_from_gamma(self.mass,self._gamma)
 
         self._theta = kwargs.get('theta',0)
-        self.decayvalues = DecayCalc(self._mass,self._gamma,self._theta,self.decay).values # sets values for decay particles
+        self.decayvalues = DecayCalc(self._mass,self._gamma,self._theta,self._decay).values # sets values for decay particles
 
     @property
     def p(self):
