@@ -6,16 +6,16 @@ import numpy as np
 python_path = 'C:\Users\Santi\Documents\GitHub\particle-muzic\python'
 sys.path.append(python_path)
 
-from phenomena.particles.particle_virtual import ParticleVirtual
+from phenomena.particles.particle_boosted import ParticleBoosted
 from phenomena.particles.particle import ParticleDT
 
 #Santi was here
 
 class MyTest(unittest.TestCase):
     def test(self):
-        part = ParticleVirtual('mu+', p=1)
+#        part = ParticleBoosted({'name':'W+', 'mass':500, 'decay':['mu+', 'nu_mubar']}, p=1)
+        part = ParticleBoosted('tau+')
         p = [part.p]
-        print(part.decayvalues)
         for moment in part.decayvalues:
             p.append(moment['p'])
 
@@ -23,9 +23,10 @@ class MyTest(unittest.TestCase):
         for angle in part.decayvalues:
             theta.append(angle['theta'])
 
-        E = [part.E]
+        En = [part.E]
         for energy in part.decayvalues:
-            E.append(energy['E'])
+            print(energy)
+            En.append(energy['E'])
 
         px = p * np.cos(theta)
         py = p * np.sin(theta)
@@ -41,6 +42,6 @@ class MyTest(unittest.TestCase):
 
         self.assertEqual(round(sum(px[1:]), 5), round(px[0], 5))
         self.assertEqual(round(sum(py[1:]), 5), round(py[0], 5))
-        self.assertEqual(round(sum(E[1:]), 5), round(E[0], 5))
+        self.assertEqual(round(sum(En[1:]), 5), round(En[0], 5))
 
 unittest.main()
