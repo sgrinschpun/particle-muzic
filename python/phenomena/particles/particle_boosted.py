@@ -9,14 +9,10 @@ from phenomena.particles.kinematics.decay.calculations import DecayCalc
 from phenomena.particles.kinematics.parameters import boostParams
 from phenomena.particles.particle_virtual import VirtualChannel
 
-#Santi was here
-
 NO_PARENT = -1
 class ParticleBoosted(ParticleDT):
     c= 299792458 #m/s
 
-    # With virtual particles added, name is no longer always the name.
-    # If it doesn't raise trouble anywhere else, it should be changed into something else (pdata, particle, etc)
     def __init__(self, *argv, **kwargs): #initialize either with momentum (p) or energy (E)
 
         try:
