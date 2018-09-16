@@ -6,49 +6,41 @@ class DataSource(object):
     def __init__(self, imp):
        self._imp = imp
 
-    def getMass(self, name):  #GeV
-       return self._imp.getMass(name)
+    def getName(self, pdgid):
+         return self._imp.getName(pdgid)
 
-    def getCharge(self, name):
-       return self._imp.getCharge(name)
+    def getMass(self, pdgid):  #GeV
+       return self._imp.getMass(pdgid)
+
+    def getCharge(self, pdgid):
+       return self._imp.getCharge(pdgid)
 
     def getPDGId(self, name):
        return self._imp.getPDGId(name)
 
-    def getTau(self, name):
-       return self._imp.getTau(name)
+    def getTau(self, pdgid):
+       return self._imp.getTau(pdgid)
 
-    def getCtau(self, name):
-       return self._imp.getCtau(name)
+    def getCTau(self, name):
+       return self._imp.getCTau(name)
 
     def getWidth(self, name):
          return self._imp.getWidth(name)
 
-    def getComposition(self, name):
-         return self._imp.getComposition(name)
+    def getComposition(self, pdgid):
+         return self._imp.getComposition(pdgid)
 
-    def getType(self, name):
-         return self._imp.getType(name)
+    def getType(self, pdgid):
+         return self._imp.getType(pdgid)
 
+    def getSpin(self, pdgid):
+         return self._imp.getSpin(pdgid)
 
-class DataSourceFetcher(object):
-    """
-    Define the interface for implementation classes that fetch content.
-    """
-    def getMass(self, name):
-        return None
+    def getDecayChannels(self, name):
+        return self._imp.getDecayChannels(name)
 
-    def getCharge(self, name):
-        return None
+    def getRadius(self, pdgid):
+         return self._imp.getRadius(pdgid)
 
-    def getPDGId(self, name):
-        return None
-
-    def getTau(self, name):
-        return None
-
-    def getComposition(self, name):
-        return None
-
-    def getType(self, name):
-        return None
+    def getAnti(self, pdgid):
+         return self._imp.getAnti(pdgid)

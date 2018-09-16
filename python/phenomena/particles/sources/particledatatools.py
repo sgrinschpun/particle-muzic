@@ -1,7 +1,6 @@
 from __future__ import division
 import math
 
-from datasources import DataSourceFetcher
 from phenomena.particles.particle import ParticleDT
 from skhep.constants import c_light
 
@@ -10,19 +9,39 @@ from skhep.constants import c_light
 from particletools.tables import PYTHIAParticleData
 pythia = PYTHIAParticleData()
 
-class ParticleDataToolFetcher(DataSourceFetcher):
+class ParticleDataToolFetcher(object):
 
-    def getMass(self, name):
-        return pythia.mass(name)
+    @staticmethod
+    def getName(pdgid):
+        return pythia.name(pdgid)
 
-    def getCharge(self, name):
-        return pythia.charge(name)
+    @staticmethod
+    def getMass(pdgid):
+        return pythia.mass(pdgid)
 
-    def getPDGId(self, name):
+    @staticmethod
+    def getCharge(pdgid):
+        return pythia.charge(pdgid)
+
+    @staticmethod
+    def getPDGId(name):
         return pythia.pdg_id(name)
 
-    def getTau(self, name):
-        tau = pythia.ctau(name)/c_light
+    @staticmethod
+    def getTau(pdgid):
+        tau = pythia.ctau(pdgid)/c_light
         if math.isnan(tau) or math.isinf(tau):
             tau = ParticleDT.STABLE
         return tau
+
+    @staticmethod
+    def getDecayChannels(name):
+        try:
+            decaychannels = pythia.decay_channels(name)
+        except:
+            decaychannels =[]
+        return decaychannels
+
+    @staticmethod
+    def getCTau(pdgid):
+        return pythia.ctau(pdgid)

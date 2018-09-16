@@ -3,6 +3,8 @@ import path
 import math
 
 from phenomena.particles.particle_boosted import ParticleBoosted
+#imports for test_fetchers
+from phenomena.particles.sources import ParticleDataSource, ParticleDataToolFetcher, SciKitHEPFetcher, DecayLanguageFetcher, ExtraInfoFetcher
 
 #precision
 @pytest.fixture(scope='session',)
@@ -69,3 +71,24 @@ def particle_conservation_charge(particle,momentum):
         charge_out += ParticleBoosted(part['name']).charge
     charge_dict['charge_out'] = charge_out
     return charge_dict
+
+#fixtures for test_sources:
+@pytest.fixture(scope='session')
+def particledatasource():
+    return ParticleDataSource
+
+@pytest.fixture(scope='session')
+def particledatatools():
+    return ParticleDataToolFetcher
+
+@pytest.fixture(scope='session')
+def scikithep():
+    return SciKitHEPFetcher
+
+@pytest.fixture(scope='session')
+def decaylanguage():
+    return DecayLanguageFetcher
+
+@pytest.fixture(scope='session')
+def extrainfo():
+    return ExtraInfoFetcher

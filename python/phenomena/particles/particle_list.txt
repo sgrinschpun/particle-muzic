@@ -1,4 +1,4 @@
-B+,B-,B0
+B+,B-,B0,
 D+, D-, D0
 J/psi
 K*-,K*+,K*0
@@ -9,6 +9,9 @@ Upsilon
 W+,W-
 Xi-,Xi0
 Z0
+u,ubar
+s,sbar
+t, tbar
 b,bbar
 c,cbar
 d,dbar
@@ -16,6 +19,7 @@ e+, e-
 eta', eta
 g
 gamma
+h0(H_1)
 mu+,mu-
 n0
 nu_e, nu_ebar
@@ -26,7 +30,4 @@ p+
 phi
 pi+,pi-, pi0
 rho+,rho-,rho0
-s,sbar
-t, tbar
 tau+,tau-
-u,ubar
