@@ -1,7 +1,6 @@
-from __future__ import division
-
 from phenomena.particles.particle import Particle
 from phenomena.particles.sources import ParticleDataSource
+from phenomena.particles.channels import Decay
 
 def toDictionary(particle):
     return {"name": particle.name,
@@ -21,6 +20,9 @@ NO_PARENT = -1
 class ParticleTest(Particle):
     STABLE = -1
     CLASS_COUNTER = 0
+
+    #checker for wrong particle names
+    #ossibility for instance from pdgid?
 
     def __init__(self, name, parent = NO_PARENT):
         self._set_id() # Class Counter
@@ -115,6 +117,13 @@ class ParticleTest(Particle):
 
     def _set_decay_channels(self):
         self._decay_channels = ParticleDataSource.getDecayChannels(self._name)
+
+    @property
+    def decay(self):
+        return self._decay
+
+    def _set_decay(self):
+        self._decay = Decay.set(self._decay_channels)
 
     @property
     def decay_time(self):
