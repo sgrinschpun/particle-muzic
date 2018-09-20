@@ -15,14 +15,14 @@ decaylanguage = DataSource(DecayLanguageFetcher)
 sources = {
     'getMass':scikitHEP, #particledatatool, scikitHEP, decaylanguage
     'getCharge':particledatatool,#particledatatool, scikitHEP, decaylanguage
-    'getTau':scikitHEP, #particledatatool, scikitHEP, decaylanguage??????
+    'getTau':scikitHEP, #particledatatool, scikitHEP, decaylanguage??????  skhep.math.kinematics.width_to_lifetime
     'getPDGId':particledatatool,#particledatatool, scikitHEP, decaylanguage
-    'getComposition':decaylanguage, #decaylanguage, extrainfo
+    'getComposition':extrainfo, #decaylanguage, extrainfo
     'getType':extrainfo, #scikitHEP,
     'getSpin':scikitHEP,
     'getName':particledatatool,#particledatatool, scikitHEP, decaylanguage
     'getDecayChannels':particledatatool,
-    'getWidth':scikitHEP, #scikitHEP, decaylanguage
+    'getWidth':scikitHEP, #scikitHEP, decaylanguage  skhep.math.kinematics.width_to_lifetime
     'getCTau':scikitHEP, #particledatatool, scikitHEP
     'getRadius':decaylanguage,
     'getAnti':decaylanguage

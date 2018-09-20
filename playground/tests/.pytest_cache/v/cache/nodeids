@@ -1,4 +1,7 @@
 [
-  "test_1.py::test_particle_name", 
-  "test_1.py::test_particle_rest"
+  "test_boosting.py::test_particle_at_rest[pi+-0.13957018-1.0]", 
+  "test_boosting.py::test_particle_at_rest[mu--0.1056583745--1.0]", 
+  "test_boosting.py::test_particle_boosted[pi+-1]", 
+  "test_boosting.py::test_particle_boosted[mu--0.5]", 
+  "test_boosting.py::test_particle_conservations[pi+-1-2]"
 ]

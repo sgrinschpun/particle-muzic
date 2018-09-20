@@ -3,12 +3,12 @@ import math
 
 #rest particles: parameters, boosted values,
 @pytest.mark.parametrize("particle, mass, charge",[
-("pi+", 0.13957, 1.0),
-("mu-", 0.10566, -1.0)])
-def test_particle_at_rest(particle_rest, particle, mass, charge):
+("pi+", 0.13957018, 1.0),
+("mu-", 0.1056583745, -1.0)])
+def test_particle_at_rest(particle_rest, particle, mass, charge,resolution):
     #parameters
     assert particle_rest.name == particle
-    assert particle_rest.mass == mass
+    assert round(particle_rest.mass,resolution) == round(mass,resolution)
     assert particle_rest.charge == charge
     #boosted parameters
     assert particle_rest.p == 0

@@ -1,6 +1,10 @@
+import time, threading
+
 from phenomena.particles.particle import Particle
 from phenomena.particles.sources import ParticleDataSource
-from phenomena.particles.channels import Decay
+from phenomena.particles.channels import Decay, TimeRemap
+from phenomena.particles.kinematics.decay.calculations import DecayCalc
+from phenomena.particles.kinematics.parameters import boostParams
 
 def toDictionary(particle):
     return {"name": particle.name,
@@ -22,9 +26,9 @@ class ParticleTest(Particle):
     CLASS_COUNTER = 0
 
     #checker for wrong particle names
-    #ossibility for instance from pdgid?
+    #possibility for instance from pdgid?
 
-    def __init__(self, name, parent = NO_PARENT):
+    def __init__(self, name, parent = NO_PARENT, **kwargs):
         self._set_id() # Class Counter
         self._setParent(parent) # The parent id of particle
 
@@ -36,9 +40,15 @@ class ParticleTest(Particle):
         self._set_type() # Particle Type (quark, lepton, boson, meson, baryon)
         self._set_composition() # Particle quark compsition in format [[q1,q2],[q3,q4],...]
 
+        self._theta = kwargs.get('theta',0)#the angle of this instance
+        self._setThisBoostedParameters(kwargs)#calculate and assign boosted parameters
+        self._lifetime *= self._gamma # lifetime is recalculated
+
         self._set_decay_channels() #All the decay channels and BRs of the particle in format [(BR,[part1,..,partn]),...]
         self._set_decay() # Particle decay channel chosen
-        self._set_time_to_decay() #Time until decay in ****units****
+        self._set_decay_time() #Time until decay in ****units****
+        self._setDecaysBoostedParameters() #Calculates the boosted parameters of the decayed particles
+
 
     @property
     def id(self):
@@ -127,19 +137,58 @@ class ParticleTest(Particle):
 
     @property
     def decay_time(self):
-        return self._time_to_decay
+        return self._decay_time
 
-    def _set_time_to_decay(self):
-        self._time_to_decay = 1
+    def _set_decay_time(self):
+        if self._lifetime != ParticleTest.STABLE :
+            self._decay_time = TimeRemap.getNextDecayTime(self._lifetime)
+        else:
+            self._decay_time = ParticleTest.STABLE
+
+    def start(self, callback):
+        if self._decay_time != ParticleTest.STABLE:
+            wait_time = TimeRemap.renormalize(self._decay_time)
+            print "Wait for: ", wait_time
+            threading.Timer(wait_time, callback).start()
+        else:
+            print "Wait for: ", 10
+            threading.Timer(10, callback).start()
 
     @property
     def p(self):
-        return 0
+        return self._p
 
     @property
-    def theta(self):
-        return 0
+    def E(self):
+        return self._E
+
+    @property
+    def gamma(self):
+        return self._gamma
 
     @property
     def beta(self):
-        return 0
+        return self._beta
+
+    @property
+    def theta(self):
+        return self._theta
+
+    @property
+    def T(self):
+        return self._T
+
+    def _setThisBoostedParameters(self,kwargs):
+        self._params = boostParams(self._mass,p=kwargs.get('p',None),E=kwargs.get('E',None)) # sets boosted parameters for this instance
+        self._p = self._params.p
+        self._E = self._params.E
+        self._gamma = self._params.gamma
+        self._beta = self._params.beta
+        self._T = self._params.T
+
+    @property
+    def decayvalues(self):
+        return self._decayvalues
+
+    def _setDecaysBoostedParameters(self):
+        self._decayvalues = DecayCalc.getValues(self._mass,self._gamma,self._theta,self._decay) # sets values for decay particles

@@ -1,13 +1,10 @@
 from __future__ import division
 import math
 
-from phenomena.particles.particle import ParticleDT
-
 class boostParams(object):
-    c= 299792458 #m/s
 
-    def __init__(self, name, **kwargs):
-        self._m = ParticleDT.getmass(name)
+    def __init__(self, mass, **kwargs):
+        self._m = mass
 
         #assert (len(kwargs)<2), "Do not initialize with both E and p"
 
