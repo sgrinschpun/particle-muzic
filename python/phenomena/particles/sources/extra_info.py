@@ -10,12 +10,20 @@ class ExtraInfoFetcher(object):
     @staticmethod
     def getComposition(pdgid):
         composition =[]
-        if XTRA_INFO[str(pdgid)]['composition'] != []:
-            for quark in XTRA_INFO[str(pdgid)]['composition'][0]: #only consider first superposition of quarks
-                composition.append(quark.encode('utf-8'))
-
-        return composition
+        try:
+            if XTRA_INFO[str(pdgid)]['composition'] != []:
+                for quark in XTRA_INFO[str(pdgid)]['composition'][0]: #only consider first superposition of quarks
+                    composition.append(quark.encode('utf-8'))
+        except KeyError:
+            composition =[]
+        finally:
+            return composition
 
     @staticmethod
     def getType(pdgid):
-        return XTRA_INFO[str(pdgid)]['type'].encode('utf-8')
+        try:
+            type = XTRA_INFO[str(pdgid)]['type'].encode('utf-8')
+        except KeyError:
+            type = 'quark'
+        finally:
+            return type

@@ -1,4 +1,3 @@
-import path
 from datasources import DataSource
 from particledatatools import ParticleDataToolFetcher
 from scikithepsource import SciKitHEPFetcher
@@ -13,9 +12,9 @@ decaylanguage = DataSource(DecayLanguageFetcher)
 
 #sources assigned
 sources = {
-    'getMass':scikitHEP, #particledatatool, scikitHEP, decaylanguage
+    'getMass':particledatatool, #particledatatool, scikitHEP, decaylanguage
     'getCharge':particledatatool,#particledatatool, scikitHEP, decaylanguage
-    'getTau':scikitHEP, #particledatatool, scikitHEP, decaylanguage??????  skhep.math.kinematics.width_to_lifetime
+    'getTau':particledatatool, #particledatatool, scikitHEP, decaylanguage??????  skhep.math.kinematics.width_to_lifetime
     'getPDGId':particledatatool,#particledatatool, scikitHEP, decaylanguage
     'getComposition':extrainfo, #decaylanguage, extrainfo
     'getType':extrainfo, #scikitHEP,
@@ -32,7 +31,14 @@ class ParticleDataSource(object):
 
     @staticmethod
     def getName(pdgid):
-        return sources['getName'].getName(pdgid)
+        name =''
+        try:
+            name = sources['getName'].getName(pdgid)
+        except KeyError:
+            newpdgid = pdgid*(-1)   #should check if this make sense
+            name = sources['getName'].getName(newpdgid)
+        finally:
+            return name
 
     @staticmethod
     def getPDGId(name):
