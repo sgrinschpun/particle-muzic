@@ -9,7 +9,7 @@ __status__ = "Development"
 import abc
 from threading import Timer, Lock
 
-from particle import Particle, ParticleDT
+from particle import Particle
 from particle_boosted import ParticleBoosted
 from phenomena.nodes import get_save_node, ConfigurableNode
 
@@ -173,4 +173,4 @@ class ParticleEntryNode(ParticleActionNodeEnd):
 
 if __name__ == '__main__':
     a = ParticleAccumulatorNode()
-    a.transformParticle(ParticleDT("mu+"), [])
+    a.transformParticle(ParticleBoosted("mu+"), [])

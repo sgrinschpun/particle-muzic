@@ -2,7 +2,6 @@ from __future__ import print_function
 import path
 import math
 
-from phenomena.particles.particle import ParticleDT
 from phenomena.particles.particle_boosted import ParticleBoosted
 
 if __name__ == '__main__':

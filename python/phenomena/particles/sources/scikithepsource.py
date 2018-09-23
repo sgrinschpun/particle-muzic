@@ -2,7 +2,7 @@
 #http://scikit-hep.org/
 from skhep.pdg import ParticleDataTable
 from skhep.simulation import pdgid as PDGID
-from phenomena.particles.particle import ParticleDT
+from phenomena.particles.particle import Particle
 
 #tbl = ParticleDataTable('data/mass_width_2017.mcd')
 tbl = ParticleDataTable()
@@ -29,7 +29,7 @@ class SciKitHEPFetcher(object):
     def getTau(pdgid):
         tau = tbl[pdgid].lifetime #ps
         if tau is None:
-            tau = ParticleDT.STABLE
+            tau = Particle.STABLE
         return tau
 
     @staticmethod

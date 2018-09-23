@@ -1,7 +1,7 @@
 from __future__ import division
 import math, random
 
-from phenomena.particles.kinematics.parameters import boostParams
+from phenomena.particles.kinematics.parameters import BoostParams
 
 import nbody
 
@@ -58,7 +58,7 @@ class CM3BodyCalc(nbody.CMCalc):
 #        dalitz[1] = C12M3BodyCalc._dalitz2(masses,C12ME)
         p3 = CM3BodyCalc.p3(masses,m12)
         gamma = (1+p3**2/m12**2)**(1/2)
-        beta = boostParams.beta_from_gamma(gamma)
+        beta = BoostParams.beta_from_gamma(gamma)
         C12Mpxy = C12M3BodyCalc.pxy(masses,m12,angles)
 
         return [
@@ -106,7 +106,7 @@ class LAB3BodyCalc(nbody.LabCalc):
         return anglesCM
 
     def _set_pExyz(self,masses,angles,gamma):
-        beta = boostParams.beta_from_gamma(gamma)
+        beta = BoostParams.beta_from_gamma(gamma)
         CMpExy = CM3BodyCalc.pExyz(masses,angles)
 
         # Change the angles from the CM 1-2 to the new frame CM

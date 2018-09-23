@@ -1,7 +1,7 @@
 from __future__ import division
 import math, random
 
-from phenomena.particles.kinematics.parameters import boostParams
+from phenomena.particles.kinematics.parameters import BoostParams
 
 import nbody
 

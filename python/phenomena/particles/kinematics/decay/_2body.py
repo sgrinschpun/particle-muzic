@@ -1,7 +1,7 @@
 from __future__ import division
 import math, random
 
-from phenomena.particles.kinematics.parameters import boostParams
+from phenomena.particles.kinematics.parameters import BoostParams
 
 import nbody
 
@@ -52,7 +52,7 @@ class LAB2BodyCalc(nbody.LabCalc):
         return anglesCM
 
     def _set_pExyz(self,masses,angles,gamma):
-        beta = boostParams.beta_from_gamma(gamma)
+        beta = BoostParams.beta_from_gamma(gamma)
         CMpxy = CM2BodyCalc.pxy(masses,angles)
         CME = CM2BodyCalc.E(masses)
         return [

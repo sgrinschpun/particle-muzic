@@ -1,7 +1,7 @@
 from __future__ import division
 import math
 
-from phenomena.particles.particle import ParticleDT
+from phenomena.particles.particle import Particle
 from skhep.constants import c_light
 
 #https://github.com/afedynitch/ParticleDataTool
@@ -31,7 +31,7 @@ class ParticleDataToolFetcher(object):
     def getTau(pdgid):
         tau = pythia.ctau(pdgid)/c_light
         if math.isnan(tau) or math.isinf(tau):
-            tau = ParticleDT.STABLE
+            tau = Particle.STABLE
         return tau
 
     @staticmethod

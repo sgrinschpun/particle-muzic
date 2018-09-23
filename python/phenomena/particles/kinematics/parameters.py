@@ -1,7 +1,7 @@
 from __future__ import division
 import math
 
-class boostParams(object):
+class BoostParams(object):
 
     def __init__(self, mass, **kwargs):
         self._m = mass
@@ -18,18 +18,18 @@ class boostParams(object):
 
     def _build_from_p(self,p):
         self._p = p
-        self._gamma = boostParams.gamma_from_p(self._m,self._p)
-        self._beta =  boostParams.beta_from_gamma(self._gamma)
-        self._E = boostParams.E_from_p(self._beta,self._p)
-        self._T = boostParams.T_from_gamma(self._m,self._gamma)
+        self._gamma = BoostParams.gamma_from_p(self._m,self._p)
+        self._beta =  BoostParams.beta_from_gamma(self._gamma)
+        self._E = BoostParams.E_from_p(self._beta,self._p)
+        self._T = BoostParams.T_from_gamma(self._m,self._gamma)
 
     def _build_from_E(self,E):
         #assert (E>self._m), "E needs to be > than mass"
         self._E = E
-        self._gamma = boostParams.gamma_from_E(self._m,self._E)
-        self._beta =  boostParams.beta_from_gamma(self._gamma)
-        self._p = boostParams.p_from_E(self._beta,self._E)
-        self._T = boostParams.T_from_gamma(self._m,self._gamma)
+        self._gamma = BoostParams.gamma_from_E(self._m,self._E)
+        self._beta =  BoostParams.beta_from_gamma(self._gamma)
+        self._p = BoostParams.p_from_E(self._beta,self._E)
+        self._T = BoostParams.T_from_gamma(self._m,self._gamma)
 
     def _build_static(self):
         self._E = self._m
