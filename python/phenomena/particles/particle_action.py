@@ -120,6 +120,7 @@ class ParticleAccumulatorNode(ParticleActionNodeChain):
                 name = new_particle['name']
                 kwargs = {'theta': new_particle['theta'], 'p': new_particle['p']}
                 #print "{0} ".format(ParticleBoosted(name, parent = particle.id, theta = theta, p = p)),
+                print "Particle causes error:  " + name
                 tr_new_particles.append(ParticleBoosted(name, parent = particle.id, **kwargs))
             print " New particles: "
             for new_particle in new_particles: print new_particle['name'], new_particle['p'], new_particle['theta']

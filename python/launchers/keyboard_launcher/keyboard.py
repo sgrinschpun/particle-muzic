@@ -74,7 +74,7 @@ def trigger_particle(particle):
 
 def on_press(key):
     current.add(key)
-    print ('Current: ', current)
+    #print ('Current: ', current)
     for particle, combination in particle_keyboard.iteritems():
         if all(k in current for k in combination):
             print('Triggering particle', particle)
@@ -86,8 +86,8 @@ def on_press(key):
 def on_release(key):
     try:
         current.remove(key)
-        print ('Current: ', current)
-        print('===========')
+        #print ('Current: ', current)
+        #print('===========')
     except KeyError:
         pass
 

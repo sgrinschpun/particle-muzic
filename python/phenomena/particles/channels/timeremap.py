@@ -1,14 +1,15 @@
-import random
 import math
+import random
 
 class TimeRemap(object):
 
     @staticmethod
     def getNextDecayTime(lifetime):
-        #magnitude = TimeRemap.magnitude(lifetime)
-        #lifetime_renormalized = TimeRemap.renormalize(magnitude)
-        #return random.expovariate(1/lifetime_renormalized)
-        return 3.
+        print "*******!!", lifetime
+        magnitude = TimeRemap.magnitude(float(lifetime))
+        lifetime_renormalized = TimeRemap.renormalize(magnitude)
+        return random.expovariate(1/lifetime_renormalized)
+        #return 3.
 
     @staticmethod
     def renormalize(n):
@@ -20,6 +21,5 @@ class TimeRemap(object):
 
     @staticmethod
     def magnitude(x):
-        if x == 0.:
-            x = 1
+        print "*******##", x
         return (math.log(x,10))

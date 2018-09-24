@@ -28,7 +28,7 @@ class ParticleBoosted(Particle):
 
         self._theta = kwargs.get('theta',0)#the angle of this instance
         self._setThisBoostedParameters(kwargs)#calculate and assign boosted parameters
-        self._lifetime *= self._gamma # lifetime is recalculated
+        self._setBoostedLifetime()# lifetime is recalculated
 
         self._set_decay_channels() #All the decay channels and BRs of the particle in format [(BR,[part1,..,partn]),...]
         self._set_decay() # Particle decay channel chosen
@@ -127,6 +127,7 @@ class ParticleBoosted(Particle):
 
     def _set_decay_time(self):
         if self._lifetime != Particle.STABLE :
+            print "********", self._lifetime
             self._decay_time = TimeRemap.getNextDecayTime(self._lifetime)
         else:
             self._decay_time = Particle.STABLE
@@ -171,6 +172,10 @@ class ParticleBoosted(Particle):
         self._gamma = self._params.gamma
         self._beta = self._params.beta
         self._T = self._params.T
+
+    def _setBoostedLifetime(self):# lifetime is recalculated if not stable
+        if self._lifetime != Particle.STABLE :
+            self._lifetime *= self._gamma
 
     @property
     def decayvalues(self):

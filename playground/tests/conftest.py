@@ -10,7 +10,7 @@ from phenomena.particles.sources import ParticleDataSource, ParticleDataToolFetc
 @pytest.fixture(scope='session',)
 def resolution():
     '''Returns decimals for rounds'''
-    return 6
+    return 4
 
 #particle at rest
 @pytest.fixture(scope='function')

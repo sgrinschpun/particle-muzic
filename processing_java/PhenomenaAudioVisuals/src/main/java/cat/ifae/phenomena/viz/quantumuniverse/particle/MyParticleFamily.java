@@ -69,13 +69,26 @@ public class MyParticleFamily {
     }
 
     protected void checkEdges() {
-        if ((location.x > p.width) || (location.x < 0)) {
+       /* if ((location.x > p.width) || (location.x < 0)) {
             velocity.x = velocity.x * -1;
             acceleration.x = acceleration.x * -1;
         }
         if ((location.y > p.height) || (location.y < 0)) {
             velocity.y = velocity.y * -1;
             acceleration.y = acceleration.y * -1;
+        }*/
+
+        if (location.x > p.width) {
+            location.x = 0;
+        }
+        if (location.x < 0) {
+            location.x = p.width;
+        }
+        if (location.y > p.height) {
+            location.y = 0;
+        }
+        if (location.y < 0) {
+            location.y = p.height;
         }
     }
 

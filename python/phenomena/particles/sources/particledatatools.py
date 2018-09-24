@@ -30,8 +30,10 @@ class ParticleDataToolFetcher(object):
     @staticmethod
     def getTau(pdgid):
         tau = pythia.ctau(pdgid)/c_light
+        print "wwwwwwww", tau
         if math.isnan(tau) or math.isinf(tau):
             tau = Particle.STABLE
+        print "xxxxxx", tau
         return tau
 
     @staticmethod
