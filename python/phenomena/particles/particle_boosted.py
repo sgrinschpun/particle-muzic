@@ -127,7 +127,6 @@ class ParticleBoosted(Particle):
 
     def _set_decay_time(self):
         if self._lifetime != Particle.STABLE :
-            print "********", self._lifetime
             self._decay_time = TimeRemap.getNextDecayTime(self._lifetime)
         else:
             self._decay_time = Particle.STABLE
