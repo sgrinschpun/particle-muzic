@@ -3,12 +3,15 @@ warnings.filterwarnings("ignore", message="numpy.dtype size changed")
 warnings.filterwarnings("ignore", message="numpy.ufunc size changed")
 
 from decaylanguage.particle import Particle
+from skhep.math  import width_to_lifetime
+from skhep import units as u
+from phenomena.particles.particle import Particle as P
 
 class DecayLanguageFetcher(object):
 
     @staticmethod
     def getMass(pdgid):
-        return Particle.from_pdgid(pdgid).mass
+        return Particle.from_pdgid(pdgid).mass  * u.GeV
 
     @staticmethod
     def getCharge(pdgid):
@@ -20,7 +23,16 @@ class DecayLanguageFetcher(object):
 
     @staticmethod
     def getWidth(pdgid):
-        return Particle.from_pdgid(pdgid).width
+        return Particle.from_pdgid(pdgid).width * u.GeV
+
+    @staticmethod
+    def getTau(pdgid):
+        width = Particle.from_pdgid(pdgid).width * u.GeV / u.MeV
+        if width != 0.0:
+            tau = width_to_lifetime(width) * u.nanosecond / u.picosecond
+        else:
+            tau = P.STABLE
+        return tau
 
     @staticmethod
     def getPDGId(name):
@@ -42,10 +54,6 @@ class DecayLanguageFetcher(object):
     @staticmethod
     def getAnti(pdgid):
         return Particle.from_pdgid(pdgid).invert().val
-
-    @staticmethod
-    def getWidth(pdgid):
-        return Particle.from_pdgid(pdgid).width
 
     @staticmethod
     def getLatex(pdgid):

@@ -4,6 +4,8 @@ from scikithepsource import SciKitHEPFetcher
 from extra_info import ExtraInfoFetcher
 from decaylanguagesource import DecayLanguageFetcher
 
+from skhep import units as u
+
 #available sources
 particledatatool = DataSource(ParticleDataToolFetcher)
 scikitHEP = DataSource(SciKitHEPFetcher)
@@ -47,7 +49,7 @@ class ParticleDataSource(object):
     @staticmethod
     def getMass(name):
         pdgid = ParticleDataSource.getPDGId(name)
-        return sources['getMass'].getMass(pdgid)
+        return sources['getMass'].getMass(pdgid) / u.GeV
 
     @staticmethod
     def getCharge(name):
@@ -58,7 +60,7 @@ class ParticleDataSource(object):
     def getTau(name):
         pdgid = ParticleDataSource.getPDGId(name)
         return sources['getTau'].getTau(pdgid)
-
+        
     @staticmethod #ony extra info
     def getComposition(name):
         pdgid = ParticleDataSource.getPDGId(name)
@@ -80,7 +82,7 @@ class ParticleDataSource(object):
 
     @staticmethod
     def getWidth(name):
-        return sources['getWidth'].getWidth(name)
+        return sources['getWidth'].getWidth(name) * u.GeV / u.GeV
 
     @staticmethod
     def getCTau(name):

@@ -2,6 +2,7 @@
 #http://scikit-hep.org/
 from skhep.pdg import ParticleDataTable
 from skhep.simulation import pdgid as PDGID
+from skhep import units as u
 from phenomena.particles.particle import Particle
 
 #tbl = ParticleDataTable('data/mass_width_2017.mcd')
@@ -19,7 +20,7 @@ class SciKitHEPFetcher(object):
 
     @staticmethod
     def getMass(pdgid):
-        return tbl[pdgid].mass  #GeV
+        return tbl[pdgid].mass * u.GeV
 
     @staticmethod
     def getCharge(pdgid):
@@ -27,9 +28,11 @@ class SciKitHEPFetcher(object):
 
     @staticmethod
     def getTau(pdgid):
-        tau = tbl[pdgid].lifetime #ps
+        tau = tbl[pdgid].lifetime
         if tau is None:
             tau = Particle.STABLE
+        else:
+            tau = tbl[pdgid].lifetime / u.nanosecond
         return tau
 
     @staticmethod
@@ -57,7 +60,7 @@ class SciKitHEPFetcher(object):
 
     @staticmethod
     def getWidth(pdgid):
-        return tbl[pdgid].width
+        return tbl[pdgid].width * u.GeV
 
     @staticmethod
     def getCTau(pdgid):

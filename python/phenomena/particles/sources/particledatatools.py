@@ -3,6 +3,8 @@ import math
 
 from phenomena.particles.particle import Particle
 from skhep.constants import c_light
+from skhep import units as u
+from skhep.math  import lifetime_to_width
 
 #https://github.com/afedynitch/ParticleDataTool
 
@@ -17,7 +19,7 @@ class ParticleDataToolFetcher(object):
 
     @staticmethod
     def getMass(pdgid):
-        return pythia.mass(pdgid)
+        return pythia.mass(pdgid) * u.GeV
 
     @staticmethod
     def getCharge(pdgid):
@@ -29,7 +31,8 @@ class ParticleDataToolFetcher(object):
 
     @staticmethod
     def getTau(pdgid):
-        tau = pythia.ctau(pdgid)/c_light
+        c = c_light/(u.cm/u.s)
+        tau = (ParticleDataToolFetcher.getCTau(pdgid)/u.cm)/c *u.s / u.picosecond
         if math.isnan(tau) or math.isinf(tau):
             tau = Particle.STABLE
         return tau
@@ -44,4 +47,10 @@ class ParticleDataToolFetcher(object):
 
     @staticmethod
     def getCTau(pdgid):
-        return pythia.ctau(pdgid)
+        return pythia.ctau(pdgid) * u.cm
+
+    @staticmethod
+    def getWidth(pdgid):
+        tau = ParticleDataToolFetcher.getTau(pdgid) / u.picosecond
+        width = lifetime_to_width(tau / u.picosecond)
+        return width / u.GeV
