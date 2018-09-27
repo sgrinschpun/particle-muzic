@@ -43,7 +43,7 @@ particle_keyboard = {
 'rho+':{keyboard.Key.shift, keyboard.KeyCode(char='R')},
 'rho-':{keyboard.KeyCode(char='r')},
 'rho0':{keyboard.Key.alt, keyboard.KeyCode(char='R')},
-"eta'":{keyboard.Key.alt, keyboard.KeyCode(char='v')},
+"eta\'":{keyboard.Key.alt, keyboard.KeyCode(char='V')},
 'eta':{keyboard.KeyCode(char='v')},
 'u':{keyboard.KeyCode(char='1')},
 'ubar':{keyboard.Key.shift, keyboard.KeyCode(char='!')},
@@ -56,12 +56,14 @@ particle_keyboard = {
 'c':{keyboard.KeyCode(char='3')},
 'cbar':{keyboard.Key.shift, keyboard.KeyCode(char='3')}, # not working
 'd':{keyboard.KeyCode(char='2')},
-'dbar':{keyboard.Key.shift, keyboard.KeyCode(char='"')},
+'dbar':{keyboard.Key.shift, keyboard.KeyCode(char='\"')},
 'K*-':{keyboard.KeyCode(char='a')},
 'K*+':{keyboard.Key.shift, keyboard.KeyCode(char='A')},
 'K*0':{keyboard.Key.alt, keyboard.KeyCode(char='A')},
 'phi':{keyboard.KeyCode(char='f')},
 'omega':{keyboard.KeyCode(char='o')},
+'nu_e':{keyboard.KeyCode(char='q')},
+'nubar_e':{keyboard.Key.shift, keyboard.KeyCode(char='Q')}
 }
 
 # The currently active modifiers
