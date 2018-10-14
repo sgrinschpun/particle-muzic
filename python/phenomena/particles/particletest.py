@@ -21,7 +21,7 @@ class ParticleTest(ParticleDecay, ParticlePosition, ParticleBoost, ParticleData,
         self._set_lifetime() # Lifetime of the particle in ****units****
         self._set_type() # Particle Type (quark, lepton, boson, meson, baryon)
         self._set_composition() # Particle quark compsition in format [[q1,q2],[q3,q4],...]
-        self._set_decay_channels() #All the decay channels and BRs of the particle in format [(BR,[part1,..,partn]),...]
+        self._set_decayChannels() #All the decay channels and BRs of the particle in format [(BR,[part1,..,partn]),...]
 
         #### ParticleBoost
         self._set_fourMomentum(kwargs)#assign 4momentum vector and  boosted parameters
@@ -32,5 +32,5 @@ class ParticleTest(ParticleDecay, ParticlePosition, ParticleBoost, ParticleData,
 
         ### ParticleDecay
         self._set_decay() # Particle decay channel chosen
-        self._set_decay_time() #Time until decay in ****units****
+        self._set_decayTime() #Time until decay in ****units****
         self._setDecaysBoostedParameters() #Calculates the boosted parameters of the decayed particles

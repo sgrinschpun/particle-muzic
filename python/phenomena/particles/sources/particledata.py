@@ -63,5 +63,5 @@ class ParticleData(object):
     def decay_channels(self):
         return self._decay_channels
 
-    def _set_decay_channels(self):
+    def _set_decayChannels(self):
         self._decay_channels = ParticleDataSource.getDecayChannels(self._name)

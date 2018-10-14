@@ -52,3 +52,27 @@ class ParticleBoost(object):
     def _set_boostedLifetime(self):# lifetime is recalculated if not stable
         if self._lifetime != Particle.STABLE :
             self._lifetime *= self._fourMomentum.gamma
+
+    @property
+    def p(self):
+        return self._fourMomentum.p
+
+    @property
+    def E(self):
+        return self._fourMomentum.e
+
+    @property
+    def gamma(self):
+        return self._fourMomentum.gamma
+
+    @property
+    def beta(self):
+        return self._fourMomentum.beta
+
+    @property
+    def T(self):
+        return self._fourMomentum.e - self._mass
+
+    @property
+    def theta(self):
+        return self._fourMomentum.phi()

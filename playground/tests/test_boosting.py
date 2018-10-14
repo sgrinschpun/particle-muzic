@@ -20,7 +20,12 @@ def test_particle_at_rest(particle_rest, particle, mass, charge,resolution):
 #boosted particle: boosted parameters
 @pytest.mark.parametrize("particle, momentum",[
 ("pi+", 1),
-("mu-", 0.5)])
+("mu-", 0.5),
+("eta", 0.5),
+("rho+", 0.5),
+("n0", 0.5),
+("W+", 0.5),
+("t", 0.5)])
 def test_particle_boosted(particle_boosted,particle,momentum):
     assert particle_boosted.p == momentum
     assert particle_boosted.E > particle_boosted.mass

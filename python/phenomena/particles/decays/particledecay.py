@@ -24,7 +24,7 @@ class ParticleDecay(object):
     def decay_time(self):
         return self._decay_time
 
-    def _set_decay_time(self):
+    def _set_decayTime(self):
         if self._lifetime != Particle.STABLE :
             self._decay_time = TimeRemap.getNextDecayTime(self._lifetime)
         else:
