@@ -2,7 +2,7 @@ import time, threading
 
 from phenomena.particles.particle import Particle, toDictionary
 from phenomena.particles.sources import ParticleDataSource
-from phenomena.particles.channels import Decay, TimeRemap
+from phenomena.particles.decays import Decay, TimeRemap
 from phenomena.particles.kinematics.decay.calculations import DecayCalc
 from phenomena.particles.kinematics.parameters import BoostParams
 
