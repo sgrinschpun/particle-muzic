@@ -33,3 +33,4 @@ class ParticleTest(ParticleDecay, ParticlePosition, ParticleBoost, ParticleData,
         ### ParticleDecay
         self._set_decay() # Particle decay channel chosen
         self._set_decay_time() #Time until decay in ****units****
+        self._setDecaysBoostedParameters() #Calculates the boosted parameters of the decayed particles
