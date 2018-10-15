@@ -1,3 +1,11 @@
+#!/usr/bin/env python
+
+__author__ = "Sebastian Grinschpun"
+__license__ = "GPL"
+__version__ = "0.0.1"
+__email__ = "sgrinschpun@ifae.es"
+__status__ = "Development"
+
 from phenomena.particles.particle import Particle, ParticleId
 from phenomena.particles.sources import ParticleData
 from phenomena.particles.decays import ParticleDecay
@@ -6,6 +14,11 @@ from phenomena.particles.kinematics import ParticlePosition, ParticleBoost
 NO_PARENT = -1
 
 class ParticleBoosted(ParticleDecay, ParticlePosition, ParticleBoost, ParticleData, ParticleId, Particle):
+    '''
+    This class uses mixins for its attributes/properties and methods. On initialization, methods from the mixins are called for instance construction. Static methods are definied in the mixins as wellself.
+
+    This class is intended for BubbleChamber simulation. That's why these mixins are chosen.
+    '''
 
     def __init__(self, name, parent = NO_PARENT, **kwargs):
 

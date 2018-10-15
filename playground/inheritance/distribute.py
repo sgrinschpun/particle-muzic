@@ -18,14 +18,14 @@ class B(object):
         return "B:  "+ self._n
 
 class M(object):
-    use = A
+    use = B
 
     def __init__(self,n):
-        myuse = use(n)
+        self.myuse = M.use(n)
 
     @property
     def n(self):
-        return myuse.n
+        return self.myuse.n
 
 if __name__ == '__main__':
     m = M('patata')

@@ -7,7 +7,7 @@ PHI_DEFAULT = 0
 
 class ParticleBoost(object):
     '''
-    This is a mixin class for the ParticleBoosted class
+    This is a mixin class for the Particle class
     It adds the attributes and methods related to 4momentum as defined in the LorentzVector class of SciKitHEP
     The ParticleBoost requires the ParticleData mixin.
     Construction from spherical coordinates:

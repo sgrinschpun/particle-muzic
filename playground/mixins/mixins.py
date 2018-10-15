@@ -4,11 +4,8 @@ import path
 
 from phenomena.particles.particletest import ParticleTest
 from phenomena.particles.particle_boosted import ParticleBoosted
+from phenomena.particles.particle_server import ParticleServer
 
 if __name__ == '__main__':
-    pi = ParticleBoosted('pi+', p=1, phi=1.)
-    print (pi.fourMomentum)
-    print (pi.decayvalues)
-    mu = ParticleBoosted('mu+', p=1)
-    print (mu.decayvalues)
-    gamma = ParticleBoosted('gamma', p=1)
+    pi = ParticleServer.init('pi+', p=1, phi=1.)
+    print (pi.mass)

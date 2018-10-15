@@ -1,6 +1,11 @@
 import abc
 
 class Particle(object):
+    '''
+    Abstract Particle class
+    Always changing
+    '''
+
     STABLE = -1
     __metaclass__ = abc.ABCMeta
 
@@ -34,17 +39,17 @@ class Particle(object):
         pass
 
     #boost attributes (minimum, i.e, interesting for visualization)
-    # @abc.abstractproperty
-    # def p(self):
-    #     pass
-    #
-    # @abc.abstractproperty
-    # def theta(self):
-    #     pass
-    #
-    # @abc.abstractproperty
-    # def beta(self):
-    #     pass
+    @abc.abstractproperty
+    def p(self):
+        pass
+
+    @abc.abstractproperty
+    def theta(self):
+        pass
+
+    @abc.abstractproperty
+    def beta(self):
+        pass
 
     @abc.abstractmethod
     def toDictionary(self):
@@ -52,7 +57,7 @@ class Particle(object):
 
 class ParticleId(object):
     '''
-    This is a mixin class for the ParticleBoosted class
+    This is a mixin class for the Particle class
     It adds functionality ised by the particle server:
      - It adds the attributes and methods related to id & parent
      - It adds the CLASS_COUNTER class attribute
@@ -81,6 +86,9 @@ class ParticleId(object):
 
 
 class BasicParticle(Particle):
+    '''
+    This class is used by the server to transmit the messages through the socket. It is just a container of information.
+    '''
 
     def __init__(self, parent, id, name, type, mass, charge, composition, decay_time, p, theta, phi, beta):
         self._parent = parent
@@ -148,6 +156,9 @@ class BasicParticle(Particle):
         return toDictionary(self)
 
 def toDictionary(particle):
+    '''
+    This method is used to extract the infromation required by the visualization and sonification nodes and send it through the socket
+    '''
     return {"name": particle.name,
             "parent": particle.parent,
             "id": particle.id,

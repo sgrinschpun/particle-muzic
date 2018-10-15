@@ -10,7 +10,7 @@ import abc
 from threading import Timer, Lock
 
 from particle import Particle
-from particle_boosted import ParticleBoosted
+from particle_server import ParticleServer
 from phenomena.nodes import get_save_node, ConfigurableNode
 
 
@@ -120,7 +120,7 @@ class ParticleAccumulatorNode(ParticleActionNodeChain):
                 name = new_particle['name']
                 kwargs = {'phi': new_particle['phi'], 'theta': new_particle['theta'], 'p': new_particle['p']}
                 print "Particle causes error:  " + name
-                tr_new_particles.append(ParticleBoosted(name, parent = particle.id, **kwargs))
+                tr_new_particles.append(ParticleServer.init(name, parent = particle.id, **kwargs))
             print " New particles: "
             for new_particle in new_particles: print new_particle['name'], new_particle['p'], new_particle['phi']
             self._node.getNextNode(self).transformParticle(particle, tr_new_particles)
@@ -172,5 +172,4 @@ class ParticleEntryNode(ParticleActionNodeEnd):
         pass
 
 if __name__ == '__main__':
-    a = ParticleAccumulatorNode()
-    a.transformParticle(ParticleBoosted("mu+"), [])
+    pass

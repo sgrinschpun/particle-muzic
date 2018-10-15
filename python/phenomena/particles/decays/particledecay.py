@@ -6,7 +6,7 @@ from phenomena.particles.particle import Particle
 
 class ParticleDecay(object):
     '''
-    This is a mixin class for the ParticleBoosted class
+    This is a mixin class for the Particle class
     It adds the attributes and methods related to particle decays
      - selects and sets particle decay channel
      - sets the time of next decay

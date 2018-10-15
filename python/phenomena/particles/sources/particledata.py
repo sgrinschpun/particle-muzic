@@ -2,7 +2,7 @@ from particledatasources import ParticleDataSource
 
 class ParticleData(object):
     '''
-    This is a mixin class for the ParticleBoosted class
+    This is a mixin class for the Particle class
     It adds the attributes and methods related to particle data
     Particle data is managed by the ParticleDataSource class
     '''

@@ -1,4 +1,4 @@
-from phenomena.particles import ParticleBoosted
+from phenomena.particles import ParticleServer
 from phenomena.connection.phenomena_message import IncomingMessage
 from phenomena.nodes import get_save_node, ExecutableNode
 from phenomena.nodes import JsonRemoteAudioVideoNode
@@ -30,7 +30,7 @@ class NodeController(ExecutableNode):
     def _addParticle(self, **kwargs):
         particle_str = kwargs['particle_name']
         print "THIS: ", particle_str, type(particle_str)
-        particle = ParticleBoosted(particle_str,**kwargs)
+        particle = ParticleServer.init(particle_str,**kwargs)
         print particle.theta, particle.phi
         self._root_node.addParticle(particle)
 
