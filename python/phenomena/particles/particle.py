@@ -152,5 +152,5 @@ def toDictionary(particle):
             "decay_time": particle.decay_time,
             "composition": particle.composition,
             "p": particle.p,
-            "theta": particle.theta,
+            "theta": particle.phi,
             "beta": particle.beta}

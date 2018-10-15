@@ -49,15 +49,15 @@ def particle_conservation_momentum(particle,momentum):
     '''Returns momentum in and momentum out, both t and l'''
     momentum_dict ={}
     original_particle = ParticleTest(particle,momentum)
-    momentum_dict["pt_in"] = original_particle.p*math.sin(original_particle.phi)
-    momentum_dict["pl_in"] = original_particle.p*math.cos(original_particle.phi)
+    momentum_dict["pt_in"] = original_particle.p*math.sin(original_particle.theta)
+    momentum_dict["pl_in"] = original_particle.p*math.cos(original_particle.theta)
     pt_out = 0.
     for part in original_particle.decayvalues:
-        pt_out += part["p"]*math.sin(part['phi'])
+        pt_out += part["p"]*math.sin(part['theta'])
     momentum_dict["pt_out"]=pt_out
     pl_out = 0.
     for part in original_particle.decayvalues:
-        pl_out += part["p"]*math.cos(part['phi'])
+        pl_out += part["p"]*math.cos(part['theta'])
     momentum_dict["pl_out"]=pl_out
     return momentum_dict
 

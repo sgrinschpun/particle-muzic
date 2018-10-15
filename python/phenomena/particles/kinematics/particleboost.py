@@ -75,4 +75,8 @@ class ParticleBoost(object):
 
     @property
     def theta(self):
+        return self._fourMomentum.theta()
+
+    @property
+    def phi(self):
         return self._fourMomentum.phi()

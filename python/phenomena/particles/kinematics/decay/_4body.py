@@ -1,7 +1,7 @@
 from __future__ import division
 import math, random
 
-from phenomena.particles.kinematics.parameters import BoostParams
+from skhep.constants import half_pi, two_pi
 
 import nbody
 
@@ -13,7 +13,8 @@ class LAB4BodyCalc(nbody.LabCalc):
             self._values.append({
             'name': part,
             'p': 5*random.random(),
-            'theta': 2*math.pi*random.random()
+            'phi': 2*math.pi*random.random(),
+            'theta':half_pi,
             })
 
     @property

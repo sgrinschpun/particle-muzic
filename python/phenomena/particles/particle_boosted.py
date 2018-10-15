@@ -26,7 +26,7 @@ class ParticleBoosted(Particle):
         self._set_type() # Particle Type (quark, lepton, boson, meson, baryon)
         self._set_composition() # Particle quark compsition in format [[q1,q2],[q3,q4],...]
 
-        self._theta = kwargs.get('theta',0)#the angle of this instance
+        self._phi = kwargs.get('phi',0)#the angle of this instance
         self._setThisBoostedParameters(kwargs)#calculate and assign boosted parameters
         self._setBoostedLifetime()# lifetime is recalculated
 
@@ -157,8 +157,8 @@ class ParticleBoosted(Particle):
         return self._beta
 
     @property
-    def theta(self):
-        return self._theta
+    def phi(self):
+        return self._phi
 
     @property
     def T(self):
@@ -181,4 +181,4 @@ class ParticleBoosted(Particle):
         return self._decayvalues
 
     def _setDecaysBoostedParameters(self):
-        self._decayvalues = DecayCalc.getValues(self._mass,self._gamma,self._theta,self._decay) # sets values for decay particles
+        self._decayvalues = DecayCalc.getValues(self._mass,self._gamma,self._phi,self._decay) # sets values for decay particles
