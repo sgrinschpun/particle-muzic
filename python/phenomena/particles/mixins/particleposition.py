@@ -1,3 +1,11 @@
+#!/usr/bin/env python
+
+__author__ = "Sebastian Grinschpun"
+__license__ = "GPL"
+__version__ = "0.0.1"
+__email__ = "sgrinschpun@ifae.es"
+__status__ = "Development"
+
 from skhep.math import Vector3D, LorentzVector
 
 PARTICLE_INIT_POSITION = Vector3D(x=0.0, y=0.0, z=0.0)

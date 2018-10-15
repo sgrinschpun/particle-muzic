@@ -1,8 +1,15 @@
+#!/usr/bin/env python
+
+__author__ = "Sebastian Grinschpun"
+__license__ = "GPL"
+__version__ = "0.0.1"
+__email__ = "sgrinschpun@ifae.es"
+__status__ = "Development"
+
 import time, threading
-from setdecay import Decay
-from timeremap import TimeRemap
-from kinematics import DecayCalc
 from phenomena.particles.particle import Particle
+from phenomena.particles.decays import Decay, TimeRemap
+from phenomena.particles.decays.kinematics import DecayCalc
 
 class ParticleDecay(object):
     '''

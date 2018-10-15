@@ -55,36 +55,6 @@ class Particle(object):
     def toDictionary(self):
         pass
 
-class ParticleId(object):
-    '''
-    This is a mixin class for the Particle class
-    It adds functionality ised by the particle server:
-     - It adds the attributes and methods related to id & parent
-     - It adds the CLASS_COUNTER class attribute
-     - It adds the toDictionary method
-    '''
-    CLASS_COUNTER = 0
-
-    @property
-    def id(self):
-        return self._id
-
-    def _set_id(self):
-        self._id = ParticleId.CLASS_COUNTER
-        ParticleId.CLASS_COUNTER += 1
-
-    @property
-    def parent(self):
-        return self._parent
-
-    def _set_parent(self, parent):
-        self._parent = parent
-
-    def toDictionary(self):
-        return toDictionary(self)
-
-
-
 class BasicParticle(Particle):
     '''
     This class is used by the server to transmit the messages through the socket. It is just a container of information.

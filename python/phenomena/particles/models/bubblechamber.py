@@ -1,17 +1,26 @@
-from phenomena.particles.particle import Particle, ParticleId
-from phenomena.particles.sources import ParticleData
-from phenomena.particles.decays import ParticleDecay
-from phenomena.particles.kinematics import ParticlePosition, ParticleBoost
+#!/usr/bin/env python
+
+__author__ = "Sebastian Grinschpun"
+__license__ = "GPL"
+__version__ = "0.0.1"
+__email__ = "sgrinschpun@ifae.es"
+__status__ = "Development"
+
+from phenomena.particles.particle import Particle
+from phenomena.particles.mixins import ParticleId, ParticleData, ParticleDecay, ParticlePosition, ParticleBoost
 
 NO_PARENT = -1
 
-class ParticleTest(ParticleDecay, ParticlePosition, ParticleBoost, ParticleData, ParticleId, Particle):
+class BubbleChamberParticle(ParticleDecay, ParticlePosition, ParticleBoost, ParticleData, ParticleId, Particle):
+    '''
+    This class is intended for BubbleChamber simulation. That's why these mixins are chosen.
+    '''
 
     def __init__(self, name, parent = NO_PARENT, **kwargs):
 
         #### ParticleId
         self._set_id() # Class Counter
-        self._setParent(parent) # The parent id of particle
+        self._set_parent(parent) # The parent id of particle
 
         #### ParticleData
         self._set_name(name)  # Name of the particle
@@ -27,10 +36,10 @@ class ParticleTest(ParticleDecay, ParticlePosition, ParticleBoost, ParticleData,
         self._set_fourMomentum(kwargs)#assign 4momentum vector and  boosted parameters
         self._set_boostedLifetime()# lifetime is recalculated
 
-        #### ParticleBoost
+        #### ParticlePosition
         self._set_initPosition()
 
         ### ParticleDecay
         self._set_decay() # Particle decay channel chosen
         self._set_decayTime() #Time until decay in ****units****
-        self._setDecaysBoostedParameters() #Calculates the boosted parameters of the decayed particles
+        self._set_decayBoostedParameters() #Calculates the boosted parameters of the decayed particles

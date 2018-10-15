@@ -1,4 +1,3 @@
-from particledata import ParticleData
 from particledatasources import ParticleDataSource
 from datasources import DataSource
 from particledatatools import ParticleDataToolFetcher
