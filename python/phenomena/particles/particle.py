@@ -72,7 +72,7 @@ class ParticleId(object):
     def parent(self):
         return self._parent
 
-    def _setParent(self, parent):
+    def _set_parent(self, parent):
         self._parent = parent
 
     def toDictionary(self):
@@ -82,7 +82,7 @@ class ParticleId(object):
 
 class BasicParticle(Particle):
 
-    def __init__(self, parent, id, name, type, mass, charge, composition, decay_time, p, theta, beta):
+    def __init__(self, parent, id, name, type, mass, charge, composition, decay_time, p, theta, phi, beta):
         self._parent = parent
         self._id = id
         self._name = name
@@ -93,6 +93,7 @@ class BasicParticle(Particle):
         self._decay_time = decay_time
         self._p = p
         self._theta = theta
+        self._phi = phi
         self._beta = beta
 
     @property
@@ -136,6 +137,10 @@ class BasicParticle(Particle):
         return self._theta
 
     @property
+    def phi(self):
+        return self._phi
+
+    @property
     def beta(self):
         return self._beta
 
@@ -152,5 +157,6 @@ def toDictionary(particle):
             "decay_time": particle.decay_time,
             "composition": particle.composition,
             "p": particle.p,
-            "theta": particle.phi,
+            "theta": particle.theta,
+            "phi": particle.phi,
             "beta": particle.beta}

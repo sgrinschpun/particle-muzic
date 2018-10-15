@@ -17,26 +17,26 @@ def resolution():
 @pytest.fixture(scope='function')
 def particle_rest(particle):
     '''Returns particle at rest'''
-    return ParticleTest(particle)
+    return ParticleBoosted(particle)
 
 #boosted particle
 @pytest.fixture(scope='function')
 def particle_boosted(particle,momentum):
     '''Returns boosted particle with given momentum'''
-    return  ParticleTest(particle, p=momentum)
+    return  ParticleBoosted(particle, p=momentum)
 
 #decay values particle
 @pytest.fixture(scope='function')
 def particle_decay_values(particle,momentum):
     '''Returns decay values of boosted particle with given momentum'''
-    return  ParticleTest(particle, momentum).decayvalues
+    return  ParticleBoosted(particle, momentum).decayvalues
 
 #conservations
 @pytest.fixture(scope='function')
 def particle_conservation_energy(particle,momentum):
     '''Returns energy in and energy out'''
     energy_dict ={}
-    original_particle = ParticleTest(particle, momentum)
+    original_particle = ParticleBoosted(particle, momentum)
     energy_dict["energy_in"] = original_particle.E
     energy_out = 0.
     for part in original_particle.decayvalues:
@@ -48,7 +48,7 @@ def particle_conservation_energy(particle,momentum):
 def particle_conservation_momentum(particle,momentum):
     '''Returns momentum in and momentum out, both t and l'''
     momentum_dict ={}
-    original_particle = ParticleTest(particle,momentum)
+    original_particle = ParticleBoosted(particle,momentum)
     momentum_dict["pt_in"] = original_particle.p*math.sin(original_particle.phi)
     momentum_dict["pl_in"] = original_particle.p*math.cos(original_particle.phi)
     pt_out = 0.
@@ -65,11 +65,11 @@ def particle_conservation_momentum(particle,momentum):
 def particle_conservation_charge(particle,momentum):
     '''Returns charge in and charge out'''
     charge_dict = {}
-    original_particle = ParticleTest(particle, momentum)
+    original_particle = ParticleBoosted(particle, momentum)
     charge_dict['charge_in'] = original_particle.charge
     charge_out = 0.
     for part in original_particle.decayvalues:
-        charge_out += ParticleBoosted(part['name']).charge
+        charge_out += ParticleBoosted.getcharge(part['name'])
     charge_dict['charge_out'] = charge_out
     return charge_dict
 

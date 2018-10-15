@@ -3,11 +3,11 @@ import math
 import path
 
 from phenomena.particles.particletest import ParticleTest
+from phenomena.particles.particle_boosted import ParticleBoosted
 
 if __name__ == '__main__':
-    pi = ParticleTest('pi+', p=1)
+    pi = ParticleBoosted('pi+', p=1, phi=1.)
     print (pi.fourMomentum)
-    print (pi.position)
     print (pi.decayvalues)
-    mu = ParticleTest('mu+', p=1)
+    mu = ParticleBoosted('mu+', p=1)
     print (mu.decayvalues)

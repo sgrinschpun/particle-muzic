@@ -12,6 +12,7 @@ class MappingsController:
                                "type": MirrorMapping(),
                                "p": MirrorMapping(),
                                "theta": MirrorMapping(),
+                               "phi": MirrorMapping(),
                                "beta": MirrorMapping()
                                }
 

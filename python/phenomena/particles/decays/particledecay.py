@@ -1,3 +1,4 @@
+import time, threading
 from setdecay import Decay
 from timeremap import TimeRemap
 from kinematics import DecayCalc
@@ -43,5 +44,5 @@ class ParticleDecay(object):
     def decayvalues(self):
         return self._decayvalues
 
-    def _setDecaysBoostedParameters(self):
+    def _set_decayBoostedParameters(self):
         self._decayvalues = DecayCalc.getValues(self._mass,self._fourMomentum.gamma,self._fourMomentum.phi(),self._decay) # sets values for decay particles

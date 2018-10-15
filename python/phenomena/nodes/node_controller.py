@@ -31,7 +31,7 @@ class NodeController(ExecutableNode):
         particle_str = kwargs['particle_name']
         print "THIS: ", particle_str, type(particle_str)
         particle = ParticleBoosted(particle_str,**kwargs)
-        print particle.theta
+        print particle.theta, particle.phi
         self._root_node.addParticle(particle)
 
     def findModule(self, module_path):

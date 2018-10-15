@@ -38,6 +38,10 @@ class ParticleData(object):
     def _set_charge(self):
         self._charge = ParticleDataSource.getCharge(self._name)
 
+    @staticmethod
+    def getcharge(name):
+        return ParticleDataSource.getCharge(name)
+
     @property
     def lifetime(self):
         return self._lifetime
