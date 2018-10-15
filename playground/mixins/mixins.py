@@ -11,3 +11,4 @@ if __name__ == '__main__':
     print (pi.decayvalues)
     mu = ParticleBoosted('mu+', p=1)
     print (mu.decayvalues)
+    gamma = ParticleBoosted('gamma', p=1)
