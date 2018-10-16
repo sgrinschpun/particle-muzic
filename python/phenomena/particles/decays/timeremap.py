@@ -20,3 +20,7 @@ class TimeRemap(object):
     @staticmethod
     def magnitude(x):
         return (math.log(x,10))
+
+if __name__ == '__main__':
+    lifetime = 1e-12
+    print TimeRemap.getNextDecayTime(lifetime)

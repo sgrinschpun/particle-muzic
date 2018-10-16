@@ -10,7 +10,7 @@ import abc
 from threading import Timer, Lock
 
 from particle import Particle
-from particle_boosted import ParticleBoosted
+from server_particle import ServerParticle
 from phenomena.nodes import get_save_node, ConfigurableNode
 
 
@@ -118,12 +118,11 @@ class ParticleAccumulatorNode(ParticleActionNodeChain):
             print "Will transform in: ",
             for new_particle in new_particles:
                 name = new_particle['name']
-                kwargs = {'theta': new_particle['theta'], 'p': new_particle['p']}
-                #print "{0} ".format(ParticleBoosted(name, parent = particle.id, theta = theta, p = p)),
+                kwargs = {'phi': new_particle['phi'], 'theta': new_particle['theta'], 'p': new_particle['p']}
                 print "Particle causes error:  " + name
-                tr_new_particles.append(ParticleBoosted(name, parent = particle.id, **kwargs))
+                tr_new_particles.append(ServerParticle.init(name, parent = particle.id, **kwargs))
             print " New particles: "
-            for new_particle in new_particles: print new_particle['name'], new_particle['p'], new_particle['theta']
+            for new_particle in new_particles: print new_particle['name'], new_particle['p'], new_particle['phi']
             self._node.getNextNode(self).transformParticle(particle, tr_new_particles)
         finally:
             self._transform_lock.release()
@@ -173,5 +172,4 @@ class ParticleEntryNode(ParticleActionNodeEnd):
         pass
 
 if __name__ == '__main__':
-    a = ParticleAccumulatorNode()
-    a.transformParticle(ParticleBoosted("mu+"), [])
+    pass
