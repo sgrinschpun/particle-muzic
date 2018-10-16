@@ -1,6 +1,11 @@
 import abc
 
 class Particle(object):
+    '''
+    Abstract Particle class
+    Always changing
+    '''
+
     STABLE = -1
     __metaclass__ = abc.ABCMeta
 
@@ -51,8 +56,11 @@ class Particle(object):
         pass
 
 class BasicParticle(Particle):
+    '''
+    This class is used by the server to transmit the messages through the socket. It is just a container of information.
+    '''
 
-    def __init__(self, parent, id, name, type, mass, charge, composition, decay_time, p, theta, beta):
+    def __init__(self, parent, id, name, type, mass, charge, composition, decay_time, p, theta, phi, beta):
         self._parent = parent
         self._id = id
         self._name = name
@@ -63,6 +71,7 @@ class BasicParticle(Particle):
         self._decay_time = decay_time
         self._p = p
         self._theta = theta
+        self._phi = phi
         self._beta = beta
 
     @property
@@ -106,6 +115,10 @@ class BasicParticle(Particle):
         return self._theta
 
     @property
+    def phi(self):
+        return self._phi
+
+    @property
     def beta(self):
         return self._beta
 
@@ -113,6 +126,9 @@ class BasicParticle(Particle):
         return toDictionary(self)
 
 def toDictionary(particle):
+    '''
+    This method is used to extract the infromation required by the visualization and sonification nodes and send it through the socket
+    '''
     return {"name": particle.name,
             "parent": particle.parent,
             "id": particle.id,
@@ -123,4 +139,5 @@ def toDictionary(particle):
             "composition": particle.composition,
             "p": particle.p,
             "theta": particle.theta,
+            "phi": particle.phi,
             "beta": particle.beta}

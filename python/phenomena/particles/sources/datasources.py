@@ -1,7 +1,17 @@
+#!/usr/bin/env python
+
+__author__ = "Sebastian Grinschpun"
+__license__ = "GPL"
+__version__ = "0.1"
+__email__ = "sgrinschpun@ifae.es"
+__status__ = "Development"
+
 class DataSource(object):
     """
-    Define the abstraction's interface.
+    Defines the abstraction's interface for data sources.
     Maintain a reference to an object which represents the Implementor.
+
+    Use example: particledatatool = DataSource(ParticleDataToolFetcher)
     """
     def __init__(self, imp):
        self._imp = imp

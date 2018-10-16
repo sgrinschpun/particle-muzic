@@ -21,7 +21,8 @@ public class AVServer extends PApplet {
 
 	public void settings() {
 		//size(1920, 1200, P3D);
-		fullScreen(P3D);
+		size(1280, 800, P3D);
+		//fullScreen(P3D);
 	}
 
 	public void setup() {
@@ -56,6 +57,7 @@ public class AVServer extends PApplet {
 			}
 		}
 		manageList.visualize();
+		//saveFrame("particle-######.png");
 	}
 
 	public void keyPressed() {
