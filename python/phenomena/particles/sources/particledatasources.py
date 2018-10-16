@@ -34,7 +34,8 @@ sources = {
     'getWidth':scikitHEP, #scikitHEP, decaylanguage  skhep.math.kinematics.width_to_lifetime
     'getCTau':scikitHEP, #particledatatool, scikitHEP
     'getRadius':decaylanguage,
-    'getAnti':decaylanguage
+    'getAnti':decaylanguage,
+    'getParticleList':particledatatool
 }
 
 class ParticleDataSource(object):
@@ -113,3 +114,7 @@ class ParticleDataSource(object):
     def getAnti(name):
         pdgid = ParticleDataSource.getPDGId(name)
         return ParticleDataSource.getName(sources['getAnti'].getAnti(pdgid))
+
+    @staticmethod
+    def getParticleList():
+        return sources['getParticleList'].getParticleList()

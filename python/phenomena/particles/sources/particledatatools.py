@@ -38,9 +38,9 @@ class ParticleDataToolFetcher(object):
         return tau
 
     @staticmethod
-    def getDecayChannels(name):
+    def getDecayChannels(pdgid):
         try:
-            decaychannels = pythia.decay_channels(name)
+            decaychannels = pythia.decay_channels(pdgid)
         except:
             decaychannels =[]
         return decaychannels
@@ -54,3 +54,7 @@ class ParticleDataToolFetcher(object):
         tau = ParticleDataToolFetcher.getTau(pdgid) / u.picosecond
         width = lifetime_to_width(tau / u.picosecond)
         return width / u.GeV
+
+    @staticmethod
+    def getParticleList():
+        return pythia.iteritems()
