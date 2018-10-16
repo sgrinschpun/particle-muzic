@@ -51,8 +51,10 @@ def particle_conservation_momentum(particle,momentum):
     '''Returns momentum in and momentum out, both t and l'''
     momentum_dict ={}
     original_particle = PARTICLE(particle,momentum)
-    momentum_dict["pt_in"] = original_particle.p*math.sin(original_particle.phi)
-    momentum_dict["pl_in"] = original_particle.p*math.cos(original_particle.phi)
+    momentum_dict["pt_in"] = original_particle.fourMomentum.pt
+    #original_particle.p*math.sin(original_particle.phi)
+    momentum_dict["pl_in"] =   original_particle.p*math.cos(original_particle.phi)
+    #how can this be defined generaly? from fourMomentum?
     pt_out = 0.
     for part in original_particle.decayvalues:
         pt_out += part["p"]*math.sin(part['phi'])
