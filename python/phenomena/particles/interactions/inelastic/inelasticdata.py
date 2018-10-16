@@ -7,15 +7,13 @@ __email__ = "sgrinschpun@ifae.es"
 __status__ = "Development"
 
 import json
-
+import pkg_resources
 from phenomena.particles.sources import ParticleDataSource
 
-def load_file():
-    with open('inelastic_data.json') as infile:
-        data = json.load(infile, encoding='utf-8')
-    return data
+path = 'inelastic_data.json'  # always use slash
+JSON_PATH = pkg_resources.resource_filename(__name__, path)
+DATA = json.load(open(JSON_PATH))
 
-DATA = load_file()
 
 class InelasticData(object):
     @staticmethod
@@ -53,7 +51,10 @@ class InelasticData(object):
     def listOriginParticles():
         return list(DATA.keys())
 
-
+def load_file():
+    with open('inelastic_data.json') as infile:
+        data = json.load(infile, encoding='utf-8')
+    return data
 
 
 def save_json():
