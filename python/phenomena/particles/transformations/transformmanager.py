@@ -1,6 +1,35 @@
+import abc
 from operator import itemgetter
 
 ###the model needs to define the available transformations
+
+class Transformation(object):
+    '''
+    Abstract Transformation class
+    '''
+    @abc.abstractproperty
+    def values(self):
+        return self._values
+
+    @abc.abstractmethod
+    def _buildTransfValues(self):
+        '''
+        Creates the dict with the values
+        Empty dict if not happening
+        '''
+        dict_values = {}
+        dict_values['type']=self.__class__.__name__
+        dict_values['list']=self._outputParticles()
+        dict_values['time']=self._transfTime()
+        self._values = dict_values
+
+    @abc.abstractmethod
+    def _outputParticles(self):
+        pass
+        
+    @abc.abstractmethod
+    def _transfTime(self):
+        pass
 
 class TransformManager(object):
 
