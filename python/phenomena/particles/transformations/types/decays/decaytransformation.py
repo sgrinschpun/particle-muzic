@@ -1,4 +1,4 @@
-from phenomena.particles.transformations import Transformation
+from phenomena.particles.transformations.types import Transformation
 
 class Decay2(Transformation):
 

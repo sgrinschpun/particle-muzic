@@ -9,6 +9,9 @@ __status__ = "Development"
 from phenomena.particles.particle import Particle
 from phenomena.particles.mixins import ParticleId, ParticleData, ParticleDecay, ParticlePosition, ParticleBoost
 
+
+
+
 NO_PARENT = -1
 
 class BubbleChamberParticle(ParticleDecay, ParticlePosition, ParticleBoost, ParticleData, ParticleId, Particle):

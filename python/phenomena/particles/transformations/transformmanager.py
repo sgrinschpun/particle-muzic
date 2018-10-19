@@ -1,41 +1,23 @@
-import abc
 from operator import itemgetter
 
+from phenomena.particles.transformations.types import ComptonEffect, PairProduction, Annihilation, InelasticCollision, Decay2, ElasticCollision
+
+
 ###the model needs to define the available transformations
+TRANSFORMATIONS = [ComptonEffect, PairProduction, Annihilation, InelasticCollision, Decay2, ElasticCollision]
 
-class Transformation(object):
-    '''
-    Abstract Transformation class
-    '''
-    @abc.abstractproperty
-    def values(self):
-        return self._values
 
-    @abc.abstractmethod
-    def _buildTransfValues(self):
-        '''
-        Creates the dict with the values
-        Empty dict if not happening
-        '''
-        dict_values = {}
-        dict_values['type']=self.__class__.__name__
-        dict_values['list']=self._outputParticles()
-        dict_values['time']=self._transfTime()
-        self._values = dict_values
-
-    @abc.abstractmethod
-    def _outputParticles(self):
-        pass
-        
-    @abc.abstractmethod
-    def _transfTime(self):
-        pass
 
 class TransformManager(object):
 
     def __init__(self, particle):
-        _build_allTransformations(particle)
-        _select_transformation()
+        #self._transformations = particle.__class__.TRANSFORMATIONS
+        self._build_allTransformations(particle)
+        self._select_transformation()
+
+    @property
+    def allTransformations(self):
+        return self._allTransformations
 
     @property
     def selectedTransformationValues(self):
@@ -46,7 +28,7 @@ class TransformManager(object):
         return self._selTransfType
 
 
-    def _build_allTransformations():
+    def _build_allTransformations(self, particle):
         '''
         For each transformation possible for the particle, select the transformation channel and calculate the time of transformation. Store in a list
         self._allTransformations =
@@ -65,12 +47,15 @@ class TransformManager(object):
         ]
         '''
         allTransformations = []
-        for transf in LISTOFTRANSFORMATIONS:
-            allTransformations.append(transf(particle))
+        for transf in TRANSFORMATIONS:
+        #for transf in self._transformations:
+            item = transf(particle).values
+            if item != {}:
+                allTransformations.append(item)
 
         self._allTransformations = allTransformations
 
-    def _select_transformation():
+    def _select_transformation(self):
         '''
         From all the possible transformations, choose the one that happens first. For this one calculate the transformation values.
         self._selectedTransformation =
@@ -85,6 +70,7 @@ class TransformManager(object):
             ...
         }]
         '''
-        selTransf = sorted(self._allTransformations, key=itemgetter('time'),reverse=True)[0]
-        self._selTransfType = selTransf['type']
-        self._selTransfValues = TransformCalc.getValues(selTransf)
+        #selTransf = sorted(self._allTransformations, key=itemgetter('time'),reverse=True)[0]
+        #self._selTransfType = selTransf['type']
+        #self._selTransfValues = TransformCalc.getValues(selTransf)
+        self._selTransfValues = 1

@@ -8,7 +8,7 @@ __status__ = "Development"
 
 import time, threading
 from phenomena.particles.particle import Particle
-from phenomena.particles.transformations.decays import Decay, TimeRemap
+from phenomena.particles.transformations.types.decays import Decay, TimeRemap
 
 from phenomena.particles.transformations.kinematics import DecayCalc
 

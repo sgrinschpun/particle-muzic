@@ -1,16 +1,16 @@
 from __future__ import print_function
 import path
 
-from phenomena.particles.transformations import ComptonEffect, PairProduction, Annihilation, InelasticCollision, Decay2
+from phenomena.particles.transformations import TransformManager, ComptonEffect, PairProduction, Annihilation, InelasticCollision, Decay2, ElasticCollision
 from phenomena.particles.models import BubbleChamberParticle
 
-from phenomena.particles.transformations.inelastic import InelasticFile, InelasticData
+from phenomena.particles.transformations.types.inelastic import InelasticFile, InelasticData
 
 if __name__ == '__main__':
-    # list1 = InelasticData.allParticles("pi-",'p+')
+    #list1 = InelasticData.allParticles("pi-",'p+')
     # list2 = InelasticData.energyCutParticles("pi-",'p+', 1)
     # probabilitysum = InelasticData.ProbabilitySum("pi-",'p+', 2)
-    # print (list2)
+    #print (list1)
     # print(BubbleChamberParticle('pi+').decay_channels)
     #InelasticFile.save_json()
     # part1 = BubbleChamberParticle('gamma', p=1)
@@ -27,6 +27,8 @@ if __name__ == '__main__':
     # print (ComptonEffect(part3).values)
     # print (PairProduction(part3).values)
 
-    part4 = BubbleChamberParticle('pi+', p=3)
-    print (InelasticCollision(part4).values)
-    print (Decay2(part4).values)
+    part4 = BubbleChamberParticle('e+', p=3)
+    #print (InelasticCollision(part4).values)
+    #print (Decay2(part4).values)
+    #print (ElasticCollision(part4).values)
+    print (TransformManager(part4).allTransformations)

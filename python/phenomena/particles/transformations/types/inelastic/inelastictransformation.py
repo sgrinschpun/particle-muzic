@@ -1,4 +1,4 @@
-from phenomena.particles.transformations import Transformation
+from phenomena.particles.transformations.types import Transformation
 from inelasticdata import InelasticData
 
 class InelasticCollision(Transformation):
