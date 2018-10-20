@@ -1,6 +1,7 @@
 from __future__ import print_function, division
-import math
-import path
+import sys, math
+sys.path.append('../')
+from context import phenomena
 
 from skhep.math import Point3D, Line3D, Plane3D, Vector3D, LorentzVector, Kallen_function, lifetime_to_width, width_to_lifetime
 from skhep.constants import half_pi, two_pi
