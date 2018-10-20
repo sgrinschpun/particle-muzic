@@ -1,6 +1,7 @@
 from __future__ import print_function, division
-import math
-import path
+import sys
+sys.path.append('../')
+from context import phenomena
 
 from phenomena.particles.models import BubbleChamberParticle
 from phenomena.particles.server_particle import ServerParticle
