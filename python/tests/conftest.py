@@ -1,5 +1,7 @@
 import pytest
-import path
+from context import phenomena
+import sys, os
+
 import math
 
 from phenomena.particles.models import BubbleChamberParticle, QuantumUniverseParticle
