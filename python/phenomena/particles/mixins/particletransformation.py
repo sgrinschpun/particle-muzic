@@ -7,13 +7,21 @@ __email__ = "sgrinschpun@ifae.es"
 __status__ = "Development"
 
 from phenomena.particles.particle import Particle
+from phenomena.particles.transformations import TransformManager
 
 class ParticleTransformation(object):
     '''
     This is a mixin class for the Particle class
     It adds the attributes and methods required for particle transformtions
-     - sets all particle transformations types: particle list and probability
+     - sets all particle transformations types for the particle: particle list and probability
      - selects the particle transformation types and channel
-     - incudes implementaton of continuos probability and also setting on instatiations
+     - incudes implementaton of continuos probability and also setting on instantiations
     The ParticleTransformation requires the ParticleData mixin.
     '''
+
+    def _setTransformationManager(self, particle, list):
+        self._transformation = TransformManager(particle, list)
+
+    @property
+    def allTransformations(self):
+        return self._transformation.allTransformations

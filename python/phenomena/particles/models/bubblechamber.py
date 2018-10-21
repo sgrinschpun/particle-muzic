@@ -7,17 +7,21 @@ __email__ = "sgrinschpun@ifae.es"
 __status__ = "Development"
 
 from phenomena.particles.particle import Particle
-from phenomena.particles.mixins import ParticleId, ParticleData, ParticleDecay, ParticlePosition, ParticleBoost
+from phenomena.particles.mixins import ParticleId, ParticleData, ParticleDecay, ParticlePosition, ParticleBoost, ParticleTransformation
+
+from phenomena.particles.transformations.types import ComptonEffect, PairProduction, Annihilation, InelasticCollision, Decay2, ElasticCollision
 
 
 
 
 NO_PARENT = -1
 
-class BubbleChamberParticle(ParticleDecay, ParticlePosition, ParticleBoost, ParticleData, ParticleId, Particle):
+class BubbleChamberParticle(ParticleTransformation, ParticleDecay, ParticlePosition, ParticleBoost, ParticleData, ParticleId, Particle):
     '''
     This class is intended for BubbleChamber simulation. That's why these mixins are chosen.
     '''
+
+    TRANSFORMATIONS = [ComptonEffect, PairProduction, Annihilation, InelasticCollision, Decay2, ElasticCollision]
 
     def __init__(self, name, parent = NO_PARENT, **kwargs):
 
@@ -46,3 +50,6 @@ class BubbleChamberParticle(ParticleDecay, ParticlePosition, ParticleBoost, Part
         self._set_decay() # Particle decay channel chosen
         self._set_decayTime() #Time until decay in ****units****
         self._set_decayBoostedParameters() #Calculates the boosted parameters of the decayed particles
+
+        ### ParticleTransformation
+        self._setTransformationManager(self, BubbleChamberParticle.TRANSFORMATIONS)

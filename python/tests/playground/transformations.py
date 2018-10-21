@@ -4,7 +4,7 @@ sys.path.append('../')
 from context import phenomena
 
 from phenomena.particles.transformations import TransformManager, ComptonEffect, PairProduction, Annihilation, InelasticCollision, Decay2, ElasticCollision
-from phenomena.particles.models import BubbleChamberParticle
+from phenomena.particles.models import BubbleChamberParticle, QuantumUniverseParticle
 
 from phenomena.particles.transformations.types.inelastic import InelasticFile, InelasticData
 
@@ -29,8 +29,10 @@ if __name__ == '__main__':
     # print (ComptonEffect(part3).values)
     # print (PairProduction(part3).values)
 
-    part4 = BubbleChamberParticle('e+', p=3)
+    part4 = BubbleChamberParticle('gamma', p=3)
+    part4bis = QuantumUniverseParticle('gamma', p=3)
     #print (InelasticCollision(part4).values)
     #print (Decay2(part4).values)
     #print (ElasticCollision(part4).values)
-    print (TransformManager(part4).allTransformations)
+    print (part4.allTransformations)
+    print (part4bis.allTransformations)

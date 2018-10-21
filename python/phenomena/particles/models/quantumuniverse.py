@@ -7,14 +7,18 @@ __email__ = "sgrinschpun@ifae.es"
 __status__ = "Development"
 
 from phenomena.particles.particle import Particle
-from phenomena.particles.mixins import ParticleId, ParticleData, ParticleDecay, ParticleBoost
+from phenomena.particles.mixins import ParticleId, ParticleData, ParticleDecay, ParticleBoost, ParticleTransformation
+
+from phenomena.particles.transformations.types import ComptonEffect, PairProduction, Annihilation, InelasticCollision, Decay2, ElasticCollision
 
 NO_PARENT = -1
 
-class QuantumUniverseParticle(ParticleDecay, ParticleBoost, ParticleData, ParticleId, Particle):
+class QuantumUniverseParticle(ParticleTransformation, ParticleDecay, ParticleBoost, ParticleData, ParticleId, Particle):
     '''
     This class is intended for the QuantumUniverse simulation.
     '''
+
+    TRANSFORMATIONS = [Decay2]
 
     def __init__(self, name, parent = NO_PARENT, **kwargs):
 
@@ -40,3 +44,6 @@ class QuantumUniverseParticle(ParticleDecay, ParticleBoost, ParticleData, Partic
         self._set_decay() # Particle decay channel chosen
         self._set_decayTime() #Time until decay in ****units****
         self._set_decayBoostedParameters() #Calculates the boosted parameters of the decayed particles
+
+        ### ParticleTransformation
+        self._setTransformationManager(self, QuantumUniverseParticle.TRANSFORMATIONS)

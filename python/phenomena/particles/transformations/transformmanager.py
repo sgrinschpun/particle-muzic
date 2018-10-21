@@ -4,15 +4,13 @@ from phenomena.particles.transformations.types import ComptonEffect, PairProduct
 
 
 ###the model needs to define the available transformations
-TRANSFORMATIONS = [ComptonEffect, PairProduction, Annihilation, InelasticCollision, Decay2, ElasticCollision]
-
 
 
 class TransformManager(object):
 
-    def __init__(self, particle):
+    def __init__(self, particle, transformationlist):
         #self._transformations = particle.__class__.TRANSFORMATIONS
-        self._build_allTransformations(particle)
+        self._build_allTransformations(particle, transformationlist)
         self._select_transformation()
 
     @property
@@ -28,7 +26,7 @@ class TransformManager(object):
         return self._selTransfType
 
 
-    def _build_allTransformations(self, particle):
+    def _build_allTransformations(self, particle, transformationlist):
         '''
         For each transformation possible for the particle, select the transformation channel and calculate the time of transformation. Store in a list
         self._allTransformations =
@@ -47,7 +45,7 @@ class TransformManager(object):
         ]
         '''
         allTransformations = []
-        for transf in TRANSFORMATIONS:
+        for transf in transformationlist:
         #for transf in self._transformations:
             item = transf(particle).values
             if item != {}:
