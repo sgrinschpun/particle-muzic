@@ -25,3 +25,11 @@ class ParticleTransformation(object):
     @property
     def allTransformations(self):
         return self._transformation.allTransformations
+
+    @property
+    def selTransformation(self):
+        return self._transformation.selectedType
+
+    @property
+    def transformation(self):
+        return self._transformation

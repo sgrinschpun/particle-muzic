@@ -1,32 +1,32 @@
-from operator import itemgetter
-
-from phenomena.particles.transformations.types import ComptonEffect, PairProduction, Annihilation, InelasticCollision, Decay2, ElasticCollision
-
-
-###the model needs to define the available transformations
-
+from typeselection import TransTypeSelect
+from channelselection import TransChannelSelector
 
 class TransformManager(object):
 
     def __init__(self, particle, transformationlist):
         #self._transformations = particle.__class__.TRANSFORMATIONS
-        self._build_allTransformations(particle, transformationlist)
-        self._select_transformation()
+        self._buildAllTransformations(particle, transformationlist)
+        self._selectTransfType()
+        self._selectTransfChannel()
 
     @property
-    def allTransformations(self):
+    def allTypes(self):
         return self._allTransformations
 
     @property
-    def selectedTransformationValues(self):
+    def selectedValues(self):
         return self._selTransfValues
 
     @property
-    def selectedTransformationType(self):
+    def selectedType(self):
         return self._selTransfType
 
+    @property
+    def selectedChannel(self):
+        return self._selTransfChannel
 
-    def _build_allTransformations(self, particle, transformationlist):
+
+    def _buildAllTransformations(self, particle, transformationlist):
         '''
         For each transformation possible for the particle, select the transformation channel and calculate the time of transformation. Store in a list
         self._allTransformations =
@@ -36,39 +36,29 @@ class TransformManager(object):
                 'list': ['part1','part2'],
                 'time': xxx
             },
-            {
-                'type': 'elastic',
-                'list': ['part4','part5'],
-                'time': xxx
-            },
             ...
         ]
         '''
         allTransformations = []
         for transf in transformationlist:
-        #for transf in self._transformations:
             item = transf(particle).values
             if item != {}:
                 allTransformations.append(item)
 
+        #spaghetti
+        if not any('Decay2' in item['type'] for item in allTransformations):
+            allTransformations.append({'type':'NoTransformation'})
+
         self._allTransformations = allTransformations
 
-    def _select_transformation(self):
+    def _selectTransfType(self):
         '''
-        From all the possible transformations, choose the one that happens first. For this one calculate the transformation values.
-        self._selectedTransformation =
-        [
-            {
-                'name':
-                'p':
-                'phi':
-                'theta':
-                'E':
-            },
-            ...
-        }]
+        From all the possible transformations, choose one
         '''
-        #selTransf = sorted(self._allTransformations, key=itemgetter('time'),reverse=True)[0]
-        #self._selTransfType = selTransf['type']
-        #self._selTransfValues = TransformCalc.getValues(selTransf)
-        self._selTransfValues = 1
+        self._selTransfType = TransTypeSelect(self._allTransformations).value
+
+    def _selectTransfChannel(self):
+        '''
+        From all the possible transformations, choose one
+        '''
+        self._selTransfChannel = TransChannelSelector(self._selTransfType['list']).value

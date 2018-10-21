@@ -43,8 +43,6 @@ class InelasticData(object):
             new_part_list.append(a)
         return new_part_list
 
-
-
     @staticmethod
     def ProbabilitySum(part,target,energy):
         probability = 0.
