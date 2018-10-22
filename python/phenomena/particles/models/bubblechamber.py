@@ -22,6 +22,8 @@ class BubbleChamberParticle(ParticleTransformation, ParticleDecay, ParticlePosit
     '''
 
     TRANSFORMATIONS = [ComptonEffect, PairProduction, Annihilation, InelasticCollision, Decay2, ElasticCollision]
+    ELASTIC_TARGETS = ['p+']
+    INELASTIC_TARGETS = ['p+']
 
     def __init__(self, name, parent = NO_PARENT, **kwargs):
 

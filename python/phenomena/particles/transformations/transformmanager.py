@@ -61,4 +61,9 @@ class TransformManager(object):
         '''
         From all the possible transformations, choose one
         '''
-        self._selTransfChannel = TransChannelSelector(self._selTransfType['list']).value
+        try:
+            channel = TransChannelSelector(self._selTransfType['list']).value
+        except:
+            channel = []
+        finally:
+            self._selTransfChannel = channel

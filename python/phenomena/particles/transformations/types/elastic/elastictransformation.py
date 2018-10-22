@@ -10,7 +10,7 @@ class ElasticCollision(Transformation):
         self._buildTransfValues()
 
     def _outputParticles(self):
-        return (1.0,map(ParticleDataSource.getPDGId, [self._particle.name, self._target]))
+        return [(1.0,map(ParticleDataSource.getPDGId, [self._particle.name, self._target]))]
 
     def _transfTime(self):
         return 1
