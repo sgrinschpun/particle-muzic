@@ -6,7 +6,6 @@ from phenomena.particles.sources import ParticleDataSource
 class TransformManager(object):
 
     def __init__(self, particle, transformationlist):
-        #self._transformations = particle.__class__.TRANSFORMATIONS
         self._buildAllTransformations(particle, transformationlist)
         self._selectTransfType()
         self._selectTransfChannel()

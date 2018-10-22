@@ -19,8 +19,18 @@ class ParticleTransformation(object):
     The ParticleTransformation requires the ParticleData mixin.
     '''
 
-    def _setTransformationManager(self, particle, list):
-        self._transformation = TransformManager(particle, list)
+    def _setTransformationManager(self, particle, transformationslist):
+        self._transformation = TransformManager(particle, transformationslist)
+
+    def _setTransformationBoostedParameters(self, particle):
+        #call calculation class send this 2 parameters:
+        #particle
+        #particle.transformation.selectedValues
+        #this could be done at the manager level
+        pass
+
+    def start(self, callback):
+        pass
 
     @property
     def allTransformations(self):
