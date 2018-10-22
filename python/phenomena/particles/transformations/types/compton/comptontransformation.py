@@ -13,8 +13,9 @@ class ComptonEffect(Transformation):
             self._buildTransfValues()
 
     def _outputParticles(self):
-        return [(1.0, map(ParticleDataSource.getPDGId, ComptonEffect.OUTPUT)) ]
-        #return [[ParticleDataSource.getPDGId(part) for part in list] for list in OUTPUT]
+        return [(1.0,ComptonEffect.OUTPUT)]
+        #return [(1.0, map(ParticleDataSource.getPDGId, ComptonEffect.OUTPUT)) ]
+
 
     def _transfTime(self):
         return 1

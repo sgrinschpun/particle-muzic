@@ -2,6 +2,6 @@ from transformationtype import Transformation
 from compton import ComptonEffect
 from pairproduction import PairProduction
 from annihilation import Annihilation
-from inelastic import InelasticCollision
+from inelastic import InelasticCollision, InelasticCollisionWithProton, InelasticCollisionWithNeutron
 from decays import Decay2
-from elastic import ElasticCollision
+from elastic import ElasticCollision, ElasticCollisionWithProton, ElasticCollisionWithElectron, ElasticCollisionWithNeutron

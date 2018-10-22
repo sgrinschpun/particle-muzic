@@ -1,1 +1,1 @@
-from elastictransformation import ElasticCollision
+from elastictransformation import ElasticCollision, ElasticCollisionWithProton, ElasticCollisionWithElectron, ElasticCollisionWithNeutron

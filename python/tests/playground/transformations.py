@@ -8,15 +8,5 @@ from phenomena.particles.models import BubbleChamberParticle, QuantumUniversePar
 
 if __name__ == '__main__':
 
-    part4 = BubbleChamberParticle('e-', p=3)
-    #part4bis = QuantumUniverseParticle('gamma', p=3)
-    #print (InelasticCollision(part4).values)
-    #print (Decay2(part4).values)
-    #print (ElasticCollision(part4).values)
-    #print (part4.transformation.allTypes)
-    #print (part4.transformation.selectedType)
-    print (part4.transformation.selectedChannel)
-
-
-    #print (part4bis.transformation.allTypes)
-    #print (part4bis.transformation.selectedType)
+    part4 = BubbleChamberParticle('K-', p=3)
+    print (part4.transformation.allTypes)

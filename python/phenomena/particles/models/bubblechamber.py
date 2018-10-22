@@ -9,10 +9,7 @@ __status__ = "Development"
 from phenomena.particles.particle import Particle
 from phenomena.particles.mixins import ParticleId, ParticleData, ParticleDecay, ParticlePosition, ParticleBoost, ParticleTransformation
 
-from phenomena.particles.transformations.types import ComptonEffect, PairProduction, Annihilation, InelasticCollision, Decay2, ElasticCollision
-
-
-
+from phenomena.particles.transformations.types import ComptonEffect, PairProduction, Annihilation, InelasticCollisionWithProton,InelasticCollisionWithNeutron, Decay2, ElasticCollisionWithProton, ElasticCollisionWithElectron, ElasticCollisionWithNeutron
 
 NO_PARENT = -1
 
@@ -21,9 +18,7 @@ class BubbleChamberParticle(ParticleTransformation, ParticleDecay, ParticlePosit
     This class is intended for BubbleChamber simulation. That's why these mixins are chosen.
     '''
 
-    TRANSFORMATIONS = [ComptonEffect, PairProduction, Annihilation, InelasticCollision, Decay2, ElasticCollision]
-    ELASTIC_TARGETS = ['p+']
-    INELASTIC_TARGETS = ['p+']
+    TRANSFORMATIONS = [ComptonEffect, PairProduction, Annihilation, InelasticCollisionWithProton,InelasticCollisionWithNeutron, Decay2, ElasticCollisionWithProton, ElasticCollisionWithElectron, ElasticCollisionWithNeutron]
 
     def __init__(self, name, parent = NO_PARENT, **kwargs):
 

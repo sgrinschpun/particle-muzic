@@ -1,6 +1,8 @@
 from typeselection import TransTypeSelect
 from channelselection import TransChannelSelector
 
+from phenomena.particles.sources import ParticleDataSource
+
 class TransformManager(object):
 
     def __init__(self, particle, transformationlist):
@@ -25,6 +27,14 @@ class TransformManager(object):
     def selectedChannel(self):
         return self._selTransfChannel
 
+    def selectByType(self, type):
+        return [element for element in self._allTransformations if element['type'] == type][0]['list']
+
+    def outputParticles(self, type):
+        output_list =[]
+        for element in self.selectByType(type):
+            output_list.append(element[1][0])
+        return output_list
 
     def _buildAllTransformations(self, particle, transformationlist):
         '''

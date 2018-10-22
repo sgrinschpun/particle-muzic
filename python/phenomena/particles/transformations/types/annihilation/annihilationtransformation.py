@@ -14,7 +14,7 @@ class Annihilation(Transformation):
 
     def _outputParticles(self):
         return [(1.0, map(ParticleDataSource.getPDGId, Annihilation.OUTPUT)) ]
-        #return [[ParticleDataSource.getPDGId(part) for part in list] for list in OUTPUT]
+        return [(1.0, Annihilation.OUTPUT)]
 
     def _transfTime(self):
         return 1

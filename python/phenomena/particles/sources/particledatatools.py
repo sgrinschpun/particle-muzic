@@ -58,3 +58,40 @@ class ParticleDataToolFetcher(object):
     @staticmethod
     def getParticleList():
         return pythia.iteritems()
+
+    @staticmethod
+    def decayListToNames(decaylist):
+        allchannels_list = []
+        for channel in decaylist:
+            thischannels_list = []
+            for particle in channel[1]:
+                thischannels_list.append(ParticleDataToolFetcher.getName(particle))
+            allchannels_list.append((channel[0],thischannels_list))
+        return allchannels_list
+
+    @staticmethod
+    def getDecayChannelsWithNames(name):
+        pdgid = ParticleDataToolFetcher.getPDGId(name)
+        pdgid_list = ParticleDataToolFetcher.getDecayChannels(pdgid)
+        return ParticleDataToolFetcher.decayListToNames(pdgid_list)
+
+    @staticmethod
+    def getDecayParticles(name):
+        pdgid = ParticleDataToolFetcher.getPDGId(name)
+        decaylist = ParticleDataToolFetcher.getDecayChannels(pdgid)
+        particle_list = []
+        for channel in ParticleDataToolFetcher.decayListToNames(decaylist):
+            particle_list.append(channel[1])
+        return particle_list
+
+
+    @staticmethod
+    def getOriginParticles(listofdecayedparticles):
+         pdgid_list = map(ParticleDataToolFetcher.getPDGId, listofdecayedparticles)
+         part_list = []
+         for item in ParticleDataToolFetcher.getParticleList():
+             channels = ParticleDataToolFetcher.getDecayChannels(item[0])
+             for channel in channels:
+                 if set(pdgid_list) == set(channel[1]):
+                     part_list.append((channel[0],[item[1].name]))
+         return part_list

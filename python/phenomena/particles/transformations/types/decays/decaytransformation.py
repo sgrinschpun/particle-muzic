@@ -8,7 +8,7 @@ class Decay2(Transformation):
         self._buildTransfValues()
 
     def _outputParticles(self):
-        return self._particle.decay_channels
+        return Transformation.channelListToNames(self._particle.decay_channels)
 
     def _transfTime(self):
         return 1

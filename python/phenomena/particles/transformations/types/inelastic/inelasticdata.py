@@ -8,7 +8,7 @@ __status__ = "Development"
 
 import json
 import pkg_resources
-from phenomena.particles.sources import ParticleDataSource
+from phenomena.particles.sources import ParticleDataSource, ParticleDataToolFetcher
 
 path = 'inelastic_data.json'  # always use slash
 JSON_PATH = pkg_resources.resource_filename(__name__, path)
@@ -33,15 +33,7 @@ class InelasticData(object):
         except:
             product = []
         finally:
-            return InelasticData.listToTuple(product)
-
-    @staticmethod
-    def listToTuple(part_list):
-        new_part_list = []
-        for n, i in enumerate(part_list):
-            a = [i[0], (i[1][0],map(ParticleDataSource.getPDGId, i[1][1]))]
-            new_part_list.append(a)
-        return new_part_list
+            return product
 
     @staticmethod
     def ProbabilitySum(part,target,energy):
@@ -64,35 +56,24 @@ class InelasticFile(object):
     @staticmethod
     def save_json():
         with open('./inelastic_data.json', 'w') as f:
-            f.write(json.dumps(InelasticFile.build_json(),indent=2, sort_keys=True, ensure_ascii=False))
+            f.write(json.dumps(InelasticFile._build_json(),indent=2, sort_keys=True, ensure_ascii=False))
 
     @staticmethod
     def get_particles(part,target='p+'):
+        finalstate = [part,target]
         part_list = []
-        partid = ParticleDataSource.getPDGId(part)
-        targetid = ParticleDataSource.getPDGId(target)
-
-        for item in ParticleDataSource.getParticleList():
-            channels = ParticleDataSource.getDecayChannels(item[0])
-            for channel in channels:
-                if set([partid,targetid]).issubset(channel[1]):
-                    energythreshold = ParticleDataSource.getMass(item[1].name)-ParticleDataSource.getMass(target)
-                    tuple = (channel[0],[item[1].name])
-                    list = [energythreshold,tuple]
-                    part_list.append(list)
+        for item in ParticleDataToolFetcher.getOriginParticles(finalstate):
+            energythreshold = ParticleDataSource.getMass(item[1][0])-ParticleDataSource.getMass(target)
+            part_list.append([energythreshold,item])
         return part_list
 
     @staticmethod
-    def build_json():
+    def _build_json():
         part_dict = {}
-        for target in ['p+', 'n0', 'e-']:
+        for target in ['p+', 'n0']:
             part_dict[target]={}
             for item in ParticleDataSource.getParticleList():
                 particles = InelasticFile.get_particles(item[1].name,target)
                 if particles != []:
                     part_dict[target][item[1].name]=particles
         return part_dict
-
-
-if __name__ == '__main__':
-    save_json()

@@ -3,7 +3,7 @@ from inelasticdata import InelasticData
 
 class InelasticCollision(Transformation):
 
-    def __init__(self, particle, target = 'p+'):
+    def __init__(self, particle, target):
         self._particle = particle
         self._target = target
         self._values = {}
@@ -15,3 +15,11 @@ class InelasticCollision(Transformation):
 
     def _transfTime(self):
         return 1
+
+class InelasticCollisionWithProton(InelasticCollision):
+    def __init__(self, particle, target = 'p+'):
+        super(InelasticCollisionWithProton, self).__init__(particle, target)
+
+class InelasticCollisionWithNeutron(InelasticCollision):
+    def __init__(self, particle, target = 'n0'):
+        super(InelasticCollisionWithNeutron, self).__init__(particle, target)
