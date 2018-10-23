@@ -14,6 +14,14 @@ from phenomena.particles.transformations.types.inelastic import InelasticFile, I
 if __name__ == '__main__':
     part = BubbleChamberParticle('pi+', p=3)
 
+    for id, item in enumerate(ParticleDataToolFetcher.getOriginParticles(['pi-','p+'])):
+        print (id, item[1][0])
+        print (ParticleDataToolFetcher.getDecayParticles(item[1][0]))
+
+
+    #ParticleDataToolFetcher.getOriginParticles
+
+
     #print(ParticleDataSource.getDecayChannels('pi+'))
     #print(ParticleDataToolFetcher.getDecayChannelsWithNames('pi+'))
     #print(ParticleDataToolFetcher.getDecayParticles('pi+'))
@@ -21,4 +29,4 @@ if __name__ == '__main__':
     #for id, item in enumerate(ParticleDataToolFetcher.getOriginParticles(['K-','p+'])):
     #    print (id, item[1][0])
     #    print (ParticleDataToolFetcher.getDecayParticles(item[1][0]))
-    print(InelasticData.allParticles('pi-','p+'))
+    #print(InelasticData.allParticles('pi-','p+'))

@@ -5,6 +5,7 @@ class ComptonEffect(Transformation):
 
     INPUT = ['gamma']
     OUTPUT = ['gamma', 'e-']
+    TARGET = 'e-'
 
     def __init__(self, particle):
         self._particle = particle

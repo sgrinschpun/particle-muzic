@@ -3,6 +3,8 @@ from phenomena.particles.sources import ParticleDataSource
 
 class PairProduction(Transformation):
 
+    TARGET = 'p+'
+
     INPUT = ['gamma']
     OUTPUT = ['e-', 'e+', 'p+']
 

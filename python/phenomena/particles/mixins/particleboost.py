@@ -10,7 +10,7 @@ from skhep.math import Vector3D, LorentzVector
 from skhep.constants import half_pi, two_pi
 from phenomena.particles.particle import Particle
 
-THETA_DEFAULT = half_pi
+THETA_DEFAULT = 0 #half_pi
 PHI_DEFAULT = 0
 
 class ParticleBoost(object):

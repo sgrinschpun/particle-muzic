@@ -50,4 +50,3 @@ class BubbleChamberParticle(ParticleTransformation, ParticleDecay, ParticlePosit
 
         ### ParticleTransformation
         self._setTransformationManager(self, BubbleChamberParticle.TRANSFORMATIONS)
-        self._setTransformationBoostedParameters(self)

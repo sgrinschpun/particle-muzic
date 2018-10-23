@@ -17,13 +17,22 @@ class ElasticCollision(Transformation):
         return 1
 
 class ElasticCollisionWithProton(ElasticCollision):
+
+    TARGET = 'p+'
+
     def __init__(self, particle, target = 'p+'):
         super(ElasticCollisionWithProton, self).__init__(particle, target)
 
 class ElasticCollisionWithElectron(ElasticCollision):
+
+    TARGET = 'e-'
+
     def __init__(self, particle, target = 'e-'):
         super(ElasticCollisionWithElectron, self).__init__(particle, target)
 
 class ElasticCollisionWithNeutron(ElasticCollision):
+
+    TARGET = 'n0'
+
     def __init__(self, particle, target = 'n0'):
         super(ElasticCollisionWithNeutron, self).__init__(particle, target)

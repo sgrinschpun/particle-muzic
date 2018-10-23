@@ -8,5 +8,9 @@ from phenomena.particles.models import BubbleChamberParticle, QuantumUniversePar
 
 if __name__ == '__main__':
 
-    part4 = BubbleChamberParticle('K-', p=3)
-    print (part4.transformation.allTypes)
+    part = BubbleChamberParticle('pi-', p=5)
+    print (part.transformation.outputValues)
+    print (part.transformation.selectedChannel)
+    #print (part.transformation.selectedChannelValues)
+    #print (part.transformation.outputValues)
+    #print (part.transformation.selectedType)

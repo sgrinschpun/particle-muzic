@@ -1,52 +1,44 @@
 from typeselection import TransTypeSelect
 from channelselection import TransChannelSelector
+from outputcalculation import TransCalculation
 
 from phenomena.particles.sources import ParticleDataSource
 
 class TransformManager(object):
 
     def __init__(self, particle, transformationlist):
+        self._particle = particle
         self._buildAllTransformations(particle, transformationlist)
         self._selectTransfType()
         self._selectTransfChannel()
+
 
     @property
     def allTypes(self):
         return self._allTransformations
 
     @property
-    def selectedValues(self):
-        return self._selTransfValues
+    def selectedType(self):
+        return self._selTransfType['type']
 
     @property
-    def selectedType(self):
-        return self._selTransfType
+    def target(self):
+        return self._selTransfType['target']
 
     @property
     def selectedChannel(self):
         return self._selTransfChannel
 
+    @property
+    def outputValues(self):
+        return self._buildOutputList(self._particle)
+
     def selectByType(self, type):
         return [element for element in self._allTransformations if element['type'] == type][0]['list']
 
-    def outputParticles(self, type):
-        output_list =[]
-        for element in self.selectByType(type):
-            output_list.append(element[1][0])
-        return output_list
-
     def _buildAllTransformations(self, particle, transformationlist):
         '''
-        For each transformation possible for the particle, select the transformation channel and calculate the time of transformation. Store in a list
-        self._allTransformations =
-        [
-            {
-                'type': 'decay',
-                'list': ['part1','part2'],
-                'time': xxx
-            },
-            ...
-        ]
+        For each transformation possible for the particle, build list.
         '''
         allTransformations = []
         for transf in transformationlist:
@@ -73,6 +65,12 @@ class TransformManager(object):
         try:
             channel = TransChannelSelector(self._selTransfType['list']).value
         except:
-            channel = []
+            channel = ['whaaat']
         finally:
             self._selTransfChannel = channel
+
+    def _buildOutputList(self,particle):
+        '''
+        Get de list of output particles boosted values
+        '''
+        return TransCalculation(particle, self.selectedType).getOutputValues()

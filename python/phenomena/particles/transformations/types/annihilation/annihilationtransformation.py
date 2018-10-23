@@ -5,6 +5,7 @@ class Annihilation(Transformation):
 
     INPUT = ['e+']
     OUTPUT = ['gamma']
+    TARGET = 'e-'
 
     def __init__(self, particle):
         self._particle = particle

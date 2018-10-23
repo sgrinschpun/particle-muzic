@@ -19,6 +19,7 @@ class Transformation(object):
         list = self._outputParticles()
         if list != []:
             dict_values['type']=self.__class__.__name__
+            dict_values['target'] = self.__class__.TARGET
             dict_values['list']=list
             dict_values['time']=self._transfTime()
         self._values = dict_values
@@ -37,7 +38,6 @@ class Transformation(object):
         for item in channels:
             newchannels.append( (item[0],Transformation.ParticleListToNames(item[1])) )
         return newchannels
-
 
     @staticmethod
     def ParticleListToNames(particlelist):

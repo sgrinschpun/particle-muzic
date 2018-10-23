@@ -17,9 +17,15 @@ class InelasticCollision(Transformation):
         return 1
 
 class InelasticCollisionWithProton(InelasticCollision):
+
+    TARGET = 'p+'
+
     def __init__(self, particle, target = 'p+'):
         super(InelasticCollisionWithProton, self).__init__(particle, target)
 
 class InelasticCollisionWithNeutron(InelasticCollision):
+
+    TARGET = 'n0'
+
     def __init__(self, particle, target = 'n0'):
         super(InelasticCollisionWithNeutron, self).__init__(particle, target)

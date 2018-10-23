@@ -12,14 +12,11 @@ class TransChannelSelector(object):
         return self._selectedChannel
 
     def _selectChannel(self):
-        list_decay = []
         buildWeights = TransChannelSelector.buildWeights(self._allChannels)
         if self._allChannels != {'type':'NoTransformation'}:
             choice = TransChannelSelector.weightedChoice(buildWeights[0],buildWeights[1])
-            channel = self._allChannels[choice][1]
-            for pdgid in channel:
-                list_decay.append(ParticleDataSource.getName(pdgid))
-        self._selectedChannel = list_decay
+            channel = self._allChannels[choice]
+        self._selectedChannel = channel
 
     @staticmethod
     def buildWeights(transformation_channels):

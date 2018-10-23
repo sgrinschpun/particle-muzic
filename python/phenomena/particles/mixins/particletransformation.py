@@ -22,15 +22,12 @@ class ParticleTransformation(object):
     def _setTransformationManager(self, particle, transformationslist):
         self._transformation = TransformManager(particle, transformationslist)
 
-    def _setTransformationBoostedParameters(self, particle):
-        #call calculation class send this 2 parameters:
-        #particle
-        #particle.transformation.selectedValues
-        #this could be done at the manager level
-        pass
-
     def start(self, callback):
         pass
+
+    @property
+    def transformation(self):
+        return self._transformation
 
     @property
     def allTransformations(self):
@@ -41,5 +38,5 @@ class ParticleTransformation(object):
         return self._transformation.selectedType
 
     @property
-    def transformation(self):
-        return self._transformation
+    def transformationoutput(self):
+        return self._transformation.output
