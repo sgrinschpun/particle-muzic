@@ -1,7 +1,6 @@
-from typeselection import TransTypeSelect
-from channelselection import TransChannelSelector
 from outputcalculation import TransCalculation
 
+from phenomena.particles.transformations.selections import TransTypeSelect, TransChannelSelector
 from phenomena.particles.sources import ParticleDataSource
 
 class TransformManager(object):
@@ -11,7 +10,6 @@ class TransformManager(object):
         self._buildAllTransformations(particle, transformationlist)
         self._selectTransfType()
         self._selectTransfChannel()
-
 
     @property
     def allTypes(self):
@@ -60,12 +58,12 @@ class TransformManager(object):
 
     def _selectTransfChannel(self):
         '''
-        From all the possible transformations, choose one
+        From all the possible channels, choose one
         '''
         try:
             channel = TransChannelSelector(self._selTransfType['list']).value
         except:
-            channel = ['whaaat']
+            channel = []
         finally:
             self._selTransfChannel = channel
 
@@ -73,4 +71,4 @@ class TransformManager(object):
         '''
         Get de list of output particles boosted values
         '''
-        return TransCalculation(particle, self.selectedType).getOutputValues()
+        return TransCalculation(particle, self.selectedType).getOutputValues() if self.selectedType != 'NoTransformation' else None

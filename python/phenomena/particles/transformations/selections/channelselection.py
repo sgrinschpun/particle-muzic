@@ -15,7 +15,10 @@ class TransChannelSelector(object):
         buildWeights = TransChannelSelector.buildWeights(self._allChannels)
         if self._allChannels != {'type':'NoTransformation'}:
             choice = TransChannelSelector.weightedChoice(buildWeights[0],buildWeights[1])
-            channel = self._allChannels[choice]
+            if choice == None:
+                channel = random.choice(self._allChannels)
+            else:
+                channel = self._allChannels[choice]
         self._selectedChannel = channel
 
     @staticmethod
