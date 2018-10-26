@@ -1,32 +1,18 @@
-from __future__ import division
-import math
+import abc
 
-from phenomena.particles.sources import ParticleDataSource
-from _2body import LAB2BodyCalc
-from _3body import LAB3BodyCalc
-from _4body import LAB4BodyCalc
+class KinematicsCalculations(object):
+    '''
+    We expect initialparticle and target to be a LorentzVector and outputparticles a list of LorentzVectors
+    '''
+    def __init__(self, initialparticle, finalparticles):
+        self._initial= initialparticle
+        self._final = finalparticles
+        self._set_finalState()
 
-class DecayCalc(object):
-    """ Checks number of decay particles and assigns appropriate calculation.
-        Creates aray of values:
-            - masses = [m0, m1, m2,....mn]
-            - values = [{'name':, 'p':, 'phi':, 'theta':},]
-    """
-    @staticmethod
-    def _setMassArray(mass, decay):
-        masses = [mass]  # array of masses 0: parent particle, 1: first decay particle, ...
-        for particle in decay:
-            masses.append(ParticleDataSource.getMass(particle))
-        return masses
+    @abc.abstractmethod
+    def getFinalState(self):
+        return self._final
 
-    @staticmethod
-    def getValues(mass,gamma,phi,decay):
-        masses = DecayCalc._setMassArray(mass, decay)
-        values = []
-        if len(decay) == 2:
-            values = LAB2BodyCalc(decay,masses,phi,gamma).values
-        elif len(decay) == 3:
-            values = LAB3BodyCalc(decay,masses,phi,gamma).values
-        else:
-            values = LAB4BodyCalc(decay,masses,phi,gamma).values
-        return values
+    @abc.abstractmethod
+    def _set_finalState(self):
+        pass

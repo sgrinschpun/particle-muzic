@@ -7,18 +7,18 @@ __email__ = "sgrinschpun@ifae.es"
 __status__ = "Development"
 
 from phenomena.particles.particle import Particle
-from phenomena.particles.mixins import ParticleId, ParticleData, ParticleDecay, ParticleBoost, ParticleTransformation
+from phenomena.particles.mixins import ParticleId, ParticleData, ParticleBoost, ParticleTransformation
 
-from phenomena.particles.transformations.types import ComptonEffect, PairProduction, Annihilation, InelasticCollision, Decay2, ElasticCollision
+from phenomena.particles.transformations.types import ComptonEffect, PairProduction, Annihilation, InelasticCollision, Decay, ElasticCollision
 
 NO_PARENT = -1
 
-class QuantumUniverseParticle(ParticleTransformation, ParticleDecay, ParticleBoost, ParticleData, ParticleId, Particle):
+class QuantumUniverseParticle(ParticleTransformation, ParticleBoost, ParticleData, ParticleId, Particle):
     '''
     This class is intended for the QuantumUniverse simulation.
     '''
 
-    TRANSFORMATIONS = [Decay2]
+    TRANSFORMATIONS = [Decay]
 
     def __init__(self, name, parent = NO_PARENT, **kwargs):
 

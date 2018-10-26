@@ -7,7 +7,7 @@ __email__ = "sgrinschpun@ifae.es"
 __status__ = "Development"
 
 from phenomena.particles.particle import Particle
-from phenomena.particles.transformations import TransformManager
+from phenomena.particles.transformations import TransformController
 
 class ParticleTransformation(object):
     '''
@@ -20,7 +20,7 @@ class ParticleTransformation(object):
     '''
 
     def _setTransformationManager(self, particle, transformationslist):
-        self._transformation = TransformManager(particle, transformationslist)
+        self._transformation = TransformController(particle, transformationslist)
 
     def start(self, callback):
         pass

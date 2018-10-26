@@ -26,9 +26,9 @@ class Particle(object):
     def composition(self):
         pass
 
-    @abc.abstractproperty
-    def decay_time(self):
-        pass
+    # @abc.abstractproperty
+    # def decay_time(self):
+    #     pass
 
     @abc.abstractproperty
     def mass(self):

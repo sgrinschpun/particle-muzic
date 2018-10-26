@@ -1,7 +1,7 @@
 import random
 from phenomena.particles.sources import ParticleDataSource
 
-class TransChannelSelector(object):
+class ChannelSelector(object):
 
     def __init__(self, allChannels):
         self._allChannels = allChannels
@@ -12,9 +12,9 @@ class TransChannelSelector(object):
         return self._selectedChannel
 
     def _selectChannel(self):
-        buildWeights = TransChannelSelector.buildWeights(self._allChannels)
-        if self._allChannels != {'type':'NoTransformation'}:
-            choice = TransChannelSelector.weightedChoice(buildWeights[0],buildWeights[1])
+        buildWeights = ChannelSelector.buildWeights(self._allChannels)
+        if self._allChannels != [{'type':'NoTransformation'}]:
+            choice = ChannelSelector.weightedChoice(buildWeights[0],buildWeights[1])
             if choice == None:
                 channel = random.choice(self._allChannels)
             else:

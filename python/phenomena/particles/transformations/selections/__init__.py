@@ -1,2 +1,2 @@
-from channelselection import TransChannelSelector
-from typeselection import TransTypeSelect
+from channelselector import ChannelSelector
+from typeselector import TypeSelector

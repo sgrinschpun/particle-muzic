@@ -1,6 +1,6 @@
 import random
 
-class TransTypeSelect(object):
+class TypeSelector(object):
 
     def __init__(self, allvalues):
         self._allValues = allvalues

@@ -10,7 +10,7 @@ import time, threading
 from phenomena.particles.particle import Particle
 from phenomena.particles.transformations.types.decays import Decay, TimeRemap
 
-from phenomena.particles.transformations.kinematics import DecayCalc
+from phenomena.particles.transformations.kinematics.decay import DecayCalc
 
 class ParticleDecay(object):
     '''

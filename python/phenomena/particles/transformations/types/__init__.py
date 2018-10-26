@@ -3,5 +3,5 @@ from compton import ComptonEffect
 from pairproduction import PairProduction
 from annihilation import Annihilation
 from inelastic import InelasticCollision, InelasticCollisionWithProton, InelasticCollisionWithNeutron
-from decays import Decay2
+from decays import Decay
 from elastic import ElasticCollision, ElasticCollisionWithProton, ElasticCollisionWithElectron, ElasticCollisionWithNeutron

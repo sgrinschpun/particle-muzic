@@ -1,2 +1,5 @@
-from calculations import DecayCalc
-from transformcalculations import DecayCalculations, InelasticCalculations, ElasticCalculations
+from calculations import KinematicsCalculations
+from kinematicscontroller import KinematicsController
+from decay.decaycontroller import DecayKinematics
+from elastic.elasticcontroller import ElasticKinematics
+from inelastic.inelasticcontroller import InelasticKinematics
