@@ -9,6 +9,10 @@ class Transformation(object):
     def values(self):
         return self._values
 
+    @abc.abstractproperty
+    def name(self):
+        return self.__class__.__name__
+
     @abc.abstractmethod
     def _buildTransfValues(self):
         '''
@@ -26,6 +30,9 @@ class Transformation(object):
     @abc.abstractmethod
     def _outputParticles(self):
         pass
+
+    def getProbability(self,t):
+        return 0.05
 
     @staticmethod
     def channelListToNames(channels):
