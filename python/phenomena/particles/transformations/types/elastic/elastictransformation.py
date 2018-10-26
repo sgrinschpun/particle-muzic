@@ -13,9 +13,6 @@ class ElasticCollision(Transformation):
         #return [(1.0,map(ParticleDataSource.getPDGId, [self._particle.name, self._target]))]
         return [(1.0,[self._particle.name, self._target])]
 
-    def _transfTime(self):
-        return 1
-
 class ElasticCollisionWithProton(ElasticCollision):
 
     TARGET = 'p+'

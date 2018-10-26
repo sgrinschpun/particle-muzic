@@ -6,13 +6,13 @@ __version__ = "0.1"
 __email__ = "sgrinschpun@ifae.es"
 __status__ = "Development"
 
-from phenomena.particles.particle import Particle
+import time, threading
 from phenomena.particles.transformations import TransformController
 
 class ParticleTransformation(object):
     '''
     This is a mixin class for the Particle class
-    It adds the attributes and methods required for particle transformtions
+    It adds the attributes and methods required for particle transformations
      - sets all particle transformations types for the particle: particle list and probability
      - selects the particle transformation types and channel
      - incudes implementaton of continuos probability and also setting on instantiations
@@ -23,20 +23,14 @@ class ParticleTransformation(object):
         self._transformation = TransformController(particle, transformationslist)
 
     def start(self, callback):
-        pass
+        if self.transformation.selectedType != 'NoTransformation':
+            wait_time = self.transformation.time
+            print "Wait for: ", wait_time
+            threading.Timer(wait_time, callback).start()
+        else:
+            print "Wait for: ", 15
+            threading.Timer(15, callback).start()
 
     @property
     def transformation(self):
         return self._transformation
-
-    @property
-    def allTransformations(self):
-        return self._transformation.allTransformations
-
-    @property
-    def selTransformation(self):
-        return self._transformation.selectedType
-
-    @property
-    def transformationoutput(self):
-        return self._transformation.output

@@ -13,9 +13,6 @@ class InelasticCollision(Transformation):
     def _outputParticles(self):
         return InelasticData.energyCutParticles(self._particle.name, self._target, self._particle.E)
 
-    def _transfTime(self):
-        return 1
-
 class InelasticCollisionWithProton(InelasticCollision):
 
     TARGET = 'p+'

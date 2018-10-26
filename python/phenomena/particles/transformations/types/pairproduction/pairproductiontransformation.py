@@ -17,6 +17,3 @@ class PairProduction(Transformation):
     def _outputParticles(self):
         ##return [(1.0, map(ParticleDataSource.getPDGId, PairProduction.OUTPUT)) ]
         return [(1.0, PairProduction.OUTPUT) ]
-
-    def _transfTime(self):
-        return 1

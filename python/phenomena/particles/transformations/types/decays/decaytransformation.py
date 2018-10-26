@@ -11,6 +11,3 @@ class Decay(Transformation):
 
     def _outputParticles(self):
         return Transformation.channelListToNames(self._particle.decay_channels)
-
-    def _transfTime(self):
-        return 1
