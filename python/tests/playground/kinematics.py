@@ -16,17 +16,8 @@ import random
 
 if __name__ == '__main__':
 
-    pi = BubbleChamberParticle('pi-', p=0.5)
-
-    for i in range(100):
+    pi = BubbleChamberParticle('pi-', p=5)
+    dt = 1/60
+    time = 2
+    for i in range(int(time/dt)):
         print (pi.transformation.query(1./60.))
-    #print (random.shuffle(pi.transformation._transformationlist))
-    #print (pi.transformation.allTypes)
-    #print (pi.transformation.selectedChannel)
-
-    #print(pi.transformation.query())
-
-    #print (pi.transformation.selectedType)
-    #print (pi.transformation.time)
-    #for particle in pi.transformation.output:
-    #    print (particle.name, particle.fourMomentum)

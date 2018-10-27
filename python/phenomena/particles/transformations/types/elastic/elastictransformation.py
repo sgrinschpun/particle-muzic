@@ -1,3 +1,4 @@
+import math
 from phenomena.particles.transformations.types import Transformation
 from phenomena.particles.sources import ParticleDataSource
 
@@ -12,6 +13,12 @@ class ElasticCollision(Transformation):
     def _outputParticles(self):
         #return [(1.0,map(ParticleDataSource.getPDGId, [self._particle.name, self._target]))]
         return [(1.0,[self._particle.name, self._target])]
+
+    def getProbability(self, dt=1./60.):
+        gamma = self._particle.fourMomentum.gamma
+        FACTOR = 0.05
+        probability = math.exp(-30*dt*gamma)
+        return FACTOR*probability
 
 class ElasticCollisionWithProton(ElasticCollision):
 

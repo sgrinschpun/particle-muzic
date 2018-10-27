@@ -15,3 +15,9 @@ class ComptonEffect(Transformation):
 
     def _outputParticles(self):
         return [(1.0,ComptonEffect.OUTPUT)]
+
+    def getProbability(self, dt=1./60.):
+        gamma = self._particle.fourMomentum.gamma
+        FACTOR = 0.05
+        probability = math.exp(-30*dt*gamma)
+        return FACTOR*probability

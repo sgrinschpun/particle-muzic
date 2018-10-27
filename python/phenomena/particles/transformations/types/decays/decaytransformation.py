@@ -17,6 +17,6 @@ class Decay(Transformation):
 
     def getProbability(self, dt=1./60.):
         dt = dt *u.s
-        FACTOR = 1e9
+        FACTOR = 1e8
         probability = 1- math.exp(-1*dt/self._particle.lifetime * u.picosecond / u.s)
         return probability * FACTOR
