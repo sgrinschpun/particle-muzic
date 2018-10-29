@@ -1,5 +1,5 @@
 from calculations import KinematicsCalculations
 from kinematicscontroller import KinematicsController
 from decay.decaycontroller import DecayKinematics
-from elastic.elasticcontroller import ElasticKinematics
-from inelastic.inelasticcontroller import InelasticKinematics
+from elastic.elasticcontroller import ElasticKinematics, LAB2BodyElastic
+from inelastic.inelasticcontroller import InelasticKinematics, LAB2BodyInelastic

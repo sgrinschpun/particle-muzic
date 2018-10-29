@@ -30,6 +30,10 @@ class ParticleBoost(object):
     def fourMomentum(self):
         return self._fourMomentum
 
+    @fourMomentum.setter
+    def fourMomentum(self, fourMomentum):
+        self._fourMomentum = fourMomentum
+
     def _set_fourMomentum(self, kwargs):
         '''
         Particles are instantiated with momentum and angles.

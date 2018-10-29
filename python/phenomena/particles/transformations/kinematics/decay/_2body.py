@@ -9,13 +9,16 @@ class LAB2BodyDecay(object):
     def __init__(self,initialparticle,finalparticles):
         self._initialparticle = initialparticle
         self._finalparticles = finalparticles
+        self._setBoost()
         self._setCM()
         self._setLAB()
 
+    def _setBoost(self):
+        self._boostVector = self._initialparticle.fourMomentum.boostvector
+
     def _setLAB(self):
-        theboost = self._initialparticle.fourMomentum.boostvector
         for particle in self._finalparticles:
-            particle.fourMomentum.boost(theboost)
+            particle.fourMomentum.boost(self._boostVector)
 
     def _setCM(self):
         p = self._setP()
@@ -31,9 +34,9 @@ class LAB2BodyDecay(object):
         return p / GeV
 
     def _setVector3D(self,p):
-        theta = 0. #if 3D -> theta0 = math.pi * random.random()
-        phi = 2*math.pi * random.random()
-        vector1 = Vector3D.fromsphericalcoords(p,phi,theta)
+        theta = math.pi * random.random() # [0, math.pi]
+        phi = 2*math.pi * random.random() # random.choice([-math.pi/2, -math.pi/2])
+        vector1 = Vector3D.fromsphericalcoords(p,theta,phi)
         vector2 = -1*vector1
         return [vector1, vector2]
 

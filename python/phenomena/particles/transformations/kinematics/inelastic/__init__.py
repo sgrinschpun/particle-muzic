@@ -1,1 +1,1 @@
-from inelasticcontroller import InelasticKinematics
+from inelasticcontroller import InelasticKinematics, LAB2BodyInelastic
