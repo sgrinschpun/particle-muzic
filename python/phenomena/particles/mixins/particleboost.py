@@ -74,6 +74,10 @@ class ParticleBoost(object):
         return self._fourMomentum.e
 
     @property
+    def Pt(self):
+        return self._fourMomentum.pt
+
+    @property
     def gamma(self):
         return self._fourMomentum.gamma
 

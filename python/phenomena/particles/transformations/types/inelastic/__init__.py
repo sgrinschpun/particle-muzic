@@ -1,2 +1,2 @@
-from inelasticdata import InelasticData, InelasticFile
+from inelasticdata import InelasticData
 from inelastictransformation import InelasticCollision, InelasticCollisionWithProton, InelasticCollisionWithNeutron

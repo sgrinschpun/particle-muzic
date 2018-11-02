@@ -18,7 +18,7 @@ class QuantumUniverseParticle(ParticleTransformation, ParticleBoost, ParticleDat
     This class is intended for the QuantumUniverse simulation.
     '''
 
-    TRANSFORMATIONS = [Decay]
+    TRANSFORMATIONS = [Decay, ElasticCollisionWithProton]
 
     def __init__(self, name, parent = NO_PARENT, **kwargs):
 

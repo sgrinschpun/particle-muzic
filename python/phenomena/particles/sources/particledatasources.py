@@ -35,7 +35,8 @@ sources = {
     'getCTau':scikitHEP, #particledatatool, scikitHEP
     'getRadius':decaylanguage,
     'getAnti':decaylanguage,
-    'getParticleList':particledatatool
+    'getParticleList':particledatatool,
+    'getParticleByComposition':extrainfo
 }
 
 class ParticleDataSource(object):
@@ -118,3 +119,7 @@ class ParticleDataSource(object):
     @staticmethod
     def getParticleList():
         return sources['getParticleList'].getParticleList()
+
+    @staticmethod
+    def getParticleByComposition():
+        return ParticleDataSource.getName(sources['getParticleByComposition'].getParticleByComposition())

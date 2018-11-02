@@ -34,7 +34,3 @@ class ParticleTransformation(object):
     @property
     def transformation(self):
         return self._transformation
-
-    @property
-    def transformation(self):
-        return self._transformation

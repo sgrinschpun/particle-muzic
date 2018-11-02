@@ -77,3 +77,31 @@ class ParticleData(object):
 
     def _set_decayChannels(self):
         self._decay_channels = ParticleDataSource.getDecayChannels(self._name)
+
+    @property
+    def baryonnumber(self):
+        nq = 0.
+        nqbar = 0.
+        for q in self._composition:
+            if 'bar' in q:
+                nqbar += 1
+            elif 'bar' not in q:
+                nq += 1
+        return (nq-nqbar)/3
+
+    @property
+    def leptonnumber(self):
+        dict = {
+        'e-':1,'nu_e':1,
+        'e+':-1,'nu_ebar':-1,
+        'mu-':1,'nu_mu':1,
+        'mu+':-1,'nu_mubar':-1,
+        'tau-': 1,'nu_tau':1,
+        'tau+':-1,'nu_taubar':-1
+        }
+        if self.type == 'lepton':
+            leptonnumber = dict[self.name]
+        else:
+            leptonnumber = 0
+
+        return leptonnumber

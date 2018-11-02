@@ -20,6 +20,7 @@ class UndercoverParticle(ParticleBoost, ParticleData):
         self._set_mass() # Mass of the particle in GeV
         self._set_charge() # Charge of the particle
         self._set_type() # Particle Type (quark, lepton, boson, meson, baryon)
+        self._set_composition()
 
         #### ParticleBoost
         self._set_fourMomentum(kwargs)#assign 4momentum vector and  boosted parameters

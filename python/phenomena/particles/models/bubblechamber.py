@@ -18,7 +18,9 @@ class BubbleChamberParticle(ParticleTransformation, ParticlePosition, ParticleBo
     This class is intended for BubbleChamber simulation. That's why these mixins are chosen.
     '''
 
-    TRANSFORMATIONS = [ComptonEffect, PairProduction, Annihilation, InelasticCollisionWithProton,InelasticCollisionWithNeutron, Decay, ElasticCollisionWithProton, ElasticCollisionWithElectron, ElasticCollisionWithNeutron]
+    #TRANSFORMATIONS = [ComptonEffect, PairProduction, Annihilation, InelasticCollisionWithProton,InelasticCollisionWithNeutron, Decay, ElasticCollisionWithProton, ElasticCollisionWithElectron, ElasticCollisionWithNeutron]
+
+    TRANSFORMATIONS = [InelasticCollisionWithProton]
 
     def __init__(self, name, parent = NO_PARENT, **kwargs):
 

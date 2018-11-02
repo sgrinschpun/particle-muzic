@@ -16,7 +16,7 @@ class InelasticKinematics(KinematicsCalculations):
         super(InelasticKinematics, self).__init__(initialparticle, finalparticles)
 
     def _set_finalState(self):
-        self._finalState = 'finalstate'
+        self._finalState = LAB2BodyInelastic(initialparticle, target, finalparticles).values
 
 class LAB2BodyInelastic(object):
     def __init__(self,initialparticle, target, finalparticles):
@@ -53,7 +53,7 @@ class LAB2BodyInelastic(object):
         self._s = (self._initialparticleCM.e + self._targetCM.e)**2
 
     def _setP(self):
-        self._p = math.sqrt( Kallen_function(self._s, self._finalparticlesLAB[0].mass**2, 0 ) /(4*self._s))
+        self._p = math.sqrt( Kallen_function(self._s, self._initialparticleLAB.mass**2, self._targetLAB.mass**2 ) /(4*self._s))
 
     def _setVector3D(self,p):
         theta = self._initialparticleLAB.fourMomentum.theta()#math.pi * random.random() # [0, math.pi]

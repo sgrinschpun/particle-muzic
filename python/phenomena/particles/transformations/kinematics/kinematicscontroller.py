@@ -2,6 +2,18 @@ from phenomena.particles.transformations.kinematics.decay import DecayKinematics
 from phenomena.particles.transformations.kinematics.elastic import ElasticKinematics
 from phenomena.particles.transformations.kinematics.inelastic import InelasticKinematics
 
+buildType = {
+'ComptonEffect': 'Elastic',
+'ElasticCollisionWithProton': 'Elastic',
+'ElasticCollisionWithElectron': 'Elastic',
+'ElasticCollisionWithNeutron': 'Elastic',
+'PairProduction': 'Inelaslastic',
+'Annihilation': 'Inelaslastic',
+'InelasticCollisionWithProton': 'Inelaslastic',
+'InelasticCollisionWithNeutron': 'Inelaslastic',
+'Decay':  'Decay'
+}
+
 
 class KinematicsController(object):
 
@@ -26,11 +38,11 @@ class KinematicsController(object):
 
     def _set_kinematicstype(self, particle):
         type = particle.transformation.selectedType
-        if type in ['ComptonEffect', 'ElasticCollisionWithProton', 'ElasticCollisionWithElectron', 'ElasticCollisionWithNeutron']:
+        if buildType[type] == 'Elastic':
             self._buildElasticValues()
-        elif type in ['PairProduction', 'Annihilation', 'InelasticCollisionWithProton', 'InelasticCollisionWithNeutron']:
+        elif buildType[type] == 'Inelastic':
             self._buildInelasticValues()
-        elif type in ['Decay']:
+        elif buildType[type] == 'Decay':
             self._buildDecayValues()
 
     def _buildElasticValues(self):
@@ -59,6 +71,7 @@ class UndercoverParticle(ParticleBoost, ParticleData):
         self._set_mass() # Mass of the particle in GeV
         self._set_charge() # Charge of the particle
         self._set_type() # Particle Type (quark, lepton, boson, meson, baryon)
+        self._set_composition()
 
         #### ParticleBoost
         self._set_fourMomentum(kwargs)#assign 4momentum vector and  boosted parameters

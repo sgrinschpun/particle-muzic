@@ -7,7 +7,7 @@ from phenomena.particles.transformations.kinematics import KinematicsCalculation
 
 class ElasticKinematics(KinematicsCalculations):
     '''
-    We expect initialparticle and target to be a LorentzVector and outputparticles a list of LorentzVectors
+    We expect initialparticle and target to be oc class Particle and outputparticles a list of Particle
     '''
     def __init__(self, initialparticle, target, finalparticles):
         self._target = target
@@ -52,7 +52,7 @@ class LAB2BodyElastic(object):
         self._s = (self._initialparticleCM.e + self._targetCM.e)**2
 
     def _setP(self):
-        self._p = math.sqrt( Kallen_function(self._s, self._finalparticlesLAB[0].mass**2, self._finalparticlesLAB[1].mass**2 ) /(4*self._s))
+        self._p = math.sqrt( Kallen_function(self._s, self._initialparticleLAB.mass**2, self._targetLAB.mass**2 ) /(4*self._s))
 
     def _setVector3D(self,p):
         theta = math.pi * random.random() # [0, math.pi]

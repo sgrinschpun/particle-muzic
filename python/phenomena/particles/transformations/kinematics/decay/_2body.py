@@ -18,7 +18,8 @@ class LAB2BodyDecay(object):
 
     def _setLAB(self):
         for particle in self._finalparticles:
-            particle.fourMomentum.boost(self._boostVector)
+            newfourMomentum = particle.fourMomentum.boost(-1*self._boostVector)
+            particle.fourMomentum = newfourMomentum
 
     def _setCM(self):
         p = self._setP()
