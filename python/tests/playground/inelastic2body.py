@@ -17,7 +17,8 @@ if __name__ == '__main__':
     #print (pi.transformation.allTypes)
     #print (pi.transformation.selectedType)
     print (pi.transformation.selectedType)
-    print (pi.transformation.selectedChannel)
+    #print (pi.transformation.selectedChannel)
+    print (pi.transformation.output)
 
 
 

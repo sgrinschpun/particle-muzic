@@ -43,7 +43,11 @@ class InOut(object):
 
 class Conservation(object):
     def __init__(self, particle, momentum):
-        self._particle = PARTICLE(particle,momentum)
+        self._particle = PARTICLE(particle,p=momentum)
+        print '1', self._particle.name
+        print self._particle.transformation.selectedType
+        print '2',self._particle.transformation.target
+        print '3',self._particle.transformation.selectedChannel
         self._in()
         self._out()
 

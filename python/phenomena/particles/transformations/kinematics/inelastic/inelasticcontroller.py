@@ -16,7 +16,7 @@ class InelasticKinematics(KinematicsCalculations):
         super(InelasticKinematics, self).__init__(initialparticle, finalparticles)
 
     def _set_finalState(self):
-        self._finalState = LAB2BodyInelastic(initialparticle, target, finalparticles).values
+        self._finalState = LAB2BodyInelastic(self._initial, self._target, self._final).values
 
 class LAB2BodyInelastic(object):
     def __init__(self,initialparticle, target, finalparticles):
@@ -59,7 +59,7 @@ class LAB2BodyInelastic(object):
         theta = self._initialparticleLAB.fourMomentum.theta()#math.pi * random.random() # [0, math.pi]
         phi = self._initialparticleLAB.fourMomentum.phi()#2*math.pi * random.random() # random.choice([-math.pi/2, -math.pi/2])
         vector = Vector3D.fromsphericalcoords(p,theta,phi)
-        return [vector]
+        return [vector, -1*vector]
 
     @property
     def values(self):
