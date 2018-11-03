@@ -154,7 +154,7 @@ if __name__ == '__main__':
             inelastic_2body_data[target][particle] = []
             inelastic_output =Inelastic2Body(particle,target)._particle_list
             for output in inelastic_output:
-                mass = round(ParticleDataSource.getMass(output[1][0]) + ParticleDataSource.getMass(output[1][1]) - ParticleDataSource.getMass(target),4)
+                mass = round(ParticleDataSource.getMass(output[1][0]) + ParticleDataSource.getMass(output[1][1]),4)
                 inelastic_2body_data[target][particle].append([mass,output])
     print (inelastic_2body_data)
     with open('./inelastic_2body_data.json', 'w') as f:

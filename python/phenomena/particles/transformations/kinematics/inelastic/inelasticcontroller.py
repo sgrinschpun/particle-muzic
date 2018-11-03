@@ -3,9 +3,7 @@ import math, random
 from skhep.math  import Kallen_function, Vector3D, LorentzVector
 from skhep.units import MeV, GeV
 from phenomena.particles.transformations.kinematics import KinematicsCalculations
-
-from phenomena.particles.transformations.kinematics import KinematicsCalculations
-
+from phenomena.particles.models.undercoverparticle import UndercoverParticle
 
 class InelasticKinematics(KinematicsCalculations):
     '''
@@ -38,7 +36,8 @@ class LAB2BodyInelastic(object):
         for particle in self._finalparticlesLAB:
             newfourMomentum = particle.fourMomentum.boost(-1*self._boostVector)
             particle.fourMomentum = newfourMomentum
-            print "post", particle.E
+            print 'new', newfourMomentum
+
 
     def _setBoost(self):
         self._setBoostVector()
@@ -51,17 +50,20 @@ class LAB2BodyInelastic(object):
         self._boostVector = self._initialparticleLAB.fourMomentum.boostvector*factor
 
     def _setS(self):
-        print 'pre', self._initialparticleCM.e, self._targetCM.e
         self._s = (self._initialparticleCM.e + self._targetCM.e)**2
 
     def _setP(self):
-        self._p = math.sqrt( Kallen_function(self._s, self._initialparticleLAB.mass**2, self._targetLAB.mass**2 ) /(4*self._s))
+        m1 = self._finalparticlesLAB[0].mass
+        m2 = self._finalparticlesLAB[1].mass
+        self._p = math.sqrt( Kallen_function(self._s, m1**2, m2**2 ) /(4*self._s))
+        #self._p = math.sqrt( Kallen_function(self._s, self._initialparticleLAB.mass**2, self._targetLAB.mass**2 ) /(4*self._s))
 
     def _setVector3D(self,p):
-        theta = self._initialparticleLAB.fourMomentum.theta()#math.pi * random.random() # [0, math.pi]
-        phi = self._initialparticleLAB.fourMomentum.phi()#2*math.pi * random.random() # random.choice([-math.pi/2, -math.pi/2])
-        vector = Vector3D.fromsphericalcoords(p,theta,phi)
-        return [vector, -1*vector]
+        theta = math.pi * random.random() # [0, math.pi]
+        phi = 2*math.pi * random.random() # random.choice([-math.pi/2, -math.pi/2])
+        vector1 = Vector3D.fromsphericalcoords(p,theta,phi)
+        vector2= -1*vector1
+        return [vector1, vector2]
 
     @property
     def values(self):
