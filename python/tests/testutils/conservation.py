@@ -77,10 +77,20 @@ class Conservation(object):
     def _out(self):
         self._out = InOut()
         self._out.E = self._sumOut('E')
-        self._out.Pt = self._sumOut('Pt')
+        self._out.Pt = self._SumPt()
         self._out.charge = self._sumOut('charge')
         self._out.baryonnumber = self._sumOut('baryonnumber')
         self._out.leptonnumber = self._sumOut('leptonnumber')
+
+    def _SumPt(self):
+        if self._particle.transformation.selectedType != 'NoTransformation':
+            thislist = self._particle.transformation.output
+            value = thislist[0].Pt - thislist[1].Pt
+        else:
+            thislist = [self._particle]
+            value = thislist[0].Pt
+        return value
+
 
     def _sumOut(self, attribute):
         value = 0.
@@ -89,6 +99,6 @@ class Conservation(object):
         else:
             thislist = [self._particle]
 
-        for item in thislist:
-            value += getattr(item, attribute)
+        for id, item in enumerate(thislist):
+                value += getattr(item, attribute)
         return value

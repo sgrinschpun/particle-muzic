@@ -20,7 +20,7 @@ class BubbleChamberParticle(ParticleTransformation, ParticlePosition, ParticleBo
 
     #TRANSFORMATIONS = [ComptonEffect, PairProduction, Annihilation, InelasticCollisionWithProton,InelasticCollisionWithNeutron, Decay, ElasticCollisionWithProton, ElasticCollisionWithElectron, ElasticCollisionWithNeutron]
 
-    TRANSFORMATIONS = [ElasticCollisionWithProton]
+    TRANSFORMATIONS = [Decay,ElasticCollisionWithProton,ElasticCollisionWithNeutron,InelasticCollisionWithProton]
 
     def __init__(self, name, parent = NO_PARENT, **kwargs):
 

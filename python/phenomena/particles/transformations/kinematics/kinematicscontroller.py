@@ -1,6 +1,7 @@
 from phenomena.particles.transformations.kinematics.decay import DecayKinematics
 from phenomena.particles.transformations.kinematics.elastic import ElasticKinematics
 from phenomena.particles.transformations.kinematics.inelastic import InelasticKinematics
+from phenomena.particles.models.undercoverparticle import UndercoverParticle
 
 buildType = {
 'ComptonEffect': 'Elastic',
@@ -56,22 +57,3 @@ class KinematicsController(object):
 
     def getFinalState(self):
         return self._finalState
-
-from phenomena.particles.mixins import ParticleData, ParticleBoost
-
-class UndercoverParticle(ParticleBoost, ParticleData):
-    '''
-    This particle class is only used when we need to consider interaction with particles that are not logged in the server. for example, interaction with protons in the bubble chamber.
-    '''
-
-    def __init__(self, name, **kwargs):
-        #### ParticleData
-        self._set_name(name)  # Name of the particle
-        self._set_pdgid(name) # Id from PDG
-        self._set_mass() # Mass of the particle in GeV
-        self._set_charge() # Charge of the particle
-        self._set_type() # Particle Type (quark, lepton, boson, meson, baryon)
-        self._set_composition()
-
-        #### ParticleBoost
-        self._set_fourMomentum(kwargs)#assign 4momentum vector and  boosted parameters

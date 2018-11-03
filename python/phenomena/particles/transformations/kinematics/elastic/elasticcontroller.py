@@ -3,7 +3,7 @@ import math, random
 from skhep.math  import Kallen_function, Vector3D, LorentzVector
 from skhep.units import MeV, GeV
 from phenomena.particles.transformations.kinematics import KinematicsCalculations
-
+from phenomena.particles.models.undercoverparticle import UndercoverParticle
 
 class ElasticKinematics(KinematicsCalculations):
     '''
@@ -40,8 +40,9 @@ class LAB2BodyElastic(object):
 
     def _setBoost(self):
         self._setBoostVector()
-        self._initialparticleCM = self._initialparticleLAB.fourMomentum.boost(self._boostVector)
+        self._initialparticleCM  = self._initialparticleLAB.fourMomentum.boost(self._boostVector)
         self._targetCM = self._targetLAB.fourMomentum.boost(self._boostVector)
+
 
     def _setBoostVector(self):
         A = self._targetLAB.mass/(self._initialparticleLAB.mass*self._initialparticleLAB.fourMomentum.gamma)
@@ -56,7 +57,7 @@ class LAB2BodyElastic(object):
 
     def _setVector3D(self,p):
         theta = math.pi * random.random() # [0, math.pi]
-        phi = 2*math.pi * random.random() # random.choice([-math.pi/2, -math.pi/2])
+        phi = 2*math.pi * random.random() # random.choice([-math.pi/2, math.pi/2])
         vector1 = Vector3D.fromsphericalcoords(p,theta,phi)
         vector2 = -1*vector1
         return [vector1, vector2]

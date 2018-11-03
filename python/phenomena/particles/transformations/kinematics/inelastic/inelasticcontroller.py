@@ -38,6 +38,7 @@ class LAB2BodyInelastic(object):
         for particle in self._finalparticlesLAB:
             newfourMomentum = particle.fourMomentum.boost(-1*self._boostVector)
             particle.fourMomentum = newfourMomentum
+            print "post", particle.E
 
     def _setBoost(self):
         self._setBoostVector()
@@ -50,6 +51,7 @@ class LAB2BodyInelastic(object):
         self._boostVector = self._initialparticleLAB.fourMomentum.boostvector*factor
 
     def _setS(self):
+        print 'pre', self._initialparticleCM.e, self._targetCM.e
         self._s = (self._initialparticleCM.e + self._targetCM.e)**2
 
     def _setP(self):
