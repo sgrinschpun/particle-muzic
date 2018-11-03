@@ -11,7 +11,7 @@ class KinematicsCalculations(object):
 
     @abc.abstractmethod
     def getFinalState(self):
-        return self._final
+        return self._finalState 
 
     @abc.abstractmethod
     def _set_finalState(self):
