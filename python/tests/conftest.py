@@ -20,5 +20,23 @@ def resolution():
     return 4
 
 @pytest.fixture(scope='function')
-def conservation(part, momentum):
-    return Conservation(part, momentum)
+def particle(part,momentum):
+    '''Returns boosted particle with given momentum'''
+    return  PARTICLE(part, p=momentum)
+
+@pytest.fixture(scope='function')
+def conservation(particle):
+    return Conservation(particle)
+
+@pytest.fixture(scope='function')
+def print_particle(particle):
+    print particle.name
+    print particle.fourMomentum
+    print particle.transformation.selectedType
+    output = particle.transformation.output
+    if output !=[]:
+        for part in output:
+            print part.name
+            print part.fourMomentum
+    else:
+        print output

@@ -72,7 +72,7 @@ class TransformController(object):
         '''
         Get de list of output particles boosted values
         '''
-        return KinematicsController(self._particle).getFinalState() if self.selectedType != 'NoTransformation' else 'whaaat'
+        return KinematicsController(self._particle).getFinalState() if self.selectedType != 'NoTransformation' else []
 
     def _setTime(self):
         self._time = TimeController.getTime()

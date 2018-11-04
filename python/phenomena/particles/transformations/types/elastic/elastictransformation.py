@@ -3,12 +3,14 @@ from phenomena.particles.transformations.types import Transformation
 from phenomena.particles.sources import ParticleDataSource
 
 class ElasticCollision(Transformation):
+    excluded_part = ['gamma','nu_e','nu_mu','nu_tau','nu_ebar','nu_mubar','nu_taubar']
 
     def __init__(self, particle, target):
         self._particle = particle
         self._target = target
         self._values = {}
-        self._buildTransfValues()
+        if self._particle.name not in ElasticCollision.excluded_part:
+            self._buildTransfValues()
 
     def _outputParticles(self):
         #return [(1.0,map(ParticleDataSource.getPDGId, [self._particle.name, self._target]))]

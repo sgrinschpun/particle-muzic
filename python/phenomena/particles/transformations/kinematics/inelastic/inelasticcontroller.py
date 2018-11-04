@@ -36,7 +36,7 @@ class LAB2BodyInelastic(object):
         for particle in self._finalparticlesLAB:
             newfourMomentum = particle.fourMomentum.boost(-1*self._boostVector)
             particle.fourMomentum = newfourMomentum
-            print 'new', newfourMomentum
+            #print 'new', newfourMomentum
 
 
     def _setBoost(self):
