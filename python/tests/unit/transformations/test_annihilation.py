@@ -12,6 +12,8 @@ class AnnihilationParticle(ParticleTransformation, ParticleBoost, ParticleData):
         self._set_pdgid(name) # Id from PDG
         self._set_mass() # Mass of the particle in GeV
         self._set_charge() # Charge of the particle
+        self._set_type() # Particle Type (quark, lepton, boson, meson, baryon)
+        self._set_composition() # Particle quark compsition in format [[q1,q2],[q3,q4],...]
 
         #### ParticleBoost
         self._set_fourMomentum(kwargs)#assign 4momentum vector and  boosted parameters
@@ -20,8 +22,6 @@ class AnnihilationParticle(ParticleTransformation, ParticleBoost, ParticleData):
         self._setTransformationManager(self, AnnihilationParticle.TRANSFORMATIONS)
 
 test_particles = [(AnnihilationParticle("e+", p=2.0))]
-
-
 
 @pytest.mark.parametrize("particle",test_particles)
 def test_annihilation_basics(particle):
