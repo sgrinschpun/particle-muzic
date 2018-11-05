@@ -9,7 +9,7 @@ __status__ = "Development"
 from phenomena.particles.particle import Particle
 from phenomena.particles.mixins import ParticleId, ParticleData, ParticlePosition, ParticleBoost, ParticleTransformation
 
-from phenomena.particles.transformations.types import ComptonEffect, PairProduction, Annihilation, InelasticCollisionWithProton,InelasticCollisionWithNeutron, Decay, ElasticCollisionWithProton, ElasticCollisionWithElectron, ElasticCollisionWithNeutron
+from phenomena.particles.transformations.types import ComptonEffect, PairProduction, Annihilation, InelasticCollisionWithProton,InelasticCollisionWithNeutron, Decay, ElasticCollisionWithProton, ElasticCollisionWithElectron, ElasticCollisionWithNeutron, NoTransformation
 
 NO_PARENT = -1
 

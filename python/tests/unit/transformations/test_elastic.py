@@ -16,13 +16,22 @@ class TestElasticCollision(object):
 
     def test_ElasticCollision_Basics(particle):
         alltypes = particle.transformation.allTypes
-        ElasticType = [transf for transf in alltypes if transf['type']==particle.transformation.selectedType]
-        assert ElasticType[0]['target'] in ['e-','n0','p+']
-        assert set(ElasticType[0]['list'][0][1]) == set([particle.transformation.target, particle.name])
+        thisType = [transf for transf in alltypes if transf['type']==particle.transformation.selectedType]
+        assert thisType[0]['target'] in ['e-','n0','p+']
+        assert set(thisType[0]['list'][0][1]) == set([particle.transformation.target, particle.name])
 
-        assert len(particle.transformation.output) == 2
+        output = particle.transformation.output
+        assert len(output) == 2
 
-    def test_ElasticCollision_Conservation(particle, conservation, resolution, print_particle):
+        for outputpart in output:
+            assert isinstance(outputpart,UndercoverParticle)
+            assert outputpart.E < particle.E
+
+
+
+
+
+    def test_elasticcollision_conservation(particle, conservation, resolution, print_particle):
         print_particle
 
         for attr in ['Pt', 'E','charge', 'baryonnumber', 'leptonnumber']:

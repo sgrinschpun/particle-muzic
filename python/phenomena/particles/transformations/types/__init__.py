@@ -5,3 +5,4 @@ from annihilation import Annihilation
 from inelastic import InelasticCollision, InelasticCollisionWithProton, InelasticCollisionWithNeutron, InelasticData
 from decays import Decay
 from elastic import ElasticCollision, ElasticCollisionWithProton, ElasticCollisionWithElectron, ElasticCollisionWithNeutron
+from notransformation import NoTransformation

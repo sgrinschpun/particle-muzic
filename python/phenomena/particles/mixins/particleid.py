@@ -6,6 +6,8 @@ __version__ = "0.1"
 __email__ = "sgrinschpun@ifae.es"
 __status__ = "Development"
 
+NO_PARENT = -1
+
 class ParticleId(object):
     '''
     This is a mixin class for the Particle class

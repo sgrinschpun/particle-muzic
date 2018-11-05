@@ -19,10 +19,10 @@ def resolution():
     '''Returns decimals for rounds'''
     return 4
 
-@pytest.fixture(scope='function')
-def particle(part,momentum):
-    '''Returns boosted particle with given momentum'''
-    return  PARTICLE(part, p=momentum)
+# @pytest.fixture(scope='function')
+# def particle(part,momentum):
+#     '''Returns boosted particle with given momentum'''
+#     return  PARTICLE(part, p=momentum)
 
 @pytest.fixture(scope='function')
 def conservation(particle):

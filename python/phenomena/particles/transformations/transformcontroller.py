@@ -43,8 +43,8 @@ class TransformController(object):
                 pass
         self._transformationlist = newtransformationlist
         #spaghetti
-        if not any('Decay' in item['type'] for item in allTransformations):
-            allTransformations.append({'type':'NoTransformation'})
+        # if not any('Decay' in item['type'] for item in allTransformations):
+        #     allTransformations.append({'type':'NoTransformation'})
 
         self._allTransformations = allTransformations
 

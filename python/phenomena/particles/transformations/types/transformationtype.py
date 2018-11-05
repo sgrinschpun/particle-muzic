@@ -21,7 +21,11 @@ class Transformation(object):
         '''
         dict_values = {}
         list = self._outputParticles()
-        if list != []:
+        if self.__class__.__name__ == 'NoTransformation':
+            dict_values['type']=self.__class__.__name__
+            dict_values['target'] = self.__class__.TARGET
+            dict_values['list']=list
+        elif list != []:
             dict_values['type']=self.__class__.__name__
             dict_values['target'] = self.__class__.TARGET
             dict_values['list']=list
