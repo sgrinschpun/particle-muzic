@@ -14,7 +14,6 @@ class Annihilation(Transformation):
             self._buildTransfValues()
 
     def _outputParticles(self):
-        return [(1.0, map(ParticleDataSource.getPDGId, Annihilation.OUTPUT)) ]
         return [(1.0, Annihilation.OUTPUT)]
 
     def getProbability(self, dt=1./60.):

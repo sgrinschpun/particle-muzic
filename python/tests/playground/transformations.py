@@ -3,15 +3,16 @@ import sys
 sys.path.append('../')
 from context import phenomena
 
-from phenomena.particles.transformations import TransformManager, ComptonEffect, PairProduction, Annihilation, InelasticCollision, Decay2, ElasticCollision
 from phenomena.particles.models import BubbleChamberParticle, QuantumUniverseParticle
 
 if __name__ == '__main__':
 
-    part = BubbleChamberParticle('gamma', p=5)
+    part = BubbleChamberParticle('K+', p=1)
+
+    print (part.decay_channels)
     #print (part.transformation.selectedType)
     #print (part.transformation.selectedChannel)
-    print (part.transformation.outputValues)
+    #print (part.transformation.outputValues)
 
     #print (part.transformation.selectedChannelValues)
     #print (part.transformation.outputValues)

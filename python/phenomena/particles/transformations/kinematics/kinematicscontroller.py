@@ -8,7 +8,7 @@ buildType = {
 'ElasticCollisionWithProton': 'Elastic',
 'ElasticCollisionWithElectron': 'Elastic',
 'ElasticCollisionWithNeutron': 'Elastic',
-'PairProduction': 'Inelastic',
+'PairProduction': 'Decay',
 'Annihilation': 'Inelastic',
 'InelasticCollisionWithProton': 'Inelastic',
 'InelasticCollisionWithNeutron': 'Inelastic',

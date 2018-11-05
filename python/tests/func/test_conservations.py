@@ -10,7 +10,7 @@ test_particles = [
 ("e+",2.0),
 ("gamma",2.0)]
 
-@pytest.mark.parametrize("part, momentum",[("mu-", 2.0)])
+@pytest.mark.parametrize("part, momentum",test_particles)
 def test_conservation(conservation, print_particle, particle, part, momentum, resolution):
     print_particle
     for attr in ['Pt', 'E','charge', 'baryonnumber', 'leptonnumber']:
