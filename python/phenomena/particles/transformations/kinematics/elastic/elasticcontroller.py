@@ -19,11 +19,24 @@ class ElasticKinematics(KinematicsCalculations):
 
 class LAB2BodyElastic(object):
     def __init__(self,initialparticle, target, finalparticles):
-        self._initialparticleLAB = initialparticle
+        #self._initialparticleLAB = initialparticle
+        self._setInitialParticleLAB(initialparticle)
         self._targetLAB = target
         self._finalparticlesLAB = finalparticles
         self._setCM()
         self._setLAB()
+
+    def _setInitialParticleLAB(self,initialparticle):
+        if initialparticle.mass !=0:
+            self._initialparticleLAB = initialparticle
+        else:
+            fourmomentum = LorentzVector()
+            px = initialparticle.fourMomentum.px
+            py = initialparticle.fourMomentum.py
+            pz = initialparticle.fourMomentum.pz
+            fourmomentum.setpxpypze(px,py,py,initialparticle.E)
+            self._initialparticleLAB = UndercoverParticle('undercovergamma', mass = fourmomentum.mass)
+            self._initialparticleLAB.fourMomentum = fourmomentum
 
     def _setCM(self):
         self._setBoost()
@@ -31,7 +44,11 @@ class LAB2BodyElastic(object):
         self._setP()
         vector3Dlist = self._setVector3D(self._p)
         for id, particle in enumerate(self._finalparticlesLAB):
-            particle.fourMomentum.setpxpypzm(vector3Dlist[id].x,vector3Dlist[id].y,vector3Dlist[id].z,particle.mass)
+            mass = particle.mass
+            if mass !=0:
+                particle.fourMomentum.setpxpypzm(vector3Dlist[id].x,vector3Dlist[id].y,vector3Dlist[id].z,particle.mass)
+            else:
+                particle.fourMomentum.setpxpypzm(vector3Dlist[id].x,vector3Dlist[id].y,vector3Dlist[id].z,self._initialparticleLAB.mass)
 
     def _setLAB(self):
         for particle in self._finalparticlesLAB:
@@ -65,39 +82,3 @@ class LAB2BodyElastic(object):
     @property
     def values(self):
         return self._finalparticlesLAB
-
-
-# class LAB2BodyElasticEXXX(object):
-#     def __init__(self,initialparticle, target, finalparticles):
-#         self._initialparticle = initialparticle
-#         self._target = target
-#         self._finalparticles = finalparticles
-#         self._setBoostVector()
-#         self._setCM()
-#         self._setLAB()
-#
-#     def _setBoostVector(self):
-#         A = self._target.mass/(self._initialparticle.mass*self._initialparticle.fourMomentum.gamma)
-#         factor = 1/(A+1)
-#         self._boostVector = self._initialparticle.fourMomentum.boostvector*factor
-#
-#     def _setCM(self):
-#         p = self._initialparticle.fourMomentum.boost(self._boostVector).p
-#         vector3Dlist = self._setVector3D(p)
-#         for id, particle in enumerate(self._finalparticles):
-#             particle.fourMomentum.setpxpypzm(vector3Dlist[id].x,vector3Dlist[id].y,vector3Dlist[id].z,particle.mass)
-#
-#     def _setLAB(self):
-#         for particle in self._finalparticles:
-#             particle.fourMomentum.boost(-1*self._boostVector)
-#
-#     def _setVector3D(self,p):
-#         theta = math.pi * random.random() # [0, math.pi]
-#         phi = 2*math.pi * random.random() # random.choice([-math.pi/2, -math.pi/2])
-#         vector1 = Vector3D.fromsphericalcoords(p,theta,phi)
-#         vector2 = -1*vector1
-#         return [vector1, vector2]
-#
-#     @property
-#     def values(self):
-#         return self._finalparticles

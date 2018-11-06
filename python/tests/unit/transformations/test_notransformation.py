@@ -1,21 +1,8 @@
 import pytest
-from phenomena.particles.particle import Particle
-from phenomena.particles.mixins import ParticleId, NO_PARENT, ParticleData, ParticlePosition, ParticleBoost, ParticleTransformation
 from phenomena.particles.transformations.types import Transformation, NoTransformation
-
-class NoTransformationParticle(ParticleTransformation,ParticleData):
-    TRANSFORMATIONS = [NoTransformation]
-    def __init__(self, name, parent = NO_PARENT, **kwargs):
-        #### ParticleData
-        self._set_name(name)  # Name of the particle
-        #### ParticleTransformation
-        self._setTransformationManager(self, NoTransformationParticle.TRANSFORMATIONS)
-
-
+from testparticles import NoTransformationParticle
 
 test_particles = [(NoTransformationParticle("gamma", p=2.0))]
-
-
 
 @pytest.mark.parametrize("particle",test_particles)
 def test_notransformation_basics(particle):

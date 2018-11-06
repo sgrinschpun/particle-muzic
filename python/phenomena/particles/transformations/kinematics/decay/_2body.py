@@ -4,14 +4,29 @@ import math, random
 from skhep.math  import Kallen_function, Vector3D, LorentzVector
 from skhep.units import MeV, GeV
 
+from phenomena.particles.models.undercoverparticle import UndercoverParticle
+
+
 class LAB2BodyDecay(object):
 
     def __init__(self,initialparticle,finalparticles):
-        self._initialparticle = initialparticle
+        self._setInitialParticle(initialparticle)
         self._finalparticles = finalparticles
         self._setBoost()
         self._setCM()
         self._setLAB()
+
+    def _setInitialParticle(self,initialparticle):
+        if initialparticle.mass !=0:
+            self._initialparticle = initialparticle
+        else:
+            fourmomentum = LorentzVector()
+            px = initialparticle.fourMomentum.px
+            py = initialparticle.fourMomentum.py
+            pz = initialparticle.fourMomentum.pz
+            fourmomentum.setpxpypze(px,py,py,initialparticle.E)
+            self._initialparticle = UndercoverParticle('undercovergamma', mass = fourmomentum.mass)
+            self._initialparticle.fourMomentum = fourmomentum
 
     def _setBoost(self):
         self._boostVector = self._initialparticle.fourMomentum.boostvector

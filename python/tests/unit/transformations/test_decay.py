@@ -1,31 +1,10 @@
 import pytest
-from phenomena.particles.particle import Particle
-from phenomena.particles.mixins import ParticleId, NO_PARENT, ParticleData, ParticlePosition, ParticleBoost, ParticleTransformation
 from phenomena.particles.models import UndercoverParticle
 from phenomena.particles.transformations.types import Transformation, Decay
 from phenomena.particles.transformations.kinematics.decay._3body import LAB3BodyDecay
 from phenomena.particles.transformations.kinematics.decay._2body import LAB2BodyDecay
 
-
-
-class DecayParticle(ParticleTransformation, ParticleBoost, ParticleData):
-    TRANSFORMATIONS = [Decay]
-
-    def __init__(self, name, parent = NO_PARENT, **kwargs):
-        #### ParticleData
-        self._set_name(name)  # Name of the particle
-        self._set_pdgid(name) # Id from PDG
-        self._set_mass() # Mass of the particle in GeV
-        self._set_charge() # Charge of the particle
-        self._set_type() # Particle Type (quark, lepton, boson, meson, baryon)
-        self._set_composition() # Particle quark compsition in format [[q1,q2],[q3,q4],...]
-        self._set_decayChannels() #All the decay channels and BRs of the particle in format [(BR,[part1,..,partn]),...]
-
-        #### ParticleBoost
-        self._set_fourMomentum(kwargs)#assign 4momentum vector and  boosted parameters
-
-        ### ParticleTransformation
-        self._setTransformationManager(self, DecayParticle.TRANSFORMATIONS)
+from testparticles import DecayParticle
 
 test_3body = [  (DecayParticle("mu-", p=2.0),0),
                 (DecayParticle("eta", p=1.0),1),

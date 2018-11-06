@@ -1,25 +1,6 @@
 import pytest
-from phenomena.particles.particle import Particle
-from phenomena.particles.mixins import ParticleId, NO_PARENT, ParticleData, ParticlePosition, ParticleBoost, ParticleTransformation
 from phenomena.particles.transformations.types import Transformation, Annihilation
-
-class AnnihilationParticle(ParticleTransformation, ParticleBoost, ParticleData):
-    TRANSFORMATIONS = [Annihilation]
-
-    def __init__(self, name, parent = NO_PARENT, **kwargs):
-        #### ParticleData
-        self._set_name(name)  # Name of the particle
-        self._set_pdgid(name) # Id from PDG
-        self._set_mass() # Mass of the particle in GeV
-        self._set_charge() # Charge of the particle
-        self._set_type() # Particle Type (quark, lepton, boson, meson, baryon)
-        self._set_composition() # Particle quark compsition in format [[q1,q2],[q3,q4],...]
-
-        #### ParticleBoost
-        self._set_fourMomentum(kwargs)#assign 4momentum vector and  boosted parameters
-
-        ### ParticleTransformation
-        self._setTransformationManager(self, AnnihilationParticle.TRANSFORMATIONS)
+from testparticles import AnnihilationParticle
 
 test_particles = [(AnnihilationParticle("e+", p=2.0))]
 
