@@ -9,16 +9,15 @@ class DecayKinematics(KinematicsCalculations):
     '''
 
     def __init__(self, initialparticle, target, finalparticles):
-        self._target = target
         super(DecayKinematics, self).__init__(initialparticle, target, finalparticles)
 
     def _set_calculations(self):
         if len(self._final) == 2:
-            calculations = LAB2BodyDecay(self._initial,self._final)
+            calculations = LAB2BodyDecay(self._initial,self._target,self._final)
         elif len(self._final) == 3:
-            calculations = LAB3BodyDecay(self._initial,self._final)
+            calculations = LAB3BodyDecay(self._initial,self._target,self._final)
         else:
-            calculations = LAB4BodyCalc(self._initial,self._final)
+            calculations = LAB4BodyCalc(self._initial,self._target,self._final)
         self._calculations = calculations
 
 class LAB2BodyDecay(LABNBody):

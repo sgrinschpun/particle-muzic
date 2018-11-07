@@ -12,11 +12,10 @@ class KinematicsCalculations(object):
         self._initial= initialparticle
         self._target = target
         self._final = finalparticles
-        self._set_finalState()
+        self._set_calculations()
 
-    @abc.abstractmethod
     def getFinalState(self):
-        return _set_calculations.finalState
+        return self._calculations.finalState
 
     @abc.abstractmethod
     def _set_calculations(self):
@@ -69,12 +68,11 @@ class LABNBody(object):
         self._setP(self._s,self._initialparticleLAB.mass,self._targetLAB.mass)
         self._setFourMomenta()
 
-    @abc.abstractmethod
     def _setS(self):
-        pass
+        self._s = (self._initialparticleCM.e + self._targetCM.e)**2
 
     def _setP(self, s, m1, m2):
-        self._p = math.sqrt( Kallen_function(s, m1**2, m2**2))/2*math.sqrt(s)
+        self._p = math.sqrt( Kallen_function(s, m1**2, m2**2)/(4*s))
 
     def _setFourMomenta(self):
         vector3Dlist = self._setVector3D(self._p)

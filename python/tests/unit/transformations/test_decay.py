@@ -1,9 +1,6 @@
 import pytest
 from phenomena.particles.models import UndercoverParticle
-from phenomena.particles.transformations.types import Transformation, Decay
-from phenomena.particles.transformations.kinematics.decay._3body import LAB3BodyDecay
-from phenomena.particles.transformations.kinematics.decay._2body import LAB2BodyDecay
-
+from phenomena.particles.transformations.types import Transformation, Decay, DecayKinematics
 from testparticles import DecayParticle
 
 test_3body = [  (DecayParticle("mu-", p=2.0),0),
@@ -15,7 +12,19 @@ test_2body = [  (DecayParticle("pi-", p=2.0)),
                 (DecayParticle("K-", p=2.0)),
                 (DecayParticle("K+", p=2.0))]
 
+@pytest.mark.parametrize("particle",test_2body)
+def test_decay_calculations(particle):
+    target = None
+    finallist = []
+    for part in particle.transformation.selectedChannel:
+        finallist.append(UndercoverParticle(part))
+    calculations = DecayKinematics(particle,target,finallist)._calculations
 
+    assert calculations._initialparticleCM.p == 0
+    assert calculations._p < particle.p
+
+
+@pytest.mark.skip
 @pytest.mark.parametrize("particle",test_2body )
 def test_2body_decay_basics(particle):
     finalparticlesNames = Transformation.channelListToNames(particle.decay_channels)[0][1]
