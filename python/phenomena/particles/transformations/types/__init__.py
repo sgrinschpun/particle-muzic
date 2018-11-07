@@ -1,8 +1,9 @@
 from transformationtype import Transformation
-from compton import ComptonEffect
-from pairproduction import PairProduction
+from kinematicstypes import KinematicsCalculations, LABNBody
 from annihilation import Annihilation
-from inelastic import InelasticCollision, InelasticCollisionWithProton, InelasticCollisionWithNeutron, InelasticData
-from decays import Decay
-from elastic import ElasticCollision, ElasticCollisionWithProton, ElasticCollisionWithElectron, ElasticCollisionWithNeutron
+from compton import ComptonEffect, ComptonKinematics
+from decays import Decay, DecayKinematics
+from elastic import ElasticCollision, ElasticCollisionWithProton, ElasticCollisionWithElectron, ElasticCollisionWithNeutron, ElasticKinematics
+from inelastic import InelasticCollision, InelasticCollisionWithProton, InelasticCollisionWithNeutron,  InelasticKinematics
 from notransformation import NoTransformation
+from pairproduction import PairProduction, PairProductionKinematics

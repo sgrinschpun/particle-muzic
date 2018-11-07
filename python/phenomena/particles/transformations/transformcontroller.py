@@ -1,7 +1,7 @@
 from random import shuffle
 
 from phenomena.particles.transformations.selections import TypeSelector, ChannelSelector
-from phenomena.particles.transformations.kinematics import KinematicsController
+from kinematicscontroller import KinematicsController
 from phenomena.particles.transformations.time import TimeController
 
 class TransformController(object):
@@ -90,7 +90,7 @@ class TransformController(object):
         try:
             target = self._selectedType['target']
         except:
-            target = ''
+            target = None
         finally:
             return target
 

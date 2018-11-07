@@ -1,5 +1,5 @@
 import abc
-from phenomena.particles.sources import ParticleDataSource
+# from phenomena.particles.sources import ParticleDataSource
 
 class Transformation(object):
     '''
@@ -38,17 +38,17 @@ class Transformation(object):
     def getProbability(self,t):
         return 0.05
 
-    @staticmethod
-    def channelListToNames(channels):
-        newchannels =[]
-        for item in channels:
-            newchannels.append( (item[0],Transformation.ParticleListToNames(item[1])) )
-        return newchannels
-
-    @staticmethod
-    def ParticleListToNames(particlelist):
-        return map(ParticleDataSource.getName, particlelist)
-
-    @staticmethod
-    def ParticleListToIds(particlelist):
-        return map(ParticleDataSource.getPDGId, particlelist)
+    # @staticmethod
+    # def channelListToNames(channels):
+    #     newchannels =[]
+    #     for item in channels:
+    #         newchannels.append( (item[0],Transformation.ParticleListToNames(item[1])) )
+    #     return newchannels
+    #
+    # @staticmethod
+    # def ParticleListToNames(particlelist):
+    #     return map(ParticleDataSource.getName, particlelist)
+    #
+    # @staticmethod
+    # def ParticleListToIds(particlelist):
+    #     return map(ParticleDataSource.getPDGId, particlelist)

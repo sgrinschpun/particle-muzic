@@ -1,1 +1,0 @@
-from elasticcontroller import ElasticKinematics, LAB2BodyElastic
