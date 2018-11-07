@@ -9,7 +9,7 @@ __status__ = "Development"
 class ParticleId(object):
     '''
     This is a mixin class for the Particle class
-    It adds functionality ised by the particle server:
+    It adds functionality used by the particle server:
      - It adds the attributes and methods related to id & parent
      - It adds the CLASS_COUNTER class attribute
      - It adds the toDictionary method

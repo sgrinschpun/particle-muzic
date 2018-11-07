@@ -3,7 +3,7 @@ import socket
 import time
 from phenomena.mappings import MappingsController
 from phenomena.nodes import get_save_node
-from phenomena.particles.particle_action import ParticleActionNodeChain
+from phenomena.nodes.particle_nodes import ParticleActionNodeChain
 from phenomena.particles import Particle
 from phenomena.utils import get_logger
 

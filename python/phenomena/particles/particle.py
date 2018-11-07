@@ -127,7 +127,7 @@ class BasicParticle(Particle):
 
 def toDictionary(particle):
     '''
-    This method is used to extract the infromation required by the visualization and sonification nodes and send it through the socket
+    This method is used to extract the information required by the visualization and sonification nodes and send it through the socket
     '''
     return {"name": particle.name,
             "parent": particle.parent,

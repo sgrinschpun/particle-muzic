@@ -2,7 +2,7 @@ import warnings
 warnings.filterwarnings("ignore", message="numpy.dtype size changed")
 warnings.filterwarnings("ignore", message="numpy.ufunc size changed")
 
-from decaylanguage.particle import Particle
+#from decaylanguage.particle import Particle
 from skhep.math  import width_to_lifetime
 from skhep import units as u
 from phenomena.particles.particle import Particle as P

@@ -9,8 +9,8 @@ __status__ = "Development"
 import abc
 from threading import Timer, Lock
 
-from particle import Particle
-from server_particle import ServerParticle
+from phenomena.particles.particle import Particle
+from phenomena.particles.server_particle import ServerParticle
 from phenomena.nodes import get_save_node, ConfigurableNode
 
 

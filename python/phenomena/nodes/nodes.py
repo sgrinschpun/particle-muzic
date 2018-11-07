@@ -67,4 +67,3 @@ class ListSaveNodes:
         assert issubclass(type(add_node), Node)
         index = self._nodes.index(actual_node) - 1
         self._nodes.insert(index, add_node)
-

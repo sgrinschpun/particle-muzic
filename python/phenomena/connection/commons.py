@@ -71,8 +71,7 @@ class ServerPetitionHandler(PetitionCommon):
         else:
             self._log.info("Received Command!")
             try:
-                node = self._node_controller.findModule(new_message.module_path)
-                node.execute(new_message)
+                self._node_controller.configure(new_message)
                 out_message = OutcomingMessage.okMessage(new_message, new_message.params)
                 self._sendData(out_message.serialize())
             except Exception, ex:

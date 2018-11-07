@@ -3,19 +3,11 @@ from phenomena.connection.phenomena_message import IncomingMessage
 from phenomena.nodes import get_save_node, ExecutableNode
 from phenomena.nodes import JsonRemoteAudioVideoNode
 
-from phenomena.particles.particle_action import ParticleAccumulatorNode, ParticleEntryNode
+from phenomena.nodes.particle_nodes import ParticleAccumulatorNode, ParticleEntryNode
 
 _node_controller = None
 
-def getNodeController():
-    global _node_controller
-    if _node_controller == None: _node_controller = NodeController()
-    return _node_controller
-
-
-
 class NodeController(ExecutableNode):
-    _commands = {'ADD': "_addParticle"}
 
     def __init__(self):
         self._root_node = ParticleEntryNode()
@@ -26,13 +18,6 @@ class NodeController(ExecutableNode):
         self._root_node.setNextNode(self._audiovideonode)
         self._audiovideonode.setNextNode(self._last_node)
         self._identifier = "node"
-
-    def _addParticle(self, **kwargs):
-        particle_str = kwargs['particle_name']
-        print "THIS: ", particle_str, type(particle_str)
-        particle = ServerParticle.init(particle_str,**kwargs)
-        print particle.theta, particle.phi
-        self._root_node.addParticle(particle)
 
     def findModule(self, module_path):
         if(module_path == self._identifier): return self
