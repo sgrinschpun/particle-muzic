@@ -4,7 +4,15 @@ from testparticles import InelasticParticle
 from phenomena.particles.transformations import KinematicsController
 from phenomena.particles.transformations.types import InelasticKinematics
 
-test_particles = [(InelasticParticle("pi-", p=2.0)) ]
+test_particles = [  (InelasticParticle("pi-", p=2.0)),
+                     (InelasticParticle("K-", p=2.0)),
+                     (InelasticParticle("pi0", p=2.0)),
+                     (InelasticParticle("K-", p=2.0)),
+                     (InelasticParticle("K+", p=2.0)),
+                     (InelasticParticle("K0", p=2.0))
+  ]
+
+
 
 @pytest.mark.parametrize("particle",test_particles)
 def test_InelasticCollision_Calculations(particle):

@@ -45,7 +45,6 @@ class TransformController(object):
         #spaghetti
         # if not any('Decay' in item['type'] for item in allTransformations):
         #     allTransformations.append({'type':'NoTransformation'})
-
         self._allTransformations = allTransformations
 
     def _selectByType(self, type):
@@ -68,11 +67,12 @@ class TransformController(object):
         finally:
             self._selectedChannel = channel
 
+
     def _buildOutput(self):
         '''
         Get de list of output particles boosted values
         '''
-        return KinematicsController(self._particle).getFinalState() if self.selectedType != 'NoTransformation' else []
+        return KinematicsController(self._particle).getFinalState() if self.selectedType != 'NoTransformation'else []
 
     def _setTime(self):
         self._time = TimeController.getTime()
@@ -96,7 +96,12 @@ class TransformController(object):
 
     @property
     def selectedChannel(self):
-        return self._selectedChannel[1]
+        try:
+            channel = self._selectedChannel[1]
+        except:
+            channel = []
+        finally:
+            return channel
 
     @property
     def output(self):

@@ -6,18 +6,16 @@ import sys
 sys.path.append('../')
 from context import phenomena
 
-from phenomena.particles.models import BubbleChamberParticle
-from phenomena.particles.transformations.types import InelasticData
-from phenomena.particles.transformations.kinematics import LAB2BodyInelastic
-from skhep.math  import Kallen_function, Vector3D, LorentzVector
-from skhep.units import MeV, GeV
-
+from phenomena.particles.models import UndercoverParticle
+from phenomena.particles.transformations.types.inelastic.data.inelasticdatafile import Inelastic2BodyFile
 
 if __name__ == '__main__':
 
-    pi = BubbleChamberParticle('pi-',p=2)
 
-    print (pi.transformation.allTypes)
+    Inelastic2BodyFile.build_2body_file()
+    #pi = BubbleChamberParticle('pi-',p=2)
+
+    #print (pi.transformation.allTypes)
     # p = BubbleChamberParticle('p+')
     #
     # pi0 = BubbleChamberParticle('pi0')

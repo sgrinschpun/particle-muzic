@@ -11,6 +11,7 @@ __status__ = "Development"
 from itertools import product
 import json
 import pkg_resources
+from phenomena.particles.models import UndercoverParticle
 from phenomena.particles.sources import ParticleDataSource, ParticleDataToolFetcher, ExtraInfoFetcher
 
 class Inelastic2BodyFile(object):
@@ -88,7 +89,7 @@ class Inelastic2BodyFile(object):
         particles_list = []
         for output in self._outputs:
             thispart=[]
-            possibleparts = (part for part in output if 't' not in part)
+            possibleparts = (part for part in output[1] if 't' not in part)
             for part in possibleparts:
                 try:
                     partarray = ExtraInfoFetcher.getParticleByComposition(part)
@@ -97,11 +98,19 @@ class Inelastic2BodyFile(object):
                     print ('Not found', part)
                     thispart.append(None)
             if [] not in thispart and len(thispart)>1:
-                particles_list.append(thispart)
+                particles_list.append([output[0],thispart])
         new_particle_list = []
         for item in particles_list:
-            [new_particle_list.append([x,y]) for (x,y) in product(item[0],item[1])]
-        self._particle_list = new_particle_list
+            [new_particle_list.append([item[0],[x,y]]) for (x,y) in product(item[1][0],item[1][1])]
+
+        newer_particle_list = []
+        init_charge = self._part1.charge + self._part2.charge
+        for item in new_particle_list:
+            final_charge = ParticleDataSource.getCharge(item[1][0]) + ParticleDataSource.getCharge(item[1][1])
+            if final_charge ==  init_charge:
+                newer_particle_list .append(item)
+
+        self._particle_list = newer_particle_list
 
 
 
@@ -143,11 +152,13 @@ class Inelastic2BodyFile(object):
         for target in ['p+','n0']:
             inelastic_2body_data[target] = {}
             for particle in particle_array:
-                inelastic_2body_data[target][particle] = []
+
                 inelastic_output =Inelastic2BodyFile(particle,target)._particle_list
-                for output in inelastic_output:
-                    mass = round(ParticleDataSource.getMass(output[0]) + ParticleDataSource.getMass(output[1]) - ParticleDataSource.getMass(target),4)
-                    inelastic_2body_data[target][particle].append([mass,output])
+                if inelastic_output != []:
+                    inelastic_2body_data[target][particle] = []
+                    for output in inelastic_output:
+                        mass = round(ParticleDataSource.getMass(output[0]) + ParticleDataSource.getMass(output[1]) - ParticleDataSource.getMass(target),4)
+                        inelastic_2body_data[target][particle].append([mass,output])
         print (inelastic_2body_data)
         with open('./inelastic_2body_data.json', 'w') as f:
             f.write(json.dumps(inelastic_2body_data,indent=2, sort_keys=True, ensure_ascii=False))
