@@ -25,25 +25,30 @@ class LAB2BodyDecay(LABNBody):
     def __init__(self, initialparticle, target, finalparticles):
         super(LAB2BodyDecay, self).__init__(initialparticle, target, finalparticles)
 
-    def _setInitialParticle(self,initialparticle):
-        self._initialparticle = initialparticle
+    def _setInitialParticleLAB(self,initialparticle):
+        self._initialparticleLAB = initialparticle
 
     def _setBoost(self):
         self._setBoostVector()
         self._initialparticleCM  = self._initialparticleLAB.fourMomentum.boost(self._boostVector)
 
     def _setBoostVector(self):
-        self._boostVector = self._initialparticle.fourMomentum.boostvector
+        self._boostVector = self._initialparticleLAB.fourMomentum.boostvector
 
     def _setS(self):
         self._s = self._initialparticleCM.e**2
 
+    def _setCM(self):
+        self._setS()
+        self._setP(self._s,self._finalparticlesCM[0].mass,self._finalparticlesCM[1].mass)
+        self._setFourMomenta()
+
 
 class LAB3BodyDecay(object):
 
-    def __init__(self,initialparticle,finalparticles):
+    def __init__(self,initialparticle,target,finalparticles):
         self._initialparticleLAB = initialparticle
-        self.self._finalparticlesLAB= finalparticles
+        self._finalparticlesLAB= finalparticles
         self._final1 = finalparticles[0]
         self._final2 = finalparticles[1]
         self._final3 = finalparticles[2]
@@ -59,14 +64,14 @@ class LAB3BodyDecay(object):
         # Step 1: solve the system M -> m12 + m3 in the M CM
         self._part12 = UndercoverParticle('part12', self._m12)
         self._initialparticleCM = UndercoverParticle(self._initialparticleLAB.name, p=0)
-        self._outputStep1= LAB2BodyDecay(self._initialparticleCM,[self._part12,self._final3]).values
+        self._outputStep1= LAB2BodyDecay(self._initialparticleCM,None,[self._part12,self._final3]).finalState
         #Step 2: solve the system m12 -> m1+m2 in the M CM
-        self._outputStep2 = LAB2BodyDecay(self._outputStep1[0],[self._final1,self._final2]).values
+        self._outputStep2 = LAB2BodyDecay(self._outputStep1[0],None, [self._final1,self._final2]).finalState
         # 1,2,3 in the M CM in finalparticles
-        self.self._finalparticlesLAB = [self._outputStep2[0],self._outputStep2[1],self._outputStep1[1]]
+        self._finalparticlesLAB = [self._outputStep2[0],self._outputStep2[1],self._outputStep1[1]]
 
     def _setLAB(self):
-        for particle in self._finalparticles:
+        for particle in self._finalparticlesLAB:
             newfourMomentum = particle.fourMomentum.boost(-1*self._boostVector)
             particle.fourMomentum = newfourMomentum
 

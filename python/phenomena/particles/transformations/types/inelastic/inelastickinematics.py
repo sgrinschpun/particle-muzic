@@ -19,3 +19,8 @@ class LAB2BodyInelastic(LABNBody):
 
     def _setS(self):
         self._s = (self._initialparticleCM.e + self._targetCM.e)**2
+
+    def _setCM(self):
+        self._setS()
+        self._setP(self._s,self._finalparticlesCM[0].mass,self._finalparticlesCM[1].mass)
+        self._setFourMomenta()

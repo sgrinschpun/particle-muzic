@@ -1,5 +1,6 @@
 from phenomena.particles.transformations.types import KinematicsCalculations, LABNBody
 from phenomena.particles.models.undercoverparticle import UndercoverParticle
+from skhep.math  import LorentzVector
 
 class PairProductionKinematics(KinematicsCalculations):
     def __init__(self, initialparticle, target, finalparticles):
@@ -12,21 +13,21 @@ class LAB2BodyPairProduction(LABNBody):
     def __init__(self, initialparticle, target, finalparticles):
         super(LAB2BodyPairProduction, self).__init__(initialparticle, target, finalparticles)
 
-    def _setInitialParticle(self,initialparticle):
+    def _setInitialParticleLAB(self,initialparticle):
         fourmomentum = LorentzVector()
         px = initialparticle.fourMomentum.px
         py = initialparticle.fourMomentum.py
         pz = initialparticle.fourMomentum.pz
         fourmomentum.setpxpypze(px,py,py,initialparticle.E)
-        self._initialparticle = UndercoverParticle('undercovergamma', mass = fourmomentum.mass)
-        self._initialparticle.fourMomentum = fourmomentum
+        self._initialparticleLAB = UndercoverParticle('undercovergamma', mass = fourmomentum.mass)
+        self._initialparticleLAB.fourMomentum = fourmomentum
 
     def _setBoost(self):
         self._setBoostVector()
         self._initialparticleCM  = self._initialparticleLAB.fourMomentum.boost(self._boostVector)
 
     def _setBoostVector(self):
-        self._boostVector = self._initialparticle.fourMomentum.boostvector
+        self._boostVector = self._initialparticleLAB.fourMomentum.boostvector
 
     def _setS(self):
         self._s = self._initialparticleCM.e**2

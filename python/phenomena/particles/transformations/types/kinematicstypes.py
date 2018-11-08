@@ -1,5 +1,5 @@
 from __future__ import division
-import math, random
+import math, random, copy
 import abc
 from skhep.math  import Kallen_function, Vector3D, LorentzVector
 from skhep.units import MeV, GeV
@@ -33,7 +33,7 @@ class LABNBody(object):
     def __init__(self,initialparticle, target, finalparticles):
         self._setInitialParticleLAB(initialparticle)
         self._setTargetLab(target)
-        self._setFinalparticlesLAB(finalparticles)
+        self._setFinalparticlesCM(finalparticles)
         self._setBoost()
         self._setCM()
         self._setLAB()
@@ -50,8 +50,8 @@ class LABNBody(object):
         if target !=None:
             self._targetLAB = target
 
-    def _setFinalparticlesLAB(self, finalparticles):
-        self._finalparticlesLAB = finalparticles
+    def _setFinalparticlesCM(self, finalparticles):
+        self._finalparticlesCM = finalparticles
 
     def _setBoost(self):
         self._setBoostVector()
@@ -76,7 +76,7 @@ class LABNBody(object):
 
     def _setFourMomenta(self):
         vector3Dlist = self._setVector3D(self._p)
-        for id, particle in enumerate(self._finalparticlesLAB):
+        for id, particle in enumerate(self._finalparticlesCM):
             particle.fourMomentum.setpxpypzm(vector3Dlist[id].x,vector3Dlist[id].y,vector3Dlist[id].z,particle.mass)
 
     def _setVector3D(self,p):
@@ -87,6 +87,7 @@ class LABNBody(object):
         return [vector1, vector2]
 
     def _setLAB(self):
+        self._finalparticlesLAB = copy.deepcopy(self._finalparticlesCM)
         for particle in self._finalparticlesLAB:
             newfourMomentum = particle.fourMomentum.boost(-1*self._boostVector)
             particle.fourMomentum = newfourMomentum

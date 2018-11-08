@@ -33,5 +33,5 @@ class LAB2BodyCompton(LABNBody):
 
     def _setFourMomenta(self):
         vector3Dlist = self._setVector3D(self._p)
-        for id, particle in enumerate(self._finalparticlesLAB):
+        for id, particle in enumerate(self._finalparticlesCM):
             particle.fourMomentum.setpxpypzm(vector3Dlist[id].x,vector3Dlist[id].y,vector3Dlist[id].z,self._initialparticleLAB.mass)
