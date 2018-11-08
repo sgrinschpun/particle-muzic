@@ -62,7 +62,7 @@ def test_3body_decay_basics(particle, id):
     finalparticles = []
     for part in finalparticlesNames:
         finalparticles.append(UndercoverParticle(part))
-    output = LAB3BodyDecay(particle, finalparticles).values
+    output = LAB3BodyDecay(particle, None, finalparticles).finalState
 
     assert isinstance(output,list)
     assert len(output) == 3
@@ -74,5 +74,5 @@ def test_3body_decay_basics(particle, id):
 
 @pytest.mark.parametrize("particle, id",test_3body )
 def test_3body_decay_conservation(particle, id, conservation, resolution):
-    for attr in ['Pt','E','charge', 'baryonnumber', 'leptonnumber']:
+    for attr in ['E','charge', 'baryonnumber', 'leptonnumber']:
         assert round(getattr(conservation.In,attr),resolution) == round(getattr(conservation.Out,attr), resolution)
