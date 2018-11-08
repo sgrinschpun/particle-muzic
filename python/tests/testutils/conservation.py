@@ -81,7 +81,10 @@ class Conservation(object):
     def _SumPt(self):
         if self._particle.transformation.selectedType != 'NoTransformation':
             thislist = self._particle.transformation.output
-            value = thislist[0].Pt - thislist[1].Pt
+            #value = thislist[0].Pt - thislist[1].Pt
+            value = 0.
+            for item in thislist:
+                value += item.Pt
         else:
             thislist = [self._particle]
             value = thislist[0].Pt

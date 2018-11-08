@@ -8,7 +8,11 @@ class InelasticKinematics(KinematicsCalculations):
         super(InelasticKinematics, self).__init__(initialparticle, target, finalparticles)
 
     def _set_calculations(self):
-        self._calculations = LAB2BodyInelastic(self._initial,self._target,self._final)
+        if len(self._final) == 1:
+            calculations = LAB1BodyInelastic(self._initial,self._target,self._final)
+        elif len(self._final) == 2:
+            calculations = LAB2BodyInelastic(self._initial,self._target,self._final)
+        self._calculations = calculations
 
 class LAB2BodyInelastic(LABNBody):
     def __init__(self, initialparticle, target, finalparticles):
@@ -24,3 +28,7 @@ class LAB2BodyInelastic(LABNBody):
         self._setS()
         self._setP(self._s,self._finalparticlesCM[0].mass,self._finalparticlesCM[1].mass)
         self._setFourMomenta()
+
+class LAB1BodyInelastic(LABNBody):
+    def __init__(self, initialparticle, target, finalparticles):
+        super(LAB2BodyInelastic, self).__init__(initialparticle, target, finalparticles)

@@ -1,4 +1,4 @@
-from phenomena.particles.transformations.types import ComptonKinematics, DecayKinematics, ElasticKinematics, InelasticKinematics, PairProductionKinematics
+from phenomena.particles.transformations.types import ComptonKinematics, DecayKinematics, ElasticKinematics, InelasticKinematics, PairProductionKinematics, AnnihilationKinematics
 
 from phenomena.particles.models.undercoverparticle import UndercoverParticle
 
@@ -8,7 +8,7 @@ KinematicsType = {
 'ElasticCollisionWithElectron': ElasticKinematics,
 'ElasticCollisionWithNeutron': ElasticKinematics,
 'PairProduction': PairProductionKinematics,
-'Annihilation': InelasticKinematics,
+'Annihilation': AnnihilationKinematics,
 'InelasticCollisionWithProton': InelasticKinematics,
 'InelasticCollisionWithNeutron': InelasticKinematics,
 'Decay': DecayKinematics

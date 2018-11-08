@@ -1,6 +1,6 @@
 from transformationtype import Transformation
 from kinematicstypes import KinematicsCalculations, LABNBody
-from annihilation import Annihilation
+from annihilation import Annihilation, AnnihilationKinematics
 from compton import ComptonEffect, ComptonKinematics
 from decays import Decay, DecayKinematics
 from elastic import ElasticCollision, ElasticCollisionWithProton, ElasticCollisionWithElectron, ElasticCollisionWithNeutron, ElasticKinematics
