@@ -1,3 +1,4 @@
+import copy
 from phenomena.particles.transformations.types import KinematicsCalculations, LABNBody
 from phenomena.particles.models.undercoverparticle import UndercoverParticle
 from skhep.math  import LorentzVector
@@ -15,13 +16,8 @@ class LAB2BodyCompton(LABNBody):
         super(LAB2BodyCompton, self).__init__(initialparticle, target, finalparticles)
 
     def _setInitialParticleLAB(self, initialparticle):
-        fourmomentum = LorentzVector()
-        px = initialparticle.fourMomentum.px
-        py = initialparticle.fourMomentum.py
-        pz = initialparticle.fourMomentum.pz
-        fourmomentum.setpxpypze(px,py,py,initialparticle.E)
-        self._initialparticleLAB = UndercoverParticle('undercovergamma', mass = fourmomentum.mass)
-        self._initialparticleLAB.fourMomentum = fourmomentum
+        fourmomentum = copy.deepcopy(initialparticle.fourMomentum)
+        self._initialparticleLAB = UndercoverParticle('undercovergamma', mass =initialparticle.E, p= initialparticle.p, theta = initialparticle.fourMomentum.theta(), phi =  initialparticle.fourMomentum.phi())
 
     def _setCM(self):
         self._setS()
@@ -33,5 +29,5 @@ class LAB2BodyCompton(LABNBody):
 
     def _setFourMomenta(self):
         vector3Dlist = self._setVector3D(self._p)
-        for id, particle in enumerate(self._finalparticlesCM):
-            particle.fourMomentum.setpxpypzm(vector3Dlist[id].x,vector3Dlist[id].y,vector3Dlist[id].z,self._initialparticleLAB.mass)
+        self._finalparticlesCM[0].fourMomentum.setpxpypzm(vector3Dlist[0].x,vector3Dlist[0].y,vector3Dlist[0].z,self._initialparticleLAB.mass)
+        self._finalparticlesCM[1].fourMomentum.setpxpypzm(vector3Dlist[1].x,vector3Dlist[1].y,vector3Dlist[1].z,self._targetCM.mass)
