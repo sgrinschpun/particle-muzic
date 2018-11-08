@@ -29,5 +29,10 @@ class LAB2BodyPairProduction(LABNBody):
     def _setBoostVector(self):
         self._boostVector = self._initialparticleLAB.fourMomentum.boostvector
 
+    def _setCM(self):
+        self._setS()
+        self._setP(self._s,self._finalparticlesCM[0].mass,self._finalparticlesCM[1].mass)
+        self._setFourMomenta()
+
     def _setS(self):
         self._s = self._initialparticleCM.e**2
