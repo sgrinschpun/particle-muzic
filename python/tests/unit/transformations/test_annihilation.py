@@ -27,3 +27,5 @@ def test_annihilation_conservation(particle, conservation, resolution, print_par
     print_particle
     for attr in ['E','charge', 'baryonnumber', 'leptonnumber']:
         assert round(getattr(conservation.In,attr),resolution) == round(getattr(conservation.Out,attr), resolution)
+    for attr in ['P']:
+        assert getattr(conservation.In,attr) == getattr(conservation.Out,attr)

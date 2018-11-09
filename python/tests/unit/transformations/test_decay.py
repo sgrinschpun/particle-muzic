@@ -52,8 +52,10 @@ def test_2body_decay_basics(particle):
 
 @pytest.mark.parametrize("particle",test_2body )
 def test_2body_decay_conservation(particle, conservation, resolution):
-    for attr in ['Pt', 'E','charge', 'baryonnumber', 'leptonnumber']:
+    for attr in ['E','charge', 'baryonnumber', 'leptonnumber']:
         assert round(getattr(conservation.In,attr),resolution) == round(getattr(conservation.Out,attr), resolution)
+    for attr in ['P']:
+        assert getattr(conservation.In,attr) == getattr(conservation.Out,attr)
 
 @pytest.mark.parametrize("particle, id",test_3body )
 def test_3body_decay_basics(particle, id):
@@ -76,3 +78,5 @@ def test_3body_decay_basics(particle, id):
 def test_3body_decay_conservation(particle, id, conservation, resolution):
     for attr in ['E','charge', 'baryonnumber', 'leptonnumber']:
         assert round(getattr(conservation.In,attr),resolution) == round(getattr(conservation.Out,attr), resolution)
+    for attr in ['P']:
+        assert getattr(conservation.In,attr) == getattr(conservation.Out,attr)

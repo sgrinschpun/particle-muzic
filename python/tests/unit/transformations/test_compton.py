@@ -48,6 +48,7 @@ def test_comptoneffect_basics(particle):
 @pytest.mark.parametrize("particle",test_particles)
 def test_comptoneffect_conservation(particle, conservation, resolution, print_particle):
     print_particle
-
-    for attr in ['Pt','charge', 'baryonnumber', 'leptonnumber']:
+    for attr in ['charge', 'baryonnumber', 'leptonnumber']:
         assert round(getattr(conservation.In,attr),resolution) == round(getattr(conservation.Out,attr), resolution)
+    for attr in ['P']:
+        assert getattr(conservation.In,attr) == getattr(conservation.Out,attr)

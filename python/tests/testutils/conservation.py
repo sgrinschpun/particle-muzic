@@ -2,6 +2,8 @@ import math
 import operator
 from phenomena.particles.models import BubbleChamberParticle, QuantumUniverseParticle, UndercoverParticle
 
+from skhep.math import Vector3D
+
 PARTICLE = BubbleChamberParticle
 
 
@@ -18,12 +20,12 @@ class InOut(object):
         self._E = E
 
     @property
-    def Pt(self):
-        return self._Pt
+    def P(self):
+        return self._P
 
-    @Pt.setter
-    def Pt(self, Pt):
-        self._Pt = Pt
+    @P.setter
+    def P(self, P):
+        self._P = P
 
     @property
     def baryonnumber(self):
@@ -54,7 +56,7 @@ class Conservation(object):
     def _in(self):
         self._in = InOut()
         self._in.E = self._sumIn('E')
-        self._in.Pt = self._sumIn('Pt')
+        self._in.P = self._sumIn('vector')
         self._in.charge = self._sumIn('charge')
         self._in.baryonnumber = self._sumIn('baryonnumber')
         self._in.leptonnumber = self._sumIn('leptonnumber')
@@ -73,18 +75,21 @@ class Conservation(object):
     def _out(self):
         self._out = InOut()
         self._out.E = self._sumOut('E')
-        self._out.Pt = self._SumPt()
+        self._out.P = self._SumP()
         self._out.charge = self._sumOut('charge')
         self._out.baryonnumber = self._sumOut('baryonnumber')
         self._out.leptonnumber = self._sumOut('leptonnumber')
 
-    def _SumPt(self):
+    def _SumP(self):
         if self._particle.transformation.selectedType != 'NoTransformation':
             thislist = self._particle.transformation.output
-            value = thislist[0].Pt - thislist[1].Pt
+            value = Vector3D()
+            for item in thislist:
+                value += item.vector
+            # value = thislist[0].Pt - thislist[1].Pt
         else:
             thislist = [self._particle]
-            value = thislist[0].Pt
+            value = thislist[0].vector
         return value
 
 

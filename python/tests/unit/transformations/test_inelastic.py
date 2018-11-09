@@ -51,5 +51,7 @@ def test_InelasticCollision_Basics(particle):
 def test_inelasticcollision_conservation(particle, conservation, resolution, print_particle):
     print_particle
 
-    for attr in ['Pt', 'E','charge', 'baryonnumber', 'leptonnumber']:
+    for attr in ['E','charge', 'baryonnumber', 'leptonnumber']:
         assert round(getattr(conservation.In,attr),resolution) == round(getattr(conservation.Out,attr), resolution)
+    for attr in ['P']:
+        assert getattr(conservation.In,attr) == getattr(conservation.Out,attr)

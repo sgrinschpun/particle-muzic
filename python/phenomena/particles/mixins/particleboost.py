@@ -96,3 +96,7 @@ class ParticleBoost(object):
     @property
     def phi(self):
         return self._fourMomentum.phi()
+
+    @property
+    def vector(self):
+        return self._fourMomentum.vector
