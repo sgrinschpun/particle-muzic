@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+__author__ = "Sebastian Grinschpun"
+__license__ = "GPL"
+__version__ = "0.1"
+__email__ = "sgrinschpun@ifae.es"
+__status__ = "Development"
+
 from random import shuffle
 
 from phenomena.particles.transformations.selections import TypeSelector, ChannelSelector
@@ -67,7 +76,6 @@ class TransformController(object):
         finally:
             self._selectedChannel = channel
 
-
     def _buildOutput(self):
         '''
         Get de list of output particles boosted values
@@ -112,6 +120,7 @@ class TransformController(object):
         return self._time
 
     def query(self, dt=1./60.):
+        output = []
         shuffle(self._transformationlist)
         for transf in self._transformationlist:
             probability = transf.getProbability(dt)
@@ -119,5 +128,6 @@ class TransformController(object):
                 print transf.name
                 self._selectedType = self._selectByType(transf.name)
                 self._selectChannel()
-                return self.output
-            return None
+                output = self.output
+                break
+        return output
