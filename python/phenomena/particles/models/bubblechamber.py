@@ -11,16 +11,19 @@ from phenomena.particles.mixins import ParticleId, ParticleData, ParticlePositio
 
 from phenomena.particles.transformations.types import ComptonEffect, PairProduction, Annihilation, InelasticCollisionWithProton,InelasticCollisionWithNeutron, Decay, ElasticCollisionWithProton, ElasticCollisionWithElectron, ElasticCollisionWithNeutron, NoTransformation
 
+from phenomena.particles.dynamics import MagneticField, ElectricField, Ionization
+
 NO_PARENT = -1
 
 class BubbleChamberParticle(ParticleTransformation, ParticlePosition, ParticleBoost, ParticleData, ParticleId, Particle):
     '''
     This class is intended for BubbleChamber simulation. That's why these mixins are chosen.
     '''
-
     #TRANSFORMATIONS = [ComptonEffect, PairProduction, Annihilation, InelasticCollisionWithProton,InelasticCollisionWithNeutron, Decay, ElasticCollisionWithProton, ElasticCollisionWithElectron, ElasticCollisionWithNeutron]
 
     TRANSFORMATIONS = [Decay,ElasticCollisionWithProton,InelasticCollisionWithProton,NoTransformation]
+
+    DYNAMICSLIST = [MagneticField, Ionization]
 
     def __init__(self, name, parent = NO_PARENT, **kwargs):
 
@@ -44,6 +47,8 @@ class BubbleChamberParticle(ParticleTransformation, ParticlePosition, ParticleBo
 
         #### ParticlePosition
         self._set_initPosition()
+        self._set_kinematics()
+        self._set_dynamics(BubbleChamberParticle.DYNAMICSLIST)
 
         ### ParticleTransformation
         self._setTransformationManager(self, BubbleChamberParticle.TRANSFORMATIONS)

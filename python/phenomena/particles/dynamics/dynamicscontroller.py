@@ -1,13 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+from __future__ import division
 __author__ = "Sebastian Grinschpun"
 __license__ = "GPL"
 __version__ = "0.1"
 __email__ = "sgrinschpun@ifae.es"
 __status__ = "Development"
 
-from __future__ import division
 import abc
 from skhep.math import Vector3D, LorentzVector
 
@@ -22,7 +21,7 @@ class DynamicsController(object):
         Sets list of all dynamics objects
         '''
         objectlist = []
-        for transformationclass in classlist:
+        for transformationclass in dynamicsclasslist:
             objectlist.append(transformationclass(self._particle))
         self._dynamicslist = objectlist
 
@@ -45,16 +44,16 @@ class DynamicType(object):
 class MagneticField(DynamicType):
 
     def __init__(self,particle):
-        self._B = Vector3D(0,1,0)
+        self._B = Vector3D(0,1,0)*0.01
         self._particle = particle
 
     def getAcceleration(self,dt):
-        self._setForce(self)
+        self._setForce()
         self._setAcceleration()
         return self._acceleration
 
     def _setForce(self):
-        self._Bforce = self._particle.charge * self._particle.fourMomentum.boostVector.cross(self.B)
+        self._Bforce = self._particle.charge * self._particle.fourMomentum.boostvector.cross(self._B)
 
     def _setAcceleration(self):
         self._acceleration = self._Bforce/self._particle.mass
@@ -76,7 +75,7 @@ class ElectricField(DynamicType):
     def _setAcceleration(self):
         self._acceleration = self._Eforce/self._particle.mass
 
-class Inonization(DynamicType):
+class Ionization(DynamicType):
 
     DENSITY = 0.1 #0.07 #gr/cm3
 
@@ -84,11 +83,17 @@ class Inonization(DynamicType):
         self._particle = particle
 
     def getAcceleration(self,dt):
-        self._setAcceleration()
+        if self._particle == 0:
+            self._acceleration = Vector3D(0,0,0)
+        else:
+            self._setAcceleration()
         return self._acceleration
 
-    def _setEnergyLoss():
+    def _setEnergyLoss(self):
         return self._BetheBlock(self._particle.fourMomentum.beta)
+
+    def _BetheBlock(self,beta):
+        return 2.1*Ionization.DENSITY/beta**2
 
     def _setAcceleration(self):
         newEnergy = self._particle.fourMomentum.e - self._setEnergyLoss()

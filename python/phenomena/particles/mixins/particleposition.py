@@ -8,7 +8,7 @@ __email__ = "sgrinschpun@ifae.es"
 __status__ = "Development"
 
 from skhep.math import Vector3D, LorentzVector
-from phenomena.particle.dynamics import DynamicsController, KinematicsController
+from phenomena.particles.dynamics import DynamicsController, KinematicsController
 
 PARTICLE_INIT_POSITION = Vector3D(x=0.0, y=0.0, z=0.0)
 
@@ -25,14 +25,12 @@ class ParticlePosition(object):
     def _set_initPosition(self):
         self._position = LorentzVector.from3vector(PARTICLE_INIT_POSITION,0.)
         self._initialposition = self._position.copy()
-        self._set_dynamics()
-        self._set_kinematics()
 
-    def _set_dynamics(self):
-        self._dynamics = DynamicsController(particle, dynamicsclasslist)
+    def _set_dynamics(self, dynamicsclasslist):
+        self._dynamics = DynamicsController(self, dynamicsclasslist)
 
     def _set_kinematics(self) :
-        self._kinematics = KinematicsController(particle)
+        self._kinematics = KinematicsController(self)
 
     def updatePosition(self,dt):
         deltaincrement = self._nextPosition(dt)
