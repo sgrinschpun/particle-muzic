@@ -47,10 +47,13 @@ class MagneticField(DynamicType):
     def __init__(self,particle):
         self._B = Vector3D(0,1,0)
         self._particle = particle
-        self._setForce(particle)
-        self._setAcceleration()
 
-    def _setForce(self, particle):
+    def getAcceleration(self,dt):
+        self._setForce(self)
+        self._setAcceleration()
+        return self._acceleration
+
+    def _setForce(self):
         self._Bforce = self._particle.charge * self._particle.fourMomentum.boostVector.cross(self.B)
 
     def _setAcceleration(self):
@@ -61,10 +64,13 @@ class ElectricField(DynamicType):
     def __init__(self,particle):
         self._E = Vector3D(0,0,1)
         self._particle = particle
-        self._setForce(particle)
-        self._setAcceleration()
 
-    def _setForce(self, particle):
+    def getAcceleration(self,dt):
+        self._setForce()
+        self._setAcceleration()
+        return self._acceleration
+
+    def _setForce(self):
         self._Eforce = self._particle.charge * self._E
 
     def _setAcceleration(self):
@@ -72,11 +78,21 @@ class ElectricField(DynamicType):
 
 class Inonization(DynamicType):
 
-    DENSITY =
+    DENSITY = 0.1 #0.07 #gr/cm3
 
     def __init__(self, particle):
         self._particle = particle
 
+    def getAcceleration(self,dt):
+        self._setAcceleration()
+        return self._acceleration
 
-    def _BetheBlock(self,beta):
-        return -2.1*BubbleChamberMedium.DENSITY/beta**2
+    def _setEnergyLoss():
+        return self._BetheBlock(self._particle.fourMomentum.beta)
+
+    def _setAcceleration(self):
+        newEnergy = self._particle.fourMomentum.e - self._setEnergyLoss()
+        newP = self._particle.fourMomentum.beta*newEnergy
+        newpvector = newP*self._particle.fourMomentum.vector.unit()
+        oldpvector = self._particle.fourMomentum.vector
+        self._acceleration = newpvector - oldpvector
