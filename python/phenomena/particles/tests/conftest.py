@@ -2,12 +2,12 @@ import pytest
 import path
 import math
 
-from phenomena.particles.models import BubbleChamberParticle, QuantumUniverseParticle
+from phenomena.particles.models import BubbleChamberParticle, QuantumUniverseParticle, QuantumUniverseVirtualParticle
 #imports for test_fetchers
 from phenomena.particles.sources import ParticleDataSource, ParticleDataToolFetcher, SciKitHEPFetcher, DecayLanguageFetcher, ExtraInfoFetcher
 
 #Which Particle Model to Use
-PARTICLE = BubbleChamberParticle
+PARTICLE = QuantumUniverseParticle
 
 #precision
 @pytest.fixture(scope='session',)

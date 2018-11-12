@@ -1,5 +1,7 @@
 from __future__ import division
 import math
+import collections
+import six
 
 from phenomena.particles.sources import ParticleDataSource
 from _2body import LAB2BodyCalc
@@ -16,7 +18,10 @@ class DecayCalc(object):
     def _setMassArray(mass, decay):
         masses = [mass]  # array of masses 0: parent particle, 1: first decay particle, ...
         for particle in decay:
-            masses.append(ParticleDataSource.getMass(particle))
+            if isinstance(particle, collections.Mapping):
+                masses.append(particle['mass'])
+            elif isinstance(particle, six.string_types):
+                masses.append(ParticleDataSource.getMass(particle))
         return masses
 
     @staticmethod

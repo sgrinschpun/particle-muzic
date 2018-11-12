@@ -6,7 +6,7 @@ __version__ = "0.1"
 __email__ = "sgrinschpun@ifae.es"
 __status__ = "Development"
 
-from phenomena.particles.models import BubbleChamberParticle, QuantumUniverseParticle
+from phenomena.particles.models import BubbleChamberParticle, QuantumUniverseParticle, QuantumUniverseVirtualParticle
 
 NO_PARENT = -1
 
@@ -15,7 +15,12 @@ class ServerParticle(object):
     Class used in the server to create particle instances
     This class helps changing which class to use
     '''
-    PARTICLE = BubbleChamberParticle
+    PARTICLE = QuantumUniverseParticle
+    # PARTICLE = BubbleChamberParticle
+
+    # @staticmethod
+    # def init (name, parent = NO_PARENT, **kwargs):
+    #     return ServerParticle.PARTICLE(name, parent, **kwargs)
 
     @staticmethod
     def init (name, parent = NO_PARENT, **kwargs):

@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
-__author__ = "Sebastian Grinschpun"
-__license__ = "GPL"
-__version__ = "0.1"
-__email__ = "sgrinschpun@ifae.es"
-__status__ = "Development"
+__author__ = "Sergi Masot"
+__license__ = "--"
+__version__ = "0.01"
+__email__ = "sergimasot13@gmail.com"
+__status__ = "pre-development"
 
 import time, threading
 from phenomena.particles.particle import Particle
