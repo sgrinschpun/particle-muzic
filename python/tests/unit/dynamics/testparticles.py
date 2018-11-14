@@ -18,7 +18,6 @@ class TestParticleDynamics(ParticlePosition, ParticleBoost, ParticleData):
         self._set_initPosition()
         self._set_kinematics()
 
-
 class MagneticParticle(TestParticleDynamics):
 
     DynamicsList = [MagneticField]

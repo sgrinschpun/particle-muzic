@@ -33,13 +33,14 @@ class ParticlePosition(object):
         self._kinematics = KinematicsController(self)
 
     def updatePosition(self,dt):
-        deltaincrement = self._nextPosition(dt)
+        next_position_vector = self._nextPosition(dt)
+        deltaincrement =  LorentzVector.from3vector(next_position_vector,dt)
         self._position += deltaincrement
         return self._position
 
     def _nextPosition(self,dt):
         self._acceleration = self._dynamics.updateAcceleration(dt)
-        self._kinematics.updateFourMomentum(self._acceleration, dt)
+        self.fourMomentum = self._kinematics.updateFourMomentum(self._acceleration, dt)
         return self._kinematics.getPosition(self.fourMomentum.boostvector,dt)
 
     def distanceTravelled():

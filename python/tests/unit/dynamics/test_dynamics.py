@@ -6,13 +6,14 @@ from phenomena.particles.dynamics import DynamicsController, KinematicsControlle
 from phenomena.particles.dynamics.dynamicscontroller import DynamicType, MagneticField, ElectricField, Ionization
 from skhep.math  import Vector3D, LorentzVector
 
-dt = 1
+dt = 1.
 
 undercover_particles = [(UndercoverParticle("pi-", p=1.0))]
 magnetic_particles = [(MagneticParticle("pi-", p=1.0))]
+ionization_particles = [(IonizationParticle("pi-", p=1.0))]
 
 @pytest.mark.parametrize("particle",undercover_particles)
-def test_MagneticField_DynamicType(particle):
+def test_MagneticField_DynamicTypev(particle):
     Field = MagneticField(particle)
     assert isinstance(Field, DynamicType)
     acceleration = Field.getAcceleration(dt)
@@ -22,7 +23,7 @@ def test_MagneticField_DynamicType(particle):
     #test of the direction depending on the charge
 
 @pytest.mark.parametrize("particle",undercover_particles)
-def test_MagneticField_Controllers(particle):
+def test_MagneticField_DynamicType(particle):
     DC = DynamicsController(particle,[MagneticField])
     assert isinstance(DC, object)
     acceleration = DC.updateAcceleration(dt)
@@ -32,20 +33,38 @@ def test_MagneticField_Controllers(particle):
 
     KC = KinematicsController(particle)
     assert isinstance(KC, object)
-    KC.updateFourMomentum(acceleration, dt)
+    particle.fourMomentum = KC.updateFourMomentum(acceleration, dt)
     velocity1 = particle.fourMomentum.vector
     assert velocity1 != velocity0
-    position = KC.getPosition(velocity1)
+    position = KC.getPosition(velocity1, dt)
     assert isinstance(position, Vector3D)
+    assert position != particle._initialposition
+
+@pytest.mark.parametrize("particle",magnetic_particles)
+def test_MagneticField_Particle(particle):
+    position0 = copy.deepcopy(particle._position)
+    assert position0 == particle._initialposition
+    velocity0 = particle.fourMomentum.boostvector
+    particle.updatePosition(dt)
+    position1 = particle._position
+    assert isinstance(position1 , LorentzVector)
+    assert position1 != position0
+    acceleration1 = particle._acceleration
+    assert isinstance(acceleration1, Vector3D)
+    assert acceleration1.isperpendicular(velocity0)
+    velocity1= particle.fourMomentum.boostvector
+    assert isinstance(velocity1, Vector3D)
+    assert velocity1 != velocity0
+    assert not acceleration1.isperpendicular(velocity1)
 
 @pytest.mark.parametrize("particle",undercover_particles)
-def test_Ionization(particle):
+def test_Ionization_Dynamics(particle):
     IonizationObject = Ionization(particle)
     assert isinstance(IonizationObject, DynamicType)
     acceleration = IonizationObject.getAcceleration(dt)
     velocity0 = copy.deepcopy(particle.fourMomentum.vector)
     assert isinstance(acceleration, Vector3D)
-    assert acceleration.isantiparallel(velocity)
+    assert acceleration.isantiparallel(velocity0)
 
 
 @pytest.mark.parametrize("particle",undercover_particles)
@@ -53,6 +72,31 @@ def test_Ionization_Controllers(particle):
     DC = DynamicsController(particle,[Ionization])
     assert isinstance(DC, object)
     acceleration = DC.updateAcceleration(dt)
-    velocity = particle.fourMomentum.vector
+    velocity0 = particle.fourMomentum.vector
     assert isinstance(acceleration, Vector3D)
     assert acceleration.isantiparallel(velocity0)
+
+    KC = KinematicsController(particle)
+    assert isinstance(KC, object)
+    particle.fourMomentum = KC.updateFourMomentum(acceleration, dt)
+    velocity1 = particle.fourMomentum.vector
+    assert velocity1 != velocity0
+    position = KC.getPosition(velocity1, dt)
+    assert isinstance(position, Vector3D)
+    assert position != particle._initialposition
+
+@pytest.mark.parametrize("particle",ionization_particles)
+def test_Ionization_Particle(particle):
+    position0 = copy.deepcopy(particle._position)
+    assert position0 == particle._initialposition
+    velocity0 = particle.fourMomentum.boostvector
+    particle.updatePosition(dt)
+    position1 = particle._position
+    assert isinstance(position1 , LorentzVector)
+    assert position1 != position0
+    acceleration1 = particle._acceleration
+    assert isinstance(acceleration1, Vector3D)
+    velocity1= particle.fourMomentum.boostvector
+    assert isinstance(velocity1, Vector3D)
+    assert velocity1 != velocity0
+    assert not acceleration1.isperpendicular(velocity1)

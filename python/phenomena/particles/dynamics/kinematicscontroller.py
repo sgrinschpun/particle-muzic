@@ -20,7 +20,7 @@ class KinematicsController(object):
         '''
         velocity = self._particle.fourMomentum.boostvector
         velocity += acceleration*dt
-        self._particle.fourMomentum.boost(velocity)
+        return self._particle.fourMomentum.boost(velocity)
 
-    def getPosition(velocity, dt):
+    def getPosition(self,velocity, dt):
         return velocity*dt

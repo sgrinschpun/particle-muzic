@@ -6,9 +6,9 @@ __version__ = "0.1"
 __email__ = "sgrinschpun@ifae.es"
 __status__ = "Development"
 
-from phenomena.particles.mixins import ParticleData, ParticleBoost
+from phenomena.particles.mixins import ParticleData, ParticleBoost, ParticlePosition
 
-class UndercoverParticle(ParticleBoost, ParticleData):
+class UndercoverParticle(ParticlePosition, ParticleBoost, ParticleData):
     '''
     This particle class is only used when we need to consider interaction with particles that are not logged in the server. for example, interaction with protons in the bubble chamber.
     '''
@@ -28,3 +28,6 @@ class UndercoverParticle(ParticleBoost, ParticleData):
 
         #### ParticleBoost
         self._set_fourMomentum(kwargs)#assign 4momentum vector and  boosted parameters
+
+        #### ParticlePosition
+        self._set_initPosition()
