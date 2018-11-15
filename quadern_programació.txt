@@ -1,0 +1,131 @@
+﻿Reunió octubre
+
+mixins : creem una particula dientli model (quantum universe o bubble chamber)
+    la creació amb model agafa els mixins que necessiti (boost, data, ID,...)
+
+    al servidor tambe pots escollir el tpus de particula a server:particle.py (ho separes de les altres decisions=)
+
+de moment el quantumuiverse.py veus que agafa el particledecay pero la idea es que agafi el particletransformation i despres trii
+
+existeix un mixin particleposition! (mirar-lo bé):
+  de moment agafa tots els calucls de vectors i 4vectors i tal i fa els calculs de gamma, energia, etc.
+  (substitueix tots els calculs daquesyt tipo que hi havia)
+  aqui tamb es dona la posició! es podria canviar a donarho al model i que arribes aqui com a argument
+
+  PERO: necessitem un metode update pel particleposition (la dinamica que va començar el santi)
+  ara mateix no esta implementat i sense aix no hi ha visualització
+
+hem de decidir tambe quan fem els xocs amb particula virtual i quan no (o decays)
+
+Sources: en aquesta carpeta hi ha arxius on està d'on ve cada peça d'informació.
+  Hem de mirar com afecta això a la particula virtual i en un futur usar-ho perque sigui mes simple
+
+Undercoverparticle: es una particula que no arriba a entrar al servidor perquè puguem fer els càlculs amb elles
+  sense haver d'anar
+
+
+
+Per executar( tests) en el master
+
+  python/test/playground
+    exemple: transformation
+     (el launch del keyboard s'ha de fer amb "sudo python" no se si funcionara en windows)
+
+     passos: entrar al virtual environment
+              executar el launcher del servidor (server_launcher) - s'ha de modificar el path.py !
+              executar el launcher del keyboard
+
+      IMPORTANT : requirements.txt : tot el que necessites perquè funcioni. COMPROVAR!
+        (en el pip install del virtual environment es pot fer servir el que diu en un .txt com aquest)
+		Per instalar coses amb el pip he d'anar al Users/sergi/Anaconda2/scripts desde la cmd (no desde python)
+        (el millor es el de development, després ve el de master)
+
+Development serveix per provar les coses de les altres branques amb la principal (master) abans d'ajuntar-ho definitivament
+
+
+
+
+Proposta:
+  0- branch nou a partir de development (que ja te mixins i tal)
+  1- Integració de la particula virtual en el sistema (només cal que aparegui al mig i decaigui)
+    ha d'incoporar un mixin que sigui la particula virtual i veure quines altres classes necessita
+  2- Afegir una opció on es creein dues particules en comptes d'una i no estiguin al mig de la pantalla
+
+
+
+%-----------------------------------------------------%
+
+Post reunió:
+
+o Revisar el sistema del inverse_decay_list del Santi. Probablement es pot simplificar amb els arxius de sources
+en general, de fet, ho hauriem de substituir a tots aquells programes on utilitzem manualment el pythia al principi del codi (particle_virtual per exemple!!)
+També s'hauria de canviar el sistema de buscar els decays inversos (inverse_decay_list). S'hauria de poder formatar la informació de sources per buscar-ho semblant a 
+com es fa en l'arxiu (comparant id's i tal)
+
+x És el mateix fer name2id que buscar el id de nou?? !!! 
+	- Sembla irrellevant veient com funcionen les altres classes
+
+o La vida mitja de les partícules virtuals és molt curta i està multiplicada arbitràriament per 2*10^9 !!!
+
+o Per fer-ho general, cal fer un sistema per detectar adequadament quins productes són vàlids. Amb e- e+ sabem quins són i els podem filtrar manualment, però en general
+hem de mirar els nombres quàntics i tota la pesca per determinar-ho
+	- Forma part de la generalització del mètode del santi en el primer (i algun altre) punt
+
+x A més, la distribució de la col·lisió utilitza la funció cross sections que simula la Breit-Wigner de manera bàsica, a diferència del mètode del particle_boosted en la 
+versió per a 3 partícules (que no sé si està testejada!!!) 
+	- (si que ho està, no me'n recordava)
+
+x Per determinar que una partícula es virtual hauríem de poder-la crear amb una massa determinada i en el mixin de particleData fer un check amb la massa del pdg i 
+etiquetar-la com a virtual en cas que no el passi.
+	- De moment només hi ha el check a l'hora d'assignar el valor a 'is_virtual', però tota la resta funciona igual
+
+o Modifico el particledata per afegir la opció que sigui virtual. He de preguntar al Sebastian si li va bé que faci això i si pot fer-ho encaixar amb la part visual! 
+	(encara que sigui reutilitzant les imatges de les partícules no virtuals, que és el que fa de moment ja que el 'type' és el mateix)
+
+o La virtualitat de la partícula s'ha de decidir com es marca. Podem fer tipus de partícula nous o podem tenir un atribut independent. Hi ha un comentari al respecte en la
+línia 40 (aproximadament) de l'arxiu particlevirtual.py
+
+x Una manera de no tocar els arxius del servidor podria ser mantenir l'estructura de **kwargs, que és molt flexible, i o bé substituir el test de argv que es fa en el 
+quantumuniversevirtualparticle (i que abans es feia en el ParticleBOosted) o bé abans de fer servir el QUVparticle agafar arguments del kwargs i passarho en el format
+que necessitem d'una part en argv i una part en kwargs
+	- de totes maneres, potser podem evitar això. Només ens seria útil si volguéssim crear partícules virtuals directament amb coses com el keyboard i tal. En altres 
+	circumstàncies el QUVP potser és suficient per tractar les partícules virtuals fruit del decaiment...?
+	- Falta veure com ho farem desde el keyboard, però de moment manualment funciona bé
+
+o Si volem mantenir el QUVP molt net, podem moure les seleccions a un mixin o bé que el QUVP sigui el model per quan arriba una partícula virtual i el QUP el model pels altres
+casos (però també incorporant la possibilitat de decaure en partícules virtuals)
+
+x Crec que és més inteligent que el particlevirtual heredi de particledata i afegeixi metodes nous que no pas repetir les propietats i sobreescriure-les demanant-lo primer com 
+a mixin en el QuantumUniverseParticle
+	- Al final no hem heredat, però els mètodes nous tenen un altre nom i el model QUVP fa servir els de tots dos mixins
+
+x En la versió antiga necessitavem una versió alternativa del metode que posa les dades pels moments i tot això perquè mirava la massa al PDG. Com que ara l'agafa del self,
+i amb les partícules virtuals ja l'hem establert com la massa que toqui (no la del PDG) podem utilitzar el mateix metode que amb les no virtuals? 
+	- Si que podem, afegint una excepció perquè busqui la massa als arguments que li arriben en comptes de a la base de dades
+
+o Alerta a com escollim la partícula virtual: quin paper juga la funció _set_weights? Estem triant en funció de l'invers de la massa les partícules virtuals? Probablement 
+necessitem una distribució concreta per fer aquesta elecció. 
+	- És una distribució només dels canals, i normalment tenen probabilitats semblants. Però hi ha casos extrems en què no sigui un bon mètode?
+
+x En la funció de set_channel_choice, per poder mantenir l'estructura de l'arxiu setdecay, he aconseguit que sigui un staticmethod però a canvi he hagut de cridar la propia 
+classe VirtualDecay al seu interior per cridar un dels seus mètodes. És mala praxis? Hi ha una alternativa? Val la pena que deixi de ser staticmethod només per això?
+	- Aparentment no, ja que en el decay crida Decay.method varies vegades
+
+o Té molta pinta que hi ha un loop de imports (involucrant els del _init_ de models, el de server_particle, i potser els tests/conftest). S'arregla si fas import inicialment 
+a només una part (pel que sembla), però això vol dir que en general no funcionarà. Sembla que no passa per QuantumParticle però!!! No he trobat cap diferència
+
+o Ara mateix el decay virtual només està implementat per 3 partícules i a través de Z0, W- i W+. Afegir opcions intermitges és senzill sempre i quan siguin partícules de les
+quals hi ha dades al particledatatool. Implementar-ho per més partícules, en canvi, implica generalitzar el mètode de trobar combinacions a n partícules. Aquest mètode 
+s'hauria d'actualitzar igualment perquè és molt llarg i està al mig de la classe de virtual_channel.
+
+o Linia 160 de VirtualDecay: Només té sentit la manera com triem si és impossible que passin dues opcions. Si es dons amb Z0 no es pot donar amb W+/- pero es cert tambe 
+que si es dona per W+ no es pot donar per W-?
+
+o Per no tocar la manera de passar els arguments dins del servidor, hauríem de recuperar la trampa que vam fer quan encara hi havia el particleBoosted de passar els arguments 
+extra de les partícules virtuals en el lloc del nom. Aleshores la classe del model QUniverse queda una mica més enrevessada. Se m'ha acudit que podríem fer-ne una per quan 
+li arribi una partícula virtual i una per quan no (en tots dos casos estaria permès el decay a través de partícules virtuals), però en aquest cas haurem de distingir segons 
+el cas a l'hora de cridar un model o altre i no se si això és més enrevessat.
+
+%-----------------------------------------------------%
+
+sys.path.append('C:/Users/sergi/Desktop/IFAE/particle-muzic/python')
