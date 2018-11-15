@@ -10,7 +10,7 @@ from skhep.math import Vector3D, LorentzVector
 from skhep.constants import half_pi, two_pi
 from phenomena.particles.particle import Particle
 
-THETA_DEFAULT = half_pi
+THETA_DEFAULT = 0 #half_pi
 PHI_DEFAULT = 0
 
 class ParticleBoost(object):
@@ -29,6 +29,10 @@ class ParticleBoost(object):
     @property
     def fourMomentum(self):
         return self._fourMomentum
+
+    @fourMomentum.setter
+    def fourMomentum(self, fourMomentum):
+        self._fourMomentum = fourMomentum
 
     def _set_fourMomentum(self, kwargs):
         '''
@@ -70,6 +74,10 @@ class ParticleBoost(object):
         return self._fourMomentum.e
 
     @property
+    def Pt(self):
+        return self._fourMomentum.pt
+
+    @property
     def gamma(self):
         return self._fourMomentum.gamma
 
@@ -88,3 +96,7 @@ class ParticleBoost(object):
     @property
     def phi(self):
         return self._fourMomentum.phi()
+
+    @property
+    def vector(self):
+        return self._fourMomentum.vector

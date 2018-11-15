@@ -21,7 +21,7 @@ pyobjc-framework-Cocoa==5.1
 pyobjc-framework-Quartz==5.1
 pyparsing==2.2.2
 PyPDT==0.7.4
-pytest==3.9.1
+pytest==3.9.3
 python-dateutil==2.7.3
 pytz==2018.5
 PyYAML==3.13

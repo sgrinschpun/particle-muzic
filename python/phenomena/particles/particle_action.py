@@ -15,14 +15,14 @@ from phenomena.nodes import get_save_node, ConfigurableNode
 
 
 class ParticleDecayTimer:
-    def __init__(self, particle, decay_callback):
-        self._decayCallback = decay_callback
+    def __init__(self, particle, transform_callback):
+        self._transformCallback = transform_callback
         self._particle = particle
-        self._particle.start(self._particleDecay)
+        self._particle.start(self._particleTransform)
 
-    def _particleDecay(self):
-        new_particles = self._particle.decayvalues   #changed
-        self._decayCallback(self._particle, new_particles)
+    def _particleTransform(self):
+        new_particles = self._particle.transformation.output   #changed
+        self._transformCallback(self._particle, new_particles)
 
     def getParticle(self):
         return self._particle
@@ -93,7 +93,7 @@ class ParticleAccumulatorNode(ParticleActionNodeChain):
     def addParticle(self, particle):
         assert issubclass(type(particle), Particle)
         print "Accumulating particle: {0}".format(particle.name)
-        self._particles_available.append(ParticleDecayTimer(particle, self._decayedParticle))
+        self._particles_available.append(ParticleDecayTimer(particle, self._transformedParticle))
 
     def removeParticle(self, particle):
         assert issubclass(type(particle), Particle)
@@ -110,19 +110,19 @@ class ParticleAccumulatorNode(ParticleActionNodeChain):
             self.addParticle(new_particle)
         self.removeParticle(particle)
 
-    def _decayedParticle(self, particle, new_particles):
+    def _transformedParticle(self, particle, new_particles):
         self._transform_lock.acquire()
         tr_new_particles = []
         try:
             print "particle: {0}".format(particle.name),
             print "Will transform in: ",
             for new_particle in new_particles:
-                name = new_particle['name']
-                kwargs = {'phi': new_particle['phi'], 'theta': new_particle['theta'], 'p': new_particle['p']}
-                print "Particle causes error:  " + name
-                tr_new_particles.append(ServerParticle.init(name, parent = particle.id, **kwargs))
+                # name = new_particle['name']
+                # kwargs = {'phi': new_particle['phi'], 'theta': new_particle['theta'], 'p': new_particle['p']}
+                print "Particle causes error:  " + new_particle.name
+                tr_new_particles.append(ServerParticle.fromparticle(new_particle, parent = particle.id))
             print " New particles: "
-            for new_particle in new_particles: print new_particle['name'], new_particle['p'], new_particle['phi']
+            for new_particle in new_particles: print new_particle.name, new_particle.p, new_particle.phi, new_particle.theta
             self._node.getNextNode(self).transformParticle(particle, tr_new_particles)
         finally:
             self._transform_lock.release()

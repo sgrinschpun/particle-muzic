@@ -20,3 +20,8 @@ class ServerParticle(object):
     @staticmethod
     def init (name, parent = NO_PARENT, **kwargs):
         return ServerParticle.PARTICLE(name, parent, **kwargs)
+
+    @classmethod
+    def fromparticle(cls, particle, parent = NO_PARENT):
+        """From undercover particle"""
+        return cls.init(particle.name, parent = parent, p=particle.p, theta=particle.theta, phi=particle.phi)
