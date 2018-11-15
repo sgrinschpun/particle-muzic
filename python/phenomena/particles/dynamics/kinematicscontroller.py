@@ -16,11 +16,13 @@ class KinematicsController(object):
 
     def updateFourMomentum(self,acceleration,dt):
         '''
-        Get the velocity of the particle (as the bostvector), add the acceleration to it
+        Get the velocity of the particle (as the bostvector), add the acceleration to itself. Change the fourmomentum by using the boost method. We go to (0,0,0) before boosting to new velocity.
+        Would boosting to acceleration*dt have the same effect?
         '''
         velocity = self._particle.fourMomentum.boostvector
+        fourMomentumCM = self._particle.fourMomentum.boost(velocity)
         velocity += acceleration*dt
-        return self._particle.fourMomentum.boost(velocity)
+        return fourMomentumCM.boost(-1*velocity)
 
     def getPosition(self,velocity, dt):
         return velocity*dt

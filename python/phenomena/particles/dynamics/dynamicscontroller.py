@@ -83,7 +83,7 @@ class Ionization(DynamicType):
         self._particle = particle
 
     def getAcceleration(self,dt):
-        if self._particle == 0:
+        if self._particle.charge == 0 or self._particle.fourMomentum.beta == 0:
             self._acceleration = Vector3D(0,0,0)
         else:
             self._setAcceleration()

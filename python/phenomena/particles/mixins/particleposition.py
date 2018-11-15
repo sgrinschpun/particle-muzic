@@ -7,7 +7,7 @@ __version__ = "0.1"
 __email__ = "sgrinschpun@ifae.es"
 __status__ = "Development"
 
-from skhep.math import Vector3D, LorentzVector
+from skhep.math import Vector3D, LorentzVector, Point3D
 from phenomena.particles.dynamics import DynamicsController, KinematicsController
 
 PARTICLE_INIT_POSITION = Vector3D(x=0.0, y=0.0, z=0.0)
@@ -41,10 +41,13 @@ class ParticlePosition(object):
     def _nextPosition(self,dt):
         self._acceleration = self._dynamics.updateAcceleration(dt)
         self.fourMomentum = self._kinematics.updateFourMomentum(self._acceleration, dt)
-        return self._kinematics.getPosition(self.fourMomentum.boostvector,dt)
+        self._velocity =self.fourMomentum.boostvector
+        return self._kinematics.getPosition(self._velocity,dt)
 
-    def distanceTravelled():
-        return self._position.distance(self._initialposition)
+    def distanceTravelled(self):
+        originalpoint = Point3D(self._initialposition.x,self._initialposition.y,self._initialposition.z)
+        thispoint = Point3D(self._position.x,self._position.y,self._position.z)
+        return thispoint.distance(originalpoint)
 
-    def timeTravelled():
-        pass
+    def timeTravelled(self):
+        return self.fourMomentum.t

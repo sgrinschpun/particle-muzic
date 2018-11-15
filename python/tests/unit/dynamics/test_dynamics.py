@@ -1,7 +1,7 @@
 import copy
 import pytest
 from testparticles import MagneticParticle, ElectricParticle, IonizationParticle
-from phenomena.particles.models import UndercoverParticle
+from phenomena.particles.models import UndercoverParticle, BubbleChamberParticle
 from phenomena.particles.dynamics import DynamicsController, KinematicsController
 from phenomena.particles.dynamics.dynamicscontroller import DynamicType, MagneticField, ElectricField, Ionization
 from skhep.math  import Vector3D, LorentzVector
@@ -12,8 +12,16 @@ undercover_particles = [(UndercoverParticle("pi-", p=1.0))]
 magnetic_particles = [(MagneticParticle("pi-", p=1.0))]
 ionization_particles = [(IonizationParticle("pi-", p=1.0))]
 
+bubblechmaber_particles = [ (BubbleChamberParticle("pi-", p=1.0)),
+                            (BubbleChamberParticle("pi+", p=2.0)),
+                            (BubbleChamberParticle("K+", p=2.0)),
+                            (BubbleChamberParticle("K-", p=2.0)),
+                            (BubbleChamberParticle("pi0", p=2.0)),
+                            (BubbleChamberParticle("K0", p=2.0))
+                            ]
+
 @pytest.mark.parametrize("particle",undercover_particles)
-def test_MagneticField_DynamicTypev(particle):
+def test_MagneticField_DynamicType(particle):
     Field = MagneticField(particle)
     assert isinstance(Field, DynamicType)
     acceleration = Field.getAcceleration(dt)
@@ -42,7 +50,7 @@ def test_MagneticField_DynamicType(particle):
 
 @pytest.mark.parametrize("particle",magnetic_particles)
 def test_MagneticField_Particle(particle):
-    position0 = copy.deepcopy(particle._position)
+    position0 = particle._position.copy()
     assert position0 == particle._initialposition
     velocity0 = particle.fourMomentum.boostvector
     particle.updatePosition(dt)
@@ -56,6 +64,8 @@ def test_MagneticField_Particle(particle):
     assert isinstance(velocity1, Vector3D)
     assert velocity1 != velocity0
     assert not acceleration1.isperpendicular(velocity1)
+    assert particle.distanceTravelled() !=0
+    assert particle.timeTravelled() !=0
 
 @pytest.mark.parametrize("particle",undercover_particles)
 def test_Ionization_Dynamics(particle):
@@ -65,7 +75,6 @@ def test_Ionization_Dynamics(particle):
     velocity0 = copy.deepcopy(particle.fourMomentum.vector)
     assert isinstance(acceleration, Vector3D)
     assert acceleration.isantiparallel(velocity0)
-
 
 @pytest.mark.parametrize("particle",undercover_particles)
 def test_Ionization_Controllers(particle):
@@ -87,7 +96,7 @@ def test_Ionization_Controllers(particle):
 
 @pytest.mark.parametrize("particle",ionization_particles)
 def test_Ionization_Particle(particle):
-    position0 = copy.deepcopy(particle._position)
+    position0 = particle._position.copy()
     assert position0 == particle._initialposition
     velocity0 = particle.fourMomentum.boostvector
     particle.updatePosition(dt)
@@ -100,3 +109,24 @@ def test_Ionization_Particle(particle):
     assert isinstance(velocity1, Vector3D)
     assert velocity1 != velocity0
     assert not acceleration1.isperpendicular(velocity1)
+    assert particle.distanceTravelled() !=0
+    assert particle.timeTravelled() !=0
+
+@pytest.mark.parametrize("particle",bubblechmaber_particles)
+def test_BubbleChamber_Dynamics(particle):
+    position0 = particle._position.copy()
+    assert position0 == particle._initialposition
+    velocity0 = particle.fourMomentum.boostvector.copy()
+    particle.updatePosition(dt)
+    position1 = particle._position
+    assert isinstance(position1 , LorentzVector)
+    assert position1 != position0
+    acceleration1 = particle._acceleration
+    assert isinstance(acceleration1, Vector3D)
+    velocity1= particle.fourMomentum.boostvector.copy()
+    assert isinstance(velocity1, Vector3D)
+    if particle.charge !=0:
+        assert velocity1 != velocity0
+        assert not acceleration1.isperpendicular(velocity1)
+    assert particle.distanceTravelled() !=0
+    assert particle.timeTravelled() !=0
