@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 __author__ = "Sebastian Grinschpun"
 __license__ = "GPL"
 __version__ = "0.1"
@@ -21,7 +20,7 @@ class BubbleChamberParticle(ParticleTransformation, ParticlePosition, ParticleBo
     '''
     #TRANSFORMATIONS = [ComptonEffect, PairProduction, Annihilation, InelasticCollisionWithProton,InelasticCollisionWithNeutron, Decay, ElasticCollisionWithProton, ElasticCollisionWithElectron, ElasticCollisionWithNeutron]
 
-    TRANSFORMATIONS = [Decay,ElasticCollisionWithProton,InelasticCollisionWithProton,NoTransformation]
+    TRANSFORMATIONS = [Decay, NoTransformation]
 
     DYNAMICSLIST = [MagneticField, Ionization]
 

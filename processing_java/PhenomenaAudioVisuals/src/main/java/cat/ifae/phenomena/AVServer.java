@@ -57,7 +57,7 @@ public class AVServer extends PApplet {
 			}
 		}
 		manageList.visualize();
-		//saveFrame("particle-######.png");
+		//isaveFrame("particle-######.png");
 	}
 
 	public void keyPressed() {

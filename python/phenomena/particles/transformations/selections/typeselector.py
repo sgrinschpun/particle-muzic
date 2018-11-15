@@ -1,4 +1,5 @@
 import random
+from phenomena.particles.transformations.types import NoTransformation
 
 class TypeSelector(object):
 

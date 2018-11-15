@@ -7,7 +7,7 @@ class MappingsController:
     def __init__(self):
         self._map_dictionary = {"charge": MirrorMapping(),
                                "mass": MirrorMapping(),
-                               "decay_time": MirrorMapping(),
+                               "transformtime": MirrorMapping(),
                                "composition": MirrorMapping(),
                                "type": MirrorMapping(),
                                "p": MirrorMapping(),

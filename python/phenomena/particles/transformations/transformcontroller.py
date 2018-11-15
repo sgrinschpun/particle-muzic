@@ -20,9 +20,9 @@ class TransformController(object):
     Implements online & offline selections
     '''
 
-    def __init__(self, particle, transformationlist):
+    def __init__(self, particle, classlist):
         self._particle = particle
-        self._setTransformationList(transformationlist)
+        self._setTransformationList(classlist)
         self._buildTransformations() ## las one needed for online selections
         self._selectType()
         self._selectChannel()
@@ -50,10 +50,16 @@ class TransformController(object):
                 newtransformationlist.append(transf)
             else:
                 pass
-        self._transformationlist = newtransformationlist
+
+        
+
+        # if decay values list is [] keep NoTransformation
+        # if decay values list is not [] get rid of Notransformaton
         #spaghetti
         # if not any('Decay' in item['type'] for item in allTransformations):
         #     allTransformations.append({'type':'NoTransformation'})
+
+        self._transformationlist = newtransformationlist
         self._allTransformations = allTransformations
 
     def _selectByType(self, type):
@@ -116,7 +122,7 @@ class TransformController(object):
         return self._buildOutput()
 
     @property
-    def time(self):
+    def transformtime(self):
         return self._time
 
     def query(self, dt=1./60.):
