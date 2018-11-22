@@ -13,6 +13,9 @@ from phenomena.particles.transformations.types import Decay, NoTransformation #V
 class QuantumUniverseVirtualParticle(ParticleTransformation, ParticleBoost, ParticleVirtual, ParticleData, ParticleId, Particle):
     '''
     This class is intended for the QuantumUniverse simulation allowing virtual particles.
+    argv[0] -> Name  |  {'Name':Name(str), 'Mass':Mass(float), 'Decay':Decay(list of tuples)}
+    argv[1] -> Parent
+    kwargs -> p, theta, phi
     '''
     TRANSFORMATIONS = [Decay, NoTransformation]
 

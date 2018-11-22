@@ -15,6 +15,9 @@ from phenomena.particles.dynamics import MagneticField, ElectricField, Ionizatio
 class BubbleChamberParticle(ParticleTransformation, ParticlePosition, ParticleBoost, ParticleData, ParticleId, Particle):
     '''
     This class is intended for BubbleChamber simulation. That's why these mixins are chosen.
+    argv[0] -> Name
+    argv[1] -> Parent
+    kwargs -> p, theta, phi
     '''
     #TRANSFORMATIONS = [ComptonEffect, PairProduction, Annihilation, InelasticCollisionWithProton,InelasticCollisionWithNeutron, Decay, ElasticCollisionWithProton, ElasticCollisionWithElectron, ElasticCollisionWithNeutron]
 

@@ -45,7 +45,7 @@ class ParticleVirtual(object):
             self._deactivate_decay_channels() # for virtual particles, not all channels are allowed
             self._renorm_decay_channels() # remaining channels must have the probability renormalized
         else:
-            self._decay = argv[0].get('decay')
+            self._decay_channels = argv[0].get('decay')
 
 
     def _deactivate_decay_channels(self):

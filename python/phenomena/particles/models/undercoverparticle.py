@@ -11,6 +11,9 @@ from phenomena.particles.mixins import ParticleData, ParticleBoost, ParticlePosi
 class UndercoverParticle(ParticlePosition, ParticleBoost, ParticleData):
     '''
     This particle class is only used when we need to consider interaction with particles that are not logged in the server. for example, interaction with protons in the bubble chamber.
+    argv[0] -> Name
+    argv[1] -> Mass
+    kwargs -> p, theta, phi
     '''
 
     def __init__(self, *argv, **kwargs):
