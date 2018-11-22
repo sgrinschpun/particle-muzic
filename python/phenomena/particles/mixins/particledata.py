@@ -6,6 +6,8 @@ __version__ = "0.1"
 __email__ = "sgrinschpun@ifae.es"
 __status__ = "Development"
 
+import collections
+import six
 from phenomena.particles.sources import ParticleDataSource
 
 class ParticleData(object):
@@ -18,15 +20,18 @@ class ParticleData(object):
     def name(self):
         return self._name
 
-    def _set_name(self, name):
-        self._name = name
+    def _set_name(self, argv):
+        if isinstance(argv[0],six.string_types):
+            self._name = argv[0]
+        elif isinstance(argv[0],collections.Mapping):
+            self._name = argv[0].get('name')
 
     @property
     def pdgid(self):
         return self._pdgid
 
-    def _set_pdgid(self, name):
-        self._pdgid = ParticleDataSource.getPDGId(name)
+    def _set_pdgid(self):
+        self._pdgid = ParticleDataSource.getPDGId(self._name)
 
     @property
     def mass(self):

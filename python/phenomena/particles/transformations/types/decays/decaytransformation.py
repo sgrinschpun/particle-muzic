@@ -20,3 +20,7 @@ class Decay(Transformation):
         FACTOR = 1e8
         probability = 1- math.exp(-1*dt/self._particle.lifetime * u.picosecond / u.s)
         return probability * FACTOR
+
+class DecayThroughVirtual(Transformation):
+    pass
+    pass

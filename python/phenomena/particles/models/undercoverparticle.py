@@ -13,18 +13,18 @@ class UndercoverParticle(ParticlePosition, ParticleBoost, ParticleData):
     This particle class is only used when we need to consider interaction with particles that are not logged in the server. for example, interaction with protons in the bubble chamber.
     '''
 
-    def __init__(self, name, mass = 0, **kwargs):
-        #### ParticleData
-        if mass == 0:
-            self._set_name(name)  # Name of the particle
-            self._set_pdgid(name) # Id from PDG
+    def __init__(self, *argv, **kwargs):
+        #### You can create an undercoverparticle with the mass you choose
+        try:
+            self._name = argv[0]
+            self._mass = argv[1]
+        except:
+            self._set_name(argv)  # Name of the particle
+            self._set_pdgid() # Id from PDG
             self._set_mass() # Mass of the particle in GeV
             self._set_charge() # Charge of the particle
             self._set_type() # Particle Type (quark, lepton, boson, meson, baryon)
             self._set_composition()
-        else:
-            self._name = name
-            self._mass = mass
 
         #### ParticleBoost
         self._set_fourMomentum(kwargs)#assign 4momentum vector and  boosted parameters
