@@ -5,7 +5,7 @@ from phenomena.particles.models import UndercoverParticle, BubbleChamberParticle
 
 virtualparticles = [(QuantumUniverseVirtualParticle({'name':"W+",'mass':3.0})),
                     (QuantumUniverseVirtualParticle({'name':"W+",'mass':3.0, 'decay':[(0.321369, [-1, 2])]})),
-                    (QuantumUniverseVirtualParticle({'name':"W+",'mass':3.0, 'decay':[-1, 2]}))
+                    (QuantumUniverseVirtualParticle({'name':"W+",'mass':3.0, 'decay':[(1,[-1, 2])]}))
                 ]
 nonvirtualparticles = [(QuantumUniverseVirtualParticle("W+"))
                 ]
