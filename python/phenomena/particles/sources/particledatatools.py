@@ -87,11 +87,31 @@ class ParticleDataToolFetcher(object):
 
     @staticmethod
     def getOriginParticles(listofdecayedparticles):
-         pdgid_list = map(ParticleDataToolFetcher.getPDGId, listofdecayedparticles)
-         part_list = []
-         for item in ParticleDataToolFetcher.getParticleList():
-             channels = ParticleDataToolFetcher.getDecayChannels(item[0])
-             for channel in channels:
-                 if set(pdgid_list) == set(channel[1]):
-                     part_list.append((channel[0],[item[1].name]))
-         return part_list
+        pdgid_list = map(ParticleDataToolFetcher.getPDGId, listofdecayedparticles)
+        part_list = []
+        for item in ParticleDataToolFetcher.getParticleList():
+         channels = ParticleDataToolFetcher.getDecayChannels(item[0])
+         for channel in channels:
+             if set(pdgid_list) == set(channel[1]):
+                 part_list.append((channel[0],[item[1].name]))
+        return part_list
+
+    @staticmethod
+    def getBR(originparticle, listofdecayedparticles):
+        pdgid_origin = ParticleDataToolFetcher.getPDGId(originparticle)
+        pdgid_list = map(ParticleDataToolFetcher.getPDGId, listofdecayedparticles)
+        channels = ParticleDataToolFetcher.getDecayChannels(pdgid_origin)
+        for channel in channels:
+            if set(pdgid_list) == set(channel[1]):
+                BR = channel[0]
+                return BR
+
+    @staticmethod
+    def getNdecays(integer):
+        part_list = []
+        for item in ParticleDataToolFetcher.getParticleList():
+         channels = ParticleDataToolFetcher.getDecayChannels(item[0])
+         for channel in channels:
+             if len(channel[1]) == integer and channel[0] != 0.0:
+                 part_list.append(item[1].name)
+        return part_list

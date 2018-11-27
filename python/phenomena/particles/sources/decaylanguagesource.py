@@ -53,7 +53,10 @@ class DecayLanguageFetcher(object):
 
     @staticmethod
     def getAnti(pdgid):
-        return Particle.from_pdgid(pdgid).invert().val
+        if pdgid in [12,14,16,-12,-14,-16]:
+            return -1*pdgid
+        else:
+            return Particle.from_pdgid(pdgid).invert().val
 
     @staticmethod
     def getLatex(pdgid):

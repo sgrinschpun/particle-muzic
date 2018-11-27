@@ -13,7 +13,7 @@ class Decay(Transformation):
         self._buildTransfValues()
 
     def _outputParticles(self):
-        return Transformation.channelListToNames(VirtualDecay(self._particle.decay_channels)
+        return Transformation.channelListToNames(self._particle.decay_channels)
 
     def getProbability(self, dt=1./60.):
         dt = dt *u.s
