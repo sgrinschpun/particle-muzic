@@ -7,10 +7,11 @@ VirtualChannel = namedtuple('VirtualChannel', 'output1 virtual output23 BR1,BR2,
 
 class VirtualParticleChannel(object):
 
-    def __init__(self, particle):
+    def __init__(self, particle,id):
         self._particle = particle
         self._decayParticles= ParticleDataToolFetcher.getDecayParticles(self._particle.name)
-        self._buildVirtualChannels(self._decayParticles[0])
+        print self._particle.name, 'to', self._decayParticles[id]
+        self._buildVirtualChannels(self._decayParticles[id])
 
     def _buildVirtualChannels(self,decayparticles):
         '''
@@ -30,17 +31,25 @@ class VirtualParticleChannel(object):
             output1 = item
             output23 = decayparticles[:index]+decayparticles[index+1:]
             virtuallist = ParticleDataToolFetcher.getOriginParticles(output23)
-            #if output23 is lepton neutrino, only keep W
+            #if lepton neutrino only accept W+-
+            if VirtualParticleChannel.leptonnumber(output23)==0:
+                for index, item in enumerate(virtuallist):
+                    if item[1][0] in ['W+','W-']:
+                        virtuallist = [virtuallist[index]]
+                        break
+
             for item in virtuallist:
                 BR1 = item[0]
                 virtual = item[1][0]
                 if BR1 != 0.0:
-                #and not ParticleDataSource.isNewPhysics(virtual):
-                    BR2 = ParticleDataToolFetcher.getBR(virtual,[self._particle.name,ParticleDataSource.getAnti(output1)])
                     BRW = VirtualParticleChannel.breit_wigner(self._particle.name, virtual)
-                    prob = BR1*BR2*BRW
-                    vc = VirtualChannel(output1, virtual, output23, BR1, BR2, BRW, prob)
-                    VirtualChannels.append(vc)
+                    try:
+                        BR2 = ParticleDataToolFetcher.getBR(virtual,[self._particle.name,ParticleDataSource.getAnti(output1)])
+                        prob = BR1*BR2*BRW
+                        vc = VirtualChannel(output1, virtual, output23, BR1, BR2, BRW, prob)
+                        VirtualChannels.append(vc)
+                    except:
+                        pass
         self._virtualchannels = VirtualChannels
 
     @staticmethod
@@ -52,3 +61,22 @@ class VirtualParticleChannel(object):
         k = 2*math.sqrt(2*M*T)*gamma/(math.pi*math.sqrt(M+gamma))
         result = k/((E-M)*2 + M*T)
         return result
+
+    @staticmethod
+    def leptonnumber(pair):
+        dict = {
+        'e-':1,'nu_e':1,
+        'e+':-1,'nu_ebar':-1,
+        'mu-':1,'nu_mu':1,
+        'mu+':-1,'nu_mubar':-1,
+        'tau-': 1,'nu_tau':1,
+        'tau+':-1,'nu_taubar':-1
+        }
+        value = 0
+        for item in pair:
+            try:
+                leptonnumber = dict[item]
+            except:
+                leptonnumber = 0
+            value += leptonnumber
+        return value
