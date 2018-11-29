@@ -55,5 +55,8 @@ class DataSource(object):
     def getAnti(self, pdgid):
          return self._imp.getAnti(pdgid)
 
+    def isNewPhysics(self, pdgid):
+        return self._imp.isNewPhysics(pdgid)
+
     def getParticleList(self):
          return self._imp.getParticleList()

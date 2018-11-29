@@ -35,6 +35,7 @@ sources = {
     'getCTau':scikitHEP, #particledatatool, scikitHEP
     'getRadius':decaylanguage,
     'getAnti':decaylanguage,
+    'isNewPhysics':scikitHEP,
     'getParticleList':particledatatool,
     'getParticleByComposition':extrainfo
 }
@@ -115,6 +116,11 @@ class ParticleDataSource(object):
     def getAnti(name):
         pdgid = ParticleDataSource.getPDGId(name)
         return ParticleDataSource.getName(sources['getAnti'].getAnti(pdgid))
+
+    @staticmethod
+    def isNewPhysics(name):
+        pdgid = ParticleDataSource.getPDGId(name)
+        return sources['isNewPhysics'].isNewPhysics(pdgid)
 
     @staticmethod
     def getParticleList():

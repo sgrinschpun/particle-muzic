@@ -57,10 +57,12 @@ class ParticleDataToolFetcher(object):
 
     @staticmethod
     def getParticleList():
+        '''Get the list of al particles in the DB'''
         return pythia.iteritems()
 
     @staticmethod
     def decayListToNames(decaylist):
+        '''Change ids for names in decay lists'''
         allchannels_list = []
         for channel in decaylist:
             thischannels_list = []
@@ -71,12 +73,14 @@ class ParticleDataToolFetcher(object):
 
     @staticmethod
     def getDecayChannelsWithNames(name):
+        '''Substitute the ids of the particles for their names in the decay_channel'''
         pdgid = ParticleDataToolFetcher.getPDGId(name)
         pdgid_list = ParticleDataToolFetcher.getDecayChannels(pdgid)
         return ParticleDataToolFetcher.decayListToNames(pdgid_list)
 
     @staticmethod
     def getDecayParticles(name):
+        '''Given a particle name, return all the particles it decay to'''
         pdgid = ParticleDataToolFetcher.getPDGId(name)
         decaylist = ParticleDataToolFetcher.getDecayChannels(pdgid)
         particle_list = []
@@ -87,6 +91,7 @@ class ParticleDataToolFetcher(object):
 
     @staticmethod
     def getOriginParticles(listofdecayedparticles):
+        '''Given a list of particle names, search for particles that decay into these'''
         pdgid_list = map(ParticleDataToolFetcher.getPDGId, listofdecayedparticles)
         part_list = []
         for item in ParticleDataToolFetcher.getParticleList():
@@ -98,6 +103,7 @@ class ParticleDataToolFetcher(object):
 
     @staticmethod
     def getBR(originparticle, listofdecayedparticles):
+        '''Given a particle and the particles it decays to, return the BR of that channel'''
         pdgid_origin = ParticleDataToolFetcher.getPDGId(originparticle)
         pdgid_list = map(ParticleDataToolFetcher.getPDGId, listofdecayedparticles)
         channels = ParticleDataToolFetcher.getDecayChannels(pdgid_origin)
@@ -107,7 +113,14 @@ class ParticleDataToolFetcher(object):
                 return BR
 
     @staticmethod
+    def getChannel(particle, id):
+        'get a specific channel from decay values'
+        return ParticleDataToolFetcher.getDecayParticles(particle)[id]
+
+
+    @staticmethod
     def getNdecays(integer):
+        '''Get all the particles that decay to integer = 2 or 3 or .. particles'''
         part_list = []
         for item in ParticleDataToolFetcher.getParticleList():
          channels = ParticleDataToolFetcher.getDecayChannels(item[0])

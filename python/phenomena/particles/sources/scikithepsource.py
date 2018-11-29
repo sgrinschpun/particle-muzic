@@ -65,3 +65,7 @@ class SciKitHEPFetcher(object):
     @staticmethod
     def getCTau(pdgid):
         return tbl[pdgid].ctau
+
+    @staticmethod
+    def isNewPhysics(pdgid):
+        return (PDGID.isSUSY(pdgid) or PDGID.isQBall(pdgid) or PDGID.isRhadron(pdgid)), [PDGID.isSUSY(pdgid) , PDGID.isQBall(pdgid) , PDGID.isRhadron(pdgid)]
