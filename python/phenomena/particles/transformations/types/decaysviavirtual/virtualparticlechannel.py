@@ -56,10 +56,10 @@ class VirtualParticleChannel(object):
     def breit_wigner(part0,virtpart):
         E = ParticleDataSource.getMass(part0)**2
         M = ParticleDataSource.getMass(virtpart)**2
-        T = ParticleDataSource.getTau(virtpart)**2
+        T = ParticleDataSource.getWidth(virtpart)**2
         gamma = math.sqrt((M+T)*M)
         k = 2*math.sqrt(2*M*T)*gamma/(math.pi*math.sqrt(M+gamma))
-        result = k/((E-M)*2 + M*T)
+        result = k/((E-M)**2 + M*T)
         return result
 
     @staticmethod

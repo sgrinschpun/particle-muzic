@@ -9,7 +9,7 @@ test_particle= [    (BubbleChamberParticle("mu-"),0),
                     (BubbleChamberParticle("eta"),5),  #['gamma', 'e-', 'e+']
                     (BubbleChamberParticle("K+"),3),
                     (BubbleChamberParticle('pi0'),1),
-                    (BubbleChamberParticle('D0'),50),
+                    (BubbleChamberParticle('Lambda0'),3),
 ]
 
 
@@ -24,8 +24,8 @@ def test_virtual(particle, id):
 
 @pytest.mark.skip
 def test_choose_chanel():
-    part = BubbleChamberParticle('D0')
+    part = BubbleChamberParticle('Lambda0')
     decayparticles = ParticleDataToolFetcher.getDecayParticles(part.name)
     for channel in decayparticles:
         print channel
-    print decayparticles[50]
+    print decayparticles[3]

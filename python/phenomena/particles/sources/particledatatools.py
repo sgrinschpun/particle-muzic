@@ -52,7 +52,10 @@ class ParticleDataToolFetcher(object):
     @staticmethod
     def getWidth(pdgid):
         tau = ParticleDataToolFetcher.getTau(pdgid) / u.picosecond
-        width = lifetime_to_width(tau / u.picosecond)
+        try:
+            width = lifetime_to_width(tau / u.picosecond)
+        except:
+            width = 0
         return width / u.GeV
 
     @staticmethod
