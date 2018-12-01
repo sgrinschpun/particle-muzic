@@ -40,9 +40,5 @@ class QuantumUniverseParticle(ParticleTransformation, ParticleBoost, ParticleDat
         self._set_fourMomentum(kwargs)#assign 4momentum vector and  boosted parameters
         self._set_boostedLifetime()# lifetime is recalculated
 
-<<<<<<< HEAD
-        ### ParticleDecay
-=======
->>>>>>> upstream/develop
         ### ParticleTransformation
         self._setTransformationManager(self, QuantumUniverseParticle.TRANSFORMATIONS)
