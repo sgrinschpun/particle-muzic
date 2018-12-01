@@ -5,7 +5,7 @@ import numpy as np
 
 from phenomena.particles.decays.Breit_Wigner import lim_nonrel_breit_wigner_gen, lim_rel_breit_wigner_gen
 from phenomena.particles.sources import ParticleDataSource
-from phenomena.particles.decays.setdecay import Decay
+from phenomena.particles.transformations.ex.ex.setdecay import Decay
 
 class VirtualDecay(object):
 

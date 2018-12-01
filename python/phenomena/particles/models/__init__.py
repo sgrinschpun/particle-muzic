@@ -1,3 +1,4 @@
 from bubblechamber import BubbleChamberParticle
 from quantumuniverse import QuantumUniverseParticle
-from quantumuniverse_virtual import QuantumUniverseVirtualParticle 
+from undercoverparticle import UndercoverParticle
+from quantumuniverse_virtual import QuantumUniverseVirtualParticle
