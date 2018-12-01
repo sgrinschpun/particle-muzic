@@ -1,6 +1,6 @@
 from collections import namedtuple
 
-from phenomena.particles.sources import ParticleDataSource, ParticleDataToolFetcher
+from phenomena.particles.sources import ParticleDataSource, ParticleDataToolFetcher, SciKitHEPFetcher
 
 Channel = namedtuple('Channel', 'BR particles')
 #_make, _replace, _asdict() jsdon.dumps,  _fields
@@ -103,13 +103,13 @@ class TransformationChannels(object):
         try:
             return self.all[id]
         except:
-            return None
+            return []
 
     def getChannelfromParticles(self, particles):
         try:
-            return [channel for channel in self.all if channel.names==particles][0]
+            return [channel for channel in self.all if channel.names==particles]
         except:
-            return None
+            return []
 
     def lengthCut(self, len):
         return [channel for channel in self._tclist if channel.length<=len]
@@ -120,6 +120,7 @@ class TransformationChannels(object):
 class AllDecays(object):
 
     ParticleDecayChannels = namedtuple('ParticleDecayChannels', 'name decayChannels')
+    VirtualOptions = namedtuple('VirtualOptions', 'name BR')
 
     def __init__(self):
         self._buildList()
@@ -131,10 +132,11 @@ class AllDecays(object):
             all.append(AllDecays.ParticleDecayChannels(item[1].name,TransformationChannels.from_pdt(channels)))
         self._allDecaysinDB = all
 
-    def getParticlesfromDecay(self,decays):
+    def getParticlesfromDecay(self,decay):
         selected_particles = []
         for partchannel in self._allDecaysinDB:
-            for channel in partchannel.decayChannels.all:
-                if set(decays) == channel.nameSet:
-                    selected_particles.append(partchannel.name)
+            for channel in partchannel.decayChannels.getChannel(decay):
+                if all([set(decay) == channel.nameSet, channel.BR > 0., ParticleDataSource.getCharge(partchannel.name)== channel.totalCharge,
+                SciKitHEPFetcher.isSUSY(ParticleDataSource.getPDGId(partchannel.name))==False]):
+                    selected_particles.append(AllDecays.VirtualOptions(partchannel.name,channel.BR))
         return selected_particles

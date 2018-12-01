@@ -40,7 +40,10 @@ def test_TransformationChannels(particle):
     print TCS.lengthSelection(3)
 
 decays = [  (['gamma', 'gamma']),
-            (['e-', 'nu_ebar'])]
+            (['e-', 'nu_ebar']),
+            (['e+', 'nu_e']),
+            (['e-', 'e+']),
+            (['pi+', 'pi-']),]
 @pytest.mark.parametrize("decay",decays)
 def test_alldecays(decay):
     alldecays = AllDecays()
@@ -51,4 +54,5 @@ def test_alldecays(decay):
     assert isinstance(alldecays._allDecaysinDB[0].decayChannels.all, list)
     assert isinstance(alldecays._allDecaysinDB[10].decayChannels.all[1], TransformationChannel)
 
-    print alldecays.getParticlesfromDecay(decay)
+    for item in alldecays.getParticlesfromDecay(decay):
+        print item.name
