@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 __author__ = "Sebastian Grinschpun"
 __license__ = "GPL"
 __version__ = "0.1"
@@ -7,14 +6,23 @@ __email__ = "sgrinschpun@ifae.es"
 __status__ = "Development"
 
 from phenomena.particles.particle import Particle
-from phenomena.particles.mixins import ParticleId, ParticleData, ParticleDecay, ParticlePosition, ParticleBoost
+from phenomena.particles.mixins import ParticleId, ParticleData, ParticlePosition, ParticleBoost, ParticleTransformation
+
+from phenomena.particles.transformations.types import ComptonEffect, PairProduction, Annihilation, InelasticCollisionWithProton,InelasticCollisionWithNeutron, Decay, ElasticCollisionWithProton, ElasticCollisionWithElectron, ElasticCollisionWithNeutron, NoTransformation
+
+from phenomena.particles.dynamics import MagneticField, ElectricField, Ionization
 
 NO_PARENT = -1
 
-class BubbleChamberParticle(ParticleDecay, ParticlePosition, ParticleBoost, ParticleData, ParticleId, Particle):
+class BubbleChamberParticle(ParticleTransformation, ParticlePosition, ParticleBoost, ParticleData, ParticleId, Particle):
     '''
     This class is intended for BubbleChamber simulation. That's why these mixins are chosen.
     '''
+    #TRANSFORMATIONS = [ComptonEffect, PairProduction, Annihilation, InelasticCollisionWithProton,InelasticCollisionWithNeutron, Decay, ElasticCollisionWithProton, ElasticCollisionWithElectron, ElasticCollisionWithNeutron]
+
+    TRANSFORMATIONS = [Decay, NoTransformation]
+
+    DYNAMICSLIST = [MagneticField, Ionization]
 
     def __init__(self, name, parent = NO_PARENT, **kwargs):
 
@@ -38,8 +46,8 @@ class BubbleChamberParticle(ParticleDecay, ParticlePosition, ParticleBoost, Part
 
         #### ParticlePosition
         self._set_initPosition()
+        self._set_kinematics()
+        self._set_dynamics(BubbleChamberParticle.DYNAMICSLIST)
 
-        ### ParticleDecay
-        self._set_decay() # Particle decay channel chosen
-        self._set_decayTime() #Time until decay in ****units****
-        self._set_decayBoostedParameters() #Calculates the boosted parameters of the decayed particles
+        ### ParticleTransformation
+        self._setTransformationManager(self, BubbleChamberParticle.TRANSFORMATIONS)

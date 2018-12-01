@@ -1,1 +1,0 @@
-- go from Abelton to libpd or any other synthesis created in processing
