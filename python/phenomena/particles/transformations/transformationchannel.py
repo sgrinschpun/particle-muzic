@@ -58,13 +58,13 @@ class TransformationChannel(Channel):
 
     def isLeptonNeutrino(self):
         if self.length == 2:
+            lepton = 0
+            neutrino = 0
             for name in self.names:
                 if name in TransformationChannel.leptonList:
                     lepton =1
                 elif name in TransformationChannel.neutrinoList:
                     neutrino =1
-                else:
-                    lepton = neutrino = 0
             leptonneutrino = [lepton,neutrino] == [1,1]
             return leptonneutrino
         else:
@@ -120,7 +120,9 @@ class TransformationChannels(object):
 class AllDecays(object):
 
     ParticleDecayChannels = namedtuple('ParticleDecayChannels', 'name decayChannels')
-    VirtualOptions = namedtuple('VirtualOptions', 'name BR')
+    OriginOptions = namedtuple('OriginOptions', 'name BR')
+
+    typical_particles = ['B+','B-','B0','D+','D-','D0','J/psi','K*-','K*+','K*0','K+','K-','K0','Lambda0','Sigma+','Sigma-','Sigma0','Upsilon','W+','W-','Xi-','Xi0','Z0','u','ubar','s','sbar','t','tbar','b','bbar','c','cbar','d','dbar','e+','e-','eta\'','eta','g','gamma','h0(H_1)','mu+','mu-','n0','nu_e','nu_ebar','nu_mu','nu_mubar','nu_tau','nu_taubar','omega','p+','phi','pi+','pi-','pi0','rho+','rho-','rho0','tau+','tau-']
 
     def __init__(self):
         self._buildList()
@@ -136,7 +138,14 @@ class AllDecays(object):
         selected_particles = []
         for partchannel in self._allDecaysinDB:
             for channel in partchannel.decayChannels.getChannel(decay):
-                if all([set(decay) == channel.nameSet, channel.BR > 0., ParticleDataSource.getCharge(partchannel.name)== channel.totalCharge,
-                SciKitHEPFetcher.isSUSY(ParticleDataSource.getPDGId(partchannel.name))==False]):
-                    selected_particles.append(AllDecays.VirtualOptions(partchannel.name,channel.BR))
+                #print channel.names, channel.isLeptonNeutrino(), partchannel.name in ['W+','W-']
+                if all([set(decay) == channel.nameSet,
+                        channel.BR > 0.,
+                        ParticleDataSource.getCharge(partchannel.name)== channel.totalCharge,
+                        partchannel.name in AllDecays.typical_particles
+                        ]):
+                    if channel.isLeptonNeutrino():
+                        if partchannel.name in ['W+','W-']: selected_particles.append(AllDecays.OriginOptions(partchannel.name,channel.BR))
+                    else:
+                        selected_particles.append(AllDecays.OriginOptions(partchannel.name,channel.BR))
         return selected_particles
