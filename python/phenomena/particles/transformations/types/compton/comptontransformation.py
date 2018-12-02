@@ -1,10 +1,12 @@
 from phenomena.particles.transformations.types import Transformation
 from phenomena.particles.sources import ParticleDataSource
+from phenomena.particles.transformations import TransformationChannels
+
 
 class ComptonEffect(Transformation):
 
     INPUT = ['gamma']
-    OUTPUT = ['gamma', 'e-']
+    OUTPUT = map(ParticleDataSource.getPDGId, ['gamma', 'e-'])
     TARGET = 'e-'
 
     def __init__(self, particle):
@@ -13,8 +15,8 @@ class ComptonEffect(Transformation):
         if  self._particle.name in ComptonEffect.INPUT:
             self._buildTransfValues()
 
-    def _outputParticles(self):
-        return [(1.0,ComptonEffect.OUTPUT)]
+    def _transformationChannels(self):
+        return TransformationChannels.from_decaylist([(1.0,ComptonEffect.OUTPUT)])
 
     def getProbability(self, dt=1./60.):
         gamma = self._particle.fourMomentum.gamma

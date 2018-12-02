@@ -45,13 +45,11 @@ class TransformController(object):
         newtransformationlist =[]
         for transf in self._transformationlist :
             item = transf.values
-            if item != {}:
+            if item:
                 allTransformations.append(item)
                 newtransformationlist.append(transf)
             else:
                 pass
-
-        
 
         # if decay values list is [] keep NoTransformation
         # if decay values list is not [] get rid of Notransformaton
@@ -63,7 +61,7 @@ class TransformController(object):
         self._allTransformations = allTransformations
 
     def _selectByType(self, type):
-        return [element for element in self._allTransformations if element['type'] == type][0]
+        return [element for element in self._allTransformations if element.type == type][0]
 
     def _selectType(self):
         '''
@@ -76,7 +74,7 @@ class TransformController(object):
         From all the possible channels, choose one
         '''
         try:
-            channel = ChannelSelector(self._selectedType['list']).value
+            channel = ChannelSelector(self._selectedType.list).value
         except:
             channel = []
         finally:
@@ -97,12 +95,12 @@ class TransformController(object):
 
     @property
     def selectedType(self):
-        return self._selectedType['type']
+        return self._selectedType.type
 
     @property
     def target(self):
         try:
-            target = self._selectedType['target']
+            target = self._selectedType.target
         except:
             target = None
         finally:
@@ -111,7 +109,7 @@ class TransformController(object):
     @property
     def selectedChannel(self):
         try:
-            channel = self._selectedChannel[1]
+            channel = self._selectedChannel.particles
         except:
             channel = []
         finally:

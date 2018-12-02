@@ -33,7 +33,7 @@ particles = [   (BubbleChamberParticle("mu+")),
 @pytest.mark.skip
 @pytest.mark.parametrize("particle",particles)
 def test_TransformationChannels(particle):
-    TCS = TransformationChannels.from_pdt(particle.decay_channels)
+    TCS = TransformationChannels.from_decaylist(particle.decay_channels)
     assert isinstance(TCS.all, list)
     print TCS.all
     assert isinstance(TCS.getChannel(0),TransformationChannel)

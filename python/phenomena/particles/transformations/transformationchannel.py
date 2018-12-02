@@ -1,5 +1,4 @@
 from collections import namedtuple
-
 from phenomena.particles.sources import ParticleDataSource, ParticleDataToolFetcher, SciKitHEPFetcher
 
 Channel = namedtuple('Channel', 'BR particles')
@@ -75,10 +74,17 @@ class TransformationChannels(object):
         self._tclist = tclist
 
     @classmethod
-    def from_pdt(cls, decaylist):
+    def from_decaylist(cls, decaylist):
         tclist = []
         for channel in decaylist:
             tclist.append(TransformationChannel(channel[0],channel[1]))
+        return cls(tclist)
+
+    @classmethod
+    def from_decaylistNames(cls, decaylist):
+        tclist = []
+        for channel in decaylist:
+            tclist.append(TransformationChannel(channel[0],map(ParticleDataSource.getPDGId,channel[1])))
         return cls(tclist)
 
     @property
@@ -138,7 +144,6 @@ class AllDecays(object):
         selected_particles = []
         for partchannel in self._allDecaysinDB:
             for channel in partchannel.decayChannels.getChannel(decay):
-                #print channel.names, channel.isLeptonNeutrino(), partchannel.name in ['W+','W-']
                 if all([set(decay) == channel.nameSet,
                         channel.BR > 0.,
                         ParticleDataSource.getCharge(partchannel.name)== channel.totalCharge,

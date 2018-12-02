@@ -8,7 +8,7 @@ from skhep.math  import LorentzVector
 
 test_particles = [(ComptonParticle("gamma", p=2.0))]
 
-
+@pytest.mark.skip
 @pytest.mark.parametrize("particle",test_particles)
 def test_comptoneffect_Calculations(particle):
     target = UndercoverParticle(particle.transformation.target)
@@ -45,6 +45,7 @@ def test_comptoneffect_basics(particle):
     for outputpart in output:
         assert isinstance(outputpart,UndercoverParticle)
 
+@pytest.mark.skip
 @pytest.mark.parametrize("particle",test_particles)
 def test_comptoneffect_conservation(particle, conservation, resolution, print_particle):
     print_particle
