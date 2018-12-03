@@ -1,4 +1,4 @@
-from phenomena.particles import ServerParticle
+from phenomena.particles.server_particle import ServerParticle
 from phenomena.connection.phenomena_message import IncomingMessage
 from phenomena.nodes import get_save_node, ExecutableNode
 from phenomena.nodes import JsonRemoteAudioVideoNode

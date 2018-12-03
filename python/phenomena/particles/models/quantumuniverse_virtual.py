@@ -9,11 +9,13 @@ __status__ = "Development"
 import collections
 import six
 from phenomena.particles.particle import Particle
-from phenomena.particles.mixins import ParticleId, ParticleVirtual, ParticleData, ParticleDecay, ParticleBoost, ParticleChannel
+
+from phenomena.particles.mixins import ParticleId, ParticleVirtual, ParticleData, ParticleBoost, ParticleTransformation
+from phenomena.particles.transformations.types import ComptonEffect, PairProduction, Annihilation, InelasticCollisionWithProton,InelasticCollisionWithNeutron, Decay, ElasticCollisionWithProton, ElasticCollisionWithElectron, ElasticCollisionWithNeutron
 
 NO_PARENT = -1
 
-class QuantumUniverseVirtualParticle(ParticleChannel, ParticleDecay, ParticleBoost, ParticleVirtual, ParticleData, ParticleId, Particle):
+class QuantumUniverseVirtualParticle(ParticleTransformation, ParticleBoost, ParticleVirtual, ParticleData, ParticleId, Particle):
     '''
     This class is intended for the QuantumUniverse simulation allowing virtual particles.
     '''
