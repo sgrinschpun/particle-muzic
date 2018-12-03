@@ -1,8 +1,8 @@
 from __future__ import division
 import math
 from skhep import units as u
+from phenomena.particles.transformations.transformationchannel import TransformationChannels
 from phenomena.particles.transformations.types import Transformation
-from phenomena.particles.transformations import TransformationChannels
 
 class Decay(Transformation):
 

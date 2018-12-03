@@ -1,8 +1,13 @@
 import pytest
 from phenomena.particles.models import UndercoverParticle
-from testparticles import ElasticParticle
+from phenomena.particles.transformations import TransformController
+from phenomena.particles.transformations import TransformationChannels, TransformationChannel
+from phenomena.particles.transformations.types import Transformation, TransformationValues
+
 from phenomena.particles.transformations import KinematicsController
 from phenomena.particles.transformations.types import ElasticKinematics
+from testparticles import ElasticParticle
+
 
 test_particles = [  (ElasticParticle("pi-", p=2.0)),
                     (ElasticParticle("pi+", p=1.0)),
@@ -11,6 +16,21 @@ test_particles = [  (ElasticParticle("pi-", p=2.0)),
                     (ElasticParticle("K-", p=1.0)),
                     (ElasticParticle("K0", p=1.0)),
 ]
+
+@pytest.mark.parametrize("particle",test_particles)
+def test_ElasticCollision_basics(particle):
+    assert isinstance(particle.transformation,TransformController)
+    assert isinstance(particle.transformation.allTypes,list)
+    assert isinstance(particle.transformation.selectedType,TransformationValues)
+    assert isinstance(particle.transformation.selectedType.channels,TransformationChannels)
+    assert isinstance(particle.transformation._selectedChannel,TransformationChannel)
+    assert isinstance(particle.transformation.selectedChannel,list)
+    assert isinstance(particle.transformation.output,list)
+
+    assert particle.transformation.selectedType.type in ['ElasticCollisionWithProton','ElasticCollisionWithElectron','ElasticCollisionWithNeutron']
+    assert particle.transformation.selectedType.target in ['e-','n0','p+']
+    assert particle.transformation._selectedChannel.nameSet == set([particle.transformation.target, particle.name])
+    assert len(particle.transformation.output) == 2
 
 @pytest.mark.parametrize("particle",test_particles)
 def test_ElasticCollision_Calculations(particle):
@@ -32,18 +52,6 @@ def test_ElasticCollision_Calculations(particle):
     assert round(eCM_init,4) == round(eCM_final,4) #energy is conserved in the CM
     assert round(eLAB_init,4) == round(eLAB_final,4) #energy is conserved in the LAB
 
-@pytest.mark.parametrize("particle",test_particles)
-def test_ElasticCollision_Transformation(particle):
-    alltypes = particle.transformation.allTypes
-    thisType = [transf for transf in alltypes if transf['type']==particle.transformation.selectedType]
-    assert thisType[0]['target'] in ['e-','n0','p+']
-    assert set(thisType[0]['list'][0][1]) == set([particle.transformation.target, particle.name])
-
-    output = particle.transformation.output
-    assert len(output) == 2
-
-    for outputpart in output:
-        assert isinstance(outputpart,UndercoverParticle)
 
 @pytest.mark.parametrize("particle",test_particles)
 def test_elasticcollision_conservation(particle, conservation, resolution):

@@ -1,7 +1,8 @@
 import math
+from phenomena.particles.transformations.transformationchannel import TransformationChannels
 from phenomena.particles.transformations.types import Transformation
+from phenomena.particles.sources import ParticleDataSource
 from inelasticdata import InelasticData
-from phenomena.particles.transformations import TransformationChannels
 
 
 class InelasticCollision(Transformation):

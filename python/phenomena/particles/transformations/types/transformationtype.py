@@ -2,7 +2,7 @@ import abc
 from collections import namedtuple
 from phenomena.particles.sources import ParticleDataSource
 
-TransformationValues = namedtuple("TransformationValues", "type, target, transformationchannels")
+TransformationValues = namedtuple("TransformationValues", "type, target, channels")
 
 class Transformation(object):
     '''
@@ -17,15 +17,15 @@ class Transformation(object):
         return self.__class__.__name__
 
     def _buildTransfValues(self):
-        transformationchannels = self._transformationChannels()
+        channels = self._transformationChannels()
         if self.__class__.__name__ == 'NoTransformation':
             if self._particle.lifetime == -1:
                 type = self.__class__.__name__
                 target = self.__class__.TARGET
-        elif transformationchannels != []:
+        elif channels != []:
             type = self.__class__.__name__
             target = self.__class__.TARGET
-        self._values = TransformationValues(type,target,transformationchannels)
+        self._values = TransformationValues(type,target,channels)
 
     @abc.abstractmethod
     def _transformationChannels(self):

@@ -1,11 +1,30 @@
 import pytest
 from phenomena.particles.models import UndercoverParticle
+from phenomena.particles.transformations import TransformController
+from phenomena.particles.transformations import TransformationChannels, TransformationChannel
+from phenomena.particles.transformations.types import Transformation, TransformationValues
+
 from phenomena.particles.transformations import KinematicsController
 from phenomena.particles.transformations.types import PairProductionKinematics
-
 from testparticles import PairProductionParticle
 
 test_particles = [(PairProductionParticle("gamma", p=2.0))]
+
+@pytest.mark.parametrize("particle",test_particles)
+def test_PairProduction_basics(particle):
+    assert isinstance(particle.transformation,TransformController)
+    assert isinstance(particle.transformation.allTypes,list)
+    assert isinstance(particle.transformation.selectedType,TransformationValues)
+    assert isinstance(particle.transformation.selectedType.channels,TransformationChannels)
+    assert isinstance(particle.transformation._selectedChannel,TransformationChannel)
+    assert isinstance(particle.transformation.selectedChannel,list)
+    assert isinstance(particle.transformation.output,list)
+
+    assert particle.transformation.selectedType.type == 'PairProduction'
+    assert particle.transformation.selectedType.target == None
+    assert particle.transformation._selectedChannel.nameSet == set(['e-', 'e+'])
+    assert len(particle.transformation.output) == 2
+
 
 @pytest.mark.parametrize("particle",test_particles)
 def test_PairProduction_Calculations(particle):
@@ -27,25 +46,11 @@ def test_PairProduction_Calculations(particle):
     assert round(eLAB_init,4) == round(eLAB_final,4) #energy is conserved in the LAB
 
 @pytest.mark.parametrize("particle",test_particles)
-def test_pairproduction_basics(particle):
-    assert particle.name == 'gamma'
-    alltypes = particle.transformation.allTypes
-    thisType = [transf for transf in alltypes if transf['type']=='PairProduction']
-    assert set(thisType[0]['list'][0][1]) == set(['e-', 'e+'])
-
-    output = particle.transformation.output
-    assert len(output) == 2
-
-    for outputpart in output:
-        assert isinstance(outputpart,UndercoverParticle)
-        #assert outputpart.E < particle.E
-
-@pytest.mark.parametrize("particle",test_particles)
 def test_pairproduction_conservation(particle, conservation, resolution, print_particle):
     print_particle
 
     for attr in ['E','charge', 'baryonnumber', 'leptonnumber']:
         assert round(getattr(conservation.In,attr),resolution) == round(getattr(conservation.Out,attr), resolution)
 
-    for attr in ['P']:
-        assert getattr(conservation.In,attr) == getattr(conservation.Out,attr)
+    #for attr in ['P']:
+    #    assert getattr(conservation.In,attr) == getattr(conservation.Out,attr)

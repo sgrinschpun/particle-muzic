@@ -74,7 +74,7 @@ class TransformController(object):
         From all the possible channels, choose one
         '''
         try:
-            channel = ChannelSelector(self._selectedType.list).value
+            channel = ChannelSelector(self._selectedType.channels.all).value
         except:
             channel = []
         finally:
@@ -95,7 +95,7 @@ class TransformController(object):
 
     @property
     def selectedType(self):
-        return self._selectedType.type
+        return self._selectedType
 
     @property
     def target(self):
@@ -109,7 +109,7 @@ class TransformController(object):
     @property
     def selectedChannel(self):
         try:
-            channel = self._selectedChannel.particles
+            channel = self._selectedChannel.names
         except:
             channel = []
         finally:

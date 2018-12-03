@@ -38,7 +38,7 @@ class KinematicsController(object):
         self._final = finallist
 
     def _set_finalstate(self, particle):
-        type = particle.transformation.selectedType
+        type = particle.transformation.selectedType.type
         self._finalState = KinematicsType[type](self._initial, self._target, self._final).getFinalState()
 
     def getFinalState(self):

@@ -5,6 +5,20 @@ Channel = namedtuple('Channel', 'BR particles')
 #_make, _replace, _asdict() jsdon.dumps,  _fields
 
 class TransformationChannel(Channel):
+    '''
+    TC class includes ONE channels of a particular transformation
+    Subclass of NamedTuple: 1 channel with a BR(float ) and particles (list of ids)
+    TC = TransformationChannel(1.0,[11,22])
+    TC.ids = [11,22]
+    TC.BR = 1.0
+    TC.names = ['e-','nu_ebar']
+    TC.length =2
+    TC.nameSet = set(['e-','nu_ebar'])
+    TC.idSet = set([11,22])
+    TC.totalCharge = -1
+    TC.leptonNumber = 0
+    TC.isLeptonNeutrino = 1
+    '''
     @property
     def ids(self):
         return self.particles
@@ -70,6 +84,20 @@ class TransformationChannel(Channel):
             return False
 
 class TransformationChannels(object):
+    '''
+    TCS class includes ALL the channels of a particular transformation
+    TCS = TransformationChannels.from_decaylist([(0.5,[1,2]),(0.5,[3,4])])
+    TCS = TransformationChannels.from_decaylistNames([(0.5,['e-','nu_ebar']),(0.5,['mu-','nu_mubar'])])
+    TCS.all = [TC1,TC2]
+    TCS.length = 2
+    TCS.mostProbable: the TC with higher BR
+    TCS.getChannel(1) = TC2
+    TCS.getChannel(['mu-','nu_mubar']) = TC2
+    TCS.lengthCut(3) -> TCs with number of output particles <= 3
+    TCS.lengthSelection(3) -> TCs with number of output particles = 3
+    '''
+
+
     def __init__(self, tclist):
         self._tclist = tclist
 
