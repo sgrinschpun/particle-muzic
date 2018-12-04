@@ -22,8 +22,11 @@ class Transformation(object):
         target = self.__class__.TARGET
         if self.__class__.__name__ == 'NoTransformation' and self._particle.lifetime == -1:
             self._values = TransformationValues(type,target,channels)
-        elif channels.all != []:
+        #elif channels.all != []:
+        elif self.__class__.__name__ != 'NoTransformation':
             self._values = TransformationValues(type,target,channels)
+        else:
+            self._values = None
 
 
     @abc.abstractmethod

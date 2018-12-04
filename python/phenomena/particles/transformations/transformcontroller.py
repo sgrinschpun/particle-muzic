@@ -31,10 +31,15 @@ class TransformController(object):
     def _setTransformationList(self, classlist):
         '''
         Sets list of all transformation objects
+        If self._particle.lifetime == -1, it should not add the Decay tranformation
+        If the Decay tranf is in the list, it should not include NoTransformation for self._particle.lifetime != -1 particles. We asume Decay is always present.
         '''
         objectlist = []
         for transformationclass in classlist:
-            objectlist.append(transformationclass(self._particle))
+            if all([self._particle.lifetime != -1, transformationclass.__name__ != 'NoTransformation']):
+                objectlist.append(transformationclass(self._particle))
+            elif all([self._particle.lifetime == -1, transformationclass.__name__ != 'Decay']):
+                objectlist.append(transformationclass(self._particle))
         self._transformationlist = objectlist
 
     def _buildTransformations(self):
@@ -84,7 +89,10 @@ class TransformController(object):
         '''
         Get de list of output particles boosted values
         '''
-        return KinematicsController(self._particle).getFinalState() if self.selectedType.type != 'NoTransformation'else []
+        if self.selectedType.type != 'NoTransformation':
+            return KinematicsController(self._particle).getFinalState()
+        else:
+            return []
 
     def _setTime(self):
         self._time = TimeController.getTime()
