@@ -8,7 +8,7 @@ from phenomena.particles.transformations.types.decays import LAB2BodyDecay, LAB3
 from testparticles import DecayParticle
 
 test_3body = [  (DecayParticle("mu-", p=2.0),0),
-
+                (DecayParticle("mu-", p=0.0),0),
                 ]
 
 test_2body = [  (DecayParticle("pi-", p=2.0)),

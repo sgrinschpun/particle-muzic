@@ -20,14 +20,7 @@ class Transformation(object):
         channels = self._transformationChannels()
         type = self.__class__.__name__
         target = self.__class__.TARGET
-        if self.__class__.__name__ == 'NoTransformation' and self._particle.lifetime == -1:
-            self._values = TransformationValues(type,target,channels)
-        #elif channels.all != []:
-        elif self.__class__.__name__ != 'NoTransformation':
-            self._values = TransformationValues(type,target,channels)
-        else:
-            self._values = None
-
+        self._values = TransformationValues(type,target,channels)
 
     @abc.abstractmethod
     def _transformationChannels(self):
@@ -36,14 +29,3 @@ class Transformation(object):
     @abc.abstractmethod
     def getProbability(self,t):
         pass
-
-    # @staticmethod
-    # def channelListToNames(channels):
-    #     newchannels =[]
-    #     for item in channels:
-    #         newchannels.append( (item[0],Transformation.ParticleListToNames(item[1])) )
-    #     return newchannels
-    #
-    # @staticmethod
-    # def ParticleListToNames(particlelist):
-    #     return map(ParticleDataSource.getName, particlelist)
