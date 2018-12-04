@@ -1,7 +1,7 @@
 import pytest
 from phenomena.particles.models import BubbleChamberParticle
 from phenomena.particles.transformations.transformationchannel import TransformationChannel, TransformationChannels, AllDecays
-@pytest.mark.skip
+
 def test_TransformationChannel():
     part = BubbleChamberParticle('mu+')
     BR = part.decay_channels[0][0]
@@ -30,7 +30,6 @@ particles = [   (BubbleChamberParticle("mu+")),
                 (BubbleChamberParticle("Lambda0"))
 ]
 
-@pytest.mark.skip
 @pytest.mark.parametrize("particle",particles)
 def test_TransformationChannels(particle):
     TCS = TransformationChannels.from_decaylist(particle.decay_channels)
@@ -52,6 +51,7 @@ decays = [  (['gamma', 'gamma']),
             (['pi+', 'pi-']),
             ]
 
+@pytest.mark.skip
 @pytest.mark.parametrize("decay",decays)
 def test_alldecays(decay):
     alldecays = AllDecays()

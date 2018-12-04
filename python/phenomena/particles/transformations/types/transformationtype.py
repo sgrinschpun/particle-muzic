@@ -18,14 +18,13 @@ class Transformation(object):
 
     def _buildTransfValues(self):
         channels = self._transformationChannels()
-        if self.__class__.__name__ == 'NoTransformation':
-            if self._particle.lifetime == -1:
-                type = self.__class__.__name__
-                target = self.__class__.TARGET
-        elif channels != []:
-            type = self.__class__.__name__
-            target = self.__class__.TARGET
-        self._values = TransformationValues(type,target,channels)
+        type = self.__class__.__name__
+        target = self.__class__.TARGET
+        if self.__class__.__name__ == 'NoTransformation' and self._particle.lifetime == -1:
+            self._values = TransformationValues(type,target,channels)
+        elif channels.all != []:
+            self._values = TransformationValues(type,target,channels)
+
 
     @abc.abstractmethod
     def _transformationChannels(self):
