@@ -2,6 +2,7 @@ import pytest
 from phenomena.particles.models import BubbleChamberParticle
 from phenomena.particles.transformations.transformationchannel import TransformationChannel, TransformationChannels, AllDecays
 
+@pytest.mark.skip
 def test_TransformationChannel():
     part = BubbleChamberParticle('mu+')
     BR = part.decay_channels[0][0]
@@ -29,7 +30,7 @@ particles = [   (BubbleChamberParticle("mu+")),
                 (BubbleChamberParticle("pi0")),
                 (BubbleChamberParticle("Lambda0"))
 ]
-
+@pytest.mark.skip
 @pytest.mark.parametrize("particle",particles)
 def test_TransformationChannels(particle):
     TCS = TransformationChannels.from_decaylist(particle.decay_channels)
@@ -44,14 +45,15 @@ def test_TransformationChannels(particle):
     print TCS.lengthCut(2)
     print TCS.lengthSelection(3)
 
-decays = [  (['gamma', 'gamma']),
-            (['e-', 'nu_ebar']),
-            (['e+', 'nu_e']),
-            (['e-', 'e+']),
+decays = [  #(['e-', 'nu_ebar']),
             (['pi+', 'pi-']),
+            # (['gamma', 'gamma']),
+            # (['e+', 'nu_e']),
+            # (['e-', 'e+']),
+            # (['pi+', 'pi-']),
             ]
 
-@pytest.mark.skip
+
 @pytest.mark.parametrize("decay",decays)
 def test_alldecays(decay):
     alldecays = AllDecays()
@@ -62,7 +64,6 @@ def test_alldecays(decay):
     assert isinstance(alldecays._allDecaysinDB[0].decayChannels.all, list)
     assert isinstance(alldecays._allDecaysinDB[10].decayChannels.all[1], TransformationChannel)
 
-    #a = TransformationChannel(1,[11,22])
-    #print a.isLeptonNeutrino()
+    print decay
     for item in alldecays.getParticlesfromDecay(decay):
         print item.name

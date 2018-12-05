@@ -148,7 +148,7 @@ class TransformationChannels(object):
 
     def getChannelfromParticles(self, particles):
         try:
-            return [channel for channel in self.all if channel.names==particles]
+            return [channel for channel in self.all if channel.nameSet==set(particles) and channel.length == len(particles)]
         except:
             return []
 
@@ -172,13 +172,14 @@ class AllDecays(object):
         all = []
         for item in ParticleDataToolFetcher.getParticleList():
             channels = ParticleDataToolFetcher.getDecayChannels(item[0])
-            all.append(AllDecays.ParticleDecayChannels(item[1].name,TransformationChannels.from_pdt(channels)))
+            all.append(AllDecays.ParticleDecayChannels(item[1].name,TransformationChannels.from_decaylist(channels)))
         self._allDecaysinDB = all
 
     def getParticlesfromDecay(self,decay):
         selected_particles = []
         for partchannel in self._allDecaysinDB:
             for channel in partchannel.decayChannels.getChannel(decay):
+                #print partchannel.name, channel.names
                 if all([set(decay) == channel.nameSet,
                         channel.BR > 0.,
                         ParticleDataSource.getCharge(partchannel.name)== channel.totalCharge,
