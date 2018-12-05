@@ -103,16 +103,23 @@ class TransformationChannels(object):
 
     @classmethod
     def from_decaylist(cls, decaylist):
+        '''
+        We only accept 2body and 3body channels
+        '''
         tclist = []
         for channel in decaylist:
-            tclist.append(TransformationChannel(channel[0],channel[1]))
+            TC = TransformationChannel(channel[0],channel[1])
+            if TC.length in [2,3]:
+                tclist.append(TC)
         return cls(tclist)
 
     @classmethod
     def from_decaylistNames(cls, decaylist):
         tclist = []
         for channel in decaylist:
-            tclist.append(TransformationChannel(channel[0],map(ParticleDataSource.getPDGId,channel[1])))
+            TC = TransformationChannel(channel[0],map(ParticleDataSource.getPDGId,channel[1]))
+            if TC.length in [2,3]:
+                tclist.append()
         return cls(tclist)
 
     @property
