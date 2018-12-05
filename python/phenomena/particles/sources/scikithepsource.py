@@ -67,10 +67,9 @@ class SciKitHEPFetcher(object):
         return tbl[pdgid].ctau
 
     @staticmethod
-<<<<<<< HEAD
     def isLepton(pdgid):
         return PDGID.isLepton(pdgid)
-=======
+
+    @staticmethod
     def isSUSY(pdgid):
         return PDGID.isSUSY(pdgid)
->>>>>>> transformationchannel
