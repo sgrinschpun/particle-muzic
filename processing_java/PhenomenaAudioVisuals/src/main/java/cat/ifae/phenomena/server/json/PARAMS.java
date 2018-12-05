@@ -11,8 +11,8 @@ public class PARAMS {
 	private String type;
 	private float p;
 	private float beta;
-	private float theta;
-	private float phi;
+	private float px;
+	private float py;
 
 	public int getId() {
 		return id;
@@ -94,18 +94,18 @@ public class PARAMS {
 		return beta;
 	}
 
-	public void setTheta(int phi) {
-		this.phi = phi;
+	public float getPx() {
+		return px;
 	}
 
-	public float getTheta() {
-		return phi;
+	public float getPy() {
+		return py;
 	}
 
 	@Override
 	public String toString() {
 		return "PhenomenaCMD [type = " + type + " parent = "+ parent + " mass = " + mass + ", id = " + id + ", decayTime = " + decay_time + ", charge = " + charge
-				+ ", name = " + name + ", composition = " + composition + ", p = " + p + ", beta = " + beta + ", theta = " + phi + "]";
+				+ ", name = " + name + ", composition = " + composition + ", p = " + p + ", beta = " + beta + ", px = " + px+" , py = " + py +"]";
 	}
 
 	public boolean equals(PARAMS p) {
