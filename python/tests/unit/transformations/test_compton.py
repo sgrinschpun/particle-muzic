@@ -1,13 +1,28 @@
 import pytest
 from phenomena.particles.models import UndercoverParticle
-from phenomena.particles.transformations.types import Transformation, ComptonEffect, ComptonKinematics
+from phenomena.particles.transformations import TransformController
+from phenomena.particles.transformations import TransformationChannels, TransformationChannel
+from phenomena.particles.transformations.types import Transformation, TransformationValues
+
+from phenomena.particles.transformations.types import ComptonEffect, ComptonKinematics
 from testparticles import ComptonParticle
-
-from skhep.math  import LorentzVector
-
 
 test_particles = [(ComptonParticle("gamma", p=2.0))]
 
+@pytest.mark.parametrize("particle",test_particles)
+def test_comptoneffect_basics(particle):
+    assert isinstance(particle.transformation,TransformController)
+    assert isinstance(particle.transformation.allTypes,list)
+    assert isinstance(particle.transformation.selectedType,TransformationValues)
+    assert isinstance(particle.transformation.selectedType.channels,TransformationChannels)
+    assert isinstance(particle.transformation._selectedChannel,TransformationChannel)
+    assert isinstance(particle.transformation.selectedChannel,list)
+    assert isinstance(particle.transformation.output,list)
+
+    assert particle.transformation.selectedType.type == 'ComptonEffect'
+    assert particle.transformation.selectedType.target == 'e-'
+    assert particle.transformation._selectedChannel.nameSet == set(['gamma', 'e-'])
+    assert len(particle.transformation.output) == 2
 
 @pytest.mark.parametrize("particle",test_particles)
 def test_comptoneffect_Calculations(particle):
@@ -30,20 +45,6 @@ def test_comptoneffect_Calculations(particle):
     eLAB_final = calculations._finalparticlesLAB[0].fourMomentum.e + calculations._finalparticlesLAB[1].fourMomentum.e
     assert round(eCM_init,4) == round(eCM_final,4) #energy is conserved in the CM
     #assert round(eLAB_init,4) == round(eLAB_final,4) #energy is conserved in the LAB
-
-@pytest.mark.parametrize("particle",test_particles)
-def test_comptoneffect_basics(particle):
-    assert particle.name == "gamma"
-    alltypes = particle.transformation.allTypes
-    thisType = [transf for transf in alltypes if transf['type']=='ComptonEffect']
-    assert thisType[0]['target'] == 'e-'
-    assert set(thisType[0]['list'][0][1]) == set(['gamma', 'e-'])
-
-    output = particle.transformation.output
-    assert len(output) == 2
-
-    for outputpart in output:
-        assert isinstance(outputpart,UndercoverParticle)
 
 @pytest.mark.parametrize("particle",test_particles)
 def test_comptoneffect_conservation(particle, conservation, resolution, print_particle):

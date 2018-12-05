@@ -1,4 +1,6 @@
 from phenomena.particles.transformations.types import Transformation
+from phenomena.particles.transformations.transformationchannel import TransformationChannels
+
 
 class NoTransformation(Transformation):
 
@@ -8,5 +10,5 @@ class NoTransformation(Transformation):
         self._particle = particle
         self._buildTransfValues()
 
-    def _outputParticles(self):
-        return []
+    def _transformationChannels(self):
+        return TransformationChannels.from_decaylist([(1.0,[])])

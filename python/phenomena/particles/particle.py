@@ -43,9 +43,9 @@ class Particle(object):
     def p(self):
         pass
 
-    @abc.abstractproperty
-    def theta(self):
-        pass
+    # @abc.abstractproperty
+    # def theta(self):
+    #     pass
 
     @abc.abstractproperty
     def beta(self):
@@ -60,7 +60,7 @@ class BasicParticle(Particle):
     This class is used by the server to transmit the messages through the socket. It is just a container of information.
     '''
 
-    def __init__(self, parent, id, name, type, mass, charge, composition, transformtime, p, theta, phi, beta):
+    def __init__(self, parent, id, name, type, mass, charge, composition, transformtime, p, px, py, beta):
         self._parent = parent
         self._id = id
         self._name = name
@@ -70,8 +70,8 @@ class BasicParticle(Particle):
         self._charge = charge
         self._transformtime = transformtime
         self._p = p
-        self._theta = theta
-        self._phi = phi
+        self._px = px
+        self._py = py
         self._beta = beta
 
     @property
@@ -111,12 +111,12 @@ class BasicParticle(Particle):
         return self._p
 
     @property
-    def theta(self):
-        return self._theta
+    def px(self):
+        return self._px
 
     @property
-    def phi(self):
-        return self._phi
+    def py(self):
+        return self._py
 
     @property
     def beta(self):
@@ -138,7 +138,7 @@ def toDictionary(particle):
             "transformtime": particle.transformtime,
             "composition": particle.composition,
             "p": particle.p,
-            "theta": particle.theta,
-            "phi": particle.phi,
+            "px": particle.px,
+            "py": particle.py,
             "beta": particle.beta
             }

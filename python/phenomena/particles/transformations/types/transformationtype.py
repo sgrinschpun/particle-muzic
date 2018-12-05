@@ -1,11 +1,14 @@
 import abc
+from collections import namedtuple
 from phenomena.particles.sources import ParticleDataSource
+
+TransformationValues = namedtuple("TransformationValues", "type, target, channels")
 
 class Transformation(object):
     '''
     Abstract Transformation class
     '''
-    @abc.abstractproperty
+    @property
     def values(self):
         return self._values
 
@@ -13,43 +16,16 @@ class Transformation(object):
     def name(self):
         return self.__class__.__name__
 
-    @abc.abstractmethod
     def _buildTransfValues(self):
-        '''
-        Creates the dict with the values
-        Empty dict if not happening
-        '''
-        dict_values = {}
-        list = self._outputParticles()
-        if self.__class__.__name__ == 'NoTransformation':
-            if self._particle.lifetime == -1:
-                dict_values['type']=self.__class__.__name__
-                dict_values['target'] = self.__class__.TARGET
-                dict_values['list']=list
-        elif list != []:
-            dict_values['type']=self.__class__.__name__
-            dict_values['target'] = self.__class__.TARGET
-            dict_values['list']=list
-        self._values = dict_values
+        channels = self._transformationChannels()
+        type = self.__class__.__name__
+        target = self.__class__.TARGET
+        self._values = TransformationValues(type,target,channels)
 
     @abc.abstractmethod
-    def _outputParticles(self):
+    def _transformationChannels(self):
         pass
 
+    @abc.abstractmethod
     def getProbability(self,t):
-        return 0.05
-
-    @staticmethod
-    def channelListToNames(channels):
-        newchannels =[]
-        for item in channels:
-            newchannels.append( (item[0],Transformation.ParticleListToNames(item[1])) )
-        return newchannels
-
-    @staticmethod
-    def ParticleListToNames(particlelist):
-        return map(ParticleDataSource.getName, particlelist)
-
-    # @staticmethod
-    # def ParticleListToIds(particlelist):
-    #     return map(ParticleDataSource.getPDGId, particlelist)
+        pass

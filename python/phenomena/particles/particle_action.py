@@ -117,8 +117,6 @@ class ParticleAccumulatorNode(ParticleActionNodeChain):
             print "particle: {0}".format(particle.name),
             print "Will transform in: ",
             for new_particle in new_particles:
-                # name = new_particle['name']
-                # kwargs = {'phi': new_particle['phi'], 'theta': new_particle['theta'], 'p': new_particle['p']}
                 print "Particle causes error:  " + new_particle.name
                 tr_new_particles.append(ServerParticle.fromparticle(new_particle, parent = particle.id))
             print " New particles: "

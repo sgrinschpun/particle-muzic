@@ -1,3 +1,4 @@
+from phenomena.particles.transformations.transformationchannel import TransformationChannels
 from phenomena.particles.transformations.types import Transformation
 from phenomena.particles.sources import ParticleDataSource
 
@@ -13,7 +14,7 @@ class PairProduction(Transformation):
     TARGET = None
 
     INPUT = ['gamma']
-    OUTPUT = ['e-', 'e+']
+    OUTPUT = map(ParticleDataSource.getPDGId, ['e-', 'e+'])
 
     def __init__(self, particle):
         self._particle = particle
@@ -21,8 +22,8 @@ class PairProduction(Transformation):
         if  self._particle.name in PairProduction.INPUT:
             self._buildTransfValues()
 
-    def _outputParticles(self):
-        return [(1.0, PairProduction.OUTPUT) ]
+    def _transformationChannels(self):
+        return TransformationChannels.from_decaylist([(1.0,PairProduction.OUTPUT)])
 
     def getProbability(self, dt=1./60.):
         gamma = self._particle.fourMomentum.gamma

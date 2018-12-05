@@ -24,7 +24,7 @@ class ParticleTransformation(object):
         self._transformation = TransformController(particle, transformationslist)
 
     def start(self, callback):
-        if self.transformation.selectedType != 'NoTransformation':
+        if self.transformation.selectedType.type != 'NoTransformation':
             wait_time = self.transformation.transformtime
             print "Wait for: ", wait_time
             threading.Timer(wait_time, callback).start()
