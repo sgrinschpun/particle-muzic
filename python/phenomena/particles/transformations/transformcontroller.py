@@ -56,12 +56,6 @@ class TransformController(object):
             else:
                 pass
 
-        # if decay values list is [] keep NoTransformation
-        # if decay values list is not [] get rid of Notransformaton
-        #spaghetti
-        # if not any('Decay' in item['type'] for item in allTransformations):
-        #     allTransformations.append({'type':'NoTransformation'})
-
         self._transformationlist = newtransformationlist
         self._allTransformations = allTransformations
 
