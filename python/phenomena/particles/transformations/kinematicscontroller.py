@@ -1,6 +1,6 @@
 from phenomena.particles.transformations.types import ComptonKinematics, DecayKinematics, ElasticKinematics, InelasticKinematics, PairProductionKinematics, AnnihilationKinematics
 
-from phenomena.particles.models.undercoverparticle import UndercoverParticle
+from phenomena.particles.models.undercoverparticle import UndercoverParticle, VirtualUndercoverParticle
 
 KinematicsType = {
 'ComptonEffect': ComptonKinematics,
@@ -43,3 +43,14 @@ class KinematicsController(object):
 
     def getFinalState(self):
         return self._finalState
+
+
+class VirtualKinematicsController(KinematicsController):
+    def __init__(self, particle):
+        super(VirtualKinematicsController, self).__init__(particle)
+
+    def _set_final(self,particle):
+        finallist = []
+        for part in particle.transformation.selectedChannel:
+            finallist.append(VirtualUndercoverParticle(part xXXXXXXXXXXX))
+        self._final = finallist

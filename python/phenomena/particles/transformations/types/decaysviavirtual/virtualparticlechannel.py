@@ -2,7 +2,7 @@ from __future__ import division
 import math
 import random
 from collections import namedtuple
-from phenomena.particles.transformations.transformationchannel import TransformationChannels, AllDecays
+from phenomena.particles.transformations.transformationchannel import TransformationChannel, TransformationChannels, AllDecays
 from phenomena.particles.sources import ParticleDataToolFetcher, ParticleDataSource
 
 #VirtualChannel = namedtuple('VirtualChannel', 'output1 virtual output23 BR1,BR2, BRW, Prob')
@@ -37,6 +37,9 @@ class VirtualParticleChannel(object):
                     except:
                         pass
         return virtualchannels
+
+    def getValues(self):
+        return self._virtualchannel
 
 
     @staticmethod

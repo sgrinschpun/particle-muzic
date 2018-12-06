@@ -20,6 +20,7 @@ class QuantumUniverseParticle(ParticleTransformation, ParticleBoost, ParticleDat
     '''
 
     TRANSFORMATIONS = [Decay, NoTransformation]
+    DECAYTHROUGHVIRTUAL = False
 
     def __init__(self, *argv, **kwargs):
 

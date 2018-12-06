@@ -19,6 +19,8 @@ class QuantumUniverseVirtualParticle(ParticleTransformation, ParticleBoost, Part
     '''
     TRANSFORMATIONS = [Decay, NoTransformation]
 
+    DECAYTHROUGHVIRTUAL = True
+
     def __init__(self, *argv, **kwargs):
 
         #### ParticleId

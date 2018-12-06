@@ -25,6 +25,8 @@ class BubbleChamberParticle(ParticleTransformation, ParticlePosition, ParticleBo
 
     DYNAMICSLIST = [MagneticField, Ionization]
 
+    DECAYTHROUGHVIRTUAL = False
+
     def __init__(self, *argv, **kwargs):
 
         #### ParticleId
