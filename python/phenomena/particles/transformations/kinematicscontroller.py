@@ -2,6 +2,8 @@ from phenomena.particles.transformations.types import ComptonKinematics, DecayKi
 
 from phenomena.particles.models.undercoverparticle import UndercoverParticle, VirtualUndercoverParticle
 
+from phenomena.particles.transformations.types.decaysviavirtual.virtualparticlechannel import VirtualParticleChannel, RealInfo, VirtualInfo
+
 KinematicsType = {
 'ComptonEffect': ComptonKinematics,
 'ElasticCollisionWithProton': ElasticKinematics,
@@ -51,6 +53,9 @@ class VirtualKinematicsController(KinematicsController):
 
     def _set_final(self,particle):
         finallist = []
-        for part in particle.transformation.selectedChannel:
-            finallist.append(VirtualUndercoverParticle(part xXXXXXXXXXXX))
+        for part in particle.transformation._selectedChannel.particles:
+            if isinstance(part, RealInfo):
+                finallist.append(UndercoverParticle(part.name))
+            elif isinstance(part, VirtualInfo):
+                finallist.append(VirtualUndercoverParticle(part))
         self._final = finallist

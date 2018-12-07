@@ -7,8 +7,10 @@ __email__ = "sgrinschpun@ifae.es"
 __status__ = "Development"
 
 from phenomena.particles.mixins import ParticleData, ParticleBoost, ParticlePosition
+from phenomena.particles.transformations.types.decaysviavirtual.virtualparticlechannel import VirtualInfo
+from phenomena.particles.sources import ParticleDataSource
 
-class UndercoverParticle(ParticlePosition, ParticleBoost, ParticleData):
+class UndercoverParticle(ParticleBoost, ParticleData):
     '''
     This particle class is only used when we need to consider interaction with particles that are not logged in the server. for example, interaction with protons in the bubble chamber.
     argv[0] -> Name
@@ -32,5 +34,16 @@ class UndercoverParticle(ParticlePosition, ParticleBoost, ParticleData):
         #### ParticleBoost
         self._set_fourMomentum(kwargs)#assign 4momentum vector and  boosted parameters
 
-        #### ParticlePosition
-        self._set_initPosition()
+class VirtualUndercoverParticle(ParticleBoost,ParticleData):
+
+    def __init__(self, *argv, **kwargs):
+        self._virtuality =1
+        self._name = argv[0].name
+        self._mass = argv[0].mass
+        self._decay_channels = [(1.0, map(ParticleDataSource.getPDGId, argv[0].decay))]
+        self._set_pdgid() # Id from PDG
+        self._set_charge() # Charge of the particle
+        self._set_type() # Particle Type (quark, lepton, boson, meson, baryon)
+
+        #### ParticleBoost
+        self._set_fourMomentum(kwargs)#assign 4momentum vector and  boosted parameters

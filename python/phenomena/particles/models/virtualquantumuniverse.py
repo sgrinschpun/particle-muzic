@@ -57,19 +57,3 @@ class QuantumUniverseVirtualParticle(ParticleTransformation, ParticleBoost, Part
 
         ### ParticleTransformation
         self._setTransformationManager(self, QuantumUniverseVirtualParticle.TRANSFORMATIONS)
-
-
-        # if argv[0].get('decay') is None: # If particle decay channel is not already chosen
-        #
-        #     #### ParticleVirtual
-        #
-        #     ### ParticleDecay
-        #     self._set_decay()
-        #
-        #     # decide if we want the decay to happen through a virtual channel
-        #     # this choice is independent of the fact that this model can calculate the decay of a given virtual particle
-        #     if len(self._decay) == 3:
-        #         ### ParticleChannel
-        #         self._set_virtual_decay()
-        #     # in decays of 2 particles there is no point in considering the possibility
-        #     # in decays of 4 and more particles we first need to generalize the combination searching algorithm

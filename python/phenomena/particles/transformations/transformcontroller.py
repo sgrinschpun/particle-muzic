@@ -10,7 +10,7 @@ __status__ = "Development"
 from random import shuffle
 
 from phenomena.particles.transformations.selections import TypeSelector, ChannelSelector
-from kinematicscontroller import KinematicsController
+from kinematicscontroller import KinematicsController, VirtualKinematicsController
 from phenomena.particles.transformations.types.decaysviavirtual.virtualparticlechannel import VirtualParticleChannel
 from phenomena.particles.transformations.time import TimeController
 
@@ -86,10 +86,11 @@ class TransformController(object):
         '''
         If the flag DECAYTHROUGHVIRTUAL is set in the model, check if 3body decay and change self._selectedChannel to 2body with virtual
         '''
+        self._virtual = False
         if self._particle.__class__.DECAYTHROUGHVIRTUAL == True:
-            if self._particle._selectedChannel.length == 3 and self._particle._selectedType.type = "Decay":
-                self._useVirtual == True
-                self._selectedChannel = VirtualParticleChannel(self._particle,self._particle._selectedChannel.names).getValues()
+            if len(self.selectedChannel) == 3 and self._selectedType.type == "Decay":
+                self._virtual = True
+                self._selectedChannel = VirtualParticleChannel(self._particle,self._selectedChannel.names).getValues()
         else:
             pass
 
@@ -97,18 +98,21 @@ class TransformController(object):
     def _buildOutput(self):
         '''
         Get de list of output particles boosted valuesself.
-        Differen classes if virtual or not.
+        Different classes if virtual or not.
         '''
-        if not self._useVirtual:
-            if self.selectedType.type != 'NoTransformation':
+        if self.selectedType.type != 'NoTransformation':
+            if not self._virtual:
                 return KinematicsController(self._particle).getFinalState()
             else:
-                return []
+                return VirtualKinematicsController(self._particle).getFinalState()
         else:
-            return VirtualKinematicsController(self._particle).getFinalState()
+            return []
 
     def _setTime(self):
-        self._time = TimeController.getTime()
+        if self._particle.virtuality==0:
+            self._time = TimeController.getTime()
+        else:
+            self._time = 0.1
 
     @property
     def allTypes(self):
