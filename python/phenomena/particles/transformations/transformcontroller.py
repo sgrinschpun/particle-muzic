@@ -89,15 +89,19 @@ class TransformController(object):
         self._virtual = False
         if self._particle.__class__.DECAYTHROUGHVIRTUAL == True:
             if len(self.selectedChannel) == 3 and self._selectedType.type == "Decay":
-                self._virtual = True
-                self._selectedChannel = VirtualParticleChannel(self._particle,self._selectedChannel.names).getValues()
+                virtualchannel = VirtualParticleChannel(self._particle,self._selectedChannel.names).getValues()
+                if virtualchannel != []:
+                    self._virtual = True
+                    self._selectedChannel = virtualchannel
+                else:
+                    pass
         else:
             pass
 
 
     def _buildOutput(self):
         '''
-        Get de list of output particles boosted valuesself.
+        Get de list of output particles boosted values.
         Different classes if virtual or not.
         '''
         if self.selectedType.type != 'NoTransformation':
@@ -109,10 +113,14 @@ class TransformController(object):
             return []
 
     def _setTime(self):
-        if self._particle.virtuality==0:
+        try:
+            if self._particle.virtuality==0:
+                self._time = TimeController.getTime()
+            else:
+                self._time = 0.5
+        except:
             self._time = TimeController.getTime()
-        else:
-            self._time = 0.1
+
 
     @property
     def allTypes(self):

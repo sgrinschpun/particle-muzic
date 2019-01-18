@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 __author__ = "Sebastian Grinschpun"
 __license__ = "GPL"
 __version__ = "0.1"
@@ -12,10 +11,10 @@ from phenomena.particles.sources import ParticleDataSource
 
 class UndercoverParticle(ParticleBoost, ParticleData):
     '''
-    This particle class is only used when we need to consider interaction with particles that are not logged in the server. for example, interaction with protons in the bubble chamber.
-    argv[0] -> Name
-    argv[1] -> Mass
-    kwargs -> p, theta, phi
+    This particle class is used when we need to consider interaction with particles that are not logged in the server. Also when doing kinematic calculations.
+        To construct existing  particles (and take the mass from ParticleDataSource): argv[0] -> name (string)
+        To construct non-exiting particles (with invented mass): argv[0] -> name (string) argv[1] -> mass (float):
+        For both: kwargs -> p, theta, phi
     '''
 
     def __init__(self, *argv, **kwargs):
@@ -44,6 +43,7 @@ class VirtualUndercoverParticle(ParticleBoost,ParticleData):
         self._set_pdgid() # Id from PDG
         self._set_charge() # Charge of the particle
         self._set_type() # Particle Type (quark, lepton, boson, meson, baryon)
+        self._set_composition()
 
         #### ParticleBoost
         self._set_fourMomentum(kwargs)#assign 4momentum vector and  boosted parameters

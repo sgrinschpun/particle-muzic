@@ -17,7 +17,7 @@ PARTICLE = BubbleChamberParticle
 @pytest.fixture(scope='session')
 def resolution():
     '''Returns decimals for rounds'''
-    return 4
+    return 3
 
 # @pytest.fixture(scope='function')
 # def particle(part,momentum):

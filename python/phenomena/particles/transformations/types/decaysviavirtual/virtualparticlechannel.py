@@ -34,7 +34,7 @@ class VirtualParticleChannel(object):
                     try:
                         BR2 = ParticleDataToolFetcher.getBR(virtual,[self._particle.name,ParticleDataSource.getAnti(output1)])
                         prob = BR1*BR2*BRW
-                        mass = ParticleDataSource.getMass(virtual)
+                        mass = ParticleDataSource.getMass(virtual) #VirtualParticleChannel.totalMass(output23)  #
                         ri = RealInfo(output1)
                         vi = VirtualInfo(virtual, mass, output23)
                         vc = VirtualChannel(prob, [ri,vi])
@@ -65,3 +65,10 @@ class VirtualParticleChannel(object):
         k = 2*math.sqrt(2*M*T)*gamma/(math.pi*math.sqrt(M+gamma))
         result = k/((E-M)**2 + M*T)
         return result
+
+    @staticmethod
+    def totalMass(particlelist):
+        mass = 0.
+        for name in particlelist:
+            mass += ParticleDataSource.getMass(name)
+        return mass

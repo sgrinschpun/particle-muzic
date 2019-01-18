@@ -13,6 +13,7 @@ class MappingsController:
                                "p": MirrorMapping(),
                                "px": MirrorMapping(),
                                "py": MirrorMapping(),
+                               "pz": MirrorMapping(),
                                "beta": MirrorMapping()
                                }
 

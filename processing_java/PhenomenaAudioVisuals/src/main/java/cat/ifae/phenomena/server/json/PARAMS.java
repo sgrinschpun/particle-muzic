@@ -13,6 +13,7 @@ public class PARAMS {
 	private float beta;
 	private float px;
 	private float py;
+	private float pz;
 
 	public int getId() {
 		return id;
@@ -102,10 +103,14 @@ public class PARAMS {
 		return py;
 	}
 
+	public float getPz() {
+		return pz;
+	}
+
 	@Override
 	public String toString() {
 		return "PhenomenaCMD [type = " + type + " parent = "+ parent + " mass = " + mass + ", id = " + id + ", decayTime = " + decay_time + ", charge = " + charge
-				+ ", name = " + name + ", composition = " + composition + ", p = " + p + ", beta = " + beta + ", px = " + px+" , py = " + py +"]";
+				+ ", name = " + name + ", composition = " + composition + ", p = " + p + ", beta = " + beta + ", px = " + px+" , py = " + py+" , pz = " +pz +"]";
 	}
 
 	public boolean equals(PARAMS p) {
