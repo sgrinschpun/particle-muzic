@@ -1,6 +1,11 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxGui.h"
+#include "ofxYAML.h"
+#include "Particle.h"
+
+#define NBALLS 10
 
 class ofApp : public ofBaseApp{
 
@@ -20,5 +25,8 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-		
+
+		vector <Particle> groupOfParticles;
+
+
 };
