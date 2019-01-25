@@ -1,4 +1,8 @@
 #include "ParticleData.h"
+
+ParticleData::ParticleData(int _id, int _parentId, string _name, string _type): id(_id), parentId(_parentId), name(_name), type(_type){
+}
+
 ParticleData::ParticleData(int _id, int _parentId, string _name, string _type, vector<string> _composition, double _mass, double _charge, vector<string> _decay): id(_id), parentId(_parentId), name(_name), type(_type), composition(_composition), mass(_mass), charge(_charge), decay(_decay){
 }
 
@@ -22,8 +26,8 @@ vector<string> ParticleData::getComposition(void){
   return composition;
 }
 
-boolean ParticleData::isFundamental(void){
-  return composition.empty()
+Boolean ParticleData::isFundamental(void){
+  return composition.empty();
 }
 
 double ParticleData::getMass(void){
@@ -38,6 +42,6 @@ vector<string> ParticleData::getDecay(void){
   return decay;
 }
 
-boolean ParticleData::isStable(void){
-  return decay.empty()
+Boolean ParticleData::isStable(void){
+  return decay.empty();
 }

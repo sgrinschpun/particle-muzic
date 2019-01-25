@@ -1,23 +1,26 @@
 #include "ofApp.h"
 
+ofApp::ofApp(): leptonData(1,0,"e-", "boson"){
+}
+
+
 //--------------------------------------------------------------
 void ofApp::setup(){
+  groupOfParticles.push_back(leptonData);
 
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-  for(int i=0; i<groupOfParticles.size(); i++){
-    groupOfParticles[i].update();
-}
+
 
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
   for(int i=0; i<groupOfParticles.size(); i++){
-    groupOfParticles[i].draw();
-}
+  groupOfParticles[i].draw();
+  }
 }
 
 //--------------------------------------------------------------
@@ -37,18 +40,11 @@ void ofApp::mouseMoved(int x, int y ){
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
-  groupOfParticles.push_back(Particle(x, y, ofRandom(10,40)));
 
 }
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-  for (int i =0; i < groupOfParticles.size(); i++) {
-  float distance = ofDist(x,y, groupOfParticles[i].x, groupOfParticles[i].y);
-  if (distance < groupOfParticles[i].dim) {
-      groupOfParticles.erase(groupOfParticles.begin()+i);
-  }
-}
 
 }
 

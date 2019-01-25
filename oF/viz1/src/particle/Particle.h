@@ -2,30 +2,24 @@
 #define _Particle //
 #include "ofMain.h"
 #include "ParticleData.h"
+#include "Model.h"
+#include "Lepton.h"
+#include "Boson.h"
 
 class Particle {
-  public:
+  private:
+  ParticleData particleData;
+  Model *model;
 
-  //methods
+  void buildModel();
+
+  public:
   void setup();
   void update();
   void draw();
 
-  //variables
-  float x;
-  float y;
-  float speedY;
-  float speedX;
-  int dim;
-  ofColor color;
-
   //constructor
-  Particle(float _x, float _y, int _dim);
-
-  private:
-    ofVec3f location;
-    ofVec3f velocity;
-
+  Particle(ParticleData _particleData);
 
 };
 #endif

@@ -2,10 +2,8 @@
 
 #include "ofMain.h"
 #include "ofxGui.h"
-#include "ofxYAML.h"
 #include "Particle.h"
-
-#define NBALLS 10
+#include "ParticleData.h"
 
 class ofApp : public ofBaseApp{
 
@@ -28,5 +26,8 @@ class ofApp : public ofBaseApp{
 
 		vector <Particle> groupOfParticles;
 
+		ofApp();
+
+		ParticleData leptonData;
 
 };
