@@ -1,12 +1,13 @@
 #include "ofApp.h"
 
-ofApp::ofApp(): leptonData(1,0,"e-", "boson"){
-}
-
-
 //--------------------------------------------------------------
 void ofApp::setup(){
-  groupOfParticles.push_back(leptonData);
+  groupOfParticleData.push_back(new ParticleData(1,0,"e-", "lepton"));
+  groupOfParticleData.push_back(new ParticleData(2,0,"Z0", "boson"));
+
+  for(int i=0; i<groupOfParticleData.size(); i++){
+    groupOfParticles.push_back(new Particle(groupOfParticleData[i]));
+  }
 
 }
 
@@ -19,7 +20,7 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
   for(int i=0; i<groupOfParticles.size(); i++){
-  groupOfParticles[i].draw();
+  groupOfParticles[i]->draw();
   }
 }
 

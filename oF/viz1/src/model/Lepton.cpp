@@ -3,7 +3,6 @@
 #include "Rectangle.h"
 
 void Lepton::addShapes(){
-  shapes.push_back(new Rectangle());
   shapes.push_back(new Disc());
 }
 
@@ -13,6 +12,6 @@ void Lepton::draw(){
   }
 }
 
-Lepton::Lepton(ParticleData _particleData):Model(_particleData){
+Lepton::Lepton(ParticleData* _particleData):Model(_particleData){
   addShapes();
 };

@@ -8,13 +8,13 @@
 class Model {
   protected:
     vector<Shape*> shapes;
-    ParticleData particleData;
+    ParticleData *particleData;
 
   public:
     virtual void addShapes() = 0;
     virtual void draw() = 0;
 
-    Model(ParticleData _particleData);
+    Model(ParticleData* _particleData);
     virtual ~Model() {}
 
 };

@@ -8,7 +8,7 @@
 
 class Particle {
   private:
-  ParticleData particleData;
+  ParticleData *particleData;
   Model *model;
 
   void buildModel();
@@ -19,7 +19,7 @@ class Particle {
   void draw();
 
   //constructor
-  Particle(ParticleData _particleData);
+  Particle(ParticleData* _particleData);
 
 };
 #endif

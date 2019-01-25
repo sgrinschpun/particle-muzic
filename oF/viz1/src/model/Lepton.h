@@ -10,7 +10,7 @@ class Lepton: public Model {
     void addShapes();
     void draw();
 
-    Lepton(ParticleData _particleData);
+    Lepton(ParticleData* _particleData);
 
 };
 #endif

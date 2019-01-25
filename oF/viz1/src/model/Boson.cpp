@@ -11,6 +11,6 @@ void Boson::draw(){
   }
 }
 
-Boson::Boson(ParticleData _particleData):Model(_particleData){
+Boson::Boson(ParticleData* _particleData):Model(_particleData){
   addShapes();
 };

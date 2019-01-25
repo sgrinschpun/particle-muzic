@@ -24,10 +24,8 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-		vector <Particle> groupOfParticles;
+		vector <Particle*> groupOfParticles;
+		vector <ParticleData*> groupOfParticleData;
 
-		ofApp();
-
-		ParticleData leptonData;
 
 };

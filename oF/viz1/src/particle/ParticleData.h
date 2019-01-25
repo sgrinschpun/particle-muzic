@@ -29,5 +29,7 @@ class ParticleData {
     ParticleData(int _id, int _parentId, string _name, string _type);
     ParticleData(int _id, int _parentId, string _name, string _type, vector<string> _composition, double _mass, double _charge, vector<string> _decay);
 
+    ~ParticleData() {}
+
 };
 #endif

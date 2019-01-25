@@ -10,7 +10,7 @@ class Boson: public Model {
     void addShapes();
     void draw();
 
-    Boson(ParticleData _particleData);
+    Boson(ParticleData* _particleData);
 
 };
 #endif
