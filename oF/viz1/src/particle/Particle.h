@@ -20,6 +20,7 @@ class Particle {
 
   //constructor
   Particle(ParticleData* _particleData);
+  ~Particle() {}
 
 };
 #endif

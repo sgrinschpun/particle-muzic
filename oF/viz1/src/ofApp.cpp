@@ -2,8 +2,8 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-  groupOfParticleData.push_back(new ParticleData(1,0,"e-", "lepton"));
-  groupOfParticleData.push_back(new ParticleData(2,0,"Z0", "boson"));
+  groupOfParticleData.push_back(new ParticleData(1,-1,"e-", "lepton"));
+  groupOfParticleData.push_back(new ParticleData(2,-1,"Z0", "boson"));
 
   for(int i=0; i<groupOfParticleData.size(); i++){
     groupOfParticles.push_back(new Particle(groupOfParticleData[i]));
