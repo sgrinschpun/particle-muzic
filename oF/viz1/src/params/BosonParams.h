@@ -11,7 +11,9 @@ class BosonParams: public Params {
 
   public:
     BosonParams(ParticleData* _particleData);
+
     ofColor getColor() {return colors.getWhite();};
+    float getWidth() {return 10;};
 
 };
 #endif

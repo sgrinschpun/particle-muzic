@@ -8,6 +8,7 @@ class Params {
 
   public:
     virtual ofColor getColor() = 0;
+    virtual float getWidth() = 0;
     ~Params() {};
 
 };
