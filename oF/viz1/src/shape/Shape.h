@@ -1,9 +1,10 @@
 #ifndef _Shape //
 #define _Shape //
 #include "ofMain.h"
+#include "Params.h"
 
 class Shape {
-  private:
+  protected:
 
   public:
     virtual void draw() = 0;

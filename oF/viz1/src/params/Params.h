@@ -2,13 +2,13 @@
 #define _Params //
 #include "ofMain.h"
 #include "ParticleData.h"
+#include "Colors.h"
 
 class Params {
-  protected:
-    ParticleData *particleData;
 
   public:
-    virtual ~Params() {}
+    virtual ofColor getColor() = 0;
+    ~Params() {};
 
 };
 #endif

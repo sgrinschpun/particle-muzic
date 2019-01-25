@@ -5,13 +5,14 @@
 
 class Disc: public Shape {
   private:
+    Params *params;
     ofColor color;
     int dim;
 
   public:
     void draw();
 
-    Disc();
+    Disc(Params* _params);
 
 };
 #endif

@@ -4,11 +4,14 @@
 #include "Params.h"
 
 class LeptonParams: public Params {
+
   private:
-    ParticleData *particleData;
+  ParticleData *particleData;
+  Colors colors;
 
   public:
     LeptonParams(ParticleData* _particleData);
+    ofColor getColor() {return colors.getWhite();};
 
 };
 #endif

@@ -1,7 +1,7 @@
 #include "Disc.h"
 
-Disc::Disc(){
-  color.set(ofRandom(255),ofRandom(255),ofRandom(255));
+Disc::Disc(Params* _params):params(_params){
+  color = params->getColor();
   dim = 10;
 }
 

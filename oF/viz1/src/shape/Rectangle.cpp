@@ -1,6 +1,6 @@
 #include "Rectangle.h"
 
-Rectangle::Rectangle(){
+Rectangle::Rectangle(Params* _params):params(_params){
   color.set(ofRandom(255),ofRandom(255),ofRandom(255));
   height = 100;
   width = 100;

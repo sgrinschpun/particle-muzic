@@ -4,11 +4,14 @@
 #include "Params.h"
 
 class BosonParams: public Params {
+
   private:
-    ParticleData *particleData;
+  ParticleData *particleData;
+  Colors colors;
 
   public:
     BosonParams(ParticleData* _particleData);
+    ofColor getColor() {return colors.getWhite();};
 
 };
 #endif

@@ -2,7 +2,7 @@
 #include "Rectangle.h"
 
 void Boson::addShapes(){
-  shapes.push_back(new Rectangle());
+  shapes.push_back(new Rectangle(params));
 }
 
 void Boson::draw(){

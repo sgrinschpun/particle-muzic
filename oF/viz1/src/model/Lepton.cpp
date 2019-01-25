@@ -3,7 +3,7 @@
 #include "Rectangle.h"
 
 void Lepton::addShapes(){
-  shapes.push_back(new Disc());
+  shapes.push_back(new Disc(params));
 }
 
 void Lepton::draw(){

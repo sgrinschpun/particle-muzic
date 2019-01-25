@@ -1,4 +1,5 @@
 #include "Particle.h"
+
 Particle::Particle(ParticleData* _particleData): particleData(_particleData){
   buildModel();
 }
