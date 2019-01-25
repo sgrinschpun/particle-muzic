@@ -20,7 +20,7 @@ class Model {
     virtual void draw() = 0;
 
     Model(ParticleData* _particleData);
-    virtual ~Model() {}
+    ~Model() {}
 
 };
 #endif

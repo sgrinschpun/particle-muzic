@@ -4,11 +4,10 @@
 #include "Params.h"
 
 class Shape {
-  protected:
 
   public:
     virtual void draw() = 0;
-    virtual ~Shape() {}
+    ~Shape() {}
 
 };
 #endif
