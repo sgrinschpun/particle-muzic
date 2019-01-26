@@ -11,7 +11,10 @@ class Rectangle: public Shape {
     int width;
 
   public:
+    void setup();
     void draw();
+    void update();
+
     Rectangle(Params* _params);
 
 };

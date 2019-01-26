@@ -8,7 +8,6 @@ class Boson: public Model {
 
   public:
     void addShapes();
-    void draw();
 
     Boson(ParticleData* _particleData);
 

@@ -17,7 +17,10 @@ class Model {
 
   public:
     virtual void addShapes() = 0;
-    virtual void draw() = 0;
+
+    void setup();
+    void draw();
+    void update();
 
     Model(ParticleData* _particleData);
     ~Model() {}

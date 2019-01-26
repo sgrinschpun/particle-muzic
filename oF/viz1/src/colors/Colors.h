@@ -14,6 +14,7 @@ class Colors {
     vector <ofColor> getAntiMatterColors(){return antiMatterColors;};
     vector <ofColor> getAllColors(){return antiMatterColors;};
     ofColor getWhite(){return white;};
+    ofColor getBlack(){return black;};
 
     Colors();
     ~Colors() {}

@@ -10,7 +10,9 @@ class Disc: public Shape {
     int dim;
 
   public:
+    void setup();
     void draw();
+    void update();
 
     Disc(Params* _params);
 

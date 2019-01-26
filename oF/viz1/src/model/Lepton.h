@@ -8,7 +8,6 @@ class Lepton: public Model {
 
   public:
     void addShapes();
-    void draw();
 
     Lepton(ParticleData* _particleData);
 

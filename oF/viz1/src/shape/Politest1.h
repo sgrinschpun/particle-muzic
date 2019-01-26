@@ -12,7 +12,9 @@ class Politest1: public Shape {
 
 
   public:
+    void setup();
     void draw();
+    void update();
 
     Politest1(Params* _params);
 

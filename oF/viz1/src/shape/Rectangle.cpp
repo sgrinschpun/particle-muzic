@@ -6,10 +6,17 @@ Rectangle::Rectangle(Params* _params):params(_params){
   width = 100;
 }
 
+void Rectangle::setup(){
+  ofSetColor(color);
+}
+
 void Rectangle::draw(){
-    ofSetColor(color);
+
     ofPushMatrix();
       ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
       ofDrawRectangle(0, 0, width, height);
     ofPopMatrix();
+}
+
+void Rectangle::update(){
 }

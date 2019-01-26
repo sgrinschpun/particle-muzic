@@ -5,14 +5,20 @@ Politest1::Politest1(Params* _params):params(_params){
   width = params->getWidth();
 }
 
+void Politest1::setup(){
+  ofSetColor(color);
+  ofSetLineWidth(width);
+
+}
+
 void Politest1::draw(){
-    ofSetColor(color);
-    ofSetLineWidth(width);
     ofPushMatrix();
       ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
-      ofPoint point1(0,0);
-      polyline1.arc(point1,100,100,0,360);
-      ofSetColor(color);
+      polyline1.arc(0,0,100,100,0,360);
       polyline1.draw();
     ofPopMatrix();
+}
+
+void Politest1::update(){
+
 }
