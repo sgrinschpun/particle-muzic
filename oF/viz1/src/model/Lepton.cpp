@@ -4,7 +4,7 @@
 #include "Politest1.h"
 
 void Lepton::addShapes(){
-  shapes.push_back(new Politest1(params));
+  shapes.push_back(new Disc(params));
 }
 
 Lepton::Lepton(ParticleData* _particleData):Model(_particleData){
