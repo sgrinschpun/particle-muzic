@@ -9,12 +9,17 @@ void ofApp::setup(){
     groupOfParticles.push_back(new Particle(groupOfParticleData[i]));
   }
 
+  for(int i=0; i<groupOfParticles.size(); i++){
+    groupOfParticles[i]->setup();
+  }
+
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-
-
+  for(int i=0; i<groupOfParticles.size(); i++){
+    groupOfParticles[i]->update();
+  }
 }
 
 //--------------------------------------------------------------

@@ -10,11 +10,14 @@ void Particle::buildModel(){
     else if (type == "boson") {model = new Boson(particleData);}
   }
 
-
-void Particle::update(){
-
+void Particle::setup(){
+  model->setup();
 }
 
 void Particle::draw(){
   model->draw();
+}
+
+void Particle::update(){
+  model->update();
 }

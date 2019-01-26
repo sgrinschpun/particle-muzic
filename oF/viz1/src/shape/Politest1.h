@@ -8,7 +8,7 @@ class Politest1: public Shape {
     Params *params;
     ofColor color;
     float width;
-    ofPolyline polyline1, polyline2;
+    ofPolyline modifiedPolyline, originalPolyline;
 
 
   public:
