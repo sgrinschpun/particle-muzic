@@ -1,0 +1,10 @@
+use GUI to set parameters of shapes
+use YAML to set config
+circle with ofPath
+wavering
+wavering rotating
+color cycle
+color should be instantated with particleData? or params works?
+
+
+memory leakage

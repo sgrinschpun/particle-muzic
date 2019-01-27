@@ -3,6 +3,7 @@
 Cycle::Cycle(int _framesPerCicle):framesPerCicle(_framesPerCicle){
   frameRate = ofGetTargetFrameRate(); // or ofGetFrameRate()
   hz = frameRate/framesPerCicle;
+  progressRatioMax = (float) (framesPerCicle-1)/framesPerCicle;
 }
 
 void Cycle::update(){
@@ -34,6 +35,14 @@ float Cycle::getEase2(){
   return ease;
 }
 
+Boolean Cycle::newLoop(){
+  update();
+  Boolean newcicle = false;
+  if (progressRatio == progressRatioMax){
+      newcicle = true;
+  }
+  return newcicle;
+}
 
 float Cycle::getQuadIn(){
   return QuadEaseInRatio;
