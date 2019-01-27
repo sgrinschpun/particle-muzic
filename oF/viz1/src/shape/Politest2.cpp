@@ -28,7 +28,7 @@ void Politest2::update(){
 
   ofPoint p ;
   int num = 50;
-  float max = (cycle -> getEase2())*20;
+  float max = (cycle -> getEaseQuad2())*20;
 
   if (cycle -> newLoop()){ofSeedRandom();}
   else{}

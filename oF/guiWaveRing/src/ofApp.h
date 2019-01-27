@@ -30,6 +30,7 @@ class ofApp : public ofBaseApp{
 		ofParameter<float> amplitude;
 		ofParameter<float> noiseScale;
 		ofParameter<int> segments;
+		ofParameter<int> width;
 
 		vector<WaveRing> shapes;
 

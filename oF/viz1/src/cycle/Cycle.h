@@ -17,8 +17,10 @@ class Cycle {
     void update();
     void newNoiseSeed();
 
-    float getEase();
-    float getEase2();
+    float getEaseQuad1();
+    float getEaseQuad2();
+    float getEaseQuart1();
+    float getEaseQuart2();
 
     bool newLoop();
 

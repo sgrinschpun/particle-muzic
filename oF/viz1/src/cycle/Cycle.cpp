@@ -12,28 +12,45 @@ void Cycle::update(){
   currentFrame = frameNum%framesPerCycle;
   progressRatio = (float) currentFrame/(float) framesPerCycle;
   QuadEaseInRatio = pow(progressRatio,2);
-  QuadEaseOutRatio = 1-pow(progressRatio-1,2)+1;
+  QuadEaseOutRatio = 1-pow(progressRatio-1,2);
   QuartEaseInRatio = pow(progressRatio,4);
-  QuartEaseOutRatio = 1-pow(progressRatio-1,4)+1;
+  QuartEaseOutRatio = 1-pow(progressRatio-1,4);
   SextEaseInRatio = pow(progressRatio,6);
-  SextEaseOutRatio = 1-pow(progressRatio-1,6)+1;
+  SextEaseOutRatio = 1-pow(progressRatio-1,6);
 }
 
-float Cycle::getEase(){
+float Cycle::getEaseQuad1(){ // slow-> fast
   update();
   float ease = 0;
-  if (progressRatio <= 0.5){ease = 1-QuadEaseInRatio;}
+  if (progressRatio <= 0.5){ease = QuadEaseInRatio;}
   else {ease = 1-QuadEaseOutRatio;}
   return ease;
 }
 
-float Cycle::getEase2(){
+float Cycle::getEaseQuad2(){ //fast -> slow
   update();
   float ease = 0;
   if (progressRatio <= 0.5){ease = QuadEaseOutRatio;}
+  else {ease = 1-QuadEaseInRatio;}
+  return ease;
+}
+
+float Cycle::getEaseQuart1(){ // slow-> fast
+  update();
+  float ease = 0;
+  if (progressRatio <= 0.5){ease = QuartEaseInRatio;}
+  else {ease = 1-QuartEaseOutRatio;}
+  return ease;
+}
+
+float Cycle::getEaseQuart2(){ //fast -> slow
+  update();
+  float ease = 0;
+  if (progressRatio <= 0.5){ease = QuartEaseOutRatio;}
   else {ease = 1-QuartEaseInRatio;}
   return ease;
 }
+
 
 void Cycle::newNoiseSeed(){
   if (progressRatio == progressRatioMax){

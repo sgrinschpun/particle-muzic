@@ -8,7 +8,6 @@ WaveRing::WaveRing(){
 
 void WaveRing::setup(){
   ofSetColor(color);
-  ofSetLineWidth(2);
 }
 
 void WaveRing::draw(){
@@ -20,12 +19,14 @@ void WaveRing::draw(){
 
 void WaveRing::update(){
   ofPoint p ;
-  float max = (cycle -> getEase())*amplitude;
+  float max = (cycle -> getEaseQuart2())*amplitude;
 
   if (cycle -> newLoop()){ofSeedRandom();}
   else{}
 
   polyline.clear() ;
+
+  ofSetLineWidth(width);
 
   for(int i=0; i<segments; i++){
     p.x =  (0 + radius * cos(2*M_PI * i / segments));
@@ -60,4 +61,8 @@ void WaveRing::setNoiseScale(float _noiseScale){
 
 void WaveRing::setSegments(int _segments){
   segments = _segments;
+}
+
+void WaveRing::setWidth(int _width){
+  width = _width;
 }

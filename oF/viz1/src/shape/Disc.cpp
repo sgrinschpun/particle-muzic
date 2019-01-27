@@ -13,7 +13,7 @@ void Disc::setup(){
 }
 
 void Disc::draw(){
-    float rad = (cycle -> getEase2())*dim;
+    float rad = (cycle -> getEaseQuad2())*dim;
     string rads = to_string(rad);
     ofPushMatrix();
       ofTranslate(ofGetWidth()/2, ofGetHeight()/2);

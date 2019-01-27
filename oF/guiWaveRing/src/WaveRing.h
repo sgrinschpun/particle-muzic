@@ -14,6 +14,8 @@ class WaveRing {
     float amplitude;
     float noiseScale;
     int segments;
+    int width;
+
 
   public:
     void setup();
@@ -25,6 +27,7 @@ class WaveRing {
     void setAmplitude(float _amplitude);
     void setNoiseScale(float _noiseScale);
     void setSegments(int _segments);
+    void setWidth(int _width);
 
     WaveRing();
     //~WaveRing();
