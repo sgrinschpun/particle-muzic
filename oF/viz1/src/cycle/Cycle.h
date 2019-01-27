@@ -20,7 +20,7 @@ class Cycle {
     float getEase();
     float getEase2();
 
-    Boolean newLoop();
+    bool newLoop();
 
     float getQuadIn();
     float getQuadOut();

@@ -19,6 +19,7 @@ void Politest2::draw(){
       ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
       polyline.draw();
       ofDrawBitmapString(to_string(cycle -> getCurrentFrame()), 0, 0);
+      ofDrawBitmapString(to_string(cycle -> newLoop()), 20, 20);
     ofPopMatrix();
 
 }
@@ -26,7 +27,7 @@ void Politest2::draw(){
 void Politest2::update(){
 
   ofPoint p ;
-  int num = 100;
+  int num = 50;
   float max = (cycle -> getEase2())*20;
 
   if (cycle -> newLoop()){ofSeedRandom();}

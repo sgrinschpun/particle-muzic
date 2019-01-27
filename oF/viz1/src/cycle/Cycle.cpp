@@ -37,14 +37,13 @@ float Cycle::getEase2(){
 
 void Cycle::newNoiseSeed(){
   if (progressRatio == progressRatioMax){
-    return ofSeedRandom(ofGetElapsedTimef());
+    return ofSeedRandom();
   }
-
 }
 
-Boolean Cycle::newLoop(){
+bool Cycle::newLoop(){
   update();
-  Boolean newcicle = false;
+  bool newcicle = false;
   if (progressRatio == progressRatioMax){
       newcicle = true;
   }
