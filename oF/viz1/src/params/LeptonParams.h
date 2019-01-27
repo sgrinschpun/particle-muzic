@@ -11,9 +11,9 @@ class LeptonParams: public Params {
 
   public:
     LeptonParams(ParticleData* _particleData);
-    
+
     ofColor getColor() {return colors.getWhite();};
-    float getWidth() {return 10;};
+    float getWidth() {return 100;};
 
 };
 #endif

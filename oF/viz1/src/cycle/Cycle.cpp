@@ -30,9 +30,16 @@ float Cycle::getEase(){
 float Cycle::getEase2(){
   update();
   float ease = 0;
-  if (progressRatio <= 0.5){ease = 1-QuartEaseInRatio;}
-  else {ease = 1-QuartEaseOutRatio;}
+  if (progressRatio <= 0.5){ease = QuadEaseOutRatio;}
+  else {ease = 1-QuartEaseInRatio;}
   return ease;
+}
+
+void Cycle::newNoiseSeed(){
+  if (progressRatio == progressRatioMax){
+    return ofSeedRandom(ofGetElapsedTimef());
+  }
+
 }
 
 Boolean Cycle::newLoop(){
@@ -43,6 +50,11 @@ Boolean Cycle::newLoop(){
   }
   return newcicle;
 }
+
+int Cycle::getCurrentFrame(){
+  return currentFrame;
+}
+
 
 float Cycle::getQuadIn(){
   return QuadEaseInRatio;

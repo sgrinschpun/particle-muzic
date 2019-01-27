@@ -15,6 +15,7 @@ class Cycle {
 
   public:
     void update();
+    void newNoiseSeed();
 
     float getEase();
     float getEase2();
@@ -27,6 +28,8 @@ class Cycle {
     float getQuartOut();
     float getSextIn();
     float getSextOut();
+
+    int getCurrentFrame();
 
     Cycle(int _framesPerCicle);
     ~Cycle() {}
