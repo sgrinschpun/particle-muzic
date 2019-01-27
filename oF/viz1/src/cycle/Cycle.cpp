@@ -1,16 +1,16 @@
 #include "Cycle.h"
 
-Cycle::Cycle(int _framesPerCicle):framesPerCicle(_framesPerCicle){
+Cycle::Cycle(int _framesPerCycle):framesPerCycle(_framesPerCycle){
   frameRate = ofGetTargetFrameRate(); // or ofGetFrameRate()
-  hz = frameRate/framesPerCicle;
-  progressRatioMax = (float) (framesPerCicle-1)/framesPerCicle;
+  hz = frameRate/framesPerCycle;
+  progressRatioMax = (float) (framesPerCycle-1)/framesPerCycle;
 }
 
 void Cycle::update(){
   int frameNum = ofGetFrameNum();
-  currentCycle = (float) frameNum/(float) framesPerCicle;
-  currentFrame = frameNum%framesPerCicle;
-  progressRatio = (float) currentFrame/(float) framesPerCicle;
+  currentCycle = (float) frameNum/(float) framesPerCycle;
+  currentFrame = frameNum%framesPerCycle;
+  progressRatio = (float) currentFrame/(float) framesPerCycle;
   QuadEaseInRatio = pow(progressRatio,2);
   QuadEaseOutRatio = 1-pow(progressRatio-1,2)+1;
   QuartEaseInRatio = pow(progressRatio,4);
@@ -43,11 +43,11 @@ void Cycle::newNoiseSeed(){
 
 bool Cycle::newLoop(){
   update();
-  bool newcicle = false;
+  bool newcycle = false;
   if (progressRatio == progressRatioMax){
-      newcicle = true;
+      newcycle = true;
   }
-  return newcicle;
+  return newcycle;
 }
 
 int Cycle::getCurrentFrame(){
@@ -77,4 +77,8 @@ float Cycle::getSextIn(){
 
 float Cycle::getSextOut(){
   return SextEaseOutRatio;
+}
+
+void Cycle::setFramesPerCycle(int _framesPerCycle){
+  framesPerCycle = _framesPerCycle;
 }

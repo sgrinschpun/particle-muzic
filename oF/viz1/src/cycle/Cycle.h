@@ -4,7 +4,7 @@
 
 class Cycle {
   private:
-    int framesPerCicle;  //a full cycle lasts this number of frames
+    int framesPerCycle;  //a full cycle lasts this number of frames
     int frameRate;  //number of frames per second
     float hz; // freqüency of a cycle
     int currentCycle; //How many cycles have passed since instantiatiation
@@ -31,7 +31,9 @@ class Cycle {
 
     int getCurrentFrame();
 
-    Cycle(int _framesPerCicle);
+    void setFramesPerCycle(int _framesPerCycle);
+
+    Cycle(int _framesPerCycle);
     ~Cycle() {}
 
 };

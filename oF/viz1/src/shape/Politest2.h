@@ -19,6 +19,7 @@ class Politest2: public Shape {
     void update();
 
     Politest2(Params* _params);
+    ~Politest2();
 
 };
 #endif
