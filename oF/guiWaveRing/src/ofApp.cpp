@@ -2,24 +2,31 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+  ofSetWindowTitle("WaveRing GUI");
+  ofSetVerticalSync(true);
+  ofSetCircleResolution(256);
   //ofBackground(0);
   ofSetFrameRate(60);
   //ofSetBackgroundAuto(false);
   ofSetCircleResolution(60);
+  ofEnableAntiAliasing();
 
-  ofSeedRandom();
+  //ofSeedRandom();
 
 
   gui.setup();
   gui.add(framesPerCycle.set("framesPerCycle", 50, 1, 500));
   gui.add(radius.set("radius", 100, 1, 500));
   gui.add(amplitude.set("amplitude", 20, 1, 80));
-  gui.add(noiseScale.set("noiseScale", 0.01, 0.0, 0.05));
+  gui.add(noiseScale.set("noiseScale", 0.01, 0.0, 5));
   gui.add(segments.set("segments", 100, 1, 100));
   gui.add(width.set("width", 2, 1, 10));
 
-  WaveRing wavering;
-  shapes.push_back(wavering);
+  WaveRing wavering1;
+  shapes.push_back(wavering1);
+  //WaveRing wavering2;
+  //shapes.push_back(wavering2);
+
 
   for(int i=0; i<shapes.size(); i++){
     shapes[i].setup();

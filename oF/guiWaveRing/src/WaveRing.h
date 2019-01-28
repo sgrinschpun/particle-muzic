@@ -17,6 +17,8 @@ class WaveRing {
     int segments;
     int width;
 
+    vector<ofVec3f> offsets;
+
 
   public:
     void setup();

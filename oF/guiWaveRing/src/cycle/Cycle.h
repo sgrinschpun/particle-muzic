@@ -13,9 +13,13 @@ class Cycle {
     float progressRatioMax;
     float QuadEaseInRatio, QuadEaseOutRatio, QuartEaseInRatio, QuartEaseOutRatio, SextEaseInRatio, SextEaseOutRatio; //Easing methods
 
+    //int randomSeed;
+    int randomSeeds[100];
+
+    void buildRandomSeeds();
+
   public:
     void update();
-    void newNoiseSeed();
 
     float getEaseQuad1();
     float getEaseQuad2();
@@ -23,6 +27,7 @@ class Cycle {
     float getEaseQuart2();
 
     bool newLoop();
+    int getSeed();
 
     float getQuadIn();
     float getQuadOut();

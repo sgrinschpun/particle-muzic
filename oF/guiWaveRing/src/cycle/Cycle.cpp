@@ -6,6 +6,8 @@ Cycle::Cycle(int _framesPerCycle):framesPerCycle(_framesPerCycle){
   frameRate = ofGetTargetFrameRate(); // or ofGetFrameRate()
   hz = frameRate/framesPerCycle;
   progressRatioMax = (float) (framesPerCycle-1)/framesPerCycle;
+
+  buildRandomSeeds();
 }
 
 void Cycle::update(){
@@ -19,6 +21,12 @@ void Cycle::update(){
   QuartEaseOutRatio = 1-pow(progressRatio-1,4);
   SextEaseInRatio = pow(progressRatio,6);
   SextEaseOutRatio = 1-pow(progressRatio-1,6);
+}
+
+void Cycle::buildRandomSeeds(){
+  for (int i=0; i<framesPerCycle; i++){
+    randomSeeds[i] = rand()%100;
+  }
 }
 
 int Cycle::getCurrentCycle(){
@@ -65,11 +73,6 @@ float Cycle::getEaseQuart2(){ //fast -> slow
   return ease;
 }
 
-void Cycle::newNoiseSeed(){
-  if (progressRatio == progressRatioMax){
-    return ofSeedRandom();
-  }
-}
 
 bool Cycle::newLoop(){
   update();
@@ -78,6 +81,11 @@ bool Cycle::newLoop(){
   }
   else{ return false;}
 }
+
+int Cycle::getSeed(){
+  return randomSeeds[currentFrame];
+}
+
 
 float Cycle::getQuadIn(){
   return QuadEaseInRatio;
