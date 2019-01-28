@@ -8,6 +8,7 @@ class WaveRing {
     Cycle *cycle;
     ofColor color;
     ofPolyline polyline;
+    float noiseRate;
 
     int framesPerCycle;
     float radius;

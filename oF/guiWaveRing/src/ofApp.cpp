@@ -7,9 +7,12 @@ void ofApp::setup(){
   //ofSetBackgroundAuto(false);
   ofSetCircleResolution(60);
 
+  ofSeedRandom();
+
+
   gui.setup();
-  gui.add(framesPerCycle.set("framesPerCycle", 20, 1, 500));
-  gui.add(radius.set("radius", 20, 1, 500));
+  gui.add(framesPerCycle.set("framesPerCycle", 50, 1, 500));
+  gui.add(radius.set("radius", 100, 1, 500));
   gui.add(amplitude.set("amplitude", 20, 1, 80));
   gui.add(noiseScale.set("noiseScale", 0.01, 0.0, 0.05));
   gui.add(segments.set("segments", 100, 1, 100));

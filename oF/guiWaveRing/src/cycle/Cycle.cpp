@@ -21,6 +21,18 @@ void Cycle::update(){
   SextEaseOutRatio = 1-pow(progressRatio-1,6);
 }
 
+int Cycle::getCurrentCycle(){
+  return currentCycle;
+}
+
+int Cycle:: getCurrentFrame(){
+  return currentFrame;
+}
+
+float Cycle:: getProgressRatio(){
+  return progressRatio;
+}
+
 float Cycle::getEaseQuad1(){ // slow-> fast
   update();
   float ease = 0;
@@ -61,17 +73,11 @@ void Cycle::newNoiseSeed(){
 
 bool Cycle::newLoop(){
   update();
-  bool newcycle = false;
-  if (progressRatio == progressRatioMax){
-      newcycle = true;
+  if (currentFrame == 1){
+      return true;
   }
-  return newcycle;
+  else{ return false;}
 }
-
-int Cycle::getCurrentFrame(){
-  return currentFrame;
-}
-
 
 float Cycle::getQuadIn(){
   return QuadEaseInRatio;

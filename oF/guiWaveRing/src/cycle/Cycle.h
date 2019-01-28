@@ -32,6 +32,8 @@ class Cycle {
     float getSextOut();
 
     int getCurrentFrame();
+    int getCurrentCycle();
+    float getProgressRatio();
 
     void setFramesPerCycle(int _framesPerCycle);
 
