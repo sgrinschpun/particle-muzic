@@ -1,8 +1,8 @@
-#ifndef _NewWaveRing //
-#define _NewWaveRing //
+#ifndef _NewWaveRingExample //
+#define _NewWaveRingExample //
 #include "ofMain.h"
 
-class NewWaveRing {
+class NewWaveRingExample {
 
   private:
     float noiseStep;
@@ -23,13 +23,10 @@ class NewWaveRing {
     void draw();
     void update();
 
-    void exampleDraw();
-    void testDraw();
-
     void setNoiseStep(float _noiseStep);
     void setNoiseAmount(float _noiseAmount);
 
-    NewWaveRing();
+    NewWaveRingExample();
 
 };
 #endif

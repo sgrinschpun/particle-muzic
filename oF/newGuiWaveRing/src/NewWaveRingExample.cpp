@@ -1,15 +1,15 @@
-#include "NewWaveRing.h"
+#include "NewWaveRingExample.h"
 
-NewWaveRing::NewWaveRing(){
+NewWaveRingExample::NewWaveRingExample(){
 
 }
 
-void NewWaveRing::setup(){
+void NewWaveRingExample::setup(){
   setupSignedNoise();
 
 }
 
-void NewWaveRing::exampleDraw(){
+void NewWaveRingExample::draw(){
   ofBackgroundGradient( ofColor(255), ofColor(180), OF_GRADIENT_CIRCULAR);
 
 	float centerX = radialNoiseDemoX;
@@ -32,7 +32,7 @@ void NewWaveRing::exampleDraw(){
 	// Let's use the signed noise as a radial displacement to a circle.
 	// We render out the points stored in the X and Y arrays.
 	ofMesh wigglyMeshLine; // yes, technically, it's a "mesh"
-	wigglyMeshLine.setMode(OF_PRIMITIVE_LINE_LOOP);
+	wigglyMeshLine.setMode(OF_PRIMITIVE_LINE_STRIP);
 	float px = 0, py = 0;
 	for (int i=(nSignedNoiseData-1); i>=0; i--){
 
@@ -67,71 +67,34 @@ void NewWaveRing::exampleDraw(){
 
 }
 
-void NewWaveRing::testDraw(){
-  ofBackgroundGradient( ofColor(255), ofColor(180), OF_GRADIENT_CIRCULAR);
-
-	float centerX = radialNoiseDemoX;
-	float centerY = radialNoiseDemoY;
-
-	ofPushMatrix();
-	ofTranslate(centerX + radialNoiseDemoR,centerY,0);
-	ofEnableAlphaBlending();
-	ofEnableSmoothing();
-	ofNoFill();
-
-	ofMesh wigglyMeshLine; // yes, technically, it's a "mesh"
-	wigglyMeshLine.setMode(OF_PRIMITIVE_LINE_LOOP);
-  ofPoint p;
-  for(int i=0; i<nSignedNoiseData; i++){
-    p.x =  (radialNoiseDemoR * cos(TWO_PI * i / nSignedNoiseData));
-    p.y =  (radialNoiseDemoR * sin(TWO_PI * i / nSignedNoiseData));
-
-    p.x += signedNoiseData[i];
-    p.y += signedNoiseData[i];
-
-    wigglyMeshLine.addVertex(p);
-  }
-  ofEnableSmoothing();
-  wigglyMeshLine.draw();
-  ofPopMatrix();
-}
-
-
-void NewWaveRing::draw(){
-  testDraw();
-
-}
-
-void NewWaveRing::update(){
+void NewWaveRingExample::update(){
   updateSignedNoise();
 
 }
 
-void NewWaveRing::setNoiseStep(float _noiseStep){
+void NewWaveRingExample::setNoiseStep(float _noiseStep){
   noiseStep=_noiseStep;
 }
 
-void NewWaveRing::setNoiseAmount(float _noiseAmount){
+void NewWaveRingExample::setNoiseAmount(float _noiseAmount){
   noiseAmount=_noiseAmount;
 }
 
-void NewWaveRing::setupSignedNoise(){
+void NewWaveRingExample::setupSignedNoise(){
 
   radialNoiseDemoY = 200;
 	radialNoiseDemoR = 100;
 	radialNoiseDemoX = ofGetWidth()/2 - radialNoiseDemoR;
 
-  radialNoiseCursor = 0.0;
   nSignedNoiseData = 400;
 	signedNoiseData = new float[nSignedNoiseData];
 	for (int i=0; i<nSignedNoiseData; i++){
-		signedNoiseData[i] = noiseAmount * ofSignedNoise( radialNoiseCursor );
-    radialNoiseCursor += noiseStep;;
+		signedNoiseData[i] = 0;
 	}
-
+  radialNoiseCursor = 0.0;
 }
 
-void NewWaveRing::updateSignedNoise(){
+void NewWaveRingExample::updateSignedNoise(){
 
   // Shift all of the old data forward through the array
   for (int i=(nSignedNoiseData-1); i>0; i--){
