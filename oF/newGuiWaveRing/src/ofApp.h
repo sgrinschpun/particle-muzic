@@ -27,6 +27,10 @@ class ofApp : public ofBaseApp{
 
 		ofParameter<float> noiseStep;
 		ofParameter<float> noiseAmount;
+		ofParameter<int> framesPerCycle;
+		ofParameter<float> radius;
+		ofParameter<int> segments;
+		ofParameter<int> width;
 
 		vector<NewWaveRing> shapes;
 

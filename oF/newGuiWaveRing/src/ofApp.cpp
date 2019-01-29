@@ -6,6 +6,10 @@ void ofApp::setup(){
 
 
   gui.setup();
+  gui.add(framesPerCycle.set("framesPerCycle", 50, 1, 500));
+  gui.add(radius.set("radius", 100, 1, 500));
+  gui.add(segments.set("segments", 100, 1, 100));
+  gui.add(width.set("width", 2, 1, 10));
   gui.add(noiseStep.set("noiseStep", 0.01, 0.01, 0.15));
   gui.add(noiseAmount.set("noiseAmount", 0.40, 0.0, 1));
 
@@ -24,8 +28,12 @@ void ofApp::update(){
   for(int i=0; i<shapes.size(); i++){
     shapes[i].update();
 
+    shapes[i].setCycle(framesPerCycle);
+    shapes[i].setRadius(radius);
     shapes[i].setNoiseStep(noiseStep);
     shapes[i].setNoiseAmount(noiseAmount);
+    shapes[i].setSegments(segments);
+    shapes[i].setWidth(width);
 
   }
 
