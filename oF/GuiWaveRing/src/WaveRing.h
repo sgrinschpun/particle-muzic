@@ -1,9 +1,9 @@
-#ifndef _NewWaveRing //
-#define _NewWaveRing //
+#ifndef _WaveRing //
+#define _WaveRing //
 #include "ofMain.h"
 #include "Cycle.h"
 
-class NewWaveRing {
+class WaveRing {
 
   private:
     Cycle *cycle;
@@ -36,7 +36,7 @@ class NewWaveRing {
     void setRadius(float _radius);
     void setSegments(int _segments);
 
-    NewWaveRing();
+    WaveRing();
 
 };
 #endif

@@ -1,5 +1,5 @@
 #include "ofApp.h"
-#include "NewWaveRing.h"
+#include "WaveRing.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -13,7 +13,7 @@ void ofApp::setup(){
   gui.add(noiseStep.set("noiseStep", 0.0,0, 1));
   gui.add(noiseAmount.set("noiseAmount", 0.40, 0.0, 100));
 
-  NewWaveRing wavering;
+  WaveRing wavering;
   shapes.push_back(wavering);
 
   for(int i=0; i<shapes.size(); i++){

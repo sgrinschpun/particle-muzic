@@ -1,6 +1,6 @@
-#include "NewWaveRing.h"
+#include "WaveRing.h"
 
-NewWaveRing::NewWaveRing(){
+WaveRing::WaveRing(){
   cycle = new Cycle(120);
   segments =100;
   radius =100;
@@ -9,11 +9,11 @@ NewWaveRing::NewWaveRing(){
   centerX = ofGetWidth()/2;
 }
 
-void NewWaveRing::setup(){
+void WaveRing::setup(){
   setupCircleMeshLine();
 }
 
-void NewWaveRing::setupCircleMeshLine(){
+void WaveRing::setupCircleMeshLine(){
   wigglyMeshLine.setMode(OF_PRIMITIVE_LINE_STRIP);
   ofPoint p;
 
@@ -25,7 +25,7 @@ void NewWaveRing::setupCircleMeshLine(){
   noiseCursor = 0.1;
 }
 
-void NewWaveRing::updateWigglyMeshLine(){
+void WaveRing::updateWigglyMeshLine(){
   float max = noiseAmount*(cycle -> getEaseQuart2());
   ofPoint p;
   wigglyMeshLine.clear();
@@ -41,7 +41,7 @@ void NewWaveRing::updateWigglyMeshLine(){
 }
 
 
-void NewWaveRing::draw(){
+void WaveRing::draw(){
   ofBackgroundGradient( ofColor(255), ofColor(180), OF_GRADIENT_CIRCULAR);
   ofEnableAlphaBlending();
   ofEnableSmoothing();
@@ -59,34 +59,34 @@ void NewWaveRing::draw(){
   ofPopMatrix();
 }
 
-void NewWaveRing::update(){
+void WaveRing::update(){
   if (cycle -> newLoop()==true){
      noiseCursor+= 0.1;
   }
   updateWigglyMeshLine();
 }
 
-void NewWaveRing::setNoiseStep(float _noiseStep){
+void WaveRing::setNoiseStep(float _noiseStep){
   noiseStep=_noiseStep;
 }
 
-void NewWaveRing::setNoiseAmount(float _noiseAmount){
+void WaveRing::setNoiseAmount(float _noiseAmount){
   noiseAmount=_noiseAmount;
 }
 
-void NewWaveRing::setWidth(int _width){
+void WaveRing::setWidth(int _width){
   width = _width;
 }
 
-void NewWaveRing::setCycle(int _framesPerCycle){
+void WaveRing::setCycle(int _framesPerCycle){
   framesPerCycle = _framesPerCycle;
   cycle -> setFramesPerCycle(_framesPerCycle);
 }
 
-void NewWaveRing::setRadius(float _radius){
+void WaveRing::setRadius(float _radius){
   radius = _radius;
 }
 
-void NewWaveRing::setSegments(int _segments){
+void WaveRing::setSegments(int _segments){
   segments = _segments;
 }

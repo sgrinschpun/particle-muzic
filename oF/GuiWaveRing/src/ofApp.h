@@ -2,7 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxGui.h"
-#include "NewWaveRing.h"
+#include "WaveRing.h"
 
 class ofApp : public ofBaseApp{
 
@@ -32,6 +32,6 @@ class ofApp : public ofBaseApp{
 		ofParameter<int> segments;
 		ofParameter<int> width;
 
-		vector<NewWaveRing> shapes;
+		vector<WaveRing> shapes;
 
 };
