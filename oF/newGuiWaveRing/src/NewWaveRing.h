@@ -9,6 +9,7 @@ class NewWaveRing {
     Cycle *cycle;
     int framesPerCycle;
 
+    ofMesh wigglyMeshLine;
     int segments;
     float radius;
     int width;
@@ -21,8 +22,9 @@ class NewWaveRing {
 
     float centerX;
     float centerY;
-    float radialNoiseDemoR; // radius
 
+    void setupCircleMeshLine();
+    void updateWigglyMeshLine();
     void setupSignedNoise();
     void updateSignedNoise();
 

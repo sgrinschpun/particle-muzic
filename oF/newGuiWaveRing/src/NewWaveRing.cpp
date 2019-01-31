@@ -3,101 +3,67 @@
 NewWaveRing::NewWaveRing(){
   cycle = new Cycle(120);
   segments =100;
+  radius =100;
 
   centerY = ofGetHeight()/2;
   centerX = ofGetWidth()/2;
 }
 
 void NewWaveRing::setup(){
-  setupSignedNoise();
-
+  setupCircleMeshLine();
 }
 
-void NewWaveRing::testDraw2(){
-  ofBackgroundGradient( ofColor(255), ofColor(180), OF_GRADIENT_CIRCULAR);
-
-	ofPushMatrix();
-	ofTranslate(centerX,centerY,0);
-	ofEnableAlphaBlending();
-	ofEnableSmoothing();
-	ofNoFill();
-  ofSetLineWidth(width);
-
-
-	ofMesh wigglyMeshLine; // yes, technically, it's a "mesh"
-	wigglyMeshLine.setMode(OF_PRIMITIVE_LINE_STRIP);
+void NewWaveRing::setupCircleMeshLine(){
+  wigglyMeshLine.setMode(OF_PRIMITIVE_LINE_STRIP);
   ofPoint p;
 
-  float max = (cycle -> getEaseQuart2());
-  float wigglyRadius = radius;
-  for(int i=0; i<=nSignedNoiseData; i++){
-		wigglyRadius +=  radius * signedNoiseData[i]*max;
-    p.x =  (radius * cos(TWO_PI * i / nSignedNoiseData));
-    p.y =  (radius * sin(TWO_PI * i / nSignedNoiseData));
+  for(int i=0; i<=segments; i++){
+    p.x =  (radius * cos(TWO_PI * i / segments));
+    p.y =  (radius * sin(TWO_PI * i / segments));
     wigglyMeshLine.addVertex(p);
   }
-
-  if (cycle -> newLoop()==true){
-    nSignedNoiseData = segments;
-  	signedNoiseData = new float[nSignedNoiseData];
-  	for (int i=0; i<nSignedNoiseData; i++){
-      ofPoint vertex = wigglyMeshLine.getVertex(i);
-  		signedNoiseData[i] =  ofSignedNoise( noiseStep*vertex.x, noiseStep*vertex.y);
-      vertex += signedNoiseData[i]*noiseAmount*max;
-      wigglyMeshLine.setVertex(i, vertex);
-  	}
-  }
-
-  ofEnableSmoothing();
-  wigglyMeshLine.draw();
-  ofPopMatrix();
+  radialNoiseCursor = 0.1;
 }
 
-void NewWaveRing::testDraw(){
-  ofBackgroundGradient( ofColor(255), ofColor(180), OF_GRADIENT_CIRCULAR);
-
-	ofPushMatrix();
-	ofTranslate(centerX,centerY,0);
-	ofEnableAlphaBlending();
-	ofEnableSmoothing();
-	ofNoFill();
-  ofSetLineWidth(width);
-
-
-	ofMesh wigglyMeshLine; // yes, technically, it's a "mesh"
-	wigglyMeshLine.setMode(OF_PRIMITIVE_LINE_STRIP);
+void NewWaveRing::updateWigglyMeshLine(){
+  float max = noiseAmount*(cycle -> getEaseQuart2());
   ofPoint p;
+  wigglyMeshLine.clear();
 
-  float max = (cycle -> getEaseQuart2());
-  float wigglyRadius = radius;
-  for(int i=0; i<=nSignedNoiseData/2; i++){
-		wigglyRadius +=  radius * signedNoiseData[i]*max;
-    p.x =  (wigglyRadius * cos(TWO_PI * i / nSignedNoiseData));
-    p.y =  (wigglyRadius * sin(TWO_PI * i / nSignedNoiseData));
+  for(int i=0; i<=segments; i++){
+    p.x =  radius*cos(TWO_PI * i / segments);
+    p.y =  radius*sin(TWO_PI * i / segments);
+
+    p.x += ofSignedNoise(radialNoiseCursor+noiseStep*p.x/radius, radialNoiseCursor+noiseStep*p.y/radius)*max;
+    p.y += ofSignedNoise(radialNoiseCursor+noiseStep*p.x/radius, radialNoiseCursor+noiseStep*p.y/radius)*max;
     wigglyMeshLine.addVertex(p);
   }
-  for(int i=nSignedNoiseData/2-1; i==0; i--){
-    wigglyRadius +=  radius * signedNoiseData[i]*max;
-    p.x =  (wigglyRadius * cos(TWO_PI * i / nSignedNoiseData));
-    p.y =  (wigglyRadius * sin(TWO_PI * i / nSignedNoiseData));
-    wigglyMeshLine.addVertex(p);
-  }
-  ofEnableSmoothing();
-  wigglyMeshLine.draw();
-  ofPopMatrix();
 }
 
 
 void NewWaveRing::draw(){
-  testDraw2();
-
+  ofBackgroundGradient( ofColor(255), ofColor(180), OF_GRADIENT_CIRCULAR);
+  ofEnableAlphaBlending();
+  ofEnableSmoothing();
+  ofNoFill();
+  ofSetLineWidth(width);
+  ofEnableSmoothing();
+  ofPushMatrix();
+    ofTranslate(centerX,centerY,0);
+    wigglyMeshLine.draw();
+    ofDrawBitmapString(cycle -> getCurrentCycle(), 0, -40);
+    ofDrawBitmapString(cycle -> getCurrentFrame(), 0, -20);
+    ofDrawBitmapString(cycle -> getProgressRatio(), 0, 0);
+    ofDrawBitmapString(cycle -> newLoop(), 0, 20);
+    ofDrawBitmapString(cycle -> getEaseQuart2(),0,40);
+  ofPopMatrix();
 }
 
 void NewWaveRing::update(){
-  //updateSignedNoise();
   if (cycle -> newLoop()==true){
-    updateSignedNoise();
+     radialNoiseCursor+= 0.1;
   }
+  updateWigglyMeshLine();
 
 }
 

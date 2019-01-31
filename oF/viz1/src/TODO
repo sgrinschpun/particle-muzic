@@ -1,8 +1,7 @@
 check the use of pointers in vectors. necessary?
 
-use GUI to set parameters of shapes
 use YAML to set config
-circle with ofPath
+circle with /ofPolygon / ofPath / ofMesh
 wavering
 wavering rotating
 color cycle

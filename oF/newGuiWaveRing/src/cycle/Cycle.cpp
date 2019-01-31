@@ -76,7 +76,7 @@ float Cycle::getEaseQuart2(){ //fast -> slow
 
 bool Cycle::newLoop(){
   update();
-  if (currentFrame == 1){
+  if (currentFrame == 0){
       return true;
   }
   else{ return false;}

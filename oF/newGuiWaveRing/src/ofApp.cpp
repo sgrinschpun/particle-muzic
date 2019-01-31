@@ -8,10 +8,10 @@ void ofApp::setup(){
   gui.setup();
   gui.add(framesPerCycle.set("framesPerCycle", 50, 1, 500));
   gui.add(radius.set("radius", 100, 1, 500));
-  gui.add(segments.set("segments", 100, 1, 100));
-  gui.add(width.set("width", 2, 1, 10));
-  gui.add(noiseStep.set("noiseStep", 0.01, 0.01, 0.15));
-  gui.add(noiseAmount.set("noiseAmount", 0.40, 0.0, 1));
+  gui.add(segments.set("segments", 100, 1, 500));
+  gui.add(width.set("width", 2, 0, 5));
+  gui.add(noiseStep.set("noiseStep", 0.0,0, 1));
+  gui.add(noiseAmount.set("noiseAmount", 0.40, 0.0, 100));
 
   NewWaveRing wavering;
   shapes.push_back(wavering);
