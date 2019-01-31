@@ -9,7 +9,7 @@ class WaveRing {
     Cycle *cycle;
     int framesPerCycle;
 
-    ofMesh wigglyMeshLine;
+    ofMesh wigglyMeshRing;
     int segments;
     float radius;
     int width;
@@ -21,8 +21,8 @@ class WaveRing {
     float centerX;
     float centerY;
 
-    void setupCircleMeshLine();
-    void updateWigglyMeshLine();
+    void setupCircleMeshRing();
+    void updateWigglyMeshRing();
 
   public:
     void setup();

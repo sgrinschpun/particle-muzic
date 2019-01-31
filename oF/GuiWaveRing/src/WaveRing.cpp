@@ -10,25 +10,24 @@ WaveRing::WaveRing(){
 }
 
 void WaveRing::setup(){
-  setupCircleMeshLine();
+  setupCircleMeshRing();
 }
 
-void WaveRing::setupCircleMeshLine(){
-  wigglyMeshLine.setMode(OF_PRIMITIVE_LINE_STRIP);
+void WaveRing::setupCircleMeshRing(){
+  wigglyMeshRing.setMode(OF_PRIMITIVE_LINE_STRIP);
   ofPoint p;
-
   for(int i=0; i<=segments; i++){
     p.x =  (radius * cos(TWO_PI * i / segments));
     p.y =  (radius * sin(TWO_PI * i / segments));
-    wigglyMeshLine.addVertex(p);
+    wigglyMeshRing.addVertex(p);
   }
   noiseCursor = 0.1;
 }
 
-void WaveRing::updateWigglyMeshLine(){
+void WaveRing::updateWigglyMeshRing(){
   float max = noiseAmount*(cycle -> getEaseQuart2());
   ofPoint p;
-  wigglyMeshLine.clear();
+  wigglyMeshRing.clear();
 
   for(int i=0; i<=segments; i++){
     p.x =  radius*cos(TWO_PI * i / segments);
@@ -36,7 +35,7 @@ void WaveRing::updateWigglyMeshLine(){
 
     p.x += ofSignedNoise(noiseCursor+noiseStep*p.x/radius, noiseCursor+noiseStep*p.y/radius)*max;
     p.y += ofSignedNoise(noiseCursor+noiseStep*p.x/radius, noiseCursor+noiseStep*p.y/radius)*max;
-    wigglyMeshLine.addVertex(p);
+    wigglyMeshRing.addVertex(p);
   }
 }
 
@@ -50,7 +49,7 @@ void WaveRing::draw(){
   ofEnableSmoothing();
   ofPushMatrix();
     ofTranslate(centerX,centerY,0);
-    wigglyMeshLine.draw();
+    wigglyMeshRing.draw();
     ofDrawBitmapString(cycle -> getCurrentCycle(), 0, -40);
     ofDrawBitmapString(cycle -> getCurrentFrame(), 0, -20);
     ofDrawBitmapString(cycle -> getProgressRatio(), 0, 0);
@@ -63,7 +62,7 @@ void WaveRing::update(){
   if (cycle -> newLoop()==true){
      noiseCursor+= 0.1;
   }
-  updateWigglyMeshLine();
+  updateWigglyMeshRing();
 }
 
 void WaveRing::setNoiseStep(float _noiseStep){
