@@ -22,7 +22,7 @@ void NewWaveRing::setupCircleMeshLine(){
     p.y =  (radius * sin(TWO_PI * i / segments));
     wigglyMeshLine.addVertex(p);
   }
-  radialNoiseCursor = 0.1;
+  noiseCursor = 0.1;
 }
 
 void NewWaveRing::updateWigglyMeshLine(){
@@ -34,8 +34,8 @@ void NewWaveRing::updateWigglyMeshLine(){
     p.x =  radius*cos(TWO_PI * i / segments);
     p.y =  radius*sin(TWO_PI * i / segments);
 
-    p.x += ofSignedNoise(radialNoiseCursor+noiseStep*p.x/radius, radialNoiseCursor+noiseStep*p.y/radius)*max;
-    p.y += ofSignedNoise(radialNoiseCursor+noiseStep*p.x/radius, radialNoiseCursor+noiseStep*p.y/radius)*max;
+    p.x += ofSignedNoise(noiseCursor+noiseStep*p.x/radius, noiseCursor+noiseStep*p.y/radius)*max;
+    p.y += ofSignedNoise(noiseCursor+noiseStep*p.x/radius, noiseCursor+noiseStep*p.y/radius)*max;
     wigglyMeshLine.addVertex(p);
   }
 }
@@ -61,10 +61,9 @@ void NewWaveRing::draw(){
 
 void NewWaveRing::update(){
   if (cycle -> newLoop()==true){
-     radialNoiseCursor+= 0.1;
+     noiseCursor+= 0.1;
   }
   updateWigglyMeshLine();
-
 }
 
 void NewWaveRing::setNoiseStep(float _noiseStep){
@@ -90,35 +89,4 @@ void NewWaveRing::setRadius(float _radius){
 
 void NewWaveRing::setSegments(int _segments){
   segments = _segments;
-}
-
-void NewWaveRing::setupSignedNoise(){
-
-  radialNoiseCursor = 0.0;
-  nSignedNoiseData = segments;
-	signedNoiseData = new float[nSignedNoiseData];
-	for (int i=0; i<nSignedNoiseData; i++){
-		signedNoiseData[i] = noiseAmount * ofSignedNoise( radialNoiseCursor );
-    radialNoiseCursor += noiseStep;;
-	}
-
-}
-
-void NewWaveRing::updateSignedNoise(){
-  nSignedNoiseData = segments;
-  for (int i=0; i<nSignedNoiseData; i++){
-    signedNoiseData[i] = noiseAmount * ofSignedNoise( radialNoiseCursor );
-    radialNoiseCursor += noiseStep;;
-  }
-
-  // Shift all of the old data forward through the array
-  //for (int i=(nSignedNoiseData-1); i>0; i--){
-  //  signedNoiseData[i] = signedNoiseData[i-1];
-  //}
-
-  // Compute the latest data, and insert it at the head of the array.
-	// Here is where ofSignedNoise is requested.
-  //signedNoiseData[0] = noiseAmount * ofSignedNoise( radialNoiseCursor );
-  //radialNoiseCursor += noiseStep;
-
 }

@@ -16,27 +16,18 @@ class NewWaveRing {
 
     float noiseStep;
     float noiseAmount;
-    float *signedNoiseData;
-    int nSignedNoiseData;
-    float radialNoiseCursor;
+    float noiseCursor;
 
     float centerX;
     float centerY;
 
     void setupCircleMeshLine();
     void updateWigglyMeshLine();
-    void setupSignedNoise();
-    void updateSignedNoise();
-
 
   public:
     void setup();
     void draw();
     void update();
-
-    void exampleDraw();
-    void testDraw();
-    void testDraw2();
 
     void setNoiseStep(float _noiseStep);
     void setNoiseAmount(float _noiseAmount);
