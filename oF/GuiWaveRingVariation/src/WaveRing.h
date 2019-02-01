@@ -37,5 +37,6 @@ class WaveRing {
     void setSegments(int _segments);
 
     WaveRing();
+
 };
 #endif
