@@ -6,7 +6,8 @@
 class WaveRing {
 
   private:
-    Cycle *cycle;
+    shared_ptr<Cycle> cycle;
+    //Cycle *cycle;
     int framesPerCycle;
 
     ofMesh wigglyMeshRing;
@@ -37,6 +38,5 @@ class WaveRing {
     void setSegments(int _segments);
 
     WaveRing();
-
 };
 #endif

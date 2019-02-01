@@ -1,7 +1,7 @@
 #include "WaveRing.h"
 
 WaveRing::WaveRing(){
-  cycle = new Cycle(120);
+  cycle = make_shared<Cycle>(120);
   segments =100;
   radius =100;
 
