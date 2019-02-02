@@ -23,25 +23,7 @@ public:
 private:
     vector<MyCircle> circles;
     int shapes_num;
-    //float radius;
-    ofPoint pos;
-    ofVec3f rotate;
-
-    float speed;
-    float speed_noise;
-    float speed_amp;
-
-    ofVec3f pos_noise;
-    ofVec3f pos_amp;
-    ofVec3f rot_noise;
-    ofVec3f rot_amp;
-
-    int col;
-    float col_speed;
-    bool col_mode;
 
     int after_img;
 
-    void addNoise();
-    void resetNoise();
 };
