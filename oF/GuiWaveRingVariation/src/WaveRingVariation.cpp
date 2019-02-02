@@ -23,11 +23,11 @@ void WaveRingVariation::update() {
 
 
 void WaveRingVariation::draw() {
-  ofEnableBlendMode(OF_BLENDMODE_ADD);
 
+  ofEnableBlendMode(OF_BLENDMODE_ADD);
   for(int i=0; i<waverings.size(); i++){
     waverings[i].draw();
-    }
+  }
 
   ofEnableBlendMode(OF_BLENDMODE_ALPHA);
   ofFill();

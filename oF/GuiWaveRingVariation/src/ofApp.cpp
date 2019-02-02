@@ -8,7 +8,7 @@ void ofApp::setup(){
     ofSetCircleResolution(60);
 
     gui.setup();
-    gui.add(shapes_num.set("number of shapes", 1, 1, 500));
+    gui.add(shapes_num.set("number of shapes", 1, 1, 100));
     gui.add(radius.set("radius", ofGetHeight()/4, 1, ofGetHeight()/2));
     gui.add(pos.set("pos",
                     ofVec3f(0),
@@ -25,7 +25,7 @@ void ofApp::setup(){
     //WaveRing
     gui.add(framesPerCycle.set("framesPerCycle", 50, 1, 500));
     gui.add(segments.set("segments", 100, 1, 500));
-    gui.add(width.set("width", 2, 0, 10));
+    gui.add(width.set("width", 2, 0, 20));
     gui.add(noiseStep.set("noiseStep", 0.0,0, 1));
     gui.add(noiseAmount.set("noiseAmount", 0.40, 0.0, 100));
 

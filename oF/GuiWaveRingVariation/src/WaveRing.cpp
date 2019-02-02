@@ -62,8 +62,8 @@ void WaveRing::updateWigglyMeshRing(){
 
 void WaveRing::draw(){
   //ofBackgroundGradient( ofColor(255), ofColor(180), OF_GRADIENT_CIRCULAR);
-  ofEnableAlphaBlending();
-  ofEnableSmoothing();
+  // ofEnableAlphaBlending();
+  //ofEnableSmoothing();
   ofSetLineWidth(width);
   ofNoFill();
   ofPushMatrix();
@@ -75,12 +75,6 @@ void WaveRing::draw(){
     else ofSetColor(ofColor::fromHsb(col, 100, 255, 100));
     wigglyMeshRing.draw();
   ofPopMatrix();
-
-    // ofDrawBitmapString(cycle -> getCurrentCycle(), 0, -40);
-    // ofDrawBitmapString(cycle -> getCurrentFrame(), 0, -20);
-    // ofDrawBitmapString(cycle -> getProgressRatio(), 0, 0);
-    // ofDrawBitmapString(cycle -> newLoop(), 0, 20);
-    // ofDrawBitmapString(cycle -> getEaseQuart2(),0,40);
 }
 
 void WaveRing::update(){
