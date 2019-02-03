@@ -1,0 +1,33 @@
+#include "Particle.h"
+
+Particle::Particle(shared_ptr<ParticleData>& _data): data(_data){
+  buildModel();
+}
+
+void Particle::buildModel(){
+    string type = data->getType();
+    string name = data->getName();
+    const string neutrinos[] = {"nu_e", "nu_mu", "nu_tau", "nu_ebar","nu_mubar","nu_taubar"}
+
+    if (type == "lepton"){
+      auto it = find(begin(neutrinos), end(neutrinos), name);
+      if (it != end(neutrinos)) {model = make_shared<Neutrino>(data);}
+      else {model = make_shared<Lepton>(data);}
+    }
+    else if (type == "boson") {model = make_shared<Boson>(data);}
+    else if (type == "meson") {model = make_shared<Meson>(data);}
+    else if (type == "baryon"){model = make_shared<Baryon>(data);}
+    else if (type == "quark") {model = make_shared<Quark>(data);}
+  }
+
+void Particle::setup(){
+  model->setup();
+}
+
+void Particle::draw(){
+  model->draw();
+}
+
+void Particle::update(){
+  model->update();
+}

@@ -1,0 +1,30 @@
+#ifndef _Particle //
+#define _Particle //
+#include "ofMain.h"
+#include "ParticleData.h"
+#include "Model.h"
+#include "Lepton.h"
+#include "Boson.h"
+#include "Meson.h"
+#include "Baryon.h"
+#include "Quark.h"
+#include "Neutrino.h"
+
+class Particle {
+  private:
+  shared_ptr<ParticleData> data;
+  shared_ptr<Model> model;
+
+  void buildModel();
+
+  public:
+  void setup();
+  void update();
+  void draw();
+
+  //constructor
+  Particle(shared_ptr<ParticleData>& _data);
+  ~Particle() {}
+
+};
+#endif
