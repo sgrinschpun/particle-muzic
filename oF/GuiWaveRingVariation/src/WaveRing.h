@@ -6,8 +6,7 @@
 class WaveRing {
 
   private:
-    //cycle
-    int framesPerCycle;
+
     //shape
     ofMesh wigglyMeshRing;
     int segments;
@@ -53,7 +52,7 @@ class WaveRing {
     void setSpeedAmp(float speed_amp);
     void setColorMode(bool col_mode);
 
-    WaveRing();
+    WaveRing(shared_ptr<Cycle>& cycle);
 
 };
 #endif

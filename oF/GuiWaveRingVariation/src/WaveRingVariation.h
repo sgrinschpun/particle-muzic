@@ -1,6 +1,7 @@
 #pragma once
 #include "ofMain.h"
 #include "WaveRing.h"
+#include "Cycle.h"
 
 class WaveRingVariation {
 
@@ -25,10 +26,12 @@ public:
     void setCycle(int framesPerCycle);
     void setSegments(int segments);
 
+    shared_ptr<Cycle> cycle;
 
 private:
     vector<WaveRing> waverings;
     int shapes_num;
     int after_img;
+    int framesPerCycle;
 
 };

@@ -1,8 +1,6 @@
 #include "WaveRing.h"
 
-WaveRing::WaveRing(){
-  framesPerCycle = 50;
-  cycle = make_shared<Cycle>(framesPerCycle);
+WaveRing::WaveRing(shared_ptr<Cycle>& cycle):cycle(cycle){
 
   segments = 100;
   radius =ofGetHeight()/4;
@@ -117,11 +115,6 @@ void WaveRing::setNoiseAmount(float _noiseAmount){
 
 void WaveRing::setWidth(int _width){
   width = _width;
-}
-
-void WaveRing::setCycle(int _framesPerCycle){
-  framesPerCycle = _framesPerCycle;
-  cycle -> setFramesPerCycle(_framesPerCycle);
 }
 
 void WaveRing::setRadius(float _radius){

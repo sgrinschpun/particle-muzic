@@ -1,16 +1,18 @@
 #include "WaveRingVariation.h"
 
 WaveRingVariation::WaveRingVariation() {
-    shapes_num = 1;  //
-    after_img = 50; //
+    shapes_num = 1;
+    after_img = 50;
+    framesPerCycle = 50;
+    cycle = make_shared<Cycle>(framesPerCycle);
 }
 
 void WaveRingVariation::update() {
 
   while (waverings.size() != shapes_num){
       if (waverings.size() < shapes_num) {
-          WaveRing wv;
-          waverings.push_back(wv);
+          WaveRing wr = WaveRing(cycle);
+          waverings.push_back(wr);
       } else if (waverings.size() > shapes_num) {
           waverings.pop_back();
       }
@@ -44,6 +46,11 @@ void WaveRingVariation::setShapeNum(int _shapes_num) {
 
 void WaveRingVariation::setAfterImg(int _after_img) {
     after_img = _after_img;
+}
+
+void WaveRingVariation::setCycle(int _framesPerCycle){
+  framesPerCycle = _framesPerCycle;
+  cycle -> setFramesPerCycle(_framesPerCycle);
 }
 
 void WaveRingVariation::setRadius(float _radius) {
@@ -93,13 +100,6 @@ void WaveRingVariation::setWidth(int _width){
     waverings[i].setWidth(_width);
   }
 }
-
-void WaveRingVariation::setCycle(int _framesPerCycle){
-  for(int i=0; i<waverings.size(); i++){
-    waverings[i].cycle->setFramesPerCycle(_framesPerCycle);
-  }
-}
-
 
 void WaveRingVariation::setSegments(int _segments){
   for(int i=0; i<waverings.size(); i++){
