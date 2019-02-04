@@ -1,20 +1,41 @@
 #include "Model.h"
 
 Model::Model(shared_ptr<ParticleData>& _data): data(_data){
-  buildShape();
+  buildParameters();
+  setShape();
 }
 
-void Model::buildShape(){
-
-
-    shape = make_shared<WaveRingVariation>(ZZZZZZZZ);
+void Model::buildParameters(){
+  shapes_num = getShapesNum();
+  after_img = getAfterImg();
+  radius = getRadius();
+  pos_amp = getPos();
+  rot_amp = getRot();
+  speed_amp = getSpeed();
+  col_mode = getColorMode();
+  noiseStep = getNoiseStep();
+  noiseAmount = getNoiseAmount();
+  width = getWidth();
+  framesPerCycle = getFramesPerCycle();
+  segments = getSegments();
 }
 
-
-
-void Model::setup(){
-    shape->setup();
+void Model::setShape(){
+    shape = make_shared<WaveRingVariation>();
+    shape.setShapeNum(shapes_num)
+    shape.setAfterImg(after_img);
+    shape.setRadius(radius);
+    shape.setPosAmp(pos_amp);
+    shape.setRotAmp(rot_amp);
+    shape.setSpeedAmp(speed_amp);
+    shape.setColorMode(col_mode);
+    shape.setNoiseStep(noiseStep);
+    shape.setNoiseAmount(noiseAmount);
+    shape.setWidth(width);
+    shape.setCycle(framesPerCycle);
+    shape.setSegments(segments);
 }
+
 
 void Model::draw(){
     shape->draw();

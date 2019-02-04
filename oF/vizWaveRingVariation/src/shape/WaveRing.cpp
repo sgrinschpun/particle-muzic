@@ -27,10 +27,6 @@ WaveRing::WaveRing(shared_ptr<Cycle>& cycle):cycle(cycle){
 
 }
 
-void WaveRing::setup(){
-
-}
-
 void WaveRing::setupCircleMeshRing(){
   wigglyMeshRing.setMode(OF_PRIMITIVE_LINE_STRIP);
   ofPoint p;

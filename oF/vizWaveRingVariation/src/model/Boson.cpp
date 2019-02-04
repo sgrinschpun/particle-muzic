@@ -1,10 +1,42 @@
 #include "Boson.h"
-#include "Rectangle.h"
+#include "WaveRingVariation.h"
 
-void Boson::addShapes(){
-  shapes.push_back(new Rectangle(params));
-}
-
-Boson::Boson(ParticleData* _particleData):Model(_particleData){
-  addShapes();
+Boson::Boson(shared_ptr<ParticleData>& _particleData):Model(_particleData){
 };
+
+int Boson::getShapesNum(){
+
+}
+int Boson::getFramesPerCycle(){
+
+}
+int Boson::getAfterImg(){
+
+}
+float Boson::getRadius(){
+
+}
+ofVec3f Boson::getPos(){
+
+}
+ofVec3f Boson::getRot(){
+
+}
+float Boson::getSpeed(){
+
+}
+bool Boson::getColorMode(){
+
+}
+float Boson::getNoiseStep(){
+
+}
+float Boson::getNoiseAmount(){
+
+}
+int Boson::getSegments(){
+
+}
+int Boson::getWidth(){
+
+}

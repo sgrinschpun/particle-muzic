@@ -9,7 +9,6 @@ public:
     WaveRingVariation();
     void update();
     void draw();
-    void setup();
 
     void setShapeNum(int shapes_num);
     void setAfterImg(int after_img);

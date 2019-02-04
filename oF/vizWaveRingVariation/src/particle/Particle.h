@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ParticleData.h"
 #include "Model.h"
+#include "Kinematics.h"
 #include "Lepton.h"
 #include "Boson.h"
 #include "Meson.h"
@@ -14,6 +15,7 @@ class Particle {
   private:
   shared_ptr<ParticleData> data;
   shared_ptr<Model> model;
+  shared_ptr<Kinematics> kinematics;
 
   void buildModel();
 

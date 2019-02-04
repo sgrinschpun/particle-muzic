@@ -35,7 +35,6 @@ class WaveRing {
   public:
     shared_ptr<Cycle> cycle;
 
-    void setup();
     void draw();
     void update();
 
