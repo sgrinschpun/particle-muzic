@@ -32,11 +32,10 @@ void Lepton::buildParameters(){
       width = 14;
       framesPerCycle = 200;
   }
-  getColorMode();
+  setColorMode();
 }
 
 
-bool Lepton::getColorMode(){
-  col_mode = 0;
-
+void Lepton::setColorMode(){
+    col_mode = 0;
 }

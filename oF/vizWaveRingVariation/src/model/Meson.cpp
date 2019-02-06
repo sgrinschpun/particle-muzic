@@ -19,6 +19,6 @@ void Meson::buildParameters(){
 }
 
 
-bool Meson::getColorMode(){
+void Meson::setColorMode(){
     col_mode = 0;
 }

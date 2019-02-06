@@ -19,7 +19,6 @@ class Kinematics {
     float getDistance();
 
     Kinematics(ofPoint _position, ofVec3f _velocity);
-    ~Kinematics();
 
 };
 #endif

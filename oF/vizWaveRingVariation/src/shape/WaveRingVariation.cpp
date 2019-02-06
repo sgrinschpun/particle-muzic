@@ -7,8 +7,8 @@ WaveRingVariation::WaveRingVariation() {
     cycle = make_shared<Cycle>(framesPerCycle);
 }
 
-void WaveRingVariation::setLocation(ofPoint _position){
-  location = _position;
+void WaveRingVariation::setPosition(ofPoint _position){
+  position = _position;
 }
 
 void WaveRingVariation::update() {
@@ -32,7 +32,7 @@ void WaveRingVariation::draw() {
 
   ofEnableBlendMode(OF_BLENDMODE_ADD);
   ofPushMatrix();
-  ofTranslate(location.x, location.y);
+  ofTranslate(position.x, position.y);
   for(int i=0; i<waverings.size(); i++){
     waverings[i].draw();
   }

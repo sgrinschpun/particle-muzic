@@ -1,7 +1,7 @@
 #include "Baryon.h"
 
 Baryon::Baryon(shared_ptr<ParticleData>& _particleData):Model(_particleData){
-};
+}
 
 void Baryon::buildParameters(){
   shapes_num = 3;
@@ -18,6 +18,6 @@ void Baryon::buildParameters(){
   segments = 100;
 }
 
-bool Baryon::getColorMode(){
+void Baryon::setColorMode(){
     col_mode = 0;
 }

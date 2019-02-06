@@ -38,6 +38,6 @@ void Particle::draw(){
 
 void Particle::update(){
   kinematics->update();
-  model->setLocation(kinematics->getPosition());
+  model->setPosition(kinematics->getPosition());
   model->update();
 }

@@ -49,8 +49,9 @@ void Boson::buildParameters(){
       width = 8;
       framesPerCycle = 0;
   }
+
 }
 
-bool Boson::getColorMode(){
+void Boson::setColorMode(){
     col_mode = 0;
 }

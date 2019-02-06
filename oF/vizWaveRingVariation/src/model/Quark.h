@@ -6,7 +6,7 @@
 class Quark: public Model {
   private:
     void buildParameters();
-    bool getColorMode();
+    void setColorMode();
 
   public:
     Quark(shared_ptr<ParticleData>& _particleData);

@@ -6,7 +6,7 @@
 class Meson: public Model {
   private:
     void buildParameters();
-    bool getColorMode();
+    void setColorMode();
 
   public:
     Meson(shared_ptr<ParticleData>& _particleData);

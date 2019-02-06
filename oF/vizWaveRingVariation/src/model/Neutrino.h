@@ -6,7 +6,7 @@
 class Neutrino: public Model {
   private:
     void buildParameters();
-    bool setColorMode();
+    void setColorMode();
 
   public:
     Neutrino(shared_ptr<ParticleData>& _particleData);

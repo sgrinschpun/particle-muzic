@@ -30,7 +30,7 @@ class Model {
     void draw();
     void update();
 
-    void setLocation(ofPoint _position);
+    void setPosition(ofPoint _position);
 
     Model(shared_ptr<ParticleData>& _particleData);
     ~Model() {}

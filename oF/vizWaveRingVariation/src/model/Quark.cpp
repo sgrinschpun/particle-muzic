@@ -15,9 +15,9 @@ void Quark::buildParameters(){
   width = 40;
   framesPerCycle= 280;
   segments = 100;
-  getColorMode();
+  setColorMode();
 }
 
-bool Quark::getColorMode(){
+void Quark::setColorMode(){
     col_mode = 0;
 }

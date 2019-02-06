@@ -18,6 +18,6 @@ void Neutrino::buildParameters(){
   setColorMode();
 }
 
-bool Neutrino::setColorMode(){
+void Neutrino::setColorMode(){
     col_mode = 0;
 }

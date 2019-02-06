@@ -6,7 +6,7 @@
 class Baryon: public Model {
   private:
     void buildParameters();
-    bool getColorMode();
+    void setColorMode();
 
   public:
     Baryon(shared_ptr<ParticleData>& _particleData);

@@ -29,6 +29,6 @@ void Model::update(){
     shape->update();
 }
 
-void Model::setLocation(ofPoint _position){
-  shape->setLocation(_position);
+void Model::setPosition(ofPoint _position){
+  shape->setPosition(_position);
 }

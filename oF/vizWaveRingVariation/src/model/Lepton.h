@@ -5,8 +5,8 @@
 
 class Lepton: public Model {
   private:
-    bool getColorMode();
-    void buildParameters();
+  void setColorMode();
+  void buildParameters();
 
   public:
     Lepton(shared_ptr<ParticleData>& _particleData);
