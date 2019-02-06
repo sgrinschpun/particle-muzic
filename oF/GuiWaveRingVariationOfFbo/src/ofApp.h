@@ -33,7 +33,7 @@ public:
     ofParameter<int> width;
     //Variations panel parameters
     ofParameter<int> shapes_num;
-    ofParameter<int> after_img;
+    ofParameter<int> fadeAmnt;
     ofParameter<float> radius;
     ofParameter<ofVec3f> pos;
     ofParameter<ofVec3f> rot;

@@ -20,7 +20,7 @@ void ofApp::setup(){
                     ofVec3f(720, 720, 720)));
     gui.add(speed.set("speed", 0, 0, 0.1));
     gui.add(color_mode.set("color mode", 0));
-    gui.add(after_img.set("after image", 50, 0, 255));
+    gui.add(fadeAmnt.set("Fade Amount", 50, 0, 255));
 
     //WaveRing
     gui.add(framesPerCycle.set("framesPerCycle", 50, 1, 500));
@@ -49,7 +49,7 @@ void ofApp::update(){
         shapes[i].setRotAmp(rot);
         shapes[i].setSpeedAmp(speed);
         shapes[i].setColorMode(color_mode);
-        shapes[i].setAfterImg(after_img);
+        shapes[i].setFadeAmnt(fadeAmnt);
         shapes[i].setNoiseStep(noiseStep);
         shapes[i].setNoiseAmount(noiseAmount);
         shapes[i].setWidth(width);

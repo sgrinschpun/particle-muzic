@@ -2,7 +2,7 @@
 
 WaveRingVariation::WaveRingVariation() {
     shapes_num = 1;
-    after_img = 50;
+    fadeAmnt = 50;
     framesPerCycle = 50;
     cycle = make_shared<Cycle>(framesPerCycle);
 
@@ -42,19 +42,7 @@ void WaveRingVariation::update() {
 }
 
 void WaveRingVariation::drawFbo(){
-  if( ofGetKeyPressed('c') ){
-		ofClear(255,255,255, 0);
-	}
-	fadeAmnt = 40;
-	if(ofGetKeyPressed('1')){
-		fadeAmnt = 1;
-	}else if(ofGetKeyPressed('2')){
-		fadeAmnt = 5;
-	}else if(ofGetKeyPressed('3')){
-		fadeAmnt = 15;
-	}
-
-
+  
   ofEnableBlendMode(OF_BLENDMODE_ADD);
   ofPushMatrix();
   ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
@@ -77,8 +65,8 @@ void WaveRingVariation::setShapeNum(int _shapes_num) {
     shapes_num = _shapes_num;
 }
 
-void WaveRingVariation::setAfterImg(int _after_img) {
-    after_img = _after_img;
+void WaveRingVariation::setFadeAmnt(int _fadeAmnt){
+    fadeAmnt = _fadeAmnt;
 }
 
 void WaveRingVariation::setCycle(int _framesPerCycle){
