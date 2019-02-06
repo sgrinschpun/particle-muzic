@@ -1,6 +1,8 @@
 #include "Baryon.h"
 
 Baryon::Baryon(shared_ptr<ParticleData>& _particleData):Model(_particleData){
+  buildParameters();
+  setShape();
 }
 
 void Baryon::buildParameters(){

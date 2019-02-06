@@ -1,7 +1,9 @@
 #include "Quark.h"
 
 Quark::Quark(shared_ptr<ParticleData>& _particleData):Model(_particleData){
-};
+  buildParameters();
+  setShape();
+}
 
 void Quark::buildParameters(){
   shapes_num =1;

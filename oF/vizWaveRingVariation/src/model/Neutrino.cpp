@@ -1,7 +1,9 @@
 #include "Neutrino.h"
 
 Neutrino::Neutrino(shared_ptr<ParticleData>& _particleData):Model(_particleData){
-};
+  buildParameters();
+  setShape();
+}
 
 void Neutrino::buildParameters(){
   shapes_num = 3;

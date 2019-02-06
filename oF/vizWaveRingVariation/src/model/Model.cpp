@@ -1,8 +1,7 @@
 #include "Model.h"
 
 Model::Model(shared_ptr<ParticleData>& _data): data(_data){
-  buildParameters();
-  setShape();
+
 }
 
 void Model::setShape(){

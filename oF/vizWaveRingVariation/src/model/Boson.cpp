@@ -1,7 +1,9 @@
 #include "Boson.h"
 
 Boson::Boson(shared_ptr<ParticleData>& _particleData):Model(_particleData){
-};
+  buildParameters();
+  setShape();
+}
 
 void Boson::buildParameters(){
   string name = data -> getName();

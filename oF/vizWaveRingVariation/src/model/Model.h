@@ -22,10 +22,8 @@ class Model {
     int framesPerCycle;
     int segments;
 
-    virtual void buildParameters()=0;
+    void buildParameters();
     void setShape();
-
-
 
     void draw();
     void update();

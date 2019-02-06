@@ -1,7 +1,9 @@
 #include "Lepton.h"
 
 Lepton::Lepton(shared_ptr<ParticleData>& _particleData):Model(_particleData){
-};
+  buildParameters();
+  setShape();
+}
 
 void Lepton::buildParameters(){
   string name = data -> getName();

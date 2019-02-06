@@ -1,7 +1,9 @@
 #include "Meson.h"
 
 Meson::Meson(shared_ptr<ParticleData>& _particleData):Model(_particleData){
-};
+  buildParameters();
+  setShape();
+}
 
 void Meson::buildParameters(){
   shapes_num = 2;
