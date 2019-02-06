@@ -10,7 +10,7 @@ void Lepton::buildParameters(){
   shapes_num = 1;
   after_img = 8;
   segments = 100;
-  radius = 200;
+  radius = 50;
   pos_amp.set(radius/4,radius/4,radius);
   rot_amp.set(0,0,0);
   if (name == "e-"){
@@ -29,8 +29,8 @@ void Lepton::buildParameters(){
   }
   else if (name == "tau-"){
       speed_amp = 0.01;
-      noiseStep = 0.3;
-      noiseAmount = 74;
+      noiseStep = radius/100;
+      noiseAmount = radius/2;
       width = 14;
       framesPerCycle = 200;
   }

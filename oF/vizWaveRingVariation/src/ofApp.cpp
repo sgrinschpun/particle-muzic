@@ -4,14 +4,20 @@
 void ofApp::setup(){
   ofBackground(0);
   ofSetFrameRate(60);
-  ofSetBackgroundAuto(false);
+  //ofSetBackgroundAuto(false);
   ofSetCircleResolution(60);
 
+  groupOfParticleData.push_back(make_shared<ParticleData>(1,-1,"gamma", "boson"));
   groupOfParticleData.push_back(make_shared<ParticleData>(1,-1,"tau-", "lepton"));
+  ofVec3f velocity1;
+  velocity1.set(1,0,0);
+  ofVec3f velocity2;
+  velocity2.set(0,1,0);
+  ofPoint position;
+  position.set(ofGetWidth()/2, ofGetHeight()/2,0);
+  groupOfParticles.push_back(make_shared<Particle>(groupOfParticleData[0],position, velocity1));
+  groupOfParticles.push_back(make_shared<Particle>(groupOfParticleData[1],position, velocity2));
 
-  for(int i=0; i<groupOfParticleData.size(); i++){
-    groupOfParticles.push_back(make_shared<Particle>(groupOfParticleData[i]));
-  }
 
 }
 

@@ -31,7 +31,7 @@ void WaveRingVariation::draw() {
   ofEnableBlendMode(OF_BLENDMODE_ALPHA);
   ofFill();
   ofSetColor(0, after_img);
-  //ofDrawCircle(0,0,radius);
+  //ofDrawCircle(0,0,radius*1.1);
   ofDrawRectangle(-ofGetWidth()/2, -ofGetHeight()/2, ofGetWidth(), ofGetHeight());
   ofPopMatrix();
 
@@ -58,6 +58,7 @@ void WaveRingVariation::setCycle(int _framesPerCycle){
 }
 
 void WaveRingVariation::setRadius(float _radius) {
+  radius=_radius;
   for(int i=0; i<waverings.size(); i++){
     waverings[i].setRadius(_radius);
   }

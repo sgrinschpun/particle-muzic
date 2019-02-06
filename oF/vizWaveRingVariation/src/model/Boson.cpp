@@ -15,7 +15,7 @@ void Boson::buildParameters(){
   string name = data -> getName();
   shapes_num = 33;
   segments = 100;
-  radius = 200;
+  radius = 50;
   col_mode = 0;
   if (name == "gamma"){
       after_img = 16;
