@@ -4,18 +4,18 @@ Baryon::Baryon(shared_ptr<ParticleData>& _particleData):Model(_particleData){
 };
 
 void Baryon::buildParameters(){
-  shapes_num;
-  after_img;
-  radius;
-  pos_amp;
-  rot_amp;
-  speed_amp;
-  col_mode;
-  noiseStep;
-  noiseAmount;
-  width;
-  framesPerCycle;
-  segments;
+  shapes_num = 3;
+  after_img = 5;
+  radius = 200;
+  pos_amp.set(radius, radius,0);
+  rot_amp.set(radius, radius,0);
+  speed_amp = 0.007;
+  col_mode = 0;
+  noiseStep =0;
+  noiseAmount = 0;
+  width = 32;
+  framesPerCycle = 100;
+  segments = 100;
 }
 
 bool Baryon::getColorMode(){

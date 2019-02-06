@@ -33,7 +33,7 @@ void Lepton::buildParameters(){
       noiseStep = 0.3;
       noiseAmount = 74;
       width = 14;
-      framesPerCycle = 198;
+      framesPerCycle = 200;
       break;
   }
   getColorMode();

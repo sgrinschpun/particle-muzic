@@ -13,7 +13,7 @@ void Neutrino::buildParameters(){
   noiseStep = 0;
   noiseAmount = 0;
   width = 3;
-  framesPerCycle = 0;
+  framesPerCycle = 100;
   segments= 100;
   setColorMode();
 }

@@ -17,7 +17,7 @@ void Boson::buildParameters(){
       noiseStep = 0;
       noiseAmount = 0;
       width = 0;
-      framesPerCycle = 0;
+      framesPerCycle = 100;
       break;
     case "Z0":
       after_img = 145;
@@ -27,7 +27,7 @@ void Boson::buildParameters(){
       noiseStep = 0;
       noiseAmount = 0;
       width = 8;
-      framesPerCycle = 0;
+      framesPerCycle = 100;
       break;
     case "W+":
     case "W+":
