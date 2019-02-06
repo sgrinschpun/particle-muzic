@@ -6,6 +6,7 @@
 class Boson: public Model {
   private:
     void buildParameters();
+    bool getColorMode();
 
   public:
     Boson(shared_ptr<ParticleData>& _particleData);

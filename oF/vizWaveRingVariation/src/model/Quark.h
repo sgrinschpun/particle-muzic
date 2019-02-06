@@ -5,18 +5,8 @@
 
 class Quark: public Model {
   private:
-    int getShapesNum();
-    int getFramesPerCycle();
-    int getAfterImg();
-    float getRadius();
-    ofVec3f getPos();
-    ofVec3f getRot();
-    float getSpeed();
+    void buildParameters();
     bool getColorMode();
-    float getNoiseStep();
-    float getNoiseAmount();
-    int getSegments();
-    int getWidth();
 
   public:
     Quark(shared_ptr<ParticleData>& _particleData);

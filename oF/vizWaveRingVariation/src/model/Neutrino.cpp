@@ -4,22 +4,21 @@ Neutrino::Neutrino(shared_ptr<ParticleData>& _particleData):Model(_particleData)
 };
 
 void Neutrino::buildParameters(){
-  shapes_num;
-  after_img;
-  radius;
-  pos_amp;
-  rot_amp;
-  speed_amp;
-  col_mode;
-  noiseStep;
-  noiseAmount;
-  width;
-  framesPerCycle;
-  segments;
-  getColorMode();
+  shapes_num = 3;
+  after_img = 60;
+  radius = 20;
+  pos_amp.set(radius*4,radius*4,radius*10);
+  rot_amp.set(radius*4,radius*4,0);
+  speed_amp = 0.03;
+  noiseStep = 0;
+  noiseAmount = 0;
+  width = 3;
+  framesPerCycle = 0;
+  segments= 100;
+  setColorMode();
 }
 
-bool Neutrino::getColorMode(){
+bool Neutrino::setColorMode(){
   bool color = 0;
   switch(data.name){
     case "nu_e":
@@ -27,14 +26,14 @@ bool Neutrino::getColorMode(){
     case "nu_tau":
       color = 0;
       break;
-      case "nu_ebar":
-      case "nu_mubar":
-      case "nu_taubar":
+    case "nu_ebar":
+    case "nu_mubar":
+    case "nu_taubar":
       color = 1;
       break;
     default:
       color = 0;
       break;
   }
-  return color;
+  col_mode = color;
 }

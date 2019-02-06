@@ -57,6 +57,6 @@ bool Lepton::getColorMode(){
       color = 0;
       break;
   }
-  return color;
+  col_mode = color;
 
 }
