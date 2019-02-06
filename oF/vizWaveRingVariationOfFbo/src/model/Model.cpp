@@ -14,7 +14,6 @@ void Model::setShape(){
 
     shape -> setCycle(framesPerCycle);
     shape -> setShapeNum(shapes_num);
-    shape -> setAfterImg(after_img);
     shape -> setRadius(radius);
     shape -> setFadeAmount(fadeAmnt);
     shape -> setPosAmp(pos_amp);

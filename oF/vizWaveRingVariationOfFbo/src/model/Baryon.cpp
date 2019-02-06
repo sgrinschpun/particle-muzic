@@ -7,7 +7,6 @@ Baryon::Baryon(shared_ptr<ParticleData>& _particleData):Model(_particleData){
 
 void Baryon::buildParameters(){
   shapes_num = 3;
-  after_img = 5;
   fadeAmnt = 5;
   radius = 200;
   pos_amp.set(radius, radius,0);

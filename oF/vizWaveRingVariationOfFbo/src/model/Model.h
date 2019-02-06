@@ -10,7 +10,6 @@ class Model {
     shared_ptr<ParticleData> data;
 
     int shapes_num;
-    int after_img;
     float radius;
     ofVec3f pos_amp;
     ofVec3f rot_amp;

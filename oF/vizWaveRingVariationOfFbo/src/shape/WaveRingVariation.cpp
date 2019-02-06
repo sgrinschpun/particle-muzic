@@ -39,13 +39,6 @@ void WaveRingVariation::drawFbo(){
   if( ofGetKeyPressed('c') ){
     ofClear(255,255,255, 0);
   }
-  // if(ofGetKeyPressed('1')){
-  //   fadeAmnt = 1;
-  // }else if(ofGetKeyPressed('2')){
-  //   fadeAmnt = 5;
-  // }else if(ofGetKeyPressed('3')){
-  //   fadeAmnt = 15;
-  // }
 
   ofEnableBlendMode(OF_BLENDMODE_ADD);
   ofPushMatrix();
@@ -74,10 +67,6 @@ void WaveRingVariation::setShapeNum(int _shapes_num) {
       waverings.push_back(wr);
     }
 
-}
-
-void WaveRingVariation::setAfterImg(int _after_img) {
-    after_img = _after_img;
 }
 
 void WaveRingVariation::setFadeAmount(int _fadeAmnt){

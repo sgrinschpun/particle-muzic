@@ -12,7 +12,6 @@ public:
     void setPosition(ofPoint _position);
 
     void setShapeNum(int shapes_num);
-    void setAfterImg(int after_img);
     void setFadeAmount(int fadeAmnt);
     //Variations
     void setRadius(float radius);
@@ -34,7 +33,6 @@ private:
     ofPoint position;
     float radius;
     int shapes_num;
-    int after_img;
     int framesPerCycle;
 
     ofFbo rgbaFbo;

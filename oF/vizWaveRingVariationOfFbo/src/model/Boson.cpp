@@ -17,7 +17,6 @@ void Boson::buildParameters(){
   radius = 50;
   col_mode = 0;
   if (name == "gamma"){
-      after_img = 16;
       fadeAmnt = 50;
       pos_amp.set(radius, radius, 2*radius);
       rot_amp.set(2*radius, radius, radius);
@@ -28,7 +27,6 @@ void Boson::buildParameters(){
       framesPerCycle = 100;
   }
   else if (name == "Z0"){
-      after_img = 145;
       fadeAmnt = 5;
       pos_amp.set(radius/2, radius/2, 2*radius);
       rot_amp.set(2*radius, radius/2, radius/2);
@@ -39,7 +37,6 @@ void Boson::buildParameters(){
       framesPerCycle = 100;
   }
   else if (name == "W+"){
-      after_img = 91;
       fadeAmnt = 2;
       pos_amp.set(radius, radius, 2*radius);
       rot_amp.set(radius, radius/2, radius/2);

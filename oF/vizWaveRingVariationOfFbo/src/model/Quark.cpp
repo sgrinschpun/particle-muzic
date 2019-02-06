@@ -7,7 +7,6 @@ Quark::Quark(shared_ptr<ParticleData>& _particleData):Model(_particleData){
 
 void Quark::buildParameters(){
   shapes_num =1;
-  after_img = 10;
   fadeAmnt = 10;
   radius = 200;
   pos_amp.set(0,0,0);
