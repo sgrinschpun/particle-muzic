@@ -1,8 +1,19 @@
 #include "Particle.h"
 
 Particle::Particle(shared_ptr<ParticleData>& _data): data(_data){
+  ofPoint position;
+  position.set(ofGetWidth()/2, ofGetHeight()/2,0);
+  ofVec3f velocity;
+  velocity.set(0,0,0);
+  kinematics = make_shared<Kinematics>(position, velocity);
   buildModel();
 }
+
+Particle::Particle(shared_ptr<ParticleData>& _data, ofPoint _position, ofVec3f _velocity): data(_data){
+  kinematics = make_shared<Kinematics>(_position, _velocity);
+  buildModel();
+}
+
 
 void Particle::buildModel(){
     string type = data->getType();
@@ -20,14 +31,13 @@ void Particle::buildModel(){
     else if (type == "quark") {model = make_shared<Quark>(data);}
   }
 
-void Particle::setup(){
-  model->setup();
-}
 
 void Particle::draw(){
   model->draw();
 }
 
 void Particle::update(){
+  kinematics->update();
+  model->setLocation(kinematics->getLocation());
   model->update();
 }

@@ -7,6 +7,10 @@ WaveRingVariation::WaveRingVariation() {
     cycle = make_shared<Cycle>(framesPerCycle);
 }
 
+void WaveRingVariation::setLocation(ofPoint _position){
+  location = _position;
+}
+
 void WaveRingVariation::update() {
 
   while (waverings.size() != shapes_num){
@@ -27,6 +31,8 @@ void WaveRingVariation::update() {
 void WaveRingVariation::draw() {
 
   ofEnableBlendMode(OF_BLENDMODE_ADD);
+  ofPushMatrix();
+  ofTranslate(location.x, location.y);
   for(int i=0; i<waverings.size(); i++){
     waverings[i].draw();
   }
@@ -34,6 +40,7 @@ void WaveRingVariation::draw() {
   ofEnableBlendMode(OF_BLENDMODE_ALPHA);
   ofFill();
   ofSetColor(0, after_img);
+  //ofDrawCircle(0,0,radius);
   ofDrawRectangle(-ofGetWidth()/2, -ofGetHeight()/2, ofGetWidth(), ofGetHeight());
   ofPopMatrix();
 

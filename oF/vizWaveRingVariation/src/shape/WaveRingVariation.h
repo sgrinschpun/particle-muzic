@@ -9,6 +9,7 @@ public:
     WaveRingVariation();
     void update();
     void draw();
+    void setLocation(ofPoint _position);
 
     void setShapeNum(int shapes_num);
     void setAfterImg(int after_img);
@@ -29,6 +30,7 @@ public:
 
 private:
     vector<WaveRing> waverings;
+    ofPoint location;
     int shapes_num;
     int after_img;
     int framesPerCycle;

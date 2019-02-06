@@ -5,21 +5,6 @@ Model::Model(shared_ptr<ParticleData>& _data): data(_data){
   setShape();
 }
 
-void Model::buildParameters(){
-  shapes_num = getShapesNum();
-  after_img = getAfterImg();
-  radius = getRadius();
-  pos_amp = getPos();
-  rot_amp = getRot();
-  speed_amp = getSpeed();
-  col_mode = getColorMode();
-  noiseStep = getNoiseStep();
-  noiseAmount = getNoiseAmount();
-  width = getWidth();
-  framesPerCycle = getFramesPerCycle();
-  segments = getSegments();
-}
-
 void Model::setShape(){
     shape = make_shared<WaveRingVariation>();
     shape.setShapeNum(shapes_num)
@@ -36,11 +21,14 @@ void Model::setShape(){
     shape.setSegments(segments);
 }
 
-
 void Model::draw(){
     shape->draw();
 }
 
 void Model::update(){
     shape->update();
+}
+
+void Model::setLocation(ofPoint _position){
+  shape->setLocation(_position);
 }

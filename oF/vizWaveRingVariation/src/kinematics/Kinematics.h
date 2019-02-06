@@ -8,11 +8,17 @@ class Kinematics {
     ofVec3f velocity;
     ofVec3f acceleration;
 
-  public:
-    void updateLocation();
-    void getLocation();
+    float topSpeed;
 
-    Kinematics();
+    void setAcceleration();
+    void checkEdges();
+
+  public:
+    void update();
+    ofPoint getLocation();
+    float getDistance();
+
+    Kinematics(ofPoint _position, ofVec3f _velocity);
     ~Kinematics();
 
 };

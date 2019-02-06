@@ -3,10 +3,6 @@
 #include "ofMain.h"
 #include "WaveRingVariation.h"
 #include "ParticleData.h"
-#include "Params.h"
-#include "LeptonParams.h"
-#include "BosonParams.h"
-
 
 class Model {
   private:
@@ -26,26 +22,15 @@ class Model {
     int framesPerCycle;
     int segments;
 
-    void buildParameters();
+    virtual void buildParameters()=0;
     void setShape();
-
-    virtual int getShapesNum() = 0;
-    virtual int getFramesPerCycle() = 0;
-    virtual int getAfterImg() = 0;
-    virtual float getRadius() = 0;
-    virtual ofVec3f getPos() = 0;
-    virtual ofVec3f getRot() = 0;
-    virtual float getSpeed() = 0;
-    virtual bool getColorMode() = 0;
-    virtual float getNoiseStep()=0;
-    virtual float getNoiseAmount()=0;
-    virtual int getSegments()=0;
-    virtual int getWidth()=0;
 
   public:
 
     void draw();
     void update();
+
+    void setLocation(ofPoint _position);
 
     Model(shared_ptr<ParticleData>& _particleData);
     ~Model() {}

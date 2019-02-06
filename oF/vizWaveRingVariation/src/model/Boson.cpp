@@ -1,42 +1,29 @@
 #include "Boson.h"
-#include "WaveRingVariation.h"
-
+s
 Boson::Boson(shared_ptr<ParticleData>& _particleData):Model(_particleData){
 };
 
-int Boson::getShapesNum(){
-
-}
-int Boson::getFramesPerCycle(){
-
-}
-int Boson::getAfterImg(){
-
-}
-float Boson::getRadius(){
-
-}
-ofVec3f Boson::getPos(){
-
-}
-ofVec3f Boson::getRot(){
-
-}
-float Boson::getSpeed(){
-
-}
-bool Boson::getColorMode(){
-
-}
-float Boson::getNoiseStep(){
-
-}
-float Boson::getNoiseAmount(){
-
-}
-int Boson::getSegments(){
-
-}
-int Boson::getWidth(){
-
+void Boson::buildParameters(){
+  shapes_num;
+  after_img;
+  radius;
+  pos_amp;
+  rot_amp;
+  speed_amp;
+  col_mode;
+  noiseStep;
+  noiseAmount;
+  width;
+  framesPerCycle;
+  segments;
+  switch(data.name){
+    case "gamma":
+      break;
+    case "Z0":
+      break;
+    case "W+":
+    case "W+":
+      break;
+    case "h0(H_1)":
+      break;
 }

@@ -1,9 +1,9 @@
-#ifndef _Meson //
-#define _Meson //
+#ifndef _Quark //
+#define _Quark //
 #include "ofMain.h"
 #include "Model.h"
 
-class Meson: public Model {
+class Quark: public Model {
   private:
     int getShapesNum();
     int getFramesPerCycle();
@@ -19,7 +19,7 @@ class Meson: public Model {
     int getWidth();
 
   public:
-    Meson(shared_ptr<ParticleData>& _particleData);
+    Quark(shared_ptr<ParticleData>& _particleData);
 
 };
 #endif
