@@ -31,10 +31,10 @@ void WaveRingVariation::draw() {
     waverings[i].draw();
   }
 
-  // ofEnableBlendMode(OF_BLENDMODE_ALPHA);
-  // ofFill();
-  // ofSetColor(0, after_img);
-  // ofDrawRectangle(-ofGetWidth()/2, -ofGetHeight()/2, ofGetWidth(), ofGetHeight());
+  ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+  ofFill();
+  ofSetColor(0, after_img);
+  ofDrawRectangle(-ofGetWidth()/2, -ofGetHeight()/2, ofGetWidth(), ofGetHeight());
   ofPopMatrix();
 
 

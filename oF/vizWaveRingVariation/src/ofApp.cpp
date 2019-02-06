@@ -2,9 +2,12 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+  ofBackground(0);
+  ofSetFrameRate(60);
+  ofSetBackgroundAuto(false);
+  ofSetCircleResolution(60);
 
-  groupOfParticleData.push_back(make_shared<ParticleData>(1,-1,"e-", "lepton"));
-  //groupOfParticleData.push_back(new ParticleData(2,-1,"Z0", "boson"));
+  groupOfParticleData.push_back(make_shared<ParticleData>(1,-1,"tau-", "lepton"));
 
   for(int i=0; i<groupOfParticleData.size(); i++){
     groupOfParticles.push_back(make_shared<Particle>(groupOfParticleData[i]));
@@ -24,7 +27,6 @@ void ofApp::draw(){
   for(int i=0; i<groupOfParticles.size(); i++){
     groupOfParticles[i]->draw();
   }
-
 }
 
 //--------------------------------------------------------------

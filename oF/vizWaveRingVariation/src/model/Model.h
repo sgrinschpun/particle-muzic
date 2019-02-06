@@ -31,7 +31,6 @@ class Model {
     void setPosition(ofPoint _position);
 
     Model(shared_ptr<ParticleData>& _particleData);
-    ~Model() {}
 
 };
 #endif

@@ -1,7 +1,13 @@
+#ifdef DEBUG
+#define DEBUG_MSG(str) do { std::cout << str << std::endl; } while( false )
+#else
+#define DEBUG_MSG(str) do { } while ( false )
+#endif
 #include "Boson.h"
 
 Boson::Boson(shared_ptr<ParticleData>& _particleData):Model(_particleData){
   buildParameters();
+  DEBUG_MSG("Boson Parameters done");
   setShape();
 }
 
@@ -40,6 +46,7 @@ void Boson::buildParameters(){
       noiseAmount = 85;
       width = 8;
       framesPerCycle = 40;
+      DEBUG_MSG("W+");
   }
   else if (name == "h0(H_1)"){
       after_img = 43;
@@ -49,7 +56,7 @@ void Boson::buildParameters(){
       noiseStep = 0;
       noiseAmount = 0;
       width = 8;
-      framesPerCycle = 0;
+      framesPerCycle = 100;
   }
 
 }

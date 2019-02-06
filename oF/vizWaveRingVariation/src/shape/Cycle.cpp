@@ -7,7 +7,7 @@ Cycle::Cycle(int _framesPerCycle):framesPerCycle(_framesPerCycle){
   hz = frameRate/framesPerCycle;
   progressRatioMax = (float) (framesPerCycle-1)/framesPerCycle;
 
-  buildRandomSeeds();
+  update();
 }
 
 void Cycle::update(){
@@ -23,11 +23,6 @@ void Cycle::update(){
   SextEaseOutRatio = 1-pow(progressRatio-1,6);
 }
 
-void Cycle::buildRandomSeeds(){
-  for (int i=0; i<framesPerCycle; i++){
-    randomSeeds[i] = rand()%100;
-  }
-}
 
 int Cycle::getCurrentCycle(){
   return currentCycle;

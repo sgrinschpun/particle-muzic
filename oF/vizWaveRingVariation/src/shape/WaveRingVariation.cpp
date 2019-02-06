@@ -1,10 +1,12 @@
+#ifdef DEBUG
+#define DEBUG_MSG(str) do { std::cout << str << std::endl; } while( false )
+#else
+#define DEBUG_MSG(str) do { } while ( false )
+#endif
 #include "WaveRingVariation.h"
 
 WaveRingVariation::WaveRingVariation() {
-    shapes_num = 1;
-    after_img = 50;
-    framesPerCycle = 50;
-    cycle = make_shared<Cycle>(framesPerCycle);
+
 }
 
 void WaveRingVariation::setPosition(ofPoint _position){
@@ -12,21 +14,10 @@ void WaveRingVariation::setPosition(ofPoint _position){
 }
 
 void WaveRingVariation::update() {
-
-  while (waverings.size() != shapes_num){
-      if (waverings.size() < shapes_num) {
-          WaveRing wr = WaveRing(cycle);
-          waverings.push_back(wr);
-      } else if (waverings.size() > shapes_num) {
-          waverings.pop_back();
-      }
-  }
-
   for(int i=0; i<waverings.size(); i++){
     waverings[i].update();
   }
 }
-
 
 void WaveRingVariation::draw() {
 
@@ -49,6 +40,11 @@ void WaveRingVariation::draw() {
 
 void WaveRingVariation::setShapeNum(int _shapes_num) {
     shapes_num = _shapes_num;
+    for(int i=0; i<shapes_num; i++){
+      WaveRing wr = WaveRing(cycle);
+      waverings.push_back(wr);
+    }
+
 }
 
 void WaveRingVariation::setAfterImg(int _after_img) {
@@ -57,7 +53,8 @@ void WaveRingVariation::setAfterImg(int _after_img) {
 
 void WaveRingVariation::setCycle(int _framesPerCycle){
   framesPerCycle = _framesPerCycle;
-  cycle -> setFramesPerCycle(_framesPerCycle);
+  DEBUG_MSG("framesPerCycle: " + to_string(framesPerCycle));
+  cycle = make_shared<Cycle>(framesPerCycle);
 }
 
 void WaveRingVariation::setRadius(float _radius) {

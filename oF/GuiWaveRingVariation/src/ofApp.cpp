@@ -4,7 +4,7 @@
 void ofApp::setup(){
     ofBackground(0);
     ofSetFrameRate(60);
-    //ofSetBackgroundAuto(false);
+    ofSetBackgroundAuto(false);
     ofSetCircleResolution(60);
 
     gui.setup();

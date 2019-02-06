@@ -1,3 +1,8 @@
+#ifdef DEBUG
+#define DEBUG_MSG(str) do { std::cout << str << std::endl; } while( false )
+#else
+#define DEBUG_MSG(str) do { } while ( false )
+#endif
 #include "Particle.h"
 
 Particle::Particle(shared_ptr<ParticleData>& _data): data(_data){
@@ -6,6 +11,7 @@ Particle::Particle(shared_ptr<ParticleData>& _data): data(_data){
   ofVec3f velocity;
   velocity.set(0,0,0);
   kinematics = make_shared<Kinematics>(position, velocity);
+  DEBUG_MSG("Kinematics up");
   buildModel();
 }
 
@@ -26,7 +32,10 @@ void Particle::buildModel(){
       // else {model = make_shared<Lepton>(data);}
       model = make_shared<Lepton>(data);
     }
-    else if (type == "boson") {model = make_shared<Boson>(data);}
+    else if (type == "boson") {
+      model = make_shared<Boson>(data);
+      DEBUG_MSG("Boson Model Up");
+    }
     else if (type == "meson") {model = make_shared<Meson>(data);}
     else if (type == "baryon"){model = make_shared<Baryon>(data);}
     else if (type == "quark") {model = make_shared<Quark>(data);}
