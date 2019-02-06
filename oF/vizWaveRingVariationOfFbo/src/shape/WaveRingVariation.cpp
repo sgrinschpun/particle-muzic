@@ -11,6 +11,7 @@ WaveRingVariation::WaveRingVariation() {
   s.width = ofGetWidth();
   s.height = ofGetHeight();
   s.internalformat = GL_RGBA;
+  //s.internalformat = GL_RGBA32F_ARB;
   s.useDepth = true;
   rgbaFbo.allocate(s);
 
@@ -75,7 +76,6 @@ void WaveRingVariation::setFadeAmount(int _fadeAmnt){
 
 void WaveRingVariation::setCycle(int _framesPerCycle){
   framesPerCycle = _framesPerCycle;
-  DEBUG_MSG("framesPerCycle: " + to_string(framesPerCycle));
   cycle = make_shared<Cycle>(framesPerCycle);
 }
 

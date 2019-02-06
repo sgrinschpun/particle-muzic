@@ -48,7 +48,6 @@ void Boson::buildParameters(){
       DEBUG_MSG("W+");
   }
   else if (name == "h0(H_1)"){
-      after_img = 43;
       fadeAmnt = 2;
       pos_amp.set(radius/2, radius/2, radius);
       rot_amp.set(2*radius, radius/2, radius/2);

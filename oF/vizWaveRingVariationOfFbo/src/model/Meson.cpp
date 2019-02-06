@@ -7,10 +7,10 @@ Meson::Meson(shared_ptr<ParticleData>& _particleData):Model(_particleData){
 
 void Meson::buildParameters(){
   shapes_num = 2;
-  fadeAmnt = 11;
-  radius = 200;
+  fadeAmnt = 50;
+  radius = 50;
   pos_amp.set(0,0,0);
-  rot_amp.set(radius,radius,0);
+  rot_amp.set(radius*4,radius*4,0);
   speed_amp = 0.007;
   col_mode = 0;
   noiseStep = 0;

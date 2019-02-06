@@ -7,8 +7,8 @@ Neutrino::Neutrino(shared_ptr<ParticleData>& _particleData):Model(_particleData)
 
 void Neutrino::buildParameters(){
   shapes_num = 3;
-  fadeAmnt = 20;
-  radius = 20;
+  fadeAmnt = 50;
+  radius = 5;
   pos_amp.set(radius*4,radius*4,radius*10);
   rot_amp.set(radius*4,radius*4,0);
   speed_amp = 0.03;
