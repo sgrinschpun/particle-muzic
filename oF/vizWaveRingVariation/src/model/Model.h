@@ -5,7 +5,7 @@
 #include "ParticleData.h"
 
 class Model {
-  private:
+  public:
     shared_ptr<WaveRingVariation> shape;
     shared_ptr<ParticleData> data;
 
@@ -25,7 +25,7 @@ class Model {
     virtual void buildParameters()=0;
     void setShape();
 
-  public:
+
 
     void draw();
     void update();

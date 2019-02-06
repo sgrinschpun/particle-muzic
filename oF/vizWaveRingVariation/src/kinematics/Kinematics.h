@@ -15,7 +15,7 @@ class Kinematics {
 
   public:
     void update();
-    ofPoint getLocation();
+    ofPoint getPosition();
     float getDistance();
 
     Kinematics(ofPoint _position, ofVec3f _velocity);

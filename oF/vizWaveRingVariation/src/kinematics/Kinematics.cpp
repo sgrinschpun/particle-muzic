@@ -10,33 +10,33 @@ void Kinematics::setAcceleration(){
 }
 
 void Kinematics::checkEdges(){
-  if (location.x > ofGetWidth()) {
-      location.x = 0;
+  if (position.x > ofGetWidth()) {
+      position.x = 0;
   }
-  if (location.x < 0) {
-      location.x = ofGetWidth();
+  if (position.x < 0) {
+      position.x = ofGetWidth();
   }
-  if (location.y > ofGetHeight()) {
-      location.y = 0;
+  if (position.y > ofGetHeight()) {
+      position.y = 0;
   }
-  if (location.y < 0) {
-      location.y = pofGetHeight();
+  if (position.y < 0) {
+      position.y = ofGetHeight();
   }
 }
 
-ofPoint Kinematics::getLocation(){
-  return location;
+ofPoint Kinematics::getPosition(){
+  return position;
 }
 
 float Kinematics::getDistance(){
   ofVec3f center(3, 4, 2);
-  return location.distance(center);
+  return position.distance(center);
 }
 
 void Kinematics::update(){
   checkEdges();
   velocity+=acceleration;
   velocity.limit(topSpeed);
-  location+=velocity;
+  position+=velocity;
 
 }

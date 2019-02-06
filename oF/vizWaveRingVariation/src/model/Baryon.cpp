@@ -19,5 +19,5 @@ void Baryon::buildParameters(){
 }
 
 bool Baryon::getColorMode(){
-
+    col_mode = 0;
 }

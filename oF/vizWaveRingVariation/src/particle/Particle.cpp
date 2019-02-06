@@ -18,7 +18,7 @@ Particle::Particle(shared_ptr<ParticleData>& _data, ofPoint _position, ofVec3f _
 void Particle::buildModel(){
     string type = data->getType();
     string name = data->getName();
-    const string neutrinos[] = {"nu_e", "nu_mu", "nu_tau", "nu_ebar","nu_mubar","nu_taubar"}
+    const string neutrinos[] = {"nu_e", "nu_mu", "nu_tau", "nu_ebar","nu_mubar","nu_taubar"};
 
     if (type == "lepton"){
       auto it = find(begin(neutrinos), end(neutrinos), name);
@@ -38,6 +38,6 @@ void Particle::draw(){
 
 void Particle::update(){
   kinematics->update();
-  model->setLocation(kinematics->getLocation());
+  model->setLocation(kinematics->getPosition());
   model->update();
 }

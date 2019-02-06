@@ -3,15 +3,27 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 
+  groupOfParticleData.push_back(make_shared<ParticleData>(1,-1,"e-", "lepton"));
+  //groupOfParticleData.push_back(new ParticleData(2,-1,"Z0", "boson"));
+
+  for(int i=0; i<groupOfParticleData.size(); i++){
+    groupOfParticles.push_back(make_shared<Particle>(groupOfParticleData[i]));
+  }
+
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-
+  for(int i=0; i<groupOfParticles.size(); i++){
+    groupOfParticles[i]->update();
+  }
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+  for(int i=0; i<groupOfParticles.size(); i++){
+    groupOfParticles[i]->draw();
+  }
 
 }
 
@@ -66,6 +78,6 @@ void ofApp::gotMessage(ofMessage msg){
 }
 
 //--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo){ 
+void ofApp::dragEvent(ofDragInfo dragInfo){
 
 }
