@@ -7,13 +7,19 @@
 
 WaveRingVariation::WaveRingVariation() {
 
+  //FBO
   ofFboSettings s;
   s.width = ofGetWidth();
   s.height = ofGetHeight();
   s.internalformat = GL_RGBA;
   //s.internalformat = GL_RGBA32F_ARB;
   s.useDepth = true;
+  s.useStencil = true;
+  s.textureTarget = GL_TEXTURE_2D;
+  s.wrapModeHorizontal = GL_REPEAT;
+  s.wrapModeVertical = GL_REPEAT;
   rgbaFbo.allocate(s);
+  DEBUG_MSG(s.internalformat);
 
   rgbaFbo.begin();
   ofClear(255,255,255, 0);

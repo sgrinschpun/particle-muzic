@@ -5,7 +5,7 @@ void ofApp::setup(){
     ofBackground(0);
     ofSetFrameRate(60);
     //ofSetBackgroundAuto(false);
-    ofSetCircleResolution(60);
+    ofSetCircleResolution(200);
 
     gui.setup();
     gui.add(shapes_num.set("number of shapes", 1, 1, 100));
@@ -13,7 +13,7 @@ void ofApp::setup(){
     gui.add(pos.set("pos",
                     ofVec3f(0),
                     ofVec3f(0),
-                    ofVec3f(ofGetWidth()/2, ofGetHeight()/2, 1000)));
+                    ofVec3f(720, 720, 720)));
     gui.add(rot.set("rot",
                     ofVec3f(0),
                     ofVec3f(0),

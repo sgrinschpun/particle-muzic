@@ -33,6 +33,9 @@ void WaveRing::setup(){
 
 void WaveRing::setupCircleMeshRing(){
   wigglyMeshRing.setMode(OF_PRIMITIVE_LINE_STRIP);
+  //wigglyMeshRing.setMode(OF_PRIMITIVE_LINES);
+  //wigglyMeshRing.setMode(OF_PRIMITIVE_LINE_LOOP);
+  //wigglyMeshRing.setMode(OF_PRIMITIVE_POINTS);
   ofPoint p;
   for(int i=0; i<=segments; i++){
     p.x =  (radius * cos(TWO_PI * i / segments));
@@ -59,9 +62,6 @@ void WaveRing::updateWigglyMeshRing(){
 
 
 void WaveRing::draw(){
-  //ofBackgroundGradient( ofColor(255), ofColor(180), OF_GRADIENT_CIRCULAR);
-  //ofEnableAlphaBlending();
-  //ofEnableSmoothing();
   ofEnableBlendMode(OF_BLENDMODE_ADD);
   ofSetLineWidth(width);
   ofNoFill();

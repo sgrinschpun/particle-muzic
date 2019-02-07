@@ -55,9 +55,6 @@ void WaveRing::updateWigglyMeshRing(){
 
 
 void WaveRing::draw(){
-  //ofBackgroundGradient( ofColor(255), ofColor(180), OF_GRADIENT_CIRCULAR);
-  // ofEnableAlphaBlending();
-  //ofEnableSmoothing();
   ofSetLineWidth(width);
   ofNoFill();
   ofPushMatrix();

@@ -37,7 +37,7 @@ void Boson::buildParameters(){
       framesPerCycle = 100;
   }
   else if (name == "W+"){
-      fadeAmnt = 2;
+      fadeAmnt = 50;
       pos_amp.set(radius, radius, 2*radius);
       rot_amp.set(radius, radius/2, radius/2);
       speed_amp = 0.009;

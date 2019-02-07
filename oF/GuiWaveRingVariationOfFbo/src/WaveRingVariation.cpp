@@ -1,3 +1,8 @@
+#ifdef DEBUG
+#define DEBUG_MSG(str) do { std::cout << str << std::endl; } while( false )
+#else
+#define DEBUG_MSG(str) do { } while ( false )
+#endif
 #include "WaveRingVariation.h"
 
 WaveRingVariation::WaveRingVariation() {
@@ -8,11 +13,17 @@ WaveRingVariation::WaveRingVariation() {
 
     //FBO
     ofFboSettings s;
-    s.width = 1024;
-    s.height = 768;
+    s.width = ofGetWidth();
+    s.height = ofGetHeight();
     s.internalformat = GL_RGBA;
+    //s.internalformat = GL_RGBA32F_ARB;
     s.useDepth = true;
+    s.useStencil = true;
+    s.textureTarget = GL_TEXTURE_2D;
+    s.wrapModeHorizontal = GL_REPEAT;
+    s.wrapModeVertical = GL_REPEAT;
     rgbaFbo.allocate(s);
+    DEBUG_MSG(s.internalformat);
 
     rgbaFbo.begin();
     ofClear(255,255,255, 0);
@@ -35,7 +46,7 @@ void WaveRingVariation::update() {
     waverings[i].update();
   }
 
-  ofEnableAlphaBlending();
+  //ofEnableAlphaBlending();
   rgbaFbo.begin();
   drawFbo();
   rgbaFbo.end();

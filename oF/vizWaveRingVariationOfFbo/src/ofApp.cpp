@@ -4,10 +4,9 @@
 void ofApp::setup(){
   ofBackground(0);
   ofSetFrameRate(60);
-  //ofSetBackgroundAuto(false);
-  ofSetCircleResolution(60);
+  ofSetCircleResolution(200);
 
-  groupOfParticleData.push_back(make_shared<ParticleData>(1,-1,"gamma", "boson"));
+  groupOfParticleData.push_back(make_shared<ParticleData>(1,-1,"W+", "boson"));
   groupOfParticleData.push_back(make_shared<ParticleData>(1,-1,"tau-", "lepton"));
   //groupOfParticleData.push_back(make_shared<ParticleData>(1,-1,"nu_e", "lepton"));
   groupOfParticleData.push_back(make_shared<ParticleData>(1,-1,"pi0", "meson"));
