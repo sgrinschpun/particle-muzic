@@ -42,7 +42,7 @@ void WaveRingVariation::update() {
 }
 
 void WaveRingVariation::drawFbo(){
-  
+
   ofEnableBlendMode(OF_BLENDMODE_ADD);
   ofPushMatrix();
   ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
@@ -51,9 +51,9 @@ void WaveRingVariation::drawFbo(){
   }
   ofPopMatrix();
 
-  ofEnableBlendMode(OF_BLENDMODE_SUBTRACT);
+  ofEnableBlendMode(OF_BLENDMODE_ALPHA);
   ofFill();
-  ofSetColor(255,255,255, fadeAmnt);
+  ofSetColor(0,0,0, fadeAmnt);
   ofDrawRectangle(0,0,1024,768);
 }
 

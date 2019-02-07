@@ -20,8 +20,8 @@ void ofApp::setup(){
   ofPoint position;
   position.set(ofGetWidth()/2, ofGetHeight()/2,0);
   groupOfParticles.push_back(make_shared<Particle>(groupOfParticleData[0], position, velocity1));
-  groupOfParticles.push_back(make_shared<Particle>(groupOfParticleData[1],position, velocity2));
-    groupOfParticles.push_back(make_shared<Particle>(groupOfParticleData[2],position, velocity3));
+  //groupOfParticles.push_back(make_shared<Particle>(groupOfParticleData[1],position, velocity2));
+  //groupOfParticles.push_back(make_shared<Particle>(groupOfParticleData[2],position, velocity3));
 
 
 }
