@@ -2,10 +2,12 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    ofSetWindowTitle("GuiWaveRing test");
     ofBackground(0);
     ofSetFrameRate(60);
     //ofSetBackgroundAuto(false);
     ofSetCircleResolution(200);
+    ofSetVerticalSync(true);
 
     gui.setup();
     gui.add(shapes_num.set("number of shapes", 1, 1, 100));

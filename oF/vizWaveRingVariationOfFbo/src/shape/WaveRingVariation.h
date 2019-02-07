@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _WaveRingVariation
+#define _WaveRingVariation
 #include "ofMain.h"
 #include "WaveRing.h"
 #include "Cycle.h"
@@ -40,3 +41,4 @@ private:
     void drawFbo();
 
 };
+#endif

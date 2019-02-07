@@ -1,5 +1,5 @@
-#ifndef _Cycle//
-#define _Cycle //
+#ifndef _Cycle
+#define _Cycle
 #include "ofMain.h"
 
 class Cycle {

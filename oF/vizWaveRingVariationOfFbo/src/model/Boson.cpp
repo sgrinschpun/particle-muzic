@@ -43,7 +43,7 @@ void Boson::buildParameters(){
       speed_amp = 0.009;
       noiseStep = 0.9;
       noiseAmount = 85;
-      width = 8;
+      width = 2;
       framesPerCycle = 40;
       DEBUG_MSG("W+");
   }

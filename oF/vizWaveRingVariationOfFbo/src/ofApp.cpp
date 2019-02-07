@@ -2,9 +2,11 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+  ofSetWindowTitle("Univers Quàntic @ cccB");
   ofBackground(0);
   ofSetFrameRate(60);
   ofSetCircleResolution(200);
+  ofSetVerticalSync(true);
 
   groupOfParticleData.push_back(make_shared<ParticleData>(1,-1,"W+", "boson"));
   groupOfParticleData.push_back(make_shared<ParticleData>(1,-1,"tau-", "lepton"));
