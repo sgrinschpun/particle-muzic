@@ -128,7 +128,7 @@ void WaveRingVariation::setNoiseAmount(float _noiseAmount){
   }
 }
 
-void WaveRingVariation::setWidth(int _width){
+void WaveRingVariation::setWidth(float _width){
   for(int i=0; i<waverings.size(); i++){
     waverings[i].setWidth(_width);
   }

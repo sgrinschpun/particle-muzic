@@ -17,7 +17,7 @@ class Model {
     bool col_mode;
     float noiseStep;
     float noiseAmount;
-    int width;
+    float width;
     int framesPerCycle;
     int segments;
 

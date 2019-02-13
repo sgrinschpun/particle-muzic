@@ -17,11 +17,12 @@ WaveRingVariation::WaveRingVariation() {
     s.height = ofGetHeight();
     s.internalformat = GL_RGBA;
     //s.internalformat = GL_RGBA32F_ARB;
-    s.useDepth = true;
+    //s.useDepth = true;
     s.useStencil = true;
-    s.textureTarget = GL_TEXTURE_2D;
-    s.wrapModeHorizontal = GL_REPEAT;
-    s.wrapModeVertical = GL_REPEAT;
+    s.numSamples = 2;
+    //(s.textureTarget = GL_TEXTURE_2D;
+    //s.wrapModeHorizontal = GL_REPEAT;
+    //s.wrapModeVertical = GL_REPEAT;
     rgbaFbo.allocate(s);
     DEBUG_MSG(s.internalformat);
 
@@ -127,7 +128,7 @@ void WaveRingVariation::setNoiseAmount(float _noiseAmount){
   }
 }
 
-void WaveRingVariation::setWidth(int _width){
+void WaveRingVariation::setWidth(float _width){
   for(int i=0; i<waverings.size(); i++){
     waverings[i].setWidth(_width);
   }

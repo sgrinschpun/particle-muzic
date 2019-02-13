@@ -106,7 +106,7 @@ void WaveRing::setNoiseAmount(float _noiseAmount){
   noiseAmount=_noiseAmount;
 }
 
-void WaveRing::setWidth(int _width){
+void WaveRing::setWidth(float _width){
   width = _width;
 }
 

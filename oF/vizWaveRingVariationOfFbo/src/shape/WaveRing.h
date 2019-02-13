@@ -10,7 +10,7 @@ class WaveRing {
     //shape
     ofMesh wigglyMeshRing;
     int segments;
-    int width;
+    float width;
     float noiseStep;
     float noiseAmount;
     float noiseCursor;
@@ -41,7 +41,7 @@ class WaveRing {
     //shape
     void setNoiseStep(float _noiseStep);
     void setNoiseAmount(float _noiseAmount);
-    void setWidth(int _width);
+    void setWidth(float _width);
     void setCycle(int _framesPerCycle);
     void setSegments(int _segments);
     //variation

@@ -22,7 +22,7 @@ public:
     //shape
     void setNoiseStep(float noiseStep);
     void setNoiseAmount(float noiseAmount);
-    void setWidth(int width);
+    void setWidth(float width);
     void setCycle(int framesPerCycle);
     void setSegments(int segments);
 

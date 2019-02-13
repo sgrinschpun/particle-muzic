@@ -1,1 +1,3 @@
 ofxGui
+ofxJSON
+ofxOsc

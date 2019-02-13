@@ -30,7 +30,7 @@ public:
     ofParameter<float> noiseAmount;
     ofParameter<int> framesPerCycle;
     ofParameter<int> segments;
-    ofParameter<int> width;
+    ofParameter<float> width;
     //Variations panel parameters
     ofParameter<int> shapes_num;
     ofParameter<int> fadeAmnt;

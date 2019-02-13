@@ -32,6 +32,7 @@ void WaveRing::setup(){
 }
 
 void WaveRing::setupCircleMeshRing(){
+  //wigglyMeshRing.setMode(OF_PRIMITIVE_TRIANGLE_STRIP);
   wigglyMeshRing.setMode(OF_PRIMITIVE_LINE_STRIP);
   //wigglyMeshRing.setMode(OF_PRIMITIVE_LINES);
   //wigglyMeshRing.setMode(OF_PRIMITIVE_LINE_LOOP);
@@ -72,7 +73,10 @@ void WaveRing::draw(){
     ofRotateX(rotate.x);
     ofRotateY(rotate.y);
     ofRotateZ(rotate.z);
-    wigglyMeshRing.draw();
+    //wigglyMeshRing.draw();
+    //wigglyMeshRing.drawWireframe();
+    //wigglyMeshRing.drawVertices();
+    wigglyMeshRing.drawFaces();
   ofPopMatrix();
 }
 
@@ -114,7 +118,7 @@ void WaveRing::setNoiseAmount(float _noiseAmount){
   noiseAmount=_noiseAmount;
 }
 
-void WaveRing::setWidth(int _width){
+void WaveRing::setWidth(float _width){
   width = _width;
 }
 
