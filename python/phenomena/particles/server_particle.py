@@ -21,7 +21,8 @@ class ServerParticle(object):
     VirtualUndercoverParticle should only appear when PARTCILE points to QuantumUniverseVirtualParticle (or any model with the DECAYTHROUGHVIRTUAL set to true)
     '''
 
-    PARTICLE =  QuantumUniverseVirtualParticle #
+    #PARTICLE =  QuantumUniverseVirtualParticle
+    PARTICLE =  QuantumUniverseParticle
 
     @staticmethod
     def init (name, parent = NO_PARENT, **kwargs):
