@@ -16,8 +16,10 @@ class DecayKinematics(KinematicsCalculations):
             calculations = LAB2BodyDecay(self._initial,self._target,self._final)
         elif len(self._final) == 3:
             calculations = LAB3BodyDecay(self._initial,self._target,self._final)
-        else:
+        elif len(self._final) > 3:
             calculations = LAB4BodyCalc(self._initial,self._target,self._final)
+        else:
+            calculations = []
         self._calculations = calculations
 
 class LAB2BodyDecay(LABNBody):
@@ -44,7 +46,7 @@ class LAB2BodyDecay(LABNBody):
         self._setFourMomenta()
 
 
-class LAB3BodyDecay(object):
+class LAB3BodyDecay(LABNBody):
 
     def __init__(self,initialparticle,target,finalparticles):
         self._initialparticleLAB = initialparticle
@@ -58,22 +60,26 @@ class LAB3BodyDecay(object):
         self._setLAB()
 
     def _setBoost(self):
+        self._setBoostVector()
+        self._initialparticleCM = UndercoverParticle(self._initialparticleLAB.name)
+        self._initialparticleCM.fourMomentum = self._initialparticleLAB.fourMomentum.boost(self._boostVector)
+
+    def _setBoostVector(self):
         self._boostVector = self._initialparticleLAB.fourMomentum.boostvector
 
     def _setCM(self):
         # Step 1: solve the system M -> m12 + m3 in the M CM
         self._part12 = UndercoverParticle('part12', self._m12)
-        self._initialparticleCM = UndercoverParticle(self._initialparticleLAB.name, p=0)
         self._outputStep1= LAB2BodyDecay(self._initialparticleCM,None,[self._part12,self._final3]).finalState
         #Step 2: solve the system m12 -> m1+m2 in the M CM
         self._outputStep2 = LAB2BodyDecay(self._outputStep1[0],None, [self._final1,self._final2]).finalState
         # 1,2,3 in the M CM in finalparticles
-        self._finalparticlesLAB = [self._outputStep2[0],self._outputStep2[1],self._outputStep1[1]]
+        self._finalparticlesCM= [self._outputStep2[0],self._outputStep2[1],self._outputStep1[1]]
 
-    def _setLAB(self):
-        for particle in self._finalparticlesLAB:
-            newfourMomentum = particle.fourMomentum.boost(-1*self._boostVector)
-            particle.fourMomentum = newfourMomentum
+    # def _setLAB(self):
+    #     for particle in self._finalparticlesLAB:
+    #         newfourMomentum = particle.fourMomentum.boost(-1*self._boostVector)
+    #         particle.fourMomentum = newfourMomentum
 
     def _setDalitz(self):
         M = self._initialparticleLAB.mass

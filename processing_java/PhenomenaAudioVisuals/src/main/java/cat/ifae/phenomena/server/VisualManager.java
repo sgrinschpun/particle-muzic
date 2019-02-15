@@ -50,12 +50,12 @@ public class VisualManager implements PhenoCallback {
 														(double) params.getDecayTime(),
 														sent);
 			if (params.getParent() == -1) {
-				particle = myViz.particle(params.getTheta(), params.getBeta(), particle_data);
+				particle = myViz.particle(params.getPy(), params.getPz(),params.getBeta(), particle_data);
 			}
 			else {
 				MyParticle parentParticle = list.get(params.getParent());
 				PVector location = parentParticle.getLocation();
-                particle = myViz.particle(location, params.getTheta(), params.getBeta(), particle_data);
+                particle = myViz.particle(location, params.getPy(), params.getPz(), params.getBeta(), particle_data);
 
             }
 			this.list.put(cmd.getPARAMS().getId(), particle);

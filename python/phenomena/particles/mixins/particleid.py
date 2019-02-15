@@ -30,7 +30,11 @@ class ParticleId(object):
     def parent(self):
         return self._parent
 
-    def _set_parent(self, parent):
+    def _set_parent(self, argv):
+        try:
+            parent = argv[1]
+        except:
+            parent = NO_PARENT
         self._parent = parent
 
     def toDictionary(self):

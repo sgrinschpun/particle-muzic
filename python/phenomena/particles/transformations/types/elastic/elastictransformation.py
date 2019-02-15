@@ -1,6 +1,8 @@
 import math
+from phenomena.particles.transformations.transformationchannel import TransformationChannels
 from phenomena.particles.transformations.types import Transformation
 from phenomena.particles.sources import ParticleDataSource
+
 
 class ElasticCollision(Transformation):
     excluded_part = ['gamma','e-','e+','nu_e','nu_mu','nu_tau','nu_ebar','nu_mubar','nu_taubar']
@@ -12,9 +14,9 @@ class ElasticCollision(Transformation):
         if self._particle.name not in ElasticCollision.excluded_part:
             self._buildTransfValues()
 
-    def _outputParticles(self):
-        #return [(1.0,map(ParticleDataSource.getPDGId, [self._particle.name, self._target]))]
-        return [(1.0,[self._particle.name, self._target])]
+    def _transformationChannels(self):
+        particles = map(ParticleDataSource.getPDGId,[self._particle.name, self._target])
+        return TransformationChannels.from_decaylist([(1.0,particles)])
 
     def getProbability(self, dt=1./60.):
         gamma = self._particle.fourMomentum.gamma

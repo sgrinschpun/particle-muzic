@@ -1,6 +1,9 @@
 import math
+from phenomena.particles.transformations.transformationchannel import TransformationChannels
 from phenomena.particles.transformations.types import Transformation
+from phenomena.particles.sources import ParticleDataSource
 from inelasticdata import InelasticData
+
 
 class InelasticCollision(Transformation):
 
@@ -11,8 +14,9 @@ class InelasticCollision(Transformation):
         if  self._particle.name in InelasticData.listOriginParticles(target):
             self._buildTransfValues()
 
-    def _outputParticles(self):
-        return InelasticData.energyCutParticles(self._particle.name, self._target, self._particle.E)
+    def _transformationChannels(self):
+        decaylist = InelasticData.energyCutParticles(self._particle.name, self._target, self._particle.E)
+        return TransformationChannels.from_decaylistNames(decaylist)
 
 
     def getProbability(self, dt=1./60.):

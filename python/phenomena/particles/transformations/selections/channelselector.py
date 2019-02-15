@@ -26,7 +26,7 @@ class ChannelSelector(object):
         seq = []
         weights=[]
         for index, item in enumerate(transformation_channels):
-            if item[0] != 0.0:           # do not use channels with prob = 0.0
+            if item.BR != 0.0:           # do not use channels with prob = 0.0
                 seq.append(index)
                 weights.append(item[0])
         return seq, weights

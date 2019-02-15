@@ -19,25 +19,25 @@ public class MyViz {
         this.color = setBackgroundColor();
     }
 
-    public MyParticle particle(PVector location, float theta, float beta, MyParticleData particleData) {
+    public MyParticle particle(PVector location, float px,float py, float beta, MyParticleData particleData) {
         switch (vizName) {
             case "quantumuniverse" :
-                particle = new MyParticleQU(this.p, location, theta, beta, particleData);
+                particle = new MyParticleQU(this.p, location, px,py, beta, particleData);
                 break;
             case "bubblechamber" :
-                particle = new MyParticleBC(this.p, location, theta, beta, particleData);
+                particle = new MyParticleBC(this.p, location, px,py, beta, particleData);
                 break;
         }
         return particle;
     }
 
-    public MyParticle particle(float theta, float beta, MyParticleData particleData) {
+    public MyParticle particle(float px, float py, float beta, MyParticleData particleData) {
         switch (vizName) {
             case "quantumuniverse" :
-                particle = new MyParticleQU(this.p, theta, beta, particleData);
+                particle = new MyParticleQU(this.p, px,py, beta, particleData);
                 break;
             case "bubblechamber" :
-                particle = new MyParticleBC(this.p, theta, beta, particleData);
+                particle = new MyParticleBC(this.p, px,py, beta, particleData);
                 break;
         }
         return particle;

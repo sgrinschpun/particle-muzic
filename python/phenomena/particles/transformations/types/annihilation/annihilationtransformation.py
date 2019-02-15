@@ -1,10 +1,11 @@
+from phenomena.particles.transformations.transformationchannel import TransformationChannels
 from phenomena.particles.transformations.types import Transformation
 from phenomena.particles.sources import ParticleDataSource
 
 class Annihilation(Transformation):
 
     INPUT = ['e+']
-    OUTPUT = ['gamma']
+    OUTPUT = map(ParticleDataSource.getPDGId, ['gamma'])
     TARGET = 'e-'
 
     def __init__(self, particle):
@@ -13,8 +14,8 @@ class Annihilation(Transformation):
         if  self._particle.name in Annihilation.INPUT:
             self._buildTransfValues()
 
-    def _outputParticles(self):
-        return [(1.0, Annihilation.OUTPUT)]
+    def _transformationChannels(self):
+        return TransformationChannels.from_decaylist([(1.0,Annihilation.OUTPUT)])
 
     def getProbability(self, dt=1./60.):
         gamma = self._particle.fourMomentum.gamma

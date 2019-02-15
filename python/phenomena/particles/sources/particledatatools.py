@@ -52,15 +52,20 @@ class ParticleDataToolFetcher(object):
     @staticmethod
     def getWidth(pdgid):
         tau = ParticleDataToolFetcher.getTau(pdgid) / u.picosecond
-        width = lifetime_to_width(tau / u.picosecond)
+        try:
+            width = lifetime_to_width(tau / u.picosecond)
+        except:
+            width = 0
         return width / u.GeV
 
     @staticmethod
     def getParticleList():
+        '''Get the list of al particles in the DB'''
         return pythia.iteritems()
 
     @staticmethod
     def decayListToNames(decaylist):
+        '''Change ids for names in decay lists'''
         allchannels_list = []
         for channel in decaylist:
             thischannels_list = []
@@ -71,12 +76,14 @@ class ParticleDataToolFetcher(object):
 
     @staticmethod
     def getDecayChannelsWithNames(name):
+        '''Substitute the ids of the particles for their names in the decay_channel'''
         pdgid = ParticleDataToolFetcher.getPDGId(name)
         pdgid_list = ParticleDataToolFetcher.getDecayChannels(pdgid)
         return ParticleDataToolFetcher.decayListToNames(pdgid_list)
 
     @staticmethod
     def getDecayParticles(name):
+        '''Given a particle name, return all the particles it decay to'''
         pdgid = ParticleDataToolFetcher.getPDGId(name)
         decaylist = ParticleDataToolFetcher.getDecayChannels(pdgid)
         particle_list = []
@@ -87,11 +94,40 @@ class ParticleDataToolFetcher(object):
 
     @staticmethod
     def getOriginParticles(listofdecayedparticles):
-         pdgid_list = map(ParticleDataToolFetcher.getPDGId, listofdecayedparticles)
-         part_list = []
-         for item in ParticleDataToolFetcher.getParticleList():
-             channels = ParticleDataToolFetcher.getDecayChannels(item[0])
-             for channel in channels:
-                 if set(pdgid_list) == set(channel[1]):
-                     part_list.append((channel[0],[item[1].name]))
-         return part_list
+        '''Given a list of particle names, search for particles that decay into these'''
+        pdgid_list = map(ParticleDataToolFetcher.getPDGId, listofdecayedparticles)
+        part_list = []
+        for item in ParticleDataToolFetcher.getParticleList():
+         channels = ParticleDataToolFetcher.getDecayChannels(item[0])
+         for channel in channels:
+             if set(pdgid_list) == set(channel[1]):
+                 part_list.append((channel[0],[item[1].name]))
+        return part_list
+
+    @staticmethod
+    def getBR(originparticle, listofdecayedparticles):
+        '''Given a particle and the particles it decays to, return the BR of that channel'''
+        pdgid_origin = ParticleDataToolFetcher.getPDGId(originparticle)
+        pdgid_list = map(ParticleDataToolFetcher.getPDGId, listofdecayedparticles)
+        channels = ParticleDataToolFetcher.getDecayChannels(pdgid_origin)
+        for channel in channels:
+            if set(pdgid_list) == set(channel[1]):
+                BR = channel[0]
+                return BR
+
+    @staticmethod
+    def getChannel(particle, id):
+        'get a specific channel from decay values'
+        return ParticleDataToolFetcher.getDecayParticles(particle)[id]
+
+
+    @staticmethod
+    def getNdecays(integer):
+        '''Get all the particles that decay to integer = 2 or 3 or .. particles'''
+        part_list = []
+        for item in ParticleDataToolFetcher.getParticleList():
+         channels = ParticleDataToolFetcher.getDecayChannels(item[0])
+         for channel in channels:
+             if len(channel[1]) == integer and channel[0] != 0.0:
+                 part_list.append(item[1].name)
+        return part_list

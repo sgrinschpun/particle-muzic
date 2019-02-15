@@ -31,10 +31,11 @@ sources = {
     'getSpin':scikitHEP,
     'getName':particledatatool,#particledatatool, scikitHEP, decaylanguage
     'getDecayChannels':particledatatool,
-    'getWidth':scikitHEP, #scikitHEP, decaylanguage  skhep.math.kinematics.width_to_lifetime
+    'getWidth':particledatatool, #particledatatool,scikitHEP, decaylanguage  skhep.math.kinematics.width_to_lifetime
     'getCTau':scikitHEP, #particledatatool, scikitHEP
     'getRadius':decaylanguage,
     'getAnti':decaylanguage,
+    'isNewPhysics':scikitHEP,
     'getParticleList':particledatatool,
     'getParticleByComposition':extrainfo
 }
@@ -99,7 +100,8 @@ class ParticleDataSource(object):
 
     @staticmethod
     def getWidth(name):
-        return sources['getWidth'].getWidth(name) * u.GeV / u.GeV
+        pdgid = ParticleDataSource.getPDGId(name)
+        return sources['getWidth'].getWidth(pdgid) * u.GeV / u.GeV
 
     @staticmethod
     def getCTau(name):
@@ -115,6 +117,11 @@ class ParticleDataSource(object):
     def getAnti(name):
         pdgid = ParticleDataSource.getPDGId(name)
         return ParticleDataSource.getName(sources['getAnti'].getAnti(pdgid))
+
+    @staticmethod
+    def isNewPhysics(name):
+        pdgid = ParticleDataSource.getPDGId(name)
+        return sources['isNewPhysics'].isNewPhysics(pdgid)
 
     @staticmethod
     def getParticleList():

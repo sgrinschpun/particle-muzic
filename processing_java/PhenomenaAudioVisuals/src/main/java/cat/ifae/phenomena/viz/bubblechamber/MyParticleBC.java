@@ -15,16 +15,16 @@ public class MyParticleBC extends MyParticle {
 
     protected PVector acceleration;
 
-    public MyParticleBC(PApplet p, PVector location, float theta, float beta, MyParticleData particleData) {
-        super(p ,location,theta,beta,particleData);
+    public MyParticleBC(PApplet p, PVector location, float px,float py, float beta, MyParticleData particleData) {
+        super(p ,location,px,py,beta,particleData);
 
         myDinamics = new MyDynamics(particleData);
         myTrack = new MyTrack(p, particleData);
 
     }
 
-    public MyParticleBC(PApplet p, float theta, float beta, MyParticleData particleData) {
-        super(p, theta,beta,particleData);
+    public MyParticleBC(PApplet p, float px, float py, float beta, MyParticleData particleData) {
+        super(p, px,py,beta,particleData);
         this.location = new PVector(0f, (float) p.height / 2);
 
         myDinamics = new MyDynamics(particleData);

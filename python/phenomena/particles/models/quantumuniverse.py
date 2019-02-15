@@ -9,26 +9,28 @@ __status__ = "Development"
 from phenomena.particles.particle import Particle
 from phenomena.particles.mixins import ParticleId, ParticleData, ParticleBoost, ParticleTransformation
 
-from phenomena.particles.transformations.types import ComptonEffect, PairProduction, Annihilation, InelasticCollisionWithProton,InelasticCollisionWithNeutron, Decay, ElasticCollisionWithProton, ElasticCollisionWithElectron, ElasticCollisionWithNeutron
-
-NO_PARENT = -1
+from phenomena.particles.transformations.types import ComptonEffect, PairProduction, Annihilation, InelasticCollisionWithProton,InelasticCollisionWithNeutron, Decay, ElasticCollisionWithProton, ElasticCollisionWithElectron, ElasticCollisionWithNeutron, NoTransformation
 
 class QuantumUniverseParticle(ParticleTransformation, ParticleBoost, ParticleData, ParticleId, Particle):
     '''
     This class is intended for the QuantumUniverse simulation.
+    argv[0] -> Name
+    argv[1] -> Parent
+    kwargs -> p, theta, phi
     '''
 
-    TRANSFORMATIONS = [Decay, ElasticCollisionWithProton]
+    TRANSFORMATIONS = [Decay, NoTransformation]
+    DECAYTHROUGHVIRTUAL = False
 
-    def __init__(self, name, parent = NO_PARENT, **kwargs):
+    def __init__(self, *argv, **kwargs):
 
         #### ParticleId
         self._set_id() # Class Counter
-        self._set_parent(parent) # The parent id of particle
+        self._set_parent(argv) # The parent id of particle
 
         #### ParticleData
-        self._set_name(name)  # Name of the particle
-        self._set_pdgid(name) # Id from PDG
+        self._set_name(argv)  # Name of the particle
+        self._set_pdgid() # Id from PDG
         self._set_mass() # Mass of the particle in GeV
         self._set_charge() # Charge of the particle
         self._set_lifetime() # Lifetime of the particle in ****units****

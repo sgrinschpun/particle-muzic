@@ -1,7 +1,8 @@
 from __future__ import division
-from phenomena.particles.transformations.types import Transformation
-from skhep import units as u
 import math
+from skhep import units as u
+from phenomena.particles.transformations.transformationchannel import TransformationChannels
+from phenomena.particles.transformations.types import Transformation
 
 class Decay(Transformation):
 
@@ -12,8 +13,8 @@ class Decay(Transformation):
         self._values = {}
         self._buildTransfValues()
 
-    def _outputParticles(self):
-        return Transformation.channelListToNames(self._particle.decay_channels)
+    def _transformationChannels(self):
+        return TransformationChannels.from_decaylist(self._particle.decay_channels)
 
     def getProbability(self, dt=1./60.):
         dt = dt *u.s

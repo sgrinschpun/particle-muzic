@@ -8,33 +8,35 @@ public abstract class MyParticle {
     public PApplet p;
     public MyParticleData particleData;
     public PVector location, velocity;
-    public float theta, beta;
+    public float px,py, beta;
 
 
-    public MyParticle(PApplet p, PVector location, float theta, float beta, MyParticleData particleData) {
+    public MyParticle(PApplet p, PVector location, float px, float py, float beta, MyParticleData particleData) {
         this.p = p;
         this.location = location.copy();
-        this.theta = theta;
+        this.px = px;
+        this.py = py;
         this.beta = beta;
-        this.velocity = setVelocity(theta, beta);
+        this.velocity = setVelocity(px,py, beta);
         this.particleData = particleData;
 
     }
 
-    public MyParticle(PApplet p, float theta, float beta, MyParticleData particleData) {
+    public MyParticle(PApplet p, float px, float py, float beta, MyParticleData particleData) {
         this.p = p;
-        this.theta = theta;
+        this.px = px;
+        this.py = py;
         this.beta = beta;
-        this.velocity = setVelocity(theta, beta);
+        this.velocity = setVelocity(px,py, beta);
         this.particleData = particleData;
 
         //this.location = new PVector((float) p.width / 2, (float) p.height / 2);
     }
 
     // non-abstract methods it has default implementation
-    protected PVector setVelocity(float theta, float beta){
-        velocity = PVector.fromAngle(theta);
-        velocity.mult(3*beta);
+    protected PVector setVelocity(float px, float py, float beta){
+        velocity = new PVector(px,py);
+        velocity.normalize().mult(3*beta);
         return velocity;
     }
 

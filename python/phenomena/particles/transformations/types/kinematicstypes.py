@@ -81,7 +81,7 @@ class LABNBody(object):
 
     def _setVector3D(self,p):
         theta = math.pi * random.random() # [0, math.pi]
-        phi = 2*math.pi * random.random() #random.choice([-math.pi/2, math.pi/2])
+        phi = 2*math.pi * random.random()#random.choice([-math.pi/2, math.pi/2])
         vector1 = Vector3D.fromsphericalcoords(p,theta,phi)
         vector2 = -1*vector1
         return [vector1, vector2]

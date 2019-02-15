@@ -3,7 +3,10 @@ from phenomena.particles.models import UndercoverParticle, BubbleChamberParticle
 
 from phenomena.particles.transformations import TransformController
 
-testparticles = [ (BubbleChamberParticle("e-")) ]
+testparticles = [   (BubbleChamberParticle("e-")),
+                    (BubbleChamberParticle("mu-")),
+                    (BubbleChamberParticle("pi-")),
+ ]
 
 @pytest.mark.parametrize("particle",testparticles)
 def test_transformations(particle):
@@ -13,4 +16,4 @@ def test_transformations(particle):
     for item in particle.transformation.output:
         assert isinstance(item, UndercoverParticle)
         print item.name
-    assert particle.transformation.selectedType in transformationlist
+    assert particle.transformation.selectedType.type in transformationlist

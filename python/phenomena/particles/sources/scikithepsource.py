@@ -65,3 +65,11 @@ class SciKitHEPFetcher(object):
     @staticmethod
     def getCTau(pdgid):
         return tbl[pdgid].ctau
+
+    @staticmethod
+    def isLepton(pdgid):
+        return PDGID.isLepton(pdgid)
+
+    @staticmethod
+    def isSUSY(pdgid):
+        return PDGID.isSUSY(pdgid)
