@@ -185,7 +185,6 @@ class AllDecays(object):
         selected_particles = []
         for partchannel in self._allDecaysinDB:
             for channel in partchannel.decayChannels.getChannel(decay):
-                #print partchannel.name, channel.names
                 if all([set(decay) == channel.nameSet,
                         channel.BR > 0.,
                         ParticleDataSource.getCharge(partchannel.name)== channel.totalCharge,

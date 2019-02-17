@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from __future__ import print_function
 
 __author__ = "Sebastian Grinschpun"
 __license__ = "GPL"
@@ -26,10 +27,10 @@ class ParticleTransformation(object):
     def start(self, callback):
         if self.transformation.selectedType.type != 'NoTransformation':
             wait_time = self.transformation.transformtime
-            print "Wait for: ", wait_time
+            print ("Wait for: ", wait_time)
             threading.Timer(wait_time, callback).start()
         else:
-            print "Wait for: ", 15
+            print ("Wait for: ", 15)
             threading.Timer(15, callback).start()
 
     @property

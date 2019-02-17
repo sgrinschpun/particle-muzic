@@ -43,27 +43,3 @@ class ExtraInfoFetcher(object):
             name_array = []
         finally:
             return name_array
-
-
-    # @staticmethod
-    # def build_compname():
-    #     compid = {}
-    #     for part in basic_particle_array:
-    #         comp = ParticleDataSource.getComposition(part)
-    #         id = ParticleDataSource.getPDGId(part)
-    #         if comp == []:
-    #             print (id)
-    #         compid[tuple(Inelastic2Body.orderQuarks(comp))] = [part]
-    #
-    #     print (compid)
-    #
-    # @staticmethod
-    # def quarkOrder(quark):
-    #     return ExtraInfoFetcher.quarkorder[quark]
-    #
-    # quarkorder = {'u':1,'d':3,'c':5,'s':7,'t':9,'b':11,'ubar':2,'dbar':4,'cbar':6,'sbar':8,'tbar':10,'bbar':12}
-    #
-    # @staticmethod
-    # def orderQuarks(listofquarks):
-    #     listofquarks.sort(key=ExtraInfoFetcher.quarkOrder)
-    #     return listofquarks
