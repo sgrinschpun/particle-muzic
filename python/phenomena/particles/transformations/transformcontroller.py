@@ -162,7 +162,6 @@ class TransformController(object):
         for transf in self._transformationlist:
             probability = transf.getProbability(dt)
             if TypeSelector.getDecision(probability):
-                print transf.name
                 self._selectedType = self._selectByType(transf.name)
                 self._selectChannel()
                 output = self.output

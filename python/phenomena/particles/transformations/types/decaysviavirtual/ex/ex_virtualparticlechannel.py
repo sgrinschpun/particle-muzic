@@ -10,7 +10,6 @@ class VirtualParticleChannel(object):
     def __init__(self, particle,id):
         self._particle = particle
         self._decayParticles= ParticleDataToolFetcher.getDecayParticles(self._particle.name)
-        print self._particle.name, 'to', self._decayParticles[id]
         self._buildVirtualChannels(self._decayParticles[id])
 
     def _buildVirtualChannels(self,decayparticles):

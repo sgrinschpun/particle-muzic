@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
+
 __author__ = "Sebastian Grinschpun"
 __license__ = "GPL"
 __version__ = "0.1"
 __email__ = "sgrinschpun@ifae.es"
 __status__ = "Development"
-
 
 from itertools import product
 import json
