@@ -9,7 +9,7 @@ __status__ = "Development"
 from phenomena.particles.particle import Particle
 from phenomena.particles.mixins import ParticleId, ParticleData, ParticleBoost, ParticleTransformation
 
-from phenomena.particles.transformations.types import ComptonEffect, PairProduction, Annihilation, InelasticCollisionWithProton,InelasticCollisionWithNeutron, Decay, ElasticCollisionWithProton, ElasticCollisionWithElectron, ElasticCollisionWithNeutron, NoTransformation
+from phenomena.particles.transformations.types import ComptonEffect, PairProduction, Annihilation, InelasticCollisionWithProton,InelasticCollisionWithNeutron, Decay, ElasticCollisionWithProton, ElasticCollisionWithElectron, ElasticCollisionWithNeutron, Hadronization, NoTransformation
 
 class QuantumUniverseParticle(ParticleTransformation, ParticleBoost, ParticleData, ParticleId, Particle):
     '''
@@ -19,7 +19,7 @@ class QuantumUniverseParticle(ParticleTransformation, ParticleBoost, ParticleDat
     kwargs -> p, theta, phi
     '''
 
-    TRANSFORMATIONS = [Decay, NoTransformation]
+    TRANSFORMATIONS = [Decay, Hadronization, NoTransformation]
     DECAYTHROUGHVIRTUAL = False
 
     def __init__(self, *argv, **kwargs):

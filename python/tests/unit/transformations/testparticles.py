@@ -1,13 +1,14 @@
 from phenomena.particles.particle import Particle
 from phenomena.particles.mixins import ParticleId, NO_PARENT, ParticleData, ParticlePosition, ParticleBoost, ParticleTransformation
-from phenomena.particles.transformations.types import ComptonEffect, PairProduction, Annihilation, InelasticCollisionWithProton,InelasticCollisionWithNeutron, Decay, ElasticCollisionWithProton, ElasticCollisionWithElectron, ElasticCollisionWithNeutron, NoTransformation
+from phenomena.particles.transformations.types import ComptonEffect, PairProduction, Annihilation, InelasticCollisionWithProton,InelasticCollisionWithNeutron, Decay, ElasticCollisionWithProton, ElasticCollisionWithElectron, ElasticCollisionWithNeutron, Hadronization, NoTransformation
 
 class TestParticle(ParticleTransformation, ParticleBoost, ParticleData):
+    DECAYTHROUGHVIRTUAL = False
 
     def __init__(self, name, parent = NO_PARENT, **kwargs):
         #### ParticleData
         self._set_name(name)  # Name of the particle
-        self._set_pdgid(name) # Id from PDG
+        self._set_pdgid() # Id from PDG
         self._set_mass() # Mass of the particle in GeV
         self._set_charge() # Charge of the particle
         self._set_type() # Particle Type (quark, lepton, boson, meson, baryon)
@@ -44,6 +45,13 @@ class DecayParticle(TestParticle):
     def __init__(self, name, parent = NO_PARENT, **kwargs):
         super(DecayParticle, self).__init__(name, parent = NO_PARENT, **kwargs)
         self._setTransformationManager(self, DecayParticle.TRANSFORMATIONS)
+
+class HadronizationParticle(TestParticle):
+    TRANSFORMATIONS = [Hadronization]
+
+    def __init__(self, name, parent = NO_PARENT, **kwargs):
+        super(HadronizationParticle, self).__init__(name, parent = NO_PARENT, **kwargs)
+        self._setTransformationManager(self, HadronizationParticle.TRANSFORMATIONS)
 
 class ElasticParticle(TestParticle):
     TRANSFORMATIONS = [ElasticCollisionWithProton, ElasticCollisionWithElectron, ElasticCollisionWithNeutron]

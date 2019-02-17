@@ -7,3 +7,4 @@ from elastic import ElasticCollision, ElasticCollisionWithProton, ElasticCollisi
 from inelastic import InelasticCollision, InelasticCollisionWithProton, InelasticCollisionWithNeutron,  InelasticKinematics
 from notransformation import NoTransformation
 from pairproduction import PairProduction, PairProductionKinematics
+from hadronization import Hadronization, HadronizationKinematics
