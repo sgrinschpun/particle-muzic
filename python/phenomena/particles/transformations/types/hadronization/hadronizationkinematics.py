@@ -34,7 +34,7 @@ class LAB2BodyDecay(LABNBody):
         self._boostVector = self._initialparticleLAB.fourMomentum.boostvector
 
     def _setS(self):
-        self._s = self._initialparticleCM.e**2
+        self._s = self._initialparticleLAB.E**2 #self._initialparticleCM.e**2
 
     def _setCM(self):
         self._setS()
