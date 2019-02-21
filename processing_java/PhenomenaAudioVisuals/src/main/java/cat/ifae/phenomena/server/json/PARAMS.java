@@ -11,9 +11,9 @@ public class PARAMS {
 	private String type;
 	private float p;
 	private float beta;
-	private float px;
-	private float py;
-	private float pz;
+	private float vx;
+	private float vy;
+	private float vz;
 
 	public int getId() {
 		return id;
@@ -30,7 +30,7 @@ public class PARAMS {
 	public void setMass(float mass) {
 		this.mass = mass;
 	}
-	
+
 	public String getType() {
 		return this.type;
 	}
@@ -70,11 +70,11 @@ public class PARAMS {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public void setParent(int parent) {
 		this.parent = parent;
 	}
-	
+
 	public int getParent() {
 		return parent;
 	}
@@ -95,22 +95,22 @@ public class PARAMS {
 		return beta;
 	}
 
-	public float getPx() {
-		return px;
+	public float getVx() {
+		return vx;
 	}
 
-	public float getPy() {
-		return py;
+	public float getVy() {
+		return vy;
 	}
 
-	public float getPz() {
-		return pz;
+	public float getVz() {
+		return vz;
 	}
 
 	@Override
 	public String toString() {
 		return "PhenomenaCMD [type = " + type + " parent = "+ parent + " mass = " + mass + ", id = " + id + ", decayTime = " + decay_time + ", charge = " + charge
-				+ ", name = " + name + ", composition = " + composition + ", p = " + p + ", beta = " + beta + ", px = " + px+" , py = " + py+" , pz = " +pz +"]";
+				+ ", name = " + name + ", composition = " + composition + ", p = " + p + ", beta = " + beta + ", vx = " + vx+" , vy = " + vy+" , vz = " +vz +"]";
 	}
 
 	public boolean equals(PARAMS p) {

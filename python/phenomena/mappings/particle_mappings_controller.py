@@ -11,9 +11,10 @@ class MappingsController:
                                "composition": MirrorMapping(),
                                "type": MirrorMapping(),
                                "p": MirrorMapping(),
-                               "px": MirrorMapping(),
-                               "py": MirrorMapping(),
-                               "pz": MirrorMapping(),
+                               "E": MirrorMapping(),
+                               "vx": MirrorMapping(),
+                               "vy": MirrorMapping(),
+                               "vz": MirrorMapping(),
                                "beta": MirrorMapping()
                                }
 
