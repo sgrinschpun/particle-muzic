@@ -1,7 +1,7 @@
 from __future__ import division
 import math, random
-from phenomena.particles.transformations.types import KinematicsCalculations, LABNBody
-from phenomena.particles.models.undercoverparticle import UndercoverParticle
+from .phenomena.particles.transformations.types import KinematicsCalculations, LABNBody
+from .phenomena.particles.models.undercoverparticle import UndercoverParticle
 
 class HadronizationKinematics(KinematicsCalculations):
     '''
