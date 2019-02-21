@@ -107,15 +107,15 @@ class ParticleBoost(object):
 
     @property
     def vx(self):
-        return self.beta*self.self._fourMomentum.vector.unit().x
+        return self.beta*self._fourMomentum.vector.unit().x
 
     @property
     def vy(self):
-    return self.beta*self.self._fourMomentum.vector.unit().y
+        return self.beta*self._fourMomentum.vector.unit().y
 
     @property
     def vz(self):
-        return self.beta*self.self._fourMomentum.vector.unit().z
+        return self.beta*self._fourMomentum.vector.unit().z
 
     @property
     def pz(self):

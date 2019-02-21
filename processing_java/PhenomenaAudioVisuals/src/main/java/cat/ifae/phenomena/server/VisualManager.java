@@ -35,7 +35,7 @@ public class VisualManager implements PhenoCallback {
 		case "ADD":
 			MyParticle particle;
 			PARAMS params = cmd.getPARAMS();
-			String message = String.format("Adding particle-pic to list!: ID: %d - Parent: %d type: %s", 
+			String message = String.format("Adding particle-pic to list!: ID: %d - Parent: %d type: %s",
 				params.getId(),
 				params.getParent(),
 				params.getType()
@@ -45,17 +45,17 @@ public class VisualManager implements PhenoCallback {
 			MyParticleData particle_data = new MyParticleData(params.getName(),
 														params.getType(),
 														params.getComposition(),
-														(double) params.getMass(), 
+														(double) params.getMass(),
 														(double) params.getCharge(),
 														(double) params.getDecayTime(),
 														sent);
 			if (params.getParent() == -1) {
-				particle = myViz.particle(params.getPy(), params.getPz(),params.getBeta(), particle_data);
+				particle = myViz.particle(params.getVy(), params.getVz(), particle_data);
 			}
 			else {
 				MyParticle parentParticle = list.get(params.getParent());
 				PVector location = parentParticle.getLocation();
-                particle = myViz.particle(location, params.getPy(), params.getPz(), params.getBeta(), particle_data);
+                particle = myViz.particle(location, params.getVy(), params.getVz(), particle_data);
 
             }
 			this.list.put(cmd.getPARAMS().getId(), particle);

@@ -60,7 +60,7 @@ class BasicParticle(Particle):
     This class is used by the server to transmit the messages through the socket. It is just a container of information.
     '''
 
-    def __init__(self, parent, id, name, type, mass, charge, composition, transformtime, p, px, py, pz, beta):
+    def __init__(self, parent, id, name, type, mass, charge, composition, transformtime, p, E, vx, vy, vz, beta):
         self._parent = parent
         self._id = id
         self._name = name

@@ -11,25 +11,17 @@ public class MyParticleQU extends MyParticle {
 
     private MyParticleFamily particle;
 
-    public MyParticleQU(PApplet p, PVector location, float px,float py, float beta, MyParticleData particleData) {
-        super(p ,location, px,py,beta,particleData);
+    public MyParticleQU(PApplet p, PVector location, float vx,float vy, MyParticleData particleData) {
+        super(p ,location, vx,vy,particleData);
         buildParticle();
     }
 
-    public MyParticleQU(PApplet p, float px,float py, float beta, MyParticleData particleData) {
-        super(p, px,py,beta,particleData);
+    public MyParticleQU(PApplet p, float vx,float vy, MyParticleData particleData) {
+        super(p, vx,vy,particleData);
         this.location = new PVector((float) p.width / 2, (float) p.height / 2);
         buildParticle();
     }
 
-    protected PVector setVelocity(float px,float py, float beta){
-
-        velocity = new PVector(px,py);
-        velocity.normalize().mult(3*beta);
-        return velocity;
-
-        //return new PVector(0f,0f);
-    }
 
     public void buildParticle() {
         switch (this.particleData.getType()) {
