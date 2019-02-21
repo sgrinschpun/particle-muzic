@@ -1,4 +1,4 @@
-from phenomena.particles.transformations.types import ComptonKinematics, DecayKinematics, ElasticKinematics, InelasticKinematics, PairProductionKinematics, AnnihilationKinematics
+from phenomena.particles.transformations.types import ComptonKinematics, DecayKinematics, ElasticKinematics, InelasticKinematics, PairProductionKinematics, AnnihilationKinematics, HadronizationKinematics
 
 from phenomena.particles.models.undercoverparticle import UndercoverParticle, VirtualUndercoverParticle
 
@@ -13,7 +13,8 @@ KinematicsType = {
 'Annihilation': AnnihilationKinematics,
 'InelasticCollisionWithProton': InelasticKinematics,
 'InelasticCollisionWithNeutron': InelasticKinematics,
-'Decay': DecayKinematics
+'Decay': DecayKinematics,
+'Hadronization': HadronizationKinematics
 }
 
 class KinematicsController(object):

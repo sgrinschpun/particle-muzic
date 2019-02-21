@@ -125,7 +125,7 @@ class TransformationChannels(object):
                 TC.length in [2,3],
                 TC.nameSet.intersection(TransformationChannels.EXCLUDED) == set([])
             ]):
-                tclist.append()
+                tclist.append(TC)
         return cls(tclist)
 
     @property
