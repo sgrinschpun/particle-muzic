@@ -1,2 +1,2 @@
-from .hadronizationtransformation import Hadronization
-from .hadronizationkinematics import HadronizationKinematics, LAB2BodyDecay
+from hadronizationtransformation import Hadronization
+from hadronizationkinematics import HadronizationKinematics, LAB2BodyDecay
